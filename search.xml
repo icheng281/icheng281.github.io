@@ -1,0 +1,1549 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>H指数</title>
+    <url>/2024/03/01/H%E6%8C%87%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="H指数"><a href="#H指数" class="headerlink" title="H指数"></a>H指数</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个整数数组 <code>citations</code> ，其中 <code>citations[i]</code> 表示研究者的第 <code>i</code> 篇论文被引用的次数。计算并返回该研究者的 <strong><code>h</code> 指数</strong>。</p>
+<p>根据维基百科上 h 指数的定义：<code>h</code> 代表“高引用次数” ，一名科研人员的 <code>h</code> <strong>指数</strong> 是指他（她）至少发表了 <code>h</code> 篇论文，并且 <strong>至少</strong> 有 <code>h</code> 篇论文被引用次数大于等于 <code>h</code> 。如果 <code>h</code> 有多种可能的值，**<code>h</code> 指数** 是其中最大的那个。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：citations = [3,0,6,1,5]</span><br><span class="line">输出：3 </span><br><span class="line">解释：给定数组表示研究者总共有 5 篇论文，每篇论文相应的被引用了 3, 0, 6, 1, 5 次。</span><br><span class="line">     由于研究者有 3 篇论文每篇 至少 被引用了 3 次，其余两篇论文每篇被引用 不多于 3 次，所以她的 h 指数是 3。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：citations = [1,3,1]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == citations.length</code></li>
+<li><code>1 &lt;= n &lt;= 5000</code></li>
+<li><code>0 &lt;= citations[i] &lt;= 1000</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）排序"><a href="#（1）排序" class="headerlink" title="（1）排序"></a>（1）排序</h3><p><strong>思路及算法</strong></p>
+<p>首先我们可以将初始的 H 指数 h 设为 0，然后将引用次数排序，并且对排序后的数组从大到小遍历。</p>
+<p>根据 H 指数的定义，如果当前 H 指数为 h 并且在遍历过程中找到当前值 citations[i]&gt;h，则说明我们找到了一篇被引用了至少 h+1 次的论文，所以将现有的 h 值加 1。继续遍历直到 h 无法继续增大。最后返回 h 作为最终答案。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int hIndex(vector&lt;int&gt;&amp; citations) &#123;</span><br><span class="line">        sort(citations.begin(), citations.end());</span><br><span class="line">        int h = 0, i = citations.size() - 1;</span><br><span class="line">        while (i &gt;= 0 &amp;&amp; citations[i] &gt; h) &#123;</span><br><span class="line">            h++;</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">        return h;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int hIndex(int[] citations) &#123;</span><br><span class="line">        Arrays.sort(citations);</span><br><span class="line">        int h = 0, i = citations.length - 1; </span><br><span class="line">        while (i &gt;= 0 &amp;&amp; citations[i] &gt; h) &#123;</span><br><span class="line">            h++; </span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">        return h;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(nlog⁡n)，其中 n 为数组 citations 的长度。即为排序的时间复杂度。</p>
+</li>
+<li><p>空间复杂度：O(log⁡n)，其中 n 为数组 citations 的长度。即为排序的空间复杂度。</p>
+</li>
+</ul>
+<h3 id="（2）计数排序"><a href="#（2）计数排序" class="headerlink" title="（2）计数排序"></a>（2）计数排序</h3><p><strong>思路及算法</strong></p>
+<p>根据上述解法我们发现，最终的时间复杂度与排序算法的时间复杂度有关，所以我们可以使用计数排序算法，新建并维护一个数组 counter 用来记录当前引用次数的论文有几篇。</p>
+<p>根据定义，我们可以发现 H 指数不可能大于总的论文发表数，所以对于引用次数超过论文发表数的情况，我们可以将其按照总的论文发表数来计算即可。这样我们可以限制参与排序的数的大小为 [0,n]（其中 n 为总的论文发表数），使得计数排序的时间复杂度降低到 O(n)。</p>
+<p>最后我们可以从后向前遍历数组 counter，对于每个 0≤i≤n，在数组 counter 中得到大于或等于当前引用次数 iii 的总论文数。当我们找到一个 H 指数时跳出循环，并返回结果。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int hIndex(vector&lt;int&gt;&amp; citations) &#123;</span><br><span class="line">        int n = citations.size(), tot = 0;</span><br><span class="line">        vector&lt;int&gt; counter(n + 1);</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            if (citations[i] &gt;= n) &#123;</span><br><span class="line">                counter[n]++;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                counter[citations[i]]++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = n; i &gt;= 0; i--) &#123;</span><br><span class="line">            tot += counter[i];</span><br><span class="line">            if (tot &gt;= i) &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public int hIndex(int[] citations) &#123;</span><br><span class="line">        int n = citations.length, tot = 0;</span><br><span class="line">        int[] counter = new int[n + 1];</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            if (citations[i] &gt;= n) &#123;</span><br><span class="line">                counter[n]++;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                counter[citations[i]]++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = n; i &gt;= 0; i--) &#123;</span><br><span class="line">            tot += counter[i];</span><br><span class="line">            if (tot &gt;= i) &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 为数组 citations 的长度。需要遍历数组 citations 一次，以及遍历长度为 n+1 的数组 counter 一次。</p>
+</li>
+<li><p>空间复杂度：O(n)，其中 n 为数组 citations 的长度。需要创建长度为 n+1 的数组 counter。</p>
+</li>
+</ul>
+<h3 id="（3）二分搜索"><a href="#（3）二分搜索" class="headerlink" title="（3）二分搜索"></a>（3）二分搜索</h3><p><strong>思路及算法</strong></p>
+<p>我们需要找到一个值 h，它是满足「有 <code>h</code> 篇论文的引用次数至少为<code> h</code>」的最大值。小于等于<code>h</code>的所有值 <code>x</code> 都满足这个性质，而大于 <code>h</code> 的值都不满足这个性质。同时因为我们可以用较短时间（扫描一遍数组的时间复杂度为 O(n)，其中 n 为数组 citations 的长度）来判断 <code>x</code> 是否满足这个性质，所以这个问题可以用二分搜索来解决。</p>
+<p>设查找范围的初始左边界 left 为 0，初始右边界 right 为 n。每次在查找范围内取中点 mid，同时扫描整个数组，判断是否至少有 mid 个数大于 mid。如果有，说明要寻找的 h 在搜索区间的右边，反之则在左边。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int hIndex(vector&lt;int&gt;&amp; citations) &#123;</span><br><span class="line">        int left=0,right=citations.size();</span><br><span class="line">        int mid=0,cnt=0;</span><br><span class="line">        while(left&lt;right)&#123;</span><br><span class="line">            // +1 防止死循环</span><br><span class="line">            mid=(left+right+1)&gt;&gt;1;</span><br><span class="line">            cnt=0;</span><br><span class="line">            for(int i=0;i&lt;citations.size();i++)&#123;</span><br><span class="line">                if(citations[i]&gt;=mid)&#123;</span><br><span class="line">                    cnt++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(cnt&gt;=mid)&#123;</span><br><span class="line">                // 要找的答案在 [mid,right] 区间内</span><br><span class="line">                left=mid;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                // 要找的答案在 [0,mid) 区间内</span><br><span class="line">                right=mid-1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int hIndex(int[] citations) &#123;</span><br><span class="line">        int left=0,right=citations.length;</span><br><span class="line">        int mid=0,cnt=0;</span><br><span class="line">        while(left&lt;right)&#123;</span><br><span class="line">            // +1 防止死循环</span><br><span class="line">            mid=(left+right+1)&gt;&gt;1;</span><br><span class="line">            cnt=0;</span><br><span class="line">            for(int i=0;i&lt;citations.length;i++)&#123;</span><br><span class="line">                if(citations[i]&gt;=mid)&#123;</span><br><span class="line">                    cnt++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(cnt&gt;=mid)&#123;</span><br><span class="line">                // 要找的答案在 [mid,right] 区间内</span><br><span class="line">                left=mid;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                // 要找的答案在 [0,mid) 区间内</span><br><span class="line">                right=mid-1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(nlogn)，其中 n 为数组 citations 的长度。需要进行 logn 次二分搜索，每次二分搜索需要遍历数组 citations 一次。</li>
+<li>空间复杂度：O(1)，只需要常数个变量来进行二分搜索。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>O(1)时间插入、删除和获取随机元素</title>
+    <url>/2024/03/01/O-1-%E6%97%B6%E9%97%B4%E6%8F%92%E5%85%A5%E3%80%81%E5%88%A0%E9%99%A4%E5%92%8C%E8%8E%B7%E5%8F%96%E9%9A%8F%E6%9C%BA%E5%85%83%E7%B4%A0/</url>
+    <content><![CDATA[<h1 id="O-1-时间插入、删除和获取随机元素"><a href="#O-1-时间插入、删除和获取随机元素" class="headerlink" title="O(1)时间插入、删除和获取随机元素"></a>O(1)时间插入、删除和获取随机元素</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>实现<code>RandomizedSet</code> 类：</p>
+<ul>
+<li><code>RandomizedSet()</code> 初始化 <code>RandomizedSet</code> 对象</li>
+<li><code>bool insert(int val)</code> 当元素 <code>val</code> 不存在时，向集合中插入该项，并返回 <code>true</code> ；否则，返回 <code>false</code> 。</li>
+<li><code>bool remove(int val)</code> 当元素 <code>val</code> 存在时，从集合中移除该项，并返回 <code>true</code> ；否则，返回 <code>false</code> 。</li>
+<li><code>int getRandom()</code> 随机返回现有集合中的一项（测试用例保证调用此方法时集合中至少存在一个元素）。每个元素应该有 <strong>相同的概率</strong> 被返回。</li>
+</ul>
+<p>你必须实现类的所有函数，并满足每个函数的 <strong>平均</strong> 时间复杂度为 <code>O(1)</code> 。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入</span><br><span class="line">[&quot;RandomizedSet&quot;, &quot;insert&quot;, &quot;remove&quot;, &quot;insert&quot;, &quot;getRandom&quot;, &quot;remove&quot;, &quot;insert&quot;, &quot;getRandom&quot;]</span><br><span class="line">[[], [1], [2], [2], [], [1], [2], []]</span><br><span class="line">输出</span><br><span class="line">[null, true, false, true, 2, true, false, 2]</span><br><span class="line"></span><br><span class="line">解释</span><br><span class="line">RandomizedSet randomizedSet = new RandomizedSet();</span><br><span class="line">randomizedSet.insert(1); // 向集合中插入 1 。返回 true 表示 1 被成功地插入。</span><br><span class="line">randomizedSet.remove(2); // 返回 false ，表示集合中不存在 2 。</span><br><span class="line">randomizedSet.insert(2); // 向集合中插入 2 。返回 true 。集合现在包含 [1,2] 。</span><br><span class="line">randomizedSet.getRandom(); // getRandom 应随机返回 1 或 2 。</span><br><span class="line">randomizedSet.remove(1); // 从集合中移除 1 ，返回 true 。集合现在包含 [2] 。</span><br><span class="line">randomizedSet.insert(2); // 2 已在集合中，所以返回 false 。</span><br><span class="line">randomizedSet.getRandom(); // 由于 2 是集合中唯一的数字，getRandom 总是返回 2 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>-231 &lt;= val &lt;= 231 - 1</code></li>
+<li>最多调用 <code>insert</code>、<code>remove</code> 和 <code>getRandom</code> 函数 <code>2 * ``105</code> 次</li>
+<li>在调用 <code>getRandom</code> 方法时，数据结构中 <strong>至少存在一个</strong> 元素。</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="变长数组-哈希表"><a href="#变长数组-哈希表" class="headerlink" title="变长数组+哈希表"></a>变长数组+哈希表</h3><p><strong>思路及算法</strong></p>
+<p>这道题要求实现一个类，满足插入、删除和获取随机元素操作的平均时间复杂度为 O(1)。</p>
+<p>变长数组可以在 O(1) 的时间内完成获取随机元素操作，但是由于无法在 O(1) 的时间内判断元素是否存在，因此不能在 O(1) 的时间内完成插入和删除操作。哈希表可以在 O(1) 的时间内完成插入和删除操作，但是由于无法根据下标定位到特定元素，因此不能在 O(1) 的时间内完成获取随机元素操作。为了满足插入、删除和获取随机元素操作的时间复杂度都是 O(1)，需要将变长数组和哈希表结合，变长数组中存储元素，哈希表中存储每个元素在变长数组中的下标。</p>
+<p>插入操作时，首先判断 val 是否在哈希表中，如果已经存在则返回 false，如果不存在则插入 val，操作如下：</p>
+<ol>
+<li><p>在变长数组的末尾添加 val；</p>
+</li>
+<li><p>在添加 val 之前的变长数组长度为 val 所在下标 index，将 val 和下标 index 存入哈希表；</p>
+</li>
+<li><p>返回 true。</p>
+</li>
+</ol>
+<p>删除操作时，首先判断 val 是否在哈希表中，如果不存在则返回 false，如果存在则删除 val，操作如下：</p>
+<ol>
+<li><p>从哈希表中获得 val 的下标 index；</p>
+</li>
+<li><p>将变长数组的最后一个元素 last 移动到下标 index 处，在哈希表中将 last 的下标更新为 index；</p>
+</li>
+<li><p>在变长数组中删除最后一个元素，在哈希表中删除 val；</p>
+</li>
+<li><p>返回 true。</p>
+</li>
+</ol>
+<p>删除操作的重点在于将变长数组的最后一个元素移动到待删除元素的下标处，然后删除变长数组的最后一个元素。该操作的时间复杂度是 O(1)，且可以保证在删除操作之后变长数组中的所有元素的下标都连续，方便插入操作和获取随机元素操作。</p>
+<p>获取随机元素操作时，由于变长数组中的所有元素的下标都连续，因此随机选取一个下标，返回变长数组中该下标处的元素。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class RandomizedSet &#123;</span><br><span class="line">public:</span><br><span class="line">    RandomizedSet() &#123;</span><br><span class="line">        srand((unsigned)time(NULL));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    bool insert(int val) &#123;</span><br><span class="line">        if (indices.count(val)) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        int index = nums.size();</span><br><span class="line">        nums.emplace_back(val);</span><br><span class="line">        indices[val] = index;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    bool remove(int val) &#123;</span><br><span class="line">        if (!indices.count(val)) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        int index = indices[val];</span><br><span class="line">        int last = nums.back();</span><br><span class="line">        nums[index] = last;</span><br><span class="line">        indices[last] = index;</span><br><span class="line">        nums.pop_back();</span><br><span class="line">        indices.erase(val);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int getRandom() &#123;</span><br><span class="line">        int randomIndex = rand()%nums.size();</span><br><span class="line">        return nums[randomIndex];</span><br><span class="line">    &#125;</span><br><span class="line">private:</span><br><span class="line">    vector&lt;int&gt; nums;</span><br><span class="line">    unordered_map&lt;int, int&gt; indices;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class RandomizedSet &#123;</span><br><span class="line">    List&lt;Integer&gt; nums;</span><br><span class="line">    Map&lt;Integer, Integer&gt; indices;</span><br><span class="line">    Random random;</span><br><span class="line"></span><br><span class="line">    public RandomizedSet() &#123;</span><br><span class="line">        nums = new ArrayList&lt;Integer&gt;();</span><br><span class="line">        indices = new HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        random = new Random();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean insert(int val) &#123;</span><br><span class="line">        if (indices.containsKey(val)) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        int index = nums.size();</span><br><span class="line">        nums.add(val);</span><br><span class="line">        indices.put(val, index);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean remove(int val) &#123;</span><br><span class="line">        if (!indices.containsKey(val)) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        int index = indices.get(val);</span><br><span class="line">        int last = nums.get(nums.size() - 1);</span><br><span class="line">        nums.set(index, last);</span><br><span class="line">        indices.put(last, index);</span><br><span class="line">        nums.remove(nums.size() - 1);</span><br><span class="line">        indices.remove(val);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int getRandom() &#123;</span><br><span class="line">        int randomIndex = random.nextInt(nums.size());</span><br><span class="line">        return nums.get(randomIndex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：初始化和各项操作的时间复杂度都是 O(1)。</p>
+</li>
+<li><p>空间复杂度：O(n)，其中 n 是集合中的元素个数。存储元素的数组和哈希表需要 O(n) 的空间。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>两数之和</title>
+    <url>/2024/02/09/%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/</url>
+    <content><![CDATA[<h1 id="两数之和"><a href="#两数之和" class="headerlink" title="两数之和"></a>两数之和</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>题目如下：给定一个整数数组 <code>nums</code> 和一个整数目标值 <code>target</code>，请你在该数组中找出 <strong>和为目标值</strong> <em><code>target</code></em> 的那 <strong>两个</strong> 整数，并返回它们的数组下标。</p>
+<p>你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。</p>
+<p>你可以按任意顺序返回答案。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [2,7,11,15], target = 9</span><br><span class="line">输出：[0,1]</span><br><span class="line">解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [3,2,4], target = 6</span><br><span class="line">输出：[1,2]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [3,3], target = 6</span><br><span class="line">输出：[0,1]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><p><code>2 &lt;= nums.length &lt;= 104</code></p>
+</li>
+<li><p><code>-109 &lt;= nums[i] &lt;= 109</code></p>
+</li>
+<li><p><code>-109 &lt;= target &lt;= 109</code></p>
+</li>
+<li><p><strong>只会存在一个有效答案</strong></p>
+</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）哈希表"><a href="#（1）哈希表" class="headerlink" title="（1）哈希表"></a>（1）哈希表</h3><p><strong>思路及算法</strong></p>
+<p>注意到方法一的时间复杂度较高的原因是寻找 target - x 的时间复杂度过高。因此，我们需要一种更优秀的方法，能够快速寻找数组中是否存在目标元素。如果存在，我们需要找出它的索引。</p>
+<p>使用哈希表，可以将寻找 target - x 的时间复杂度降低到从 O(N)O(N)O(N) 降低到 O(1)O(1)O(1)。</p>
+<p>这样我们创建一个哈希表，对于每一个 x，我们首先查询哈希表中是否存在 target - x，然后将 x 插入到哈希表中，即可保证不会让 x 和自己匹配。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        unordered_map&lt;int, int&gt; hashtable;</span><br><span class="line">        for (int i = 0; i &lt; nums.size(); ++i) &#123;</span><br><span class="line">            auto it = hashtable.find(target - nums[i]);</span><br><span class="line">            if (it != hashtable.end()) &#123;</span><br><span class="line">                return &#123;it-&gt;second, i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            hashtable[nums[i]] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        return &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int[] twoSum(int[] nums, int target) &#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; hashtable = new HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        for (int i = 0; i &lt; nums.length; ++i) &#123;</span><br><span class="line">            if (hashtable.containsKey(target - nums[i])) &#123;</span><br><span class="line">                return new int[]&#123;hashtable.get(target - nums[i]), i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            hashtable.put(nums[i], i);</span><br><span class="line">        &#125;</span><br><span class="line">        return new int[0];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(N)，其中 N 是数组中的元素数量。对于每一个元素 x，我们可以 O(1)地寻找 target - x。</p>
+</li>
+<li><p>空间复杂度：O(N)，其中 N是数组中的元素数量。主要为哈希表的开销。</p>
+</li>
+</ul>
+<h3 id="（2）蛮力枚举"><a href="#（2）蛮力枚举" class="headerlink" title="（2）蛮力枚举"></a>（2）蛮力枚举</h3><p><strong>思路及算法</strong></p>
+<p>最容易想到的方法是枚举数组中的每一个数 x，寻找数组中是否存在 target - x。</p>
+<p>当我们使用遍历整个数组的方式寻找 target - x 时，需要注意到每一个位于 x 之前的元素都已经和 x 匹配过，因此不需要再进行匹配。而每一个元素不能被使用两次，所以我们只需要在 x 后面的元素中寻找 target - x。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            for (int j = i + 1; j &lt; n; ++j) &#123;</span><br><span class="line">                if (nums[i] + nums[j] == target) &#123;</span><br><span class="line">                    return &#123;i, j&#125;;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int[] twoSum(int[] nums, int target) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            for (int j = i + 1; j &lt; n; ++j) &#123;</span><br><span class="line">                if (nums[i] + nums[j] == target) &#123;</span><br><span class="line">                    return new int[]&#123;i, j&#125;;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return new int[0];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(N^2^)其中 N 是数组中的元素数量。最坏情况下数组中任意两个数都要被匹配一次。</p>
+</li>
+<li><p>空间复杂度：O(1)。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>买卖股票的最佳时机I</title>
+    <url>/2024/02/28/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BAI/</url>
+    <content><![CDATA[<h1 id="买卖股票的最佳时机I"><a href="#买卖股票的最佳时机I" class="headerlink" title="买卖股票的最佳时机I"></a>买卖股票的最佳时机I</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个数组 <code>prices</code> ，它的第 <code>i</code> 个元素 <code>prices[i]</code> 表示一支给定股票第 <code>i</code> 天的价格。</p>
+<p>你只能选择 <strong>某一天</strong> 买入这只股票，并选择在 <strong>未来的某一个不同的日子</strong> 卖出该股票。设计一个算法来计算你所能获取的最大利润。</p>
+<p>返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 <code>0</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：[7,1,5,3,6,4]</span><br><span class="line">输出：5</span><br><span class="line">解释：在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。</span><br><span class="line">     注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：prices = [7,6,4,3,1]</span><br><span class="line">输出：0</span><br><span class="line">解释：在这种情况下, 没有交易完成, 所以最大利润为 0。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= prices.length &lt;= 105</code></li>
+<li><code>0 &lt;= prices[i] &lt;= 104</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><p><strong>解决方案</strong></p>
+<p>我们需要找出给定数组中两个数字之间的最大差值（即，最大利润）。此外，第二个数字（卖出价格）必须大于第一个数字（买入价格）。</p>
+<p>形式上，对于每组 <code>i</code> 和<code>j</code>（其中<code> j&gt;i</code>）我们需要找出 <code>max⁡(prices[j]−prices[i])</code>。</p>
+<h3 id="（1）暴力法【超时】"><a href="#（1）暴力法【超时】" class="headerlink" title="（1）暴力法【超时】"></a>（1）暴力法【超时】</h3><p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxProfit(vector&lt;int&gt;&amp; prices) &#123;</span><br><span class="line">        int n = (int)prices.size(), ans = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i)&#123;</span><br><span class="line">            for (int j = i + 1; j &lt; n; ++j) &#123;</span><br><span class="line">                ans = max(ans, prices[j] - prices[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public int maxProfit(int[] prices) &#123;</span><br><span class="line">        int maxprofit = 0;</span><br><span class="line">        for (int i = 0; i &lt; prices.length - 1; i++) &#123;</span><br><span class="line">            for (int j = i + 1; j &lt; prices.length; j++) &#123;</span><br><span class="line">                int profit = prices[j] - prices[i];</span><br><span class="line">                if (profit &gt; maxprofit) &#123;</span><br><span class="line">                    maxprofit = profit;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return maxprofit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n^2^)。循环运行 $\dfrac{n (n-1)}{2} $次。</li>
+<li>空间复杂度：O(1)。只使用了常数个变量。</li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="（2）一次遍历"><a href="#（2）一次遍历" class="headerlink" title="（2）一次遍历"></a>（2）一次遍历</h3><p><strong>思路及算法</strong></p>
+<p>假设给定的数组为：<code>[7, 1, 5, 3, 6, 4]</code></p>
+<p>如果我们在图表上绘制给定数组中的数字，我们将会得到：</p>
+<p><img src="https://pic.leetcode-cn.com/cc4ef55d97cfef6f9215285c7573027c4b265c31101dd54e8555a7021c95c927-file_1555699418271" alt="Profit Graph"></p>
+<p>我们来假设自己来购买股票。随着时间的推移，每天我们都可以选择出售股票与否。那么，假设在第<code> i</code> 天，如果我们要在今天卖股票，那么我们能赚多少钱呢？</p>
+<p>显然，如果我们真的在买卖股票，我们肯定会想：如果我是在历史最低点买的股票就好了！太好了，在题目中，我们只要用一个变量记录一个历史最低价格 <code>minprice</code>，我们就可以假设自己的股票是在那天买的。那么我们在第 i 天卖出股票能得到的利润就是 <code>prices[i] - minprice</code>。</p>
+<p>因此，我们只需要遍历价格数组一遍，记录历史最低点，然后在每一天考虑这么一个问题：如果我是在历史最低点买进的，那么我今天卖出能赚多少钱？当考虑完所有天数之时，我们就得到了最好的答案。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxProfit(vector&lt;int&gt;&amp; prices) &#123;</span><br><span class="line">        int inf = 1e9;</span><br><span class="line">        int minprice = inf, maxprofit = 0;</span><br><span class="line">        for (int price: prices) &#123;</span><br><span class="line">            maxprofit = max(maxprofit, price - minprice);</span><br><span class="line">            minprice = min(price, minprice);</span><br><span class="line">        &#125;</span><br><span class="line">        return maxprofit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public int maxProfit(int prices[]) &#123;</span><br><span class="line">        int minprice = Integer.MAX_VALUE;</span><br><span class="line">        int maxprofit = 0;</span><br><span class="line">        for (int i = 0; i &lt; prices.length; i++) &#123;</span><br><span class="line">            if (prices[i] &lt; minprice) &#123;</span><br><span class="line">                minprice = prices[i];</span><br><span class="line">            &#125; else if (prices[i] - minprice &gt; maxprofit) &#123;</span><br><span class="line">                maxprofit = prices[i] - minprice;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return maxprofit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，只需要遍历一次。</li>
+<li>空间复杂度：O(1)，只使用了常数个变量。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>删除有序数组的重复项II</title>
+    <url>/2024/02/27/%E5%88%A0%E9%99%A4%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9II/</url>
+    <content><![CDATA[<h1 id="删除有序数组的重复项II"><a href="#删除有序数组的重复项II" class="headerlink" title="删除有序数组的重复项II"></a>删除有序数组的重复项II</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个有序数组 <code>nums</code> ，请你 原地 删除重复出现的元素，使得出现次数超过两次的元素<strong>只出现两次</strong> ，返回删除后数组的新长度。</p>
+<p>不要使用额外的数组空间，你必须在 原地 修改输入数组 并在使用 O(1) 额外空间的条件下完成。</p>
+<p><strong>说明：</strong></p>
+<p>为什么返回数值是整数，但输出的答案是数组呢？</p>
+<p>请注意，输入数组是以<strong>「引用」</strong>方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。</p>
+<p>你可以想象内部操作如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝</span><br><span class="line">int len = removeDuplicates(nums);</span><br><span class="line"></span><br><span class="line">// 在函数里修改输入数组对于调用者是可见的。</span><br><span class="line">// 根据你的函数返回的长度, 它会打印出数组中 该长度范围内 的所有元素。</span><br><span class="line">for (int i = 0; i &lt; len; i++) &#123;</span><br><span class="line">    print(nums[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,1,1,2,2,3]</span><br><span class="line">输出：5, nums = [1,1,2,2,3]</span><br><span class="line">解释：函数应返回新长度 length = 5, 并且原数组的前五个元素被修改为 1, 1, 2, 2, 3。 不需要考虑数组中超出新长度后面的元素。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [0,0,1,1,1,1,2,3,3]</span><br><span class="line">输出：7, nums = [0,0,1,1,2,3,3]</span><br><span class="line">解释：函数应返回新长度 length = 7, 并且原数组的前七个元素被修改为 0, 0, 1, 1, 2, 3, 3。不需要考虑数组中超出新长度后面的元素。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 3 * 104</code></li>
+<li><code>-104 &lt;= nums[i] &lt;= 104</code></li>
+<li><code>nums</code> 已按升序排列</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h3><p><strong>思路及算法</strong></p>
+<p>因为给定数组是有序的，所以相同元素必然连续。我们可以使用双指针解决本题，遍历数组检查每一个元素是否应该被保留，如果应该被保留，就将其移动到指定位置。具体地，我们定义两个指针 slow 和 fast 分别为慢指针和快指针，其中慢指针表示处理出的数组的长度，快指针表示已经检查过的数组的长度，nums[fast] 表示待检查的第一个元素，nums[slow−1] 为上一个应该被保留的元素所移动到的指定位置。</p>
+<p>因为本题要求相同元素最多出现两次而非一次，所以我们需要检查上上个应该被保留的元素 nums[slow−2] 是否和当前待检查元素 nums[fast] 相同。当且仅当 nums[slow−2]&#x3D;nums[fast] 时，当前待检查元素 nums[fast] 不应该被保留（因为此时必然有 nums[slow−2]&#x3D;nums[slow−1]&#x3D;nums[fast]）。最后，slow 即为处理好的数组的长度。</p>
+<p>特别地，数组的前两个数必然可以被保留，因此对于长度不超过 2 的数组，我们无需进行任何处理，对于长度超过 222 的数组，我们直接将双指针的初始值设为 2 即可。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int removeDuplicates(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        if (n &lt;= 2) &#123;</span><br><span class="line">            return n;</span><br><span class="line">        &#125;</span><br><span class="line">        int slow = 2, fast = 2;</span><br><span class="line">        while (fast &lt; n) &#123;</span><br><span class="line">            if (nums[slow - 2] != nums[fast]) &#123;</span><br><span class="line">                nums[slow] = nums[fast];</span><br><span class="line">                ++slow;</span><br><span class="line">            &#125;</span><br><span class="line">            ++fast;</span><br><span class="line">        &#125;</span><br><span class="line">        return slow;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int removeDuplicates(int[] nums) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        if (n &lt;= 2) &#123;</span><br><span class="line">            return n;</span><br><span class="line">        &#125;</span><br><span class="line">        int slow = 2, fast = 2;</span><br><span class="line">        while (fast &lt; n) &#123;</span><br><span class="line">            if (nums[slow - 2] != nums[fast]) &#123;</span><br><span class="line">                nums[slow] = nums[fast];</span><br><span class="line">                ++slow;</span><br><span class="line">            &#125;</span><br><span class="line">            ++fast;</span><br><span class="line">        &#125;</span><br><span class="line">        return slow;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是数组的长度。我们最多遍历该数组一次。</p>
+</li>
+<li><p>空间复杂度：O(1)。我们只需要常数的空间存储若干变量。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>删除有序数组的重复项I</title>
+    <url>/2024/02/27/%E5%88%A0%E9%99%A4%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9I/</url>
+    <content><![CDATA[<h1 id="删除有序数组中的重复项I"><a href="#删除有序数组中的重复项I" class="headerlink" title="删除有序数组中的重复项I"></a>删除有序数组中的重复项I</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个 <strong>非严格递增排列</strong> 的数组 <code>nums</code> ，请你原地删除重复出现的元素，使每个元素 <strong>只出现一次</strong> ，返回删除后数组的新长度。元素的 <strong>相对顺序</strong> 应该保持 <strong>一致</strong> 。然后返回 <code>nums</code> 中唯一元素的个数。</p>
+<p>考虑 <code>nums</code> 的唯一元素的数量为 <code>k</code> ，你需要做以下事情确保你的题解可以被通过：</p>
+<ul>
+<li>更改数组 <code>nums</code> ，使 <code>nums</code> 的前 <code>k</code> 个元素包含唯一元素，并按照它们最初在 <code>nums</code> 中出现的顺序排列。<code>nums</code> 的其余元素与 <code>nums</code> 的大小不重要。</li>
+<li>返回 <code>k</code> 。</li>
+</ul>
+<p><strong>判题标准:</strong></p>
+<p>系统会用下面的代码来测试你的题解:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int[] nums = [...]; // 输入数组</span><br><span class="line">int[] expectedNums = [...]; // 长度正确的期望答案</span><br><span class="line"></span><br><span class="line">int k = removeDuplicates(nums); // 调用</span><br><span class="line"></span><br><span class="line">assert k == expectedNums.length;</span><br><span class="line">for (int i = 0; i &lt; k; i++) &#123;</span><br><span class="line">    assert nums[i] == expectedNums[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果所有断言都通过，那么您的题解将被 <strong>通过</strong>。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,1,2]</span><br><span class="line">输出：2, nums = [1,2,_]</span><br><span class="line">解释：函数应该返回新的长度 2 ，并且原数组 nums 的前两个元素被修改为 1, 2 。不需要考虑数组中超出新长度后面的元素。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [0,0,1,1,1,2,2,3,3,4]</span><br><span class="line">输出：5, nums = [0,1,2,3,4]</span><br><span class="line">解释：函数应该返回新的长度 5 ， 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4 。不需要考虑数组中超出新长度后面的元素。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 3 * 104</code></li>
+<li><code>-104 &lt;= nums[i] &lt;= 104</code></li>
+<li><code>nums</code> 已按 <strong>非严格递增</strong> 排列</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h3><p><strong>思路及算法</strong></p>
+<p>这道题目的要求是：对给定的有序数组 nums删除重复元素，在删除重复元素之后，每个元素只出现一次，并返回新的长度，上述操作必须通过原地修改数组的方法，使用 O(1)的空间复杂度完成。</p>
+<p>由于给定的数组 nums 是有序的，因此对于任意 i&lt;j，如果 nums[i]&#x3D;nums[j]，则对任意 i≤k≤j，必有 nums[i]&#x3D;nums[k]&#x3D;nums[j]，即相等的元素在数组中的下标一定是连续的。利用数组有序的特点，可以通过双指针的方法删除重复元素。</p>
+<p>如果数组 nums 的长度为 0，则数组不包含任何元素，因此返回 0。</p>
+<p>当数组 nums 的长度大于 000 时，数组中至少包含一个元素，在删除重复元素之后也至少剩下一个元素，因此 nums[0] 保持原状即可，从下标 1 开始删除重复元素。</p>
+<p>定义两个指针 fast 和 slow 分别为快指针和慢指针，快指针表示遍历数组到达的下标位置，慢指针表示下一个不同元素要填入的下标位置，初始时两个指针都指向下标 1。</p>
+<p>假设数组 nums的长度为 n。将快指针 fast 依次遍历从 1 到 n−1 的每个位置，对于每个位置，如果 nums[fast]≠nums[fast−1]，说明 nums[fast] 和之前的元素都不同，因此将 nums[fast] 的值复制到 nums[slow]，然后将 slow 的值加 1，即指向下一个位置。</p>
+<p>遍历结束之后，从 nums[0] 到 nums[slow−1] 的每个元素都不相同且包含原数组中的每个不同的元素，因此新的长度即为 slow，返回 slow 即可。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int removeDuplicates(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int fast = 1, slow = 1;</span><br><span class="line">        while (fast &lt; n) &#123;</span><br><span class="line">            if (nums[fast] != nums[fast - 1]) &#123;</span><br><span class="line">                nums[slow] = nums[fast];</span><br><span class="line">                ++slow;</span><br><span class="line">            &#125;</span><br><span class="line">            ++fast;</span><br><span class="line">        &#125;</span><br><span class="line">        return slow;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int removeDuplicates(int[] nums) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int fast = 1, slow = 1;</span><br><span class="line">        while (fast &lt; n) &#123;</span><br><span class="line">            if (nums[fast] != nums[fast - 1]) &#123;</span><br><span class="line">                nums[slow] = nums[fast];</span><br><span class="line">                ++slow;</span><br><span class="line">            &#125;</span><br><span class="line">            ++fast;</span><br><span class="line">        &#125;</span><br><span class="line">        return slow;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是数组的长度。快指针和慢指针最多各移动 n 次。</p>
+</li>
+<li><p>空间复杂度：O(1)。只需要使用常数的额外空间。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>买卖股票的最佳时机II</title>
+    <url>/2024/02/28/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BAII/</url>
+    <content><![CDATA[<h1 id="买卖股票的最佳时机II"><a href="#买卖股票的最佳时机II" class="headerlink" title="买卖股票的最佳时机II"></a>买卖股票的最佳时机II</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个整数数组 <code>prices</code> ，其中 <code>prices[i]</code> 表示某支股票第 <code>i</code> 天的价格。</p>
+<p>在每一天，你可以决定是否购买和&#x2F;或出售股票。你在任何时候 <strong>最多</strong> 只能持有 <strong>一股</strong> 股票。你也可以先购买，然后在 <strong>同一天</strong> 出售。</p>
+<p>返回 <em>你能获得的 <strong>最大</strong> 利润</em> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：prices = [7,1,5,3,6,4]</span><br><span class="line">输出：7</span><br><span class="line">解释：在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5 - 1 = 4 。</span><br><span class="line">     随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6 - 3 = 3 。</span><br><span class="line">     总利润为 4 + 3 = 7 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：prices = [1,2,3,4,5]</span><br><span class="line">输出：4</span><br><span class="line">解释：在第 1 天（股票价格 = 1）的时候买入，在第 5 天 （股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5 - 1 = 4 。</span><br><span class="line">     总利润为 4 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：prices = [7,6,4,3,1]</span><br><span class="line">输出：0</span><br><span class="line">解释：在这种情况下, 交易无法获得正利润，所以不参与交易可以获得最大利润，最大利润为 0 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= prices.length &lt;= 3 * 104</code></li>
+<li><code>0 &lt;= prices[i] &lt;= 104</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）动态规划"><a href="#（1）动态规划" class="headerlink" title="（1）动态规划"></a>（1）动态规划</h3><p><strong>思路及算法</strong></p>
+<p>考虑到「不能同时参与多笔交易」，因此每天交易结束后只可能存在手里有一支股票或者没有股票的状态。</p>
+<p>定义状态 <code>dp[i] [0]</code>表示第 <code>i</code> 天交易完后手里没有股票的最大利润，<code>dp[i] [1]</code> 表示第 <code>i</code> 天交易完后手里持有一支股票的最大利润（<code>i </code>从 000 开始）。</p>
+<p>考虑 <code>dp[i] [0]</code> 的转移方程，如果这一天交易完后手里没有股票，那么可能的转移状态为前一天已经没有股票，即 <code>dp[i−1] [0]</code>，或者前一天结束的时候手里持有一支股票，即 <code>dp[i−1] [1]</code>，这时候我们要将其卖出，并获得 <code>prices[i]</code> 的收益。因此为了收益最大化，我们列出如下的转移方程：</p>
+<p><code>dp[i] [0]=max⁡&#123;dp[i−1] [0],dp[i−1] [1]+prices[i]&#125;</code><br>再来考虑 <code>dp[i] [1]</code>，按照同样的方式考虑转移状态，那么可能的转移状态为前一天已经持有一支股票，即 <code>dp[i−1] [1]</code>，或者前一天结束时还没有股票，即 <code>dp[i−1] [0]</code>，这时候我们要将其买入，并减少 <code>prices[i]</code> 的收益。可以列出如下的转移方程：</p>
+<p><code>dp[i] [1]=max⁡&#123;dp[i−1] [1],dp[i−1] [0]−prices[i]&#125;</code><br>对于初始状态，根据状态定义我们可以知道第<code> 0</code> 天交易结束的时候 <code>dp[0] [0]</code>，<code>dp[0] [1]=−prices[0]</code>。</p>
+<p>因此，我们只要从前往后依次计算状态即可。由于全部交易结束后，持有股票的收益一定低于不持有股票的收益，因此这时候 <code>dp[n−1] [0]</code> 的收益必然是大于 <code>dp[n−1] [1]</code> 的，最后的答案即为 <code>dp[n−1] [0]</code>。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxProfit(vector&lt;int&gt;&amp; prices) &#123;</span><br><span class="line">        int n = prices.size();</span><br><span class="line">        int dp[n][2];</span><br><span class="line">        dp[0][0] = 0, dp[0][1] = -prices[0];</span><br><span class="line">        for (int i = 1; i &lt; n; ++i) &#123;</span><br><span class="line">            dp[i][0] = max(dp[i - 1][0], dp[i - 1][1] + prices[i]);</span><br><span class="line">            dp[i][1] = max(dp[i - 1][1], dp[i - 1][0] - prices[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[n - 1][0];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int maxProfit(int[] prices) &#123;</span><br><span class="line">        int n = prices.length;</span><br><span class="line">        int dp0 = 0, dp1 = -prices[0];</span><br><span class="line">        for (int i = 1; i &lt; n; ++i) &#123;</span><br><span class="line">            int newDp0 = Math.max(dp0, dp1 + prices[i]);</span><br><span class="line">            int newDp1 = Math.max(dp1, dp0 - prices[i]);</span><br><span class="line">            dp0 = newDp0;</span><br><span class="line">            dp1 = newDp1;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意到上面的状态转移方程中，每一天的状态只与前一天的状态有关，而与更早的状态都无关，因此我们不必存储这些无关的状态，只需要将</p>
+<p> <code>dp[i−1] [0]</code>和 <code>dp[i−1] [1]</code> 存放在两个变量中，通过它们计算出 <code>dp[i] [0]</code>和 <code>dp[i] [1]</code>并存回对应的变量，以便于第 <code>i+1</code> 天的状态转移即可。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxProfit(vector&lt;int&gt;&amp; prices) &#123;</span><br><span class="line">        int n = prices.size();</span><br><span class="line">        int dp0 = 0, dp1 = -prices[0];</span><br><span class="line">        for (int i = 1; i &lt; n; ++i) &#123;</span><br><span class="line">            int newDp0 = max(dp0, dp1 + prices[i]);</span><br><span class="line">            int newDp1 = max(dp1, dp0 - prices[i]);</span><br><span class="line">            dp0 = newDp0;</span><br><span class="line">            dp1 = newDp1;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int maxProfit(int[] prices) &#123;</span><br><span class="line">        int n = prices.length;</span><br><span class="line">        int dp0 = 0, dp1 = -prices[0];</span><br><span class="line">        for (int i = 1; i &lt; n; ++i) &#123;</span><br><span class="line">            int newDp0 = Math.max(dp0, dp1 + prices[i]);</span><br><span class="line">            int newDp1 = Math.max(dp1, dp0 - prices[i]);</span><br><span class="line">            dp0 = newDp0;</span><br><span class="line">            dp1 = newDp1;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 为数组的长度。一共有 2n 个状态，每次状态转移的时间复杂度为 O(1)，因此时间复杂度为 O(2n)&#x3D;O(n)。</p>
+</li>
+<li><p>空间复杂度：O(n)。我们需要开辟 O(n) 空间存储动态规划中的所有状态。如果使用空间优化，空间复杂度可以优化至 O(1)。</p>
+</li>
+</ul>
+<h3 id="（2）贪心"><a href="#（2）贪心" class="headerlink" title="（2）贪心"></a>（2）贪心</h3><p><strong>思路及算法</strong></p>
+<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240228132318832.png" alt="image-20240228132318832"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxProfit(vector&lt;int&gt;&amp; prices) &#123;   </span><br><span class="line">        int ans = 0;</span><br><span class="line">        int n = prices.size();</span><br><span class="line">        for (int i = 1; i &lt; n; ++i) &#123;</span><br><span class="line">            ans += max(0, prices[i] - prices[i - 1]);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int maxProfit(int[] prices) &#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        int n = prices.length;</span><br><span class="line">        for (int i = 1; i &lt; n; ++i) &#123;</span><br><span class="line">            ans += Math.max(0, prices[i] - prices[i - 1]);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 为数组的长度。我们只需要遍历一次数组即可。</p>
+</li>
+<li><p>空间复杂度：O(1)。只需要常数空间存放若干变量。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>单词规律</title>
+    <url>/2024/02/19/%E5%8D%95%E8%AF%8D%E8%A7%84%E5%BE%8B/</url>
+    <content><![CDATA[<h1 id="单词规律"><a href="#单词规律" class="headerlink" title="单词规律"></a>单词规律</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一种规律 <code>pattern</code> 和一个字符串 <code>s</code> ，判断 <code>s</code> 是否遵循相同的规律。</p>
+<p>这里的 <strong>遵循</strong> 指完全匹配，例如， <code>pattern</code> 里的每个字母和字符串 <code>s</code> 中的每个非空单词之间存在着双向连接的对应规律。</p>
+<p><strong>示例1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: pattern = &quot;abba&quot;, s = &quot;dog cat cat dog&quot;</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入:pattern = &quot;abba&quot;, s = &quot;dog cat cat fish&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: pattern = &quot;aaaa&quot;, s = &quot;dog cat cat dog&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示:</strong></p>
+<ul>
+<li><code>1 &lt;= pattern.length &lt;= 300</code></li>
+<li><code>pattern</code> 只包含小写英文字母</li>
+<li><code>1 &lt;= s.length &lt;= 3000</code></li>
+<li><code>s</code> 只包含小写英文字母和 <code>&#39; &#39;</code></li>
+<li><code>s</code> <strong>不包含</strong> 任何前导或尾随对空格</li>
+<li><code>s</code> 中每个单词都被 <strong>单个空格</strong> 分隔</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><p><strong>思路及解法</strong></p>
+<p>在本题中，我们需要判断字符与字符串之间是否恰好一一对应。即任意一个字符都对应着唯一的字符串，任意一个字符串也只被唯一的一个字符对应。在集合论中，这种关系被称为「双射」。</p>
+<p>想要解决本题，我们可以利用哈希表记录每一个字符对应的字符串，以及每一个字符串对应的字符。然后我们枚举每一对字符与字符串的配对过程，不断更新哈希表，如果发生了冲突，则说明给定的输入不满足双射关系。</p>
+<p>在实际代码中，我们枚举 pattern\textit{pattern}pattern 中的每一个字符，利用双指针来均摊线性地找到该字符在 str\textit{str}str 中对应的字符串。每次确定一个字符与字符串的组合，我们就检查是否出现冲突，最后我们再检查两字符串是否比较完毕即可。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool wordPattern(string pattern, string str) &#123;</span><br><span class="line">        unordered_map&lt;string, char&gt; str2ch;</span><br><span class="line">        unordered_map&lt;char, string&gt; ch2str;</span><br><span class="line">        int m = str.length();</span><br><span class="line">        int i = 0;</span><br><span class="line">        for (auto ch : pattern) &#123;</span><br><span class="line">            if (i &gt;= m) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            int j = i;</span><br><span class="line">            while (j &lt; m &amp;&amp; str[j] != &#x27; &#x27;) j++;</span><br><span class="line">            const string &amp;tmp = str.substr(i, j - i);</span><br><span class="line">            if (str2ch.count(tmp) &amp;&amp; str2ch[tmp] != ch) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            if (ch2str.count(ch) &amp;&amp; ch2str[ch] != tmp) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            str2ch[tmp] = ch;</span><br><span class="line">            ch2str[ch] = tmp;</span><br><span class="line">            i = j + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        return i &gt;= m;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public boolean wordPattern(String pattern, String str) &#123;</span><br><span class="line">        Map&lt;String, Character&gt; str2ch = new HashMap&lt;String, Character&gt;();</span><br><span class="line">        Map&lt;Character, String&gt; ch2str = new HashMap&lt;Character, String&gt;();</span><br><span class="line">        int m = str.length();</span><br><span class="line">        int i = 0;</span><br><span class="line">        for (int p = 0; p &lt; pattern.length(); ++p) &#123;</span><br><span class="line">            char ch = pattern.charAt(p);</span><br><span class="line">            if (i &gt;= m) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            int j = i;</span><br><span class="line">            while (j &lt; m &amp;&amp; str.charAt(j) != &#x27; &#x27;) &#123;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            String tmp = str.substring(i, j);</span><br><span class="line">            if (str2ch.containsKey(tmp) &amp;&amp; str2ch.get(tmp) != ch) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            if (ch2str.containsKey(ch) &amp;&amp; !tmp.equals(ch2str.get(ch))) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            str2ch.put(tmp, ch);</span><br><span class="line">            ch2str.put(ch, tmp);</span><br><span class="line">            i = j + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        return i &gt;= m;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n+m)，其中 n 为 pattern 的长度，m 为 str 的长度。插入和查询哈希表的均摊时间复杂度均为 O(n+m)。每一个字符至多只被遍历一次。</p>
+</li>
+<li><p>空间复杂度：O(n+m)，其中 n 为 pattern 的长度，m 为 str 的长度。最坏情况下，我们需要存储 pattern 中的每一个字符和 str 中的每一个字符串。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>合并两个有序数组</title>
+    <url>/2024/02/09/%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<h1 id="合并两个有序数组"><a href="#合并两个有序数组" class="headerlink" title="合并两个有序数组"></a>合并两个有序数组</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>请你 <strong>合并</strong> <code>nums2</code> 到 <code>nums1</code> 中，使合并后的数组同样按 <strong>非递减顺序</strong> 排列。</p>
+<p><strong>注意：</strong>最终，合并后数组不应由函数返回，而是存储在数组 <code>nums1</code> 中。为了应对这种情况，<code>nums1</code> 的初始长度为 <code>m + n</code>，其中前 <code>m</code> 个元素表示应合并的元素，后 <code>n</code> 个元素为 <code>0</code> ，应忽略。<code>nums2</code> 的长度为 <code>n</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3</span><br><span class="line">输出：[1,2,2,3,5,6]</span><br><span class="line">解释：需要合并 [1,2,3] 和 [2,5,6] 。</span><br><span class="line">合并结果是 [1,2,2,3,5,6] ，其中斜体加粗标注的为 nums1 中的元素。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums1 = [1], m = 1, nums2 = [], n = 0</span><br><span class="line">输出：[1]</span><br><span class="line">解释：需要合并 [1] 和 [] 。</span><br><span class="line">合并结果是 [1] 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums1 = [0], m = 0, nums2 = [1], n = 1</span><br><span class="line">输出：[1]</span><br><span class="line">解释：需要合并的数组是 [] 和 [1] 。</span><br><span class="line">合并结果是 [1] 。</span><br><span class="line">注意，因为 m = 0 ，所以 nums1 中没有元素。nums1 中仅存的 0 仅仅是为了确保合并结果可以顺利存放到 nums1 中。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>nums1.length == m + n</code></li>
+<li><code>nums2.length == n</code></li>
+<li><code>0 &lt;= m, n &lt;= 200</code></li>
+<li><code>1 &lt;= m + n &lt;= 200</code></li>
+<li><code>-109 &lt;= nums1[i], nums2[j] &lt;= 109</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）直接合并后排序"><a href="#（1）直接合并后排序" class="headerlink" title="（1）直接合并后排序"></a>（1）直接合并后排序</h3><p><strong>算法</strong></p>
+<p>最直观的方法是先将数组 <code>nums2 </code>放进数组 <code>nums1</code> 的尾部，然后直接对整个数组进行排序。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void merge(vector&lt;int&gt;&amp; nums1, int m, vector&lt;int&gt;&amp; nums2, int n) &#123;</span><br><span class="line">        for (int i = 0; i != n; ++i) &#123;</span><br><span class="line">            nums1[m + i] = nums2[i];</span><br><span class="line">        &#125;</span><br><span class="line">        sort(nums1.begin(), nums1.end());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public void merge(int[] nums1, int m, int[] nums2, int n) &#123;</span><br><span class="line">        for (int i = 0; i != n; ++i) &#123;</span><br><span class="line">            nums1[m + i] = nums2[i];</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(nums1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度排序</strong></p>
+<ul>
+<li><p>时间复杂度：O((m+n)log⁡(m+n))。<br>排序序列长度为 m+n，套用快速排序的时间复杂度即可，平均情况为 O((m+n)log⁡(m+n))。</p>
+</li>
+<li><p>空间复杂度：O(log⁡(m+n))。<br>排序序列长度为 m+n，套用快速排序的空间复杂度即可，平均情况为 O(log⁡(m+n))。</p>
+</li>
+</ul>
+<h3 id="（2）双指针"><a href="#（2）双指针" class="headerlink" title="（2）双指针"></a>（2）双指针</h3><p><strong>算法</strong></p>
+<p>这一方法将两个数组看作队列，每次从两个数组头部取出比较小的数字放到结果中。</p>
+<p><strong>代码</strong></p>
+<p>我们为两个数组分别设置一个指针 p1 与 p2 来作为队列的头部指针。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void merge(vector&lt;int&gt;&amp; nums1, int m, vector&lt;int&gt;&amp; nums2, int n) &#123;</span><br><span class="line">        int p1 = 0, p2 = 0;</span><br><span class="line">        int sorted[m + n];</span><br><span class="line">        int cur;</span><br><span class="line">        while (p1 &lt; m || p2 &lt; n) &#123;</span><br><span class="line">            if (p1 == m) &#123;</span><br><span class="line">                cur = nums2[p2++];</span><br><span class="line">            &#125; else if (p2 == n) &#123;</span><br><span class="line">                cur = nums1[p1++];</span><br><span class="line">            &#125; else if (nums1[p1] &lt; nums2[p2]) &#123;</span><br><span class="line">                cur = nums1[p1++];</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                cur = nums2[p2++];</span><br><span class="line">            &#125;</span><br><span class="line">            sorted[p1 + p2 - 1] = cur;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i != m + n; ++i) &#123;</span><br><span class="line">            nums1[i] = sorted[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public void merge(int[] nums1, int m, int[] nums2, int n) &#123;</span><br><span class="line">        int p1 = 0, p2 = 0;</span><br><span class="line">        int[] sorted = new int[m + n];</span><br><span class="line">        int cur;</span><br><span class="line">        while (p1 &lt; m || p2 &lt; n) &#123;</span><br><span class="line">            if (p1 == m) &#123;</span><br><span class="line">                cur = nums2[p2++];</span><br><span class="line">            &#125; else if (p2 == n) &#123;</span><br><span class="line">                cur = nums1[p1++];</span><br><span class="line">            &#125; else if (nums1[p1] &lt; nums2[p2]) &#123;</span><br><span class="line">                cur = nums1[p1++];</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                cur = nums2[p2++];</span><br><span class="line">            &#125;</span><br><span class="line">            sorted[p1 + p2 - 1] = cur;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i != m + n; ++i) &#123;</span><br><span class="line">            nums1[i] = sorted[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(m+n)。<br>指针移动单调递增，最多移动 m+n次，因此时间复杂度为 O(m+n)。</p>
+</li>
+<li><p>空间复杂度：O(m+n)。<br>需要建立长度为 m+n 的中间数组sorted。</p>
+</li>
+</ul>
+<h3 id="（3）逆向双指针"><a href="#（3）逆向双指针" class="headerlink" title="（3）逆向双指针"></a>（3）逆向双指针</h3><p><strong>算法</strong></p>
+<p>上面的双指针算法中，之所以要使用临时变量，是因为如果直接合并到数组 nums1 中，nums1中的元素可能会在取出之前被覆盖。那么如何直接避免覆盖 nums1中的元素呢？观察可知，nums1 的后半部分是空的，可以直接覆盖而不会影响结果。因此可以指针设置为从后向前遍历，每次取两者之中的较大者放进 nums1的最后面。</p>
+<p>严格来说，在此遍历过程中的任意一个时刻，nums1数组中有 m−p1−1 个元素被放入 nums1的后半部，nums2 数组中有 n−p2−1个元素被放入 nums1<br>的后半部，而在指针 p1的后面，nums1 数组有 m+n−p1−1个位置。由于m+n−p1−1≥m−p1−1+n−p2−1等价于p2≥−1永远成立，因此 p1后面的位置永远足够容纳被插入的元素，不会产生 p1 的元素被覆盖的情况。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void merge(vector&lt;int&gt;&amp; nums1, int m, vector&lt;int&gt;&amp; nums2, int n) &#123;</span><br><span class="line">        int p1 = m - 1, p2 = n - 1;</span><br><span class="line">        int tail = m + n - 1;</span><br><span class="line">        int cur;</span><br><span class="line">        while (p1 &gt;= 0 || p2 &gt;= 0) &#123;</span><br><span class="line">            if (p1 == -1) &#123;</span><br><span class="line">                cur = nums2[p2--];</span><br><span class="line">            &#125; else if (p2 == -1) &#123;</span><br><span class="line">                cur = nums1[p1--];</span><br><span class="line">            &#125; else if (nums1[p1] &gt; nums2[p2]) &#123;</span><br><span class="line">                cur = nums1[p1--];</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                cur = nums2[p2--];</span><br><span class="line">            &#125;</span><br><span class="line">            nums1[tail--] = cur;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public void merge(int[] nums1, int m, int[] nums2, int n) &#123;</span><br><span class="line">        int p1 = m - 1, p2 = n - 1;</span><br><span class="line">        int tail = m + n - 1;</span><br><span class="line">        int cur;</span><br><span class="line">        while (p1 &gt;= 0 || p2 &gt;= 0) &#123;</span><br><span class="line">            if (p1 == -1) &#123;</span><br><span class="line">                cur = nums2[p2--];</span><br><span class="line">            &#125; else if (p2 == -1) &#123;</span><br><span class="line">                cur = nums1[p1--];</span><br><span class="line">            &#125; else if (nums1[p1] &gt; nums2[p2]) &#123;</span><br><span class="line">                cur = nums1[p1--];</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                cur = nums2[p2--];</span><br><span class="line">            &#125;</span><br><span class="line">            nums1[tail--] = cur;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(m+n)。<br>指针移动单调递减，最多移动 m+n次，因此时间复杂度为 O(m+n)。</p>
+</li>
+<li><p>空间复杂度：O(1)。</p>
+<p>直接对数组 nums1原地修改，不需要额外空间。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>合并区间</title>
+    <url>/2024/02/21/%E5%90%88%E5%B9%B6%E5%8C%BA%E9%97%B4/</url>
+    <content><![CDATA[<h1 id="合并区间"><a href="#合并区间" class="headerlink" title="合并区间"></a>合并区间</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>以数组 <code>intervals</code> 表示若干个区间的集合，其中单个区间为 <code>intervals[i] = [starti, endi]</code> 。请你合并所有重叠的区间，并返回 一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：intervals = [[1,3],[2,6],[8,10],[15,18]]</span><br><span class="line">输出：[[1,6],[8,10],[15,18]]</span><br><span class="line">解释：区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6].</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：intervals = [[1,4],[4,5]]</span><br><span class="line">输出：[[1,5]]</span><br><span class="line">解释：区间 [1,4] 和 [4,5] 可被视为重叠区间。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= intervals.length &lt;= 104</code></li>
+<li><code>intervals[i].length == 2</code></li>
+<li><code>0 &lt;= starti &lt;= endi &lt;= 104</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><p><strong>思路及算法</strong></p>
+<p>如果我们按照区间的左端点排序，那么在排完序的列表中，可以合并的区间一定是连续的。如下图所示，标记为蓝色、黄色和绿色的区间分别可以合并成一个大区间，它们在排完序的列表中是连续的：</p>
+<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240221151130567.png" alt="image-20240221151130567"></p>
+<p>我们用数组 merged 存储最终的答案。</p>
+<p>首先，我们将列表中的区间按照左端点升序排序。然后我们将第一个区间加入 merged 数组中，并按顺序依次考虑之后的每个区间：</p>
+<ul>
+<li><p>如果当前区间的左端点在数组 merged 中最后一个区间的右端点之后，那么它们不会重合，我们可以直接将这个区间加入数组 merged 的末尾；</p>
+</li>
+<li><p>否则，它们重合，我们需要用当前区间的右端点更新数组 merged 中最后一个区间的右端点，将其置为二者的较大值。</p>
+</li>
+</ul>
+<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240221151303535.png" alt="image-20240221151303535"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; merge(vector&lt;vector&lt;int&gt;&gt;&amp; intervals) &#123;</span><br><span class="line">        if (intervals.size() == 0) &#123;</span><br><span class="line">            return &#123;&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(intervals.begin(), intervals.end());</span><br><span class="line">        vector&lt;vector&lt;int&gt;&gt; merged;</span><br><span class="line">        for (int i = 0; i &lt; intervals.size(); ++i) &#123;</span><br><span class="line">            int L = intervals[i][0], R = intervals[i][1];</span><br><span class="line">            if (!merged.size() || merged.back()[1] &lt; L) &#123;</span><br><span class="line">                merged.push_back(&#123;L, R&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">            else &#123;</span><br><span class="line">                merged.back()[1] = max(merged.back()[1], R);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return merged;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int[][] merge(int[][] intervals) &#123;</span><br><span class="line">        if (intervals.length == 0) &#123;</span><br><span class="line">            return new int[0][2];</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(intervals, new Comparator&lt;int[]&gt;() &#123;</span><br><span class="line">            public int compare(int[] interval1, int[] interval2) &#123;</span><br><span class="line">                return interval1[0] - interval2[0];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        List&lt;int[]&gt; merged = new ArrayList&lt;int[]&gt;();</span><br><span class="line">        for (int i = 0; i &lt; intervals.length; ++i) &#123;</span><br><span class="line">            int L = intervals[i][0], R = intervals[i][1];</span><br><span class="line">            if (merged.size() == 0 || merged.get(merged.size() - 1)[1] &lt; L) &#123;</span><br><span class="line">                merged.add(new int[]&#123;L, R&#125;);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                merged.get(merged.size() - 1)[1] = Math.max(merged.get(merged.size() - 1)[1], R);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return merged.toArray(new int[merged.size()][]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(nlog⁡n)，其中 n 为区间的数量。除去排序的开销，我们只需要一次线性扫描，所以主要的时间开销是排序的 O(nlog⁡n)。</p>
+</li>
+<li><p>空间复杂度：O(log⁡n)，其中 n 为区间的数量。这里计算的是存储答案之外，使用的额外空间。O(log⁡n) 即为排序所需要的空间复杂度。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多数元素</title>
+    <url>/2024/02/26/%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0/</url>
+    <content><![CDATA[<h1 id="多数元素"><a href="#多数元素" class="headerlink" title="多数元素"></a>多数元素</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h2><p>给定一个大小为 <code>n</code> 的数组 <code>nums</code> ，返回其中的多数元素。多数元素是指在数组中出现次数 <strong>大于</strong> <code>⌊ n/2 ⌋</code> 的元素。</p>
+<p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [3,2,3]</span><br><span class="line">输出：3</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [2,2,1,1,1,2,2]</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == nums.length</code></li>
+<li><code>1 &lt;= n &lt;= 5 * 104</code></li>
+<li><code>-109 &lt;= nums[i] &lt;= 109</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><p><strong>说明</strong></p>
+<p>最简单的暴力方法是，枚举数组中的每个元素，再遍历一遍数组统计其出现次数。该方法的时间复杂度是 O(n^2^)，会超出时间限制，因此我们需要找出时间复杂度小于 O(n^2^)的优秀做法。</p>
+<h3 id="（1）哈希表"><a href="#（1）哈希表" class="headerlink" title="（1）哈希表"></a>（1）哈希表</h3><p><strong>思路及算法</strong></p>
+<p>我们知道出现次数最多的元素大于 $\dfrac{n}{2}$次，所以可以用哈希表来快速统计每个元素出现的次数。</p>
+<p>我们使用哈希映射（HashMap）来存储每个元素以及出现的次数。对于哈希映射中的每个键值对，键表示一个元素，值表示该元素出现的次数。</p>
+<p>我们用一个循环遍历数组 nums 并将数组中的每个元素加入哈希映射中。在这之后，我们遍历哈希映射中的所有键值对，返回值最大的键。我们同样也可以在遍历数组 nums 时候使用打擂台的方法，维护最大的值，这样省去了最后对哈希映射的遍历。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int majorityElement(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        unordered_map&lt;int, int&gt; counts;</span><br><span class="line">        int majority = 0, cnt = 0;</span><br><span class="line">        for (int num: nums) &#123;</span><br><span class="line">            ++counts[num];</span><br><span class="line">            if (counts[num] &gt; cnt) &#123;</span><br><span class="line">                majority = num;</span><br><span class="line">                cnt = counts[num];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return majority;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    private Map&lt;Integer, Integer&gt; countNums(int[] nums) &#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; counts = new HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        for (int num : nums) &#123;</span><br><span class="line">            if (!counts.containsKey(num)) &#123;</span><br><span class="line">                counts.put(num, 1);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                counts.put(num, counts.get(num) + 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return counts;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int majorityElement(int[] nums) &#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; counts = countNums(nums);</span><br><span class="line"></span><br><span class="line">        Map.Entry&lt;Integer, Integer&gt; majorityEntry = null;</span><br><span class="line">        for (Map.Entry&lt;Integer, Integer&gt; entry : counts.entrySet()) &#123;</span><br><span class="line">            if (majorityEntry == null || entry.getValue() &gt; majorityEntry.getValue()) &#123;</span><br><span class="line">                majorityEntry = entry;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return majorityEntry.getKey();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是数组 nums 的长度。我们遍历数组 nums 一次，对于 nums 中的每一个元素，将其插入哈希表都只需要常数时间。如果在遍历时没有维护最大值，在遍历结束后还需要对哈希表进行遍历，因为哈希表中占用的空间为 O(n)（可参考下文的空间复杂度分析），那么遍历的时间不会超过 O(n)。因此总时间复杂度为 O(n)。</p>
+</li>
+<li><p>空间复杂度：O(n)。哈希表最多包含 n−$\dfrac{n}{2}$ 个键值对，所以占用的空间为 O(n)。这是因为任意一个长度为 n 的数组最多只能包含 n 个不同的值，但题中保证 nums 一定有一个众数，会占用（最少） $\dfrac{n}{2}$ +1个数字。因此最多有n-($\dfrac{n}{2}$ +1 ) 个不同的其他数字，所以最多有 n−$\dfrac{n}{2}$ 不同的元素。</p>
+</li>
+</ul>
+<h3 id="（2）排序"><a href="#（2）排序" class="headerlink" title="（2）排序"></a>（2）排序</h3><p><strong>思路及算法</strong></p>
+<p>如果将数组 nums 中的所有元素按照单调递增或单调递减的顺序排序，那么下标为 $\dfrac{n}{2}$的元素（下标从 0 开始）一定是众数。</p>
+<p>对于这种算法，我们先将 nums 数组排序，然后返回上文所说的下标对应的元素。下面的图中解释了为什么这种策略是有效的。在下图中，第一个例子是 n 为奇数的情况，第二个例子是 n 为偶数的情况。</p>
+<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240226092055479.png" alt="image-20240226092055479"></p>
+<p>对于每种情况，数组上面的线表示如果众数是数组中的最小值时覆盖的下标，数组下面的线表示如果众数是数组中的最大值时覆盖的下标。对于其他的情况，这条线会在这两种极端情况的中间。对于这两种极端情况，它们会在下标为  $\dfrac{n}{2}$ 的地方有重叠。因此，无论众数是多少，返回$\dfrac{n}{2}$下标对应的值都是正确的。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int majorityElement(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        return nums[nums.size() / 2];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int majorityElement(int[] nums) &#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        return nums[nums.length / 2];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(nlog⁡n)。将数组排序的时间复杂度为 O(nlog⁡n)。</p>
+</li>
+<li><p>空间复杂度：O(log⁡n)。如果使用语言自带的排序算法，需要使用 O(log⁡n) 的栈空间。如果自己编写堆排序，则只需要使用 O(1)的额外空间。</p>
+</li>
+</ul>
+<h3 id="（3）分治"><a href="#（3）分治" class="headerlink" title="（3）分治"></a>（3）分治</h3><p><strong>思路及算法</strong></p>
+<p>如果数 a 是数组 nums 的众数，如果我们将 nums 分成两部分，那么 a 必定是至少一部分的众数。</p>
+<p>我们可以使用反证法来证明这个结论。假设 a 既不是左半部分的众数，也不是右半部分的众数，那么 a 出现的次数少于 l &#x2F; 2 + r &#x2F; 2 次，其中 l 和 r 分别是左半部分和右半部分的长度。由于 l &#x2F; 2 + r &#x2F; 2 &lt;&#x3D; (l + r) &#x2F; 2，说明 a 也不是数组 nums 的众数，因此出现了矛盾。所以这个结论是正确的。</p>
+<p>这样以来，我们就可以使用分治法解决这个问题：将数组分成左右两部分，分别求出左半部分的众数 a1 以及右半部分的众数 a2，随后在 a1 和 a2 中选出正确的众数。</p>
+<p>我们使用经典的分治算法递归求解，直到所有的子问题都是长度为 1 的数组。长度为 1 的子数组中唯一的数显然是众数，直接返回即可。如果回溯后某区间的长度大于 1，我们必须将左右子区间的值合并。如果它们的众数相同，那么显然这一段区间的众数是它们相同的值。否则，我们需要比较两个众数在整个区间内出现的次数来决定该区间的众数。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">    int count_in_range(vector&lt;int&gt;&amp; nums, int target, int lo, int hi) &#123;</span><br><span class="line">        int count = 0;</span><br><span class="line">        for (int i = lo; i &lt;= hi; ++i)</span><br><span class="line">            if (nums[i] == target)</span><br><span class="line">                ++count;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line">    int majority_element_rec(vector&lt;int&gt;&amp; nums, int lo, int hi) &#123;</span><br><span class="line">        if (lo == hi)</span><br><span class="line">            return nums[lo];</span><br><span class="line">        int mid = (lo + hi) / 2;</span><br><span class="line">        int left_majority = majority_element_rec(nums, lo, mid);</span><br><span class="line">        int right_majority = majority_element_rec(nums, mid + 1, hi);</span><br><span class="line">        if (count_in_range(nums, left_majority, lo, hi) &gt; (hi - lo + 1) / 2)</span><br><span class="line">            return left_majority;</span><br><span class="line">        if (count_in_range(nums, right_majority, lo, hi) &gt; (hi - lo + 1) / 2)</span><br><span class="line">            return right_majority;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">public:</span><br><span class="line">    int majorityElement(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        return majority_element_rec(nums, 0, nums.size() - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    private int countInRange(int[] nums, int num, int lo, int hi) &#123;</span><br><span class="line">        int count = 0;</span><br><span class="line">        for (int i = lo; i &lt;= hi; i++) &#123;</span><br><span class="line">            if (nums[i] == num) &#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private int majorityElementRec(int[] nums, int lo, int hi) &#123;</span><br><span class="line">        // base case; the only element in an array of size 1 is the majority</span><br><span class="line">        // element.</span><br><span class="line">        if (lo == hi) &#123;</span><br><span class="line">            return nums[lo];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // recurse on left and right halves of this slice.</span><br><span class="line">        int mid = (hi - lo) / 2 + lo;</span><br><span class="line">        int left = majorityElementRec(nums, lo, mid);</span><br><span class="line">        int right = majorityElementRec(nums, mid + 1, hi);</span><br><span class="line"></span><br><span class="line">        // if the two halves agree on the majority element, return it.</span><br><span class="line">        if (left == right) &#123;</span><br><span class="line">            return left;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // otherwise, count each element and return the &quot;winner&quot;.</span><br><span class="line">        int leftCount = countInRange(nums, left, lo, hi);</span><br><span class="line">        int rightCount = countInRange(nums, right, lo, hi);</span><br><span class="line"></span><br><span class="line">        return leftCount &gt; rightCount ? left : right;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int majorityElement(int[] nums) &#123;</span><br><span class="line">        return majorityElementRec(nums, 0, nums.length - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240226093253984.png" alt="image-20240226093253984"></p>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>同构字符串</title>
+    <url>/2024/02/19/%E5%90%8C%E6%9E%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+    <content><![CDATA[<h1 id="同构字符串"><a href="#同构字符串" class="headerlink" title="同构字符串"></a>同构字符串</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定两个字符串 <code>s</code> 和 <code>t</code> ，判断它们是否是同构的。</p>
+<p>如果 <code>s</code> 中的字符可以按某种映射关系替换得到 <code>t</code> ，那么这两个字符串是同构的。</p>
+<p>每个出现的字符都应当映射到另一个字符，同时不改变字符的顺序。不同字符不能映射到同一个字符上，相同字符只能映射到同一个字符上，字符可以映射到自己本身。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;egg&quot;, t = &quot;add&quot;</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;foo&quot;, t = &quot;bar&quot;</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;paper&quot;, t = &quot;title&quot;</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 5 * 104</code></li>
+<li><code>t.length == s.length</code></li>
+<li><code>s</code> 和 <code>t</code> 由任意有效的 ASCII 字符组成</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><p><strong>思路及算法</strong></p>
+<p>此题是需要我们判断 s 和 t 每个位置上的字符是否都一一对应，即 s 的任意一个字符被 t 中唯一的字符对应，同时 t 的任意一个字符被 s 中唯一的字符对应。这也被称为「双射」的关系。</p>
+<p>以示例 2 为例，t 中的字符 a 和 r 虽然有唯一的映射 o，但对于 s 中的字符 o 来说其存在两个映射 {a,r}，故不满足条件。</p>
+<p>因此，我们维护两张哈希表，第一张哈希表 s2t 以 s 中字符为键，映射至 t 的字符为值，第二张哈希表 t2s 以 t 中字符为键，映射至 s 的字符为值。从左至右遍历两个字符串的字符，不断更新两张哈希表，如果出现冲突（即当前下标 index 对应的字符 s[index] 已经存在映射且不为 t[index] 或当前下标 index 对应的字符 t[index] 已经存在映射且不为 s[index]）时说明两个字符串无法构成同构，返回 false。</p>
+<p>如果遍历结束没有出现冲突，则表明两个字符串是同构的，返回 true 即可。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isIsomorphic(string s, string t) &#123;</span><br><span class="line">        unordered_map&lt;char, char&gt; s2t;</span><br><span class="line">        unordered_map&lt;char, char&gt; t2s;</span><br><span class="line">        int len = s.length();</span><br><span class="line">        for (int i = 0; i &lt; len; ++i) &#123;</span><br><span class="line">            char x = s[i], y = t[i];</span><br><span class="line">            if ((s2t.count(x) &amp;&amp; s2t[x] != y) || (t2s.count(y) &amp;&amp; t2s[y] != x)) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            s2t[x] = y;</span><br><span class="line">            t2s[y] = x;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public boolean isIsomorphic(String s, String t) &#123;</span><br><span class="line">        Map&lt;Character, Character&gt; s2t = new HashMap&lt;Character, Character&gt;();</span><br><span class="line">        Map&lt;Character, Character&gt; t2s = new HashMap&lt;Character, Character&gt;();</span><br><span class="line">        int len = s.length();</span><br><span class="line">        for (int i = 0; i &lt; len; ++i) &#123;</span><br><span class="line">            char x = s.charAt(i), y = t.charAt(i);</span><br><span class="line">            if ((s2t.containsKey(x) &amp;&amp; s2t.get(x) != y) || (t2s.containsKey(y) &amp;&amp; t2s.get(y) != x)) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            s2t.put(x, y);</span><br><span class="line">            t2s.put(y, x);</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，其中 n 为字符串的长度。我们只需同时遍历一遍字符串 s 和 t 即可。</li>
+<li>空间复杂度：O(∣Σ∣)，其中 Σ 是字符串的字符集。哈希表存储字符的空间取决于字符串的字符集大小，最坏情况下每个字符均不相同，需要 O(∣Σ∣) 的空间。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>存在重复元素II</title>
+    <url>/2024/02/19/%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0II/</url>
+    <content><![CDATA[<h1 id="存在重复元素-II"><a href="#存在重复元素-II" class="headerlink" title="存在重复元素 II"></a>存在重复元素 II</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个整数数组 <code>nums</code> 和一个整数 <code>k</code> ，判断数组中是否存在两个 <strong>不同的索引</strong> <code>i</code> 和 <code>j</code> ，满足 <code>nums[i] == nums[j]</code> 且 <code>abs(i - j) &lt;= k</code> 。如果存在，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,2,3,1], k = 3</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,0,1,1], k = 1</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,2,3,1,2,3], k = 2</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>-109 &lt;= nums[i] &lt;= 109</code></li>
+<li><code>0 &lt;= k &lt;= 105</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）哈希表"><a href="#（1）哈希表" class="headerlink" title="（1）哈希表"></a>（1）哈希表</h3><p><strong>思路及算法</strong></p>
+<img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240219143538298.png" alt="image-20240219143538298" />
+
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool containsNearbyDuplicate(vector&lt;int&gt;&amp; nums, int k) &#123;</span><br><span class="line">        unordered_map&lt;int, int&gt; dictionary;</span><br><span class="line">        int length = nums.size();</span><br><span class="line">        for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">            int num = nums[i];</span><br><span class="line">            if (dictionary.count(num) &amp;&amp; i - dictionary[num] &lt;= k) &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">            dictionary[num] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public boolean containsNearbyDuplicate(int[] nums, int k) &#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; map = new HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        int length = nums.length;</span><br><span class="line">        for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">            int num = nums[i];</span><br><span class="line">            if (map.containsKey(num) &amp;&amp; i - map.get(num) &lt;= k) &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">            map.put(num, i);</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是数组 nums 的长度。需要遍历数组一次，对于每个元素，哈希表的操作时间都是 O(1)。</p>
+</li>
+<li><p>空间复杂度：O(n)，其中 n 是数组 nums 的长度。需要使用哈希表记录每个元素的最大下标，哈希表中的元素个数不会超过 n。</p>
+</li>
+</ul>
+<h3 id="（2）滑动窗口"><a href="#（2）滑动窗口" class="headerlink" title="（2）滑动窗口"></a>（2）滑动窗口</h3><p><strong>思路及算法</strong></p>
+<img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240219143857919.png" alt="image-20240219143857919" />
+
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool containsNearbyDuplicate(vector&lt;int&gt;&amp; nums, int k) &#123;</span><br><span class="line">        unordered_set&lt;int&gt; s;</span><br><span class="line">        int length = nums.size();</span><br><span class="line">        for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">            if (i &gt; k) &#123;</span><br><span class="line">                s.erase(nums[i - k - 1]);</span><br><span class="line">            &#125;</span><br><span class="line">            if (s.count(nums[i])) &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">            s.emplace(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public boolean containsNearbyDuplicate(int[] nums, int k) &#123;</span><br><span class="line">        Set&lt;Integer&gt; set = new HashSet&lt;Integer&gt;();</span><br><span class="line">        int length = nums.length;</span><br><span class="line">        for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">            if (i &gt; k) &#123;</span><br><span class="line">                set.remove(nums[i - k - 1]);</span><br><span class="line">            &#125;</span><br><span class="line">            if (!set.add(nums[i])) &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是数组 nums的长度。需要遍历数组一次，对于每个元素，哈希集合的操作时间都是 O(1)。</p>
+</li>
+<li><p>空间复杂度：O(k)，其中 k 是判断重复元素时允许的下标差的绝对值的最大值。需要使用哈希集合存储滑动窗口中的元素，任意时刻滑动窗口中的元素个数最多为 k+1 个。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>最大子数组和</title>
+    <url>/2024/02/20/%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84%E5%92%8C/</url>
+    <content><![CDATA[<h1 id="最大子数组和"><a href="#最大子数组和" class="headerlink" title="最大子数组和"></a>最大子数组和</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个整数数组 <code>nums</code> ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
+<p><strong>子数组</strong> 是数组中的一个连续部分。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [-2,1,-3,4,-1,2,1,-5,4]</span><br><span class="line">输出：6</span><br><span class="line">解释：连续子数组 [4,-1,2,1] 的和最大，为 6 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [5,4,-1,7,8]</span><br><span class="line">输出：23</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>-104 &lt;= nums[i] &lt;= 104</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）动态规划"><a href="#（1）动态规划" class="headerlink" title="（1）动态规划"></a>（1）动态规划</h3><p><strong>思路及算法</strong></p>
+<p>假设 nums 数组的长度是 n，下标从 0 到 n−1。</p>
+<p>我们用 f(i) 代表以第 i 个数结尾的「连续子数组的最大和」，那么很显然我们要求的答案就是：</p>
+<p>max<del>0≤i≤n−1</del>{f(i)}</p>
+<p>因此我们只需要求出每个位置的 f(i))，然后返回 f 数组中的最大值即可。那么我们如何求 f(i) 呢？我们可以考虑 nums[i]单独成为一段还是加入 f(i−1) 对应的那一段，这取决于 nums[i] 和 f(i−1)+nums[i] 的大小，我们希望获得一个比较大的，于是可以写出这样的动态规划转移方程：</p>
+<p>f(i)&#x3D;max⁡{f(i−1)+nums[i],nums[i]}</p>
+<p>不难给出一个时间复杂度 O(n)、空间复杂度 O(n) 的实现，即用一个 f 数组来保存 f(i) 的值，用一个循环求出所有 f(i)。考虑到 f(i) 只和 f(i−1)相关，于是我们可以只用一个变量 pre 来维护对于当前 f(i) 的 f(i−1) 的值是多少，从而让空间复杂度降低到 O(1)，这有点类似「滚动数组」的思想。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxSubArray(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int pre = 0, maxAns = nums[0];</span><br><span class="line">        for (const auto &amp;x: nums) &#123;</span><br><span class="line">            pre = max(pre + x, x);</span><br><span class="line">            maxAns = max(maxAns, pre);</span><br><span class="line">        &#125;</span><br><span class="line">        return maxAns;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int maxSubArray(int[] nums) &#123;</span><br><span class="line">        int pre = 0, maxAns = nums[0];</span><br><span class="line">        for (int x : nums) &#123;</span><br><span class="line">            pre = Math.max(pre + x, x);</span><br><span class="line">            maxAns = Math.max(maxAns, pre);</span><br><span class="line">        &#125;</span><br><span class="line">        return maxAns;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，其中 n 为 nums 数组的长度。我们只需要遍历一遍数组即可求得答案。</li>
+<li>空间复杂度：O(1)。我们只需要常数空间存放若干变量。</li>
+</ul>
+<h3 id="（2）分治"><a href="#（2）分治" class="headerlink" title="（2）分治"></a>（2）分治</h3><p><strong>思路及算法</strong></p>
+<img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240220144642806.png" alt="image-20240220144642806" />
+
+
+
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    struct Status &#123;</span><br><span class="line">        int lSum, rSum, mSum, iSum;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    Status pushUp(Status l, Status r) &#123;</span><br><span class="line">        int iSum = l.iSum + r.iSum;</span><br><span class="line">        int lSum = max(l.lSum, l.iSum + r.lSum);</span><br><span class="line">        int rSum = max(r.rSum, r.iSum + l.rSum);</span><br><span class="line">        int mSum = max(max(l.mSum, r.mSum), l.rSum + r.lSum);</span><br><span class="line">        return (Status) &#123;lSum, rSum, mSum, iSum&#125;;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    Status get(vector&lt;int&gt; &amp;a, int l, int r) &#123;</span><br><span class="line">        if (l == r) &#123;</span><br><span class="line">            return (Status) &#123;a[l], a[l], a[l], a[l]&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        int m = (l + r) &gt;&gt; 1;</span><br><span class="line">        Status lSub = get(a, l, m);</span><br><span class="line">        Status rSub = get(a, m + 1, r);</span><br><span class="line">        return pushUp(lSub, rSub);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int maxSubArray(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        return get(nums, 0, nums.size() - 1).mSum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public class Status &#123;</span><br><span class="line">        public int lSum, rSum, mSum, iSum;</span><br><span class="line"></span><br><span class="line">        public Status(int lSum, int rSum, int mSum, int iSum) &#123;</span><br><span class="line">            this.lSum = lSum;</span><br><span class="line">            this.rSum = rSum;</span><br><span class="line">            this.mSum = mSum;</span><br><span class="line">            this.iSum = iSum;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int maxSubArray(int[] nums) &#123;</span><br><span class="line">        return getInfo(nums, 0, nums.length - 1).mSum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Status getInfo(int[] a, int l, int r) &#123;</span><br><span class="line">        if (l == r) &#123;</span><br><span class="line">            return new Status(a[l], a[l], a[l], a[l]);</span><br><span class="line">        &#125;</span><br><span class="line">        int m = (l + r) &gt;&gt; 1;</span><br><span class="line">        Status lSub = getInfo(a, l, m);</span><br><span class="line">        Status rSub = getInfo(a, m + 1, r);</span><br><span class="line">        return pushUp(lSub, rSub);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Status pushUp(Status l, Status r) &#123;</span><br><span class="line">        int iSum = l.iSum + r.iSum;</span><br><span class="line">        int lSum = Math.max(l.lSum, l.iSum + r.lSum);</span><br><span class="line">        int rSum = Math.max(r.rSum, r.iSum + l.rSum);</span><br><span class="line">        int mSum = Math.max(Math.max(l.mSum, r.mSum), l.rSum + r.lSum);</span><br><span class="line">        return new Status(lSum, rSum, mSum, iSum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<p>假设序列 a 的长度为 n。</p>
+<ul>
+<li><p>时间复杂度：假设我们把递归的过程看作是一颗二叉树的先序遍历，那么这颗二叉树的深度的渐进上界为 O(log⁡n)，这里的总时间相当于遍历这颗二叉树的所有节点，故总时间的渐进上界是 O(∑i&#x3D;1log<del>⁡n</del>2^i−1^)&#x3D;O(n),故渐进时间复杂度为 O(n)。</p>
+</li>
+<li><p>空间复杂度：递归会使用 O(log⁡n) 的栈空间，故渐进空间复杂度为 O(log⁡n)。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>字母异位词分组</title>
+    <url>/2024/02/12/%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84/</url>
+    <content><![CDATA[<h1 id="字母异位词分组"><a href="#字母异位词分组" class="headerlink" title="字母异位词分组"></a>字母异位词分组</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个字符串数组，请你将 <strong>字母异位词</strong> 组合在一起。可以按任意顺序返回结果列表。</p>
+<p><strong>字母异位词</strong> 是由重新排列源单词的所有字母得到的一个新单词。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: strs = [&quot;eat&quot;, &quot;tea&quot;, &quot;tan&quot;, &quot;ate&quot;, &quot;nat&quot;, &quot;bat&quot;]</span><br><span class="line">输出: [[&quot;bat&quot;],[&quot;nat&quot;,&quot;tan&quot;],[&quot;ate&quot;,&quot;eat&quot;,&quot;tea&quot;]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: strs = [&quot;&quot;]</span><br><span class="line">输出: [[&quot;&quot;]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: strs = [&quot;a&quot;]</span><br><span class="line">输出: [[&quot;a&quot;]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= strs.length &lt;= 104</code></li>
+<li><code>0 &lt;= strs[i].length &lt;= 100</code></li>
+<li><code>strs[i]</code> 仅包含小写字母</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）排序"><a href="#（1）排序" class="headerlink" title="（1）排序"></a>（1）排序</h3><p><strong>思路及算法</strong></p>
+<p>由于互为字母异位词的两个字符串包含的字母相同，因此对两个字符串分别进行排序之后得到的字符串一定是相同的，故可以将排序之后的字符串作为哈希表的键。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; groupAnagrams(vector&lt;string&gt;&amp; strs) &#123;</span><br><span class="line">        unordered_map&lt;string, vector&lt;string&gt;&gt; mp;</span><br><span class="line">        for (string&amp; str: strs) &#123;</span><br><span class="line">            string key = str;</span><br><span class="line">            sort(key.begin(), key.end());</span><br><span class="line">            mp[key].emplace_back(str);</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;vector&lt;string&gt;&gt; ans;</span><br><span class="line">        for (auto it = mp.begin(); it != mp.end(); ++it) &#123;</span><br><span class="line">            ans.emplace_back(it-&gt;second);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;String&gt;&gt; groupAnagrams(String[] strs) &#123;</span><br><span class="line">        Map&lt;String, List&lt;String&gt;&gt; map = new HashMap&lt;String, List&lt;String&gt;&gt;();</span><br><span class="line">        for (String str : strs) &#123;</span><br><span class="line">            char[] array = str.toCharArray();</span><br><span class="line">            Arrays.sort(array);</span><br><span class="line">            String key = new String(array);</span><br><span class="line">            List&lt;String&gt; list = map.getOrDefault(key, new ArrayList&lt;String&gt;());</span><br><span class="line">            list.add(str);</span><br><span class="line">            map.put(key, list);</span><br><span class="line">        &#125;</span><br><span class="line">        return new ArrayList&lt;List&lt;String&gt;&gt;(map.values());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(nklog⁡k)，其中 n 是 strs中的字符串的数量，k是 strs 中的字符串的的最大长度。需要遍历 n 个字符串，对于每个字符串，需要 O(klog⁡k)的时间进行排序以及 O(1)的时间更新哈希表，因此总时间复杂度是 O(nklog⁡k)。</p>
+</li>
+<li><p>空间复杂度：O(nk)，其中 n 是 strs中的字符串的数量，k是 strs 中的字符串的的最大长度。需要用哈希表存储全部字符串。</p>
+</li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="（2）计数"><a href="#（2）计数" class="headerlink" title="（2）计数"></a>（2）计数</h3><p><strong>思路及算法</strong></p>
+<p>由于互为字母异位词的两个字符串包含的字母相同，因此两个字符串中的相同字母出现的次数一定是相同的，故可以将每个字母出现的次数使用字符串表示，作为哈希表的键。</p>
+<p>由于字符串只包含小写字母，因此对于每个字符串，可以使用长度为 262626 的数组记录每个字母出现的次数。需要注意的是，在使用数组作为哈希表的键时，不同语言的支持程度不同，因此不同语言的实现方式也不同。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; groupAnagrams(vector&lt;string&gt;&amp; strs) &#123;</span><br><span class="line">        // 自定义对 array&lt;int, 26&gt; 类型的哈希函数</span><br><span class="line">        auto arrayHash = [fn = hash&lt;int&gt;&#123;&#125;] (const array&lt;int, 26&gt;&amp; arr) -&gt; size_t &#123;</span><br><span class="line">            return accumulate(arr.begin(), arr.end(), 0u, [&amp;](size_t acc, int num) &#123;</span><br><span class="line">                return (acc &lt;&lt; 1) ^ fn(num);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        unordered_map&lt;array&lt;int, 26&gt;, vector&lt;string&gt;, decltype(arrayHash)&gt; mp(0, arrayHash);</span><br><span class="line">        for (string&amp; str: strs) &#123;</span><br><span class="line">            array&lt;int, 26&gt; counts&#123;&#125;;</span><br><span class="line">            int length = str.length();</span><br><span class="line">            for (int i = 0; i &lt; length; ++i) &#123;</span><br><span class="line">                counts[str[i] - &#x27;a&#x27;] ++;</span><br><span class="line">            &#125;</span><br><span class="line">            mp[counts].emplace_back(str);</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;vector&lt;string&gt;&gt; ans;</span><br><span class="line">        for (auto it = mp.begin(); it != mp.end(); ++it) &#123;</span><br><span class="line">            ans.emplace_back(it-&gt;second);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;String&gt;&gt; groupAnagrams(String[] strs) &#123;</span><br><span class="line">        Map&lt;String, List&lt;String&gt;&gt; map = new HashMap&lt;String, List&lt;String&gt;&gt;();</span><br><span class="line">        for (String str : strs) &#123;</span><br><span class="line">            int[] counts = new int[26];</span><br><span class="line">            int length = str.length();</span><br><span class="line">            for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">                counts[str.charAt(i) - &#x27;a&#x27;]++;</span><br><span class="line">            &#125;</span><br><span class="line">            // 将每个出现次数大于 0 的字母和出现次数按顺序拼接成字符串，作为哈希表的键</span><br><span class="line">            StringBuffer sb = new StringBuffer();</span><br><span class="line">            for (int i = 0; i &lt; 26; i++) &#123;</span><br><span class="line">                if (counts[i] != 0) &#123;</span><br><span class="line">                    sb.append((char) (&#x27;a&#x27; + i));</span><br><span class="line">                    sb.append(counts[i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            String key = sb.toString();</span><br><span class="line">            List&lt;String&gt; list = map.getOrDefault(key, new ArrayList&lt;String&gt;());</span><br><span class="line">            list.add(str);</span><br><span class="line">            map.put(key, list);</span><br><span class="line">        &#125;</span><br><span class="line">        return new ArrayList&lt;List&lt;String&gt;&gt;(map.values());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n(k+∣Σ∣))，其中 n 是 strs 中的字符串的数量，k是 strs中的字符串的的最大长度，Σ是字符集，在本题中字符集为所有小写字，∣Σ∣&#x3D;26。需要遍历 n个字符串，对于每个字符串，需要 O(k) 的时间计算每个字母出现的次数，O(∣Σ∣)的时间生成哈希表的键，以及 O(1)的时间更新哈希表，因此总时间复杂度是 O(n(k+∣Σ∣))。</p>
+</li>
+<li><p>空间复杂度：O(n(k+∣Σ∣))，其中 n 是 strs 中的字符串的数量，k是 strs中的字符串的最大长度，Σ 是字符集，在本题中字符集为所有小写字母，∣Σ∣&#x3D;26。需要用哈希表存储全部字符串，而记录每个字符串中每个字母出现次数的数组需要的空间为 O(∣Σ∣)，在渐进意义下小于 O(n(k+∣Σ∣))，可以忽略不计。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>快乐数</title>
+    <url>/2024/02/19/%E5%BF%AB%E4%B9%90%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="快乐数"><a href="#快乐数" class="headerlink" title="快乐数"></a>快乐数</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>编写一个算法来判断一个数 <code>n</code> 是不是快乐数。</p>
+<p><strong>「快乐数」</strong> 定义为：</p>
+<ul>
+<li>对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和。</li>
+<li>然后重复这个过程直到这个数变为 1，也可能是 <strong>无限循环</strong> 但始终变不到 1。</li>
+<li>如果这个过程 <strong>结果为</strong> 1，那么这个数就是快乐数。</li>
+</ul>
+<p>如果 <code>n</code> 是 <em>快乐数</em> 就返回 <code>true</code> ；不是，则返回 <code>false</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 19</span><br><span class="line">输出：true</span><br><span class="line">解释：</span><br><span class="line">12 + 92 = 82</span><br><span class="line">82 + 22 = 68</span><br><span class="line">62 + 82 = 100</span><br><span class="line">12 + 02 + 02 = 1</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 2</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n &lt;= 231 - 1</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）哈希集合检测"><a href="#（1）哈希集合检测" class="headerlink" title="（1）哈希集合检测"></a>（1）哈希集合检测</h3><p><strong>思路及算法</strong></p>
+<img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240219140733391.png" alt="image-20240219140733391" />
+
+<img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240219140840318.png" alt="image-20240219140840318" />
+
+
+
+<p><strong>代码</strong></p>
+<p>算法分为两部分，我们需要设计和编写代码。</p>
+<p>1.给一个数字 nnn，它的下一个数字是什么？<br>2.按照一系列的数字来判断我们是否进入了一个循环。<br>第 1 部分我们按照题目的要求做数位分离，求平方和。</p>
+<p>第 2 部分可以使用哈希集合完成。每次生成链中的下一个数字时，我们都会检查它是否已经在哈希集合中。</p>
+<ul>
+<li><p>如果它不在哈希集合中，我们应该添加它。</p>
+</li>
+<li><p>如果它在哈希集合中，这意味着我们处于一个循环中，因此应该返回 false。  </p>
+<p>我们使用哈希集合而不是向量、列表或数组的原因是因为我们反复检查其中是否存在某数字。检查数字是否在哈希集合中需要 O(1)O(1)O(1) 的时间，而对于其他数据结构，则需要 O(n)O(n)O(n) 的时间。选择正确的数据结构是解决这些问题的关键部分。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    private int getNext(int n) &#123;</span><br><span class="line">        int totalSum = 0;</span><br><span class="line">        while (n &gt; 0) &#123;</span><br><span class="line">            int d = n % 10;</span><br><span class="line">            n = n / 10;</span><br><span class="line">            totalSum += d * d;</span><br><span class="line">        &#125;</span><br><span class="line">        return totalSum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean isHappy(int n) &#123;</span><br><span class="line">        Set&lt;Integer&gt; seen = new HashSet&lt;&gt;();</span><br><span class="line">        while (n != 1 &amp;&amp; !seen.contains(n)) &#123;</span><br><span class="line">            seen.add(n);</span><br><span class="line">            n = getNext(n);</span><br><span class="line">        &#125;</span><br><span class="line">        return n == 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>复杂度分析</strong></p>
+<img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240219141207624.png" alt="image-20240219141207624" />
+
+
+
+<h3 id="（2）快慢指针法"><a href="#（2）快慢指针法" class="headerlink" title="（2）快慢指针法"></a>（2）快慢指针法</h3><p><strong>思路及算法</strong></p>
+<p>通过反复调用 getNext(n) 得到的链是一个隐式的链表。隐式意味着我们没有实际的链表节点和指针，但数据仍然形成链表结构。起始数字是链表的头 “节点”，链中的所有其他数字都是节点。next 指针是通过调用 getNext(n) 函数获得。</p>
+<p>意识到我们实际有个链表，那么这个问题就可以转换为检测一个链表是否有环。因此我们在这里可以使用弗洛伊德循环查找算法。这个算法是两个奔跑选手，一个跑的快，一个跑得慢。在龟兔赛跑的寓言中，跑的慢的称为 “乌龟”，跑得快的称为 “兔子”。</p>
+<p>不管乌龟和兔子在循环中从哪里开始，它们最终都会相遇。这是因为兔子每走一步就向乌龟靠近一个节点（在它们的移动方向上）。</p>
+<p><strong>代码</strong></p>
+<p>我们不是只跟踪链表中的一个值，而是跟踪两个值，称为快跑者和慢跑者。</p>
+<p>在算法的每一步中，慢速在链表中前进 1 个节点，快跑者前进 2 个节点（对 getNext(n) 函数的嵌套调用）。</p>
+<p>如果 n 是一个快乐数，即没有循环，那么快跑者最终会比慢跑者先到达数字 1。</p>
+<p>如果 n 不是一个快乐的数字，那么最终快跑者和慢跑者将在同一个数字上相遇。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">def isHappy(self, n: int) -&gt; bool:  </span><br><span class="line">    def get_next(number):</span><br><span class="line">        total_sum = 0</span><br><span class="line">        while number &gt; 0:</span><br><span class="line">            number, digit = divmod(number, 10)</span><br><span class="line">            total_sum += digit ** 2</span><br><span class="line">        return total_sum</span><br><span class="line"></span><br><span class="line">    slow_runner = n</span><br><span class="line">    fast_runner = get_next(n)</span><br><span class="line">    while fast_runner != 1 and slow_runner != fast_runner:</span><br><span class="line">        slow_runner = get_next(slow_runner)</span><br><span class="line">        fast_runner = get_next(get_next(fast_runner))</span><br><span class="line">    return fast_runner == 1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>复杂度分析</strong></p>
+<img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240219141530953.png" alt="image-20240219141530953" />
+
+
+
+<h3 id="（3）数学"><a href="#（3）数学" class="headerlink" title="（3）数学"></a>（3）数学</h3><p><strong>思路及算法</strong></p>
+<p>根据我们之前的分析，我们知道它必须低于 243。因此，我们知道任何循环都必须包含小于 243 的数字，用这么小的数字，编写一个能找到所有周期的强力程序并不困难。</p>
+<p>如果这样做，您会发现只有一个循环：4→16→37→58→89→145→42→20→4。所有其他数字都在进入这个循环的链上，或者在进入 111 的链上。</p>
+<p>因此，我们可以硬编码一个包含这些数字的散列集，如果我们达到其中一个数字，那么我们就知道在循环中。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line"></span><br><span class="line">    private static Set&lt;Integer&gt; cycleMembers =</span><br><span class="line">        new HashSet&lt;&gt;(Arrays.asList(4, 16, 37, 58, 89, 145, 42, 20));</span><br><span class="line"></span><br><span class="line">    public int getNext(int n) &#123;</span><br><span class="line">        int totalSum = 0;</span><br><span class="line">        while (n &gt; 0) &#123;</span><br><span class="line">            int d = n % 10;</span><br><span class="line">            n = n / 10;</span><br><span class="line">            totalSum += d * d;</span><br><span class="line">        &#125;</span><br><span class="line">        return totalSum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public boolean isHappy(int n) &#123;</span><br><span class="line">        while (n != 1 &amp;&amp; !cycleMembers.contains(n)) &#123;</span><br><span class="line">            n = getNext(n);</span><br><span class="line">        &#125;</span><br><span class="line">        return n == 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(log⁡n)。</li>
+<li>空间复杂度：O(1)，我们没有保留我们所遇到的数字的历史记录。硬编码哈希集的大小是固定的。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>最长连续序列</title>
+    <url>/2024/02/13/%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E5%BA%8F%E5%88%97/</url>
+    <content><![CDATA[<h1 id="最长连续序列"><a href="#最长连续序列" class="headerlink" title="最长连续序列"></a>最长连续序列</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个未排序的整数数组 <code>nums</code> ，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度。</p>
+<p>请你设计并实现时间复杂度为 <code>O(n)</code> 的算法解决此问题。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [100,4,200,1,3,2]</span><br><span class="line">输出：4</span><br><span class="line">解释：最长数字连续序列是 [1, 2, 3, 4]。它的长度为 4。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [0,3,7,2,5,8,4,6,0,1]</span><br><span class="line">输出：9</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>0 &lt;= nums.length &lt;= 105</code></li>
+<li><code>-109 &lt;= nums[i] &lt;= 109</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="哈希表解法"><a href="#哈希表解法" class="headerlink" title="哈希表解法"></a>哈希表解法</h3><p><strong>思路及算法</strong></p>
+<p>我们考虑枚举数组中的每个数 x，考虑以其为起点，不断尝试匹配 x+1,x+2,⋯ 是否存在，假设最长匹配到了 x+y，那么以 x为起点的最长连续序列即为x,x+1,x+2,⋯ ,x+y，其长度为 y+1，我们不断枚举并更新答案即可。</p>
+<p>对于匹配的过程，暴力的方法是 O(n)遍历数组去看是否存在这个数，但其实更高效的方法是用一个哈希表存储数组中的数，这样查看一个数是否存在即能优化至 O(1)的时间复杂度。</p>
+<p>仅仅是这样我们的算法时间复杂度最坏情况下还是会达到 O(n^2^)（即外层需要枚举 O(n)个数，内层需要暴力匹配 O(n)次），无法满足题目的要求。但仔细分析这个过程，我们会发现其中执行了很多不必要的枚举，如果已知有一个 x,x+1,x+2,⋯ ,x+y的连续序列，而我们却重新从 x+1，x+2或者是 x+y处开始尝试匹配，那么得到的结果肯定不会优于枚举 x 为起点的答案，因此我们在外层循环的时候碰到这种情况跳过即可。</p>
+<p>那么怎么判断是否跳过呢？由于我们要枚举的数 x一定是在数组中不存在前驱数 x−1 的，不然按照上面的分析我们会从 x−1 开始尝试匹配，因此我们每次在哈希表中检查是否存在 x−1即能判断是否需要跳过了。</p>
+<p>增加了判断跳过的逻辑之后，时间复杂度是多少呢？外层循环需要 O(n) 的时间复杂度，只有当一个数是连续序列的第一个数的情况下才会进入内层循环，然后在内层循环中匹配连续序列中的数，因此数组中的每个数只会进入内层循环一次。根据上述分析可知，总时间复杂度为 O(n)O(n)O(n)，符合题目要求。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int longestConsecutive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        unordered_set&lt;int&gt; num_set;</span><br><span class="line">        for (const int&amp; num : nums) &#123;</span><br><span class="line">            num_set.insert(num);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int longestStreak = 0;</span><br><span class="line"></span><br><span class="line">        for (const int&amp; num : num_set) &#123;</span><br><span class="line">            if (!num_set.count(num - 1)) &#123;</span><br><span class="line">                int currentNum = num;</span><br><span class="line">                int currentStreak = 1;</span><br><span class="line"></span><br><span class="line">                while (num_set.count(currentNum + 1)) &#123;</span><br><span class="line">                    currentNum += 1;</span><br><span class="line">                    currentStreak += 1;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                longestStreak = max(longestStreak, currentStreak);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return longestStreak;           </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int longestConsecutive(int[] nums) &#123;</span><br><span class="line">        Set&lt;Integer&gt; num_set = new HashSet&lt;Integer&gt;();</span><br><span class="line">        for (int num : nums) &#123;</span><br><span class="line">            num_set.add(num);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int longestStreak = 0;</span><br><span class="line"></span><br><span class="line">        for (int num : num_set) &#123;</span><br><span class="line">            if (!num_set.contains(num - 1)) &#123;</span><br><span class="line">                int currentNum = num;</span><br><span class="line">                int currentStreak = 1;</span><br><span class="line"></span><br><span class="line">                while (num_set.contains(currentNum + 1)) &#123;</span><br><span class="line">                    currentNum += 1;</span><br><span class="line">                    currentStreak += 1;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                longestStreak = Math.max(longestStreak, currentStreak);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return longestStreak;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n为数组的长度。具体分析已在上面正文中给出。</p>
+</li>
+<li><p>空间复杂度：O(n)。哈希表存储数组中所有的数需要 O(n) 的空间。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>有效的字母异位词</title>
+    <url>/2024/02/15/%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D/</url>
+    <content><![CDATA[<h1 id="有效的字母异位词"><a href="#有效的字母异位词" class="headerlink" title="有效的字母异位词"></a>有效的字母异位词</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定两个字符串 <code>s</code> 和 <code>t</code> ，编写一个函数来判断 <code>t</code> 是否是 <code>s</code> 的字母异位词。</p>
+<p><strong>注意：</strong>若 <code>s</code> 和 <code>t</code> 中每个字符出现的次数都相同，则称 <code>s</code> 和 <code>t</code> 互为字母异位词。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: s = &quot;anagram&quot;, t = &quot;nagaram&quot;</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: s = &quot;rat&quot;, t = &quot;car&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示:</strong></p>
+<ul>
+<li><code>1 &lt;= s.length, t.length &lt;= 5 * 104</code></li>
+<li><code>s</code> 和 <code>t</code> 仅包含小写字母</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）排序"><a href="#（1）排序" class="headerlink" title="（1）排序"></a>（1）排序</h3><p><strong>思路及算法</strong></p>
+<p>t 是 s 的异位词等价于「两个字符串排序后相等」。因此我们可以对字符串 s 和 t 分别排序，看排序后的字符串是否相等即可判断。此外，如果 s 和 t 的长度不同，t 必然不是 s 的异位词。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isAnagram(string s, string t) &#123;</span><br><span class="line">        if (s.length() != t.length()) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(s.begin(), s.end());</span><br><span class="line">        sort(t.begin(), t.end());</span><br><span class="line">        return s == t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public boolean isAnagram(String s, String t) &#123;</span><br><span class="line">        if (s.length() != t.length()) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        char[] str1 = s.toCharArray();</span><br><span class="line">        char[] str2 = t.toCharArray();</span><br><span class="line">        Arrays.sort(str1);</span><br><span class="line">        Arrays.sort(str2);</span><br><span class="line">        return Arrays.equals(str1, str2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(nlog⁡n)，其中 n 为 s 的长度。排序的时间复杂度为 O(nlog⁡n)，比较两个字符串是否相等时间复杂度为 O(n)，因此总体时间复杂度为 O(nlog⁡n+n)&#x3D;O(nlog⁡n)。</p>
+</li>
+<li><p>空间复杂度：O(log⁡n)。排序需要 O(log⁡n) 的空间复杂度。注意，在某些语言（比如 Java &amp; JavaScript）中字符串是不可变的，因此我们需要额外的 O(n) 的空间来拷贝字符串。但是我们忽略这一复杂度分析，因为：</p>
+<ul>
+<li>这依赖于语言的细节；</li>
+<li>这取决于函数的设计方式，例如，可以将函数参数类型更改为 char[]。</li>
+</ul>
+</li>
+</ul>
+<h3 id="（2）哈希表"><a href="#（2）哈希表" class="headerlink" title="（2）哈希表"></a>（2）哈希表</h3><p><strong>思路及算法</strong></p>
+<p>从另一个角度考虑，t 是 s 的异位词等价于「两个字符串中字符出现的种类和次数均相等」。由于字符串只包含 26 个小写字母，因此我们可以维护一个长度为 26的频次数组 table，先遍历记录字符串 s 中字符出现的频次，然后遍历字符串 t，减去 table 中对应的频次，如果出现 table[i]&lt;0，则说明 t 包含一个不在 s 中的额外字符，返回 false 即可。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isAnagram(string s, string t) &#123;</span><br><span class="line">        if (s.length() != t.length()) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;int&gt; table(26, 0);</span><br><span class="line">        for (auto&amp; ch: s) &#123;</span><br><span class="line">            table[ch - &#x27;a&#x27;]++;</span><br><span class="line">        &#125;</span><br><span class="line">        for (auto&amp; ch: t) &#123;</span><br><span class="line">            table[ch - &#x27;a&#x27;]--;</span><br><span class="line">            if (table[ch - &#x27;a&#x27;] &lt; 0) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public boolean isAnagram(String s, String t) &#123;</span><br><span class="line">        if (s.length() != t.length()) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        int[] table = new int[26];</span><br><span class="line">        for (int i = 0; i &lt; s.length(); i++) &#123;</span><br><span class="line">            table[s.charAt(i) - &#x27;a&#x27;]++;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; t.length(); i++) &#123;</span><br><span class="line">            table[t.charAt(i) - &#x27;a&#x27;]--;</span><br><span class="line">            if (table[t.charAt(i) - &#x27;a&#x27;] &lt; 0) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 为 s 的长度。</p>
+</li>
+<li><p>空间复杂度：O(S)，其中 S 为字符集大小，此处 S&#x3D;26。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第一次记录</title>
+    <url>/2024/02/04/%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h1 id="1-这是第一次尝试"><a href="#1-这是第一次尝试" class="headerlink" title="###1.这是第一次尝试"></a>###1.这是第一次尝试</h1><p>记录自己第一次搭建博客。</p>
+]]></content>
+      <tags>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>移除元素</title>
+    <url>/2024/02/20/%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/</url>
+    <content><![CDATA[<h1 id="移除元素"><a href="#移除元素" class="headerlink" title="移除元素"></a>移除元素</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个数组 <code>nums</code> 和一个值 <code>val</code>，你需要原地移除所有数值等于 <code>val</code> 的元素，并返回移除后数组的新长度。</p>
+<p>不要使用额外的数组空间，你必须仅使用 <code>O(1)</code> 额外空间并原地修改输入数组。</p>
+<p>元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。</p>
+<p><strong>说明:</strong></p>
+<p>为什么返回数值是整数，但输出的答案是数组呢?</p>
+<p>请注意，输入数组是以<strong>「引用」</strong>方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。</p>
+<p>你可以想象内部操作如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// nums 是以“引用”方式传递的。也就是说，不对实参作任何拷贝</span><br><span class="line">int len = removeElement(nums, val);</span><br><span class="line"></span><br><span class="line">// 在函数里修改输入数组对于调用者是可见的。</span><br><span class="line">// 根据你的函数返回的长度, 它会打印出数组中 该长度范围内 的所有元素。</span><br><span class="line">for (int i = 0; i &lt; len; i++) &#123;</span><br><span class="line">    print(nums[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [3,2,2,3], val = 3</span><br><span class="line">输出：2, nums = [2,2]</span><br><span class="line">解释：函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。你不需要考虑数组中超出新长度后面的元素。例如，函数返回的新长度为 2 ，而 nums = [2,2,3,3] 或 nums = [2,2,0,0]，也会被视作正确答案。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [0,1,2,2,3,0,4,2], val = 2</span><br><span class="line">输出：5, nums = [0,1,3,0,4]</span><br><span class="line">解释：函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。注意这五个元素可为任意顺序。你不需要考虑数组中超出新长度后面的元素。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>0 &lt;= nums.length &lt;= 100</code></li>
+<li><code>0 &lt;= nums[i] &lt;= 50</code></li>
+<li><code>0 &lt;= val &lt;= 100</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）双指针"><a href="#（1）双指针" class="headerlink" title="（1）双指针"></a>（1）双指针</h3><p><strong>思路及算法</strong></p>
+<p>由于题目要求删除数组中等于 val 的元素，因此输出数组的长度一定小于等于输入数组的长度，我们可以把输出的数组直接写在输入数组上。可以使用双指针：右指针 right 指向当前将要处理的元素，左指针 left 指向下一个将要赋值的位置。</p>
+<p>如果右指针指向的元素不等于 val，它一定是输出数组的一个元素，我们就将右指针指向的元素复制到左指针位置，然后将左右指针同时右移；</p>
+<p>如果右指针指向的元素等于 val，它不能在输出数组里，此时左指针不动，右指针右移一位。</p>
+<p>整个过程保持不变的性质是：区间 [0,left) 中的元素都不等于 val。当左右指针遍历完输入数组以后，left的值就是输出数组的长度。</p>
+<p>这样的算法在最坏情况下（输入数组中没有元素等于 val），左右指针各遍历了数组一次。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int removeElement(vector&lt;int&gt;&amp; nums, int val) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        int left = 0;</span><br><span class="line">        for (int right = 0; right &lt; n; right++) &#123;</span><br><span class="line">            if (nums[right] != val) &#123;</span><br><span class="line">                nums[left] = nums[right];</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int removeElement(int[] nums, int val) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        int left = 0;</span><br><span class="line">        for (int right = 0; right &lt; n; right++) &#123;</span><br><span class="line">            if (nums[right] != val) &#123;</span><br><span class="line">                nums[left] = nums[right];</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 为序列的长度。我们只需要遍历该序列至多两次。</p>
+</li>
+<li><p>空间复杂度：O(1)。我们只需要常数的空间保存若干变量。</p>
+</li>
+</ul>
+<h3 id="（2）双指针优化"><a href="#（2）双指针优化" class="headerlink" title="（2）双指针优化"></a>（2）双指针优化</h3><p><strong>思路及算法</strong></p>
+<p>如果要移除的元素恰好在数组的开头，例如序列 [1,2,3,4,5]，当 val 为 1 时，我们需要把每一个元素都左移一位。注意到题目中说：「元素的顺序可以改变」。实际上我们可以直接将最后一个元素 5 移动到序列开头，取代元素 1，得到序列 [5,2,3,4]，同样满足题目要求。这个优化在序列中 val 元素的数量较少时非常有效。</p>
+<p>实现方面，我们依然使用双指针，两个指针初始时分别位于数组的首尾，向中间移动遍历该序列。</p>
+<p>如果左指针 left 指向的元素等于 val，此时将右指针 right 指向的元素复制到左指针 left 的位置，然后右指针 right 左移一位。如果赋值过来的元素恰好也等于 val，可以继续把右指针 right 指向的元素的值赋值过来（左指针 left 指向的等于 val 的元素的位置继续被覆盖），直到左指针指向的元素的值不等于 val 为止。</p>
+<p>当左指针 left 和右指针 right 重合的时候，左右指针遍历完数组中所有的元素。</p>
+<p>这样的方法两个指针在最坏的情况下合起来只遍历了数组一次。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int removeElement(vector&lt;int&gt;&amp; nums, int val) &#123;</span><br><span class="line">        int left = 0, right = nums.size();</span><br><span class="line">        while (left &lt; right) &#123;</span><br><span class="line">            if (nums[left] == val) &#123;</span><br><span class="line">                nums[left] = nums[right - 1];</span><br><span class="line">                right--;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int removeElement(int[] nums, int val) &#123;</span><br><span class="line">        int left = 0;</span><br><span class="line">        int right = nums.length;</span><br><span class="line">        while (left &lt; right) &#123;</span><br><span class="line">            if (nums[left] == val) &#123;</span><br><span class="line">                nums[left] = nums[right - 1];</span><br><span class="line">                right--;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 为序列的长度。我们只需要遍历该序列至多一次。</p>
+</li>
+<li><p>空间复杂度：O(1)。我们只需要常数的空间保存若干变量。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>缺失的第一个正数</title>
+    <url>/2024/02/25/%E7%BC%BA%E5%A4%B1%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%AD%A3%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="缺失的第一个正数"><a href="#缺失的第一个正数" class="headerlink" title="缺失的第一个正数"></a>缺失的第一个正数</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个未排序的整数数组 <code>nums</code> ，请你找出其中没有出现的最小的正整数。</p>
+<p>请你实现时间复杂度为 <code>O(n)</code> 并且只使用常数级别额外空间的解决方案。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [1,2,0]</span><br><span class="line">输出：3</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [3,4,-1,1]</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [7,8,9,11,12]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 5 * 105</code></li>
+<li><code>-231 &lt;= nums[i] &lt;= 231 - 1</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）哈希表"><a href="#（1）哈希表" class="headerlink" title="（1）哈希表"></a>（1）哈希表</h3><p><strong>思路及算法</strong></p>
+<p>我们可以将数组所有的数放入哈希表，随后从 1 开始依次枚举正整数，并判断其是否在哈希表中。</p>
+<p>仔细想一想，我们为什么要使用哈希表？这是因为哈希表是一个可以支持快速查找的数据结构：给定一个元素，我们可以在 O(1) 的时间查找该元素是否在哈希表中。因此，我们可以考虑将给定的数组设计成哈希表的「替代产品」。</p>
+<p>实际上，对于一个长度为 N 的数组，其中没有出现的最小正整数只能在 [1,N+1] 中。这是因为如果 [1,N] 都出现了，那么答案是 N+1，否则答案是 [1,N] 中没有出现的最小正整数。这样一来，我们将所有在 [1,N] 范围内的数放入哈希表，也可以得到最终的答案。而给定的数组恰好长度为 N，这让我们有了一种将数组设计成哈希表的思路：</p>
+<p>我们对数组进行遍历，对于遍历到的数 x，如果它在 [1,N] 的范围内，那么就将数组中的第 x−1个位置（注意：数组下标从 000 开始）打上「标记」。在遍历结束之后，如果所有的位置都被打上了标记，那么答案是 N+1，否则答案是最小的没有打上标记的位置加 1。</p>
+<p>那么如何设计这个「标记」呢？由于数组中的数没有任何限制，因此这并不是一件容易的事情。但我们可以继续利用上面的提到的性质：由于我们只在意 [1,N][1, N][1,N] 中的数，因此我们可以先对数组进行遍历，把不在 [1,N] 范围内的数修改成任意一个大于 N 的数（例如 N+1）。这样一来，数组中的所有数就都是正数了，因此我们就可以将「标记」表示为「负号」。算法的流程如下：</p>
+<p>我们将数组中所有小于等于 0 的数修改为 N+1；</p>
+<p>我们遍历数组中的每一个数 x，它可能已经被打了标记，因此原本对应的数为 ∣x∣，其中 ∣ ∣ 为绝对值符号。如果 ∣x∣∈[1,N]，那么我们给数组中的第 ∣x∣−1 个位置的数添加一个负号。注意如果它已经有负号，不需要重复添加；</p>
+<p>在遍历完成之后，如果数组中的每一个数都是负数，那么答案是 N+1，否则答案是第一个正数的位置加 1。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int firstMissingPositive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        for (int&amp; num: nums) &#123;</span><br><span class="line">            if (num &lt;= 0) &#123;</span><br><span class="line">                num = n + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            int num = abs(nums[i]);</span><br><span class="line">            if (num &lt;= n) &#123;</span><br><span class="line">                nums[num - 1] = -abs(nums[num - 1]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            if (nums[i] &gt; 0) &#123;</span><br><span class="line">                return i + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return n + 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int firstMissingPositive(int[] nums) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            if (nums[i] &lt;= 0) &#123;</span><br><span class="line">                nums[i] = n + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            int num = Math.abs(nums[i]);</span><br><span class="line">            if (num &lt;= n) &#123;</span><br><span class="line">                nums[num - 1] = -Math.abs(nums[num - 1]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            if (nums[i] &gt; 0) &#123;</span><br><span class="line">                return i + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return n + 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(N)，其中 NN* 是数组的长度。</li>
+<li>空间复杂度：O(1)。</li>
+</ul>
+<h3 id="（2）置换"><a href="#（2）置换" class="headerlink" title="（2）置换"></a>（2）置换</h3><p><strong>思路及算法</strong></p>
+<p>除了打标记以外，我们还可以使用置换的方法，将给定的数组「恢复」成下面的形式：</p>
+<p>如果数组中包含 x∈[1,N]，那么恢复后，数组的第 x−1个元素为 x。</p>
+<p>在恢复后，数组应当有 [1, 2, …, N] 的形式，但其中有若干个位置上的数是错误的，每一个错误的位置就代表了一个缺失的正数。以题目中的示例二 [3, 4, -1, 1] 为例，恢复后的数组应当为 [1, -1, 3, 4]，我们就可以知道缺失的数为 2。</p>
+<p>那么我们如何将数组进行恢复呢？我们可以对数组进行一次遍历，对于遍历到的数 x&#x3D;nums[i]，如果 x∈[1,N]，我们就知道 x 应当出现在数组中的 x−1 的位置，因此交换 nums[i] 和 nums[x-1]，这样 x 就出现在了正确的位置。在完成交换后，新的 nums[i] 可能还在 [1,N] 的范围内，我们需要继续进行交换操作，直到 x∉[1,N]x \notin [1, N]x∈<br>&#x2F;<br>[1,N]。</p>
+<p>注意到上面的方法可能会陷入死循环。如果 nums[i] 恰好与 nums[x−1] 相等，那么就会无限交换下去。此时我们有 nums[i]&#x3D;x&#x3D;nums[x−1]，说明 x 已经出现在了正确的位置。因此我们可以跳出循环，开始遍历下一个数。</p>
+<p>由于每次的交换操作都会使得某一个数交换到正确的位置，因此交换的次数最多为 N，整个方法的时间复杂度为 O(N)。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int firstMissingPositive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            while (nums[i] &gt; 0 &amp;&amp; nums[i] &lt;= n &amp;&amp; nums[nums[i] - 1] != nums[i]) &#123;</span><br><span class="line">                swap(nums[nums[i] - 1], nums[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            if (nums[i] != i + 1) &#123;</span><br><span class="line">                return i + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return n + 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int firstMissingPositive(int[] nums) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            while (nums[i] &gt; 0 &amp;&amp; nums[i] &lt;= n &amp;&amp; nums[nums[i] - 1] != nums[i]) &#123;</span><br><span class="line">                int temp = nums[nums[i] - 1];</span><br><span class="line">                nums[nums[i] - 1] = nums[i];</span><br><span class="line">                nums[i] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            if (nums[i] != i + 1) &#123;</span><br><span class="line">                return i + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return n + 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(N)，其中 N 是数组的长度。</li>
+<li>空间复杂度：O(1) 。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>赎金信</title>
+    <url>/2024/02/14/%E8%B5%8E%E9%87%91%E4%BF%A1/</url>
+    <content><![CDATA[<h1 id="赎金信"><a href="#赎金信" class="headerlink" title="赎金信"></a>赎金信</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你两个字符串：<code>ransomNote</code> 和 <code>magazine</code> ，判断 <code>ransomNote</code> 能不能由 <code>magazine</code> 里面的字符构成。</p>
+<p>如果可以，返回 <code>true</code> ；否则返回 <code>false</code> 。</p>
+<p><code>magazine</code> 中的每个字符只能在 <code>ransomNote</code> 中使用一次。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：ransomNote = &quot;a&quot;, magazine = &quot;b&quot;</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：ransomNote = &quot;aa&quot;, magazine = &quot;ab&quot;</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：ransomNote = &quot;aa&quot;, magazine = &quot;aab&quot;</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= ransomNote.length, magazine.length &lt;= 105</code></li>
+<li><code>ransomNote</code> 和 <code>magazine</code> 由小写英文字母组成</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="字符统计法"><a href="#字符统计法" class="headerlink" title="字符统计法"></a>字符统计法</h3><p><strong>思路及算法</strong></p>
+<p>题目要求使用字符串magazine中的字符来构建新的字符串ransomNote，且ransomNote中的每个字符只能使用一次，只需要满足字符串magazine中的每个英文字母(’a’-’z’)的统计次数都大于等于ransomNote中相同字母的统计次数即可。</p>
+<ul>
+<li>如果字符串magazine的长度小于字符串ransomNote的长度，则我们可以肯定magazine无法构成ransomNote，此时直接返回 false。</li>
+<li>首先统计magazine中每个英文字母a的次数cnt[a]，再遍历统计ransomNote中每个英文字母的次数，如果发现ransomNote中存在某个英文字母c的统计次数大于magazine中该字母统计次数cnt[c]，则此时我们直接返回false。</li>
+</ul>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool canConstruct(string ransomNote, string magazine) &#123;</span><br><span class="line">        if (ransomNote.size() &gt; magazine.size()) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;int&gt; cnt(26);</span><br><span class="line">        for (auto &amp; c : magazine) &#123;</span><br><span class="line">            cnt[c - &#x27;a&#x27;]++;</span><br><span class="line">        &#125;</span><br><span class="line">        for (auto &amp; c : ransomNote) &#123;</span><br><span class="line">            cnt[c - &#x27;a&#x27;]--;</span><br><span class="line">            if (cnt[c - &#x27;a&#x27;] &lt; 0) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public boolean canConstruct(String ransomNote, String magazine) &#123;</span><br><span class="line">        if (ransomNote.length() &gt; magazine.length()) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        int[] cnt = new int[26];</span><br><span class="line">        for (char c : magazine.toCharArray()) &#123;</span><br><span class="line">            cnt[c - &#x27;a&#x27;]++;</span><br><span class="line">        &#125;</span><br><span class="line">        for (char c : ransomNote.toCharArray()) &#123;</span><br><span class="line">            cnt[c - &#x27;a&#x27;]--;</span><br><span class="line">            if(cnt[c - &#x27;a&#x27;] &lt; 0) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(m+n)，其中 m 是字符串 ransomNote 的长度，n 是字符串 magazine 的长度，我们只需要遍历两个字符一次即可。</p>
+</li>
+<li><p>空间复杂度：O(∣S∣)，S 是字符集，这道题中 S 为全部小写英语字母，因此 ∣S∣&#x3D;26。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>跳跃游戏II</title>
+    <url>/2024/02/29/%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8FII/</url>
+    <content><![CDATA[<h1 id="跳跃游戏II"><a href="#跳跃游戏II" class="headerlink" title="跳跃游戏II"></a>跳跃游戏II</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个长度为 <code>n</code> 的 <strong>0 索引</strong>整数数组 <code>nums</code>。初始位置为 <code>nums[0]</code>。</p>
+<p>每个元素 <code>nums[i]</code> 表示从索引 <code>i</code> 向前跳转的最大长度。换句话说，如果你在 <code>nums[i]</code> 处，你可以跳转到任意 <code>nums[i + j]</code> 处:</p>
+<ul>
+<li><code>0 &lt;= j &lt;= nums[i]</code> </li>
+<li><code>i + j &lt; n</code></li>
+</ul>
+<p>返回到达 <code>nums[n - 1]</code> 的最小跳跃次数。生成的测试用例可以到达 <code>nums[n - 1]</code>。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: nums = [2,3,1,1,4]</span><br><span class="line">输出: 2</span><br><span class="line">解释: 跳到最后一个位置的最小跳跃数是 2。</span><br><span class="line">     从下标为 0 跳到下标为 1 的位置，跳 1 步，然后跳 3 步到达数组的最后一个位置。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: nums = [2,3,0,1,4]</span><br><span class="line">输出: 2</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示:</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 104</code></li>
+<li><code>0 &lt;= nums[i] &lt;= 1000</code></li>
+<li>题目保证可以到达 <code>nums[n-1]</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）反向查找出发位置"><a href="#（1）反向查找出发位置" class="headerlink" title="（1）反向查找出发位置"></a>（1）反向查找出发位置</h3><p><strong>思路及算法</strong></p>
+<p>我们的目标是到达数组的最后一个位置，因此我们可以考虑最后一步跳跃前所在的位置，该位置通过跳跃能够到达最后一个位置。</p>
+<p>如果有多个位置通过跳跃都能够到达最后一个位置，那么我们应该如何进行选择呢？直观上来看，我们可以「贪心」地选择距离最后一个位置最远的那个位置，也就是对应下标最小的那个位置。因此，我们可以从左到右遍历数组，选择第一个满足要求的位置。</p>
+<p>找到最后一步跳跃前所在的位置之后，我们继续贪心地寻找倒数第二步跳跃前所在的位置，以此类推，直到找到数组的开始位置。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int jump(int[] nums) &#123;</span><br><span class="line">        int position = nums.length - 1;</span><br><span class="line">        int steps = 0;</span><br><span class="line">        while (position &gt; 0) &#123;</span><br><span class="line">            for (int i = 0; i &lt; position; i++) &#123;</span><br><span class="line">                if (i + nums[i] &gt;= position) &#123;</span><br><span class="line">                    position = i;</span><br><span class="line">                    steps++;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return steps;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n^2^)，其中 n 是数组长度。有两层嵌套循环，在最坏的情况下，例如数组中的所有元素都是 1，position 需要遍历数组中的每个位置，对于 position 的每个值都有一次循环。</p>
+</li>
+<li><p>空间复杂度：O(1)。</p>
+</li>
+</ul>
+<h3 id="（2）正向查找可到达的最大位置"><a href="#（2）正向查找可到达的最大位置" class="headerlink" title="（2）正向查找可到达的最大位置"></a>（2）正向查找可到达的最大位置</h3><p><strong>思路及算法</strong></p>
+<p>如果我们「贪心」地进行正向查找，每次找到可到达的最远位置，就可以在线性时间内得到最少的跳跃次数。</p>
+<p>例如，对于数组 <code>[2,3,1,2,4,2,3]</code>，初始位置是下标 0，从下标 0 出发，最远可到达下标 2。下标 0 可到达的位置中，下标 1 的值是 3，从下标 1 出发可以达到更远的位置，因此第一步到达下标 1。</p>
+<p>从下标 1 出发，最远可到达下标 4。下标 1 可到达的位置中，下标 4 的值是 4 ，从下标 4 出发可以达到更远的位置，因此第二步到达下标 4。</p>
+<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240229185948012.png" alt="image-20240229185948012"></p>
+<p>在具体的实现中，我们维护当前能够到达的最大下标位置，记为边界。我们从左到右遍历数组，到达边界时，更新边界并将跳跃次数增加 1。</p>
+<p>在遍历数组时，我们不访问最后一个元素，这是因为在访问最后一个元素之前，我们的边界一定大于等于最后一个位置，否则就无法跳到最后一个位置了。如果访问最后一个元素，在边界正好为最后一个位置的情况下，我们会增加一次「不必要的跳跃次数」，因此我们不必访问最后一个元素。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int jump(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int maxPos = 0, n = nums.size(), end = 0, step = 0;</span><br><span class="line">        for (int i = 0; i &lt; n - 1; ++i) &#123;</span><br><span class="line">            if (maxPos &gt;= i) &#123;</span><br><span class="line">                maxPos = max(maxPos, i + nums[i]);</span><br><span class="line">                if (i == end) &#123;</span><br><span class="line">                    end = maxPos;</span><br><span class="line">                    ++step;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return step;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int jump(int[] nums) &#123;</span><br><span class="line">        int length = nums.length;</span><br><span class="line">        int end = 0;</span><br><span class="line">        int maxPosition = 0; </span><br><span class="line">        int steps = 0;</span><br><span class="line">        for (int i = 0; i &lt; length - 1; i++) &#123;</span><br><span class="line">            maxPosition = Math.max(maxPosition, i + nums[i]); </span><br><span class="line">            if (i == end) &#123;</span><br><span class="line">                end = maxPosition;</span><br><span class="line">                steps++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return steps;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，其中 n 是数组长度。</li>
+<li>空间复杂度：O(1)。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>轮转数组</title>
+    <url>/2024/02/22/%E8%BD%AE%E8%BD%AC%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<h1 id="轮转数组"><a href="#轮转数组" class="headerlink" title="轮转数组"></a>轮转数组</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个整数数组 <code>nums</code>，将数组中的元素向右轮转 <code>k</code> 个位置，其中 <code>k</code> 是非负数。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: nums = [1,2,3,4,5,6,7], k = 3</span><br><span class="line">输出: [5,6,7,1,2,3,4]</span><br><span class="line">解释:</span><br><span class="line">向右轮转 1 步: [7,1,2,3,4,5,6]</span><br><span class="line">向右轮转 2 步: [6,7,1,2,3,4,5]</span><br><span class="line">向右轮转 3 步: [5,6,7,1,2,3,4]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [-1,-100,3,99], k = 2</span><br><span class="line">输出：[3,99,-1,-100]</span><br><span class="line">解释: </span><br><span class="line">向右轮转 1 步: [99,-1,-100,3]</span><br><span class="line">向右轮转 2 步: [3,99,-1,-100]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>-231 &lt;= nums[i] &lt;= 231 - 1</code></li>
+<li><code>0 &lt;= k &lt;= 105</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）使用额外的数组"><a href="#（1）使用额外的数组" class="headerlink" title="（1）使用额外的数组"></a>（1）使用额外的数组</h3><p><strong>思路及算法</strong></p>
+<p>我们可以使用额外的数组来将每个元素放至正确的位置。用 n 表示数组的长度，我们遍历原数组，将原数组下标为 i 的元素放至新数组下标为 (i+k) mod n 的位置，最后将新数组拷贝至原数组即可。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void rotate(vector&lt;int&gt;&amp; nums, int k) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        vector&lt;int&gt; newArr(n);</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            newArr[(i + k) % n] = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        nums.assign(newArr.begin(), newArr.end());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public void rotate(int[] nums, int k) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        int[] newArr = new int[n];</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            newArr[(i + k) % n] = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        System.arraycopy(newArr, 0, nums, 0, n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度： O(n)，其中 n 为数组的长度。</li>
+<li>空间复杂度： O(n)。</li>
+</ul>
+<h3 id="（2）环状替换"><a href="#（2）环状替换" class="headerlink" title="（2）环状替换"></a>（2）环状替换</h3><p><strong>思路及算法</strong></p>
+<p>使用额外数组的原因在于如果我们直接将每个数字放至它最后的位置，这样被放置位置的元素会被覆盖从而丢失。因此，从另一个角度，我们可以将被替换的元素保存在变量 temp 中，从而避免了额外数组的开销。</p>
+<p>我们从位置 0 开始，最初令 temp&#x3D;nums[0]。根据规则，位置 0 的元素会放至 (0+k) mod n 的位置，令 x&#x3D;(0+k) mod n，此时交换 temp 和 nums[x]，完成位置 x 的更新。然后，我们考察位置 x，并交换 temp和 nums[(x+k) mod n]，从而完成下一个位置的更新。不断进行上述过程，直至回到初始位置 0。</p>
+<p>容易发现，当回到初始位置 0 时，有些数字可能还没有遍历到，此时我们应该从下一个数字开始重复的过程，可是这个时候怎么才算遍历结束呢？我们不妨先考虑这样一个问题：从 0 开始不断遍历，最终回到起点 0 的过程中，我们遍历了多少个元素？</p>
+<p>由于最终回到了起点，故该过程恰好走了整数数量的圈，不妨设为 a 圈；再设该过程总共遍历了 b 个元素。因此，我们有 an&#x3D;b，即 a 一定为 n,kn,kn,k 的公倍数。又因为我们在第一次回到起点时就结束，因此 a 要尽可能小，故 an 就是 n,kn,kn,k 的最小公倍数 lcm(n,k)，因此 b 就为 lcm(n,k)&#x2F;k。</p>
+<p>这说明单次遍历会访问到 lcm(n,k)&#x2F;k个元素。为了访问到所有的元素，我们需要进行遍历的次数为</p>
+<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240222143904985.png" alt="image-20240222143904985"></p>
+<p>其中 gcd 指的是最大公约数。</p>
+<p>我们用下面的例子更具体地说明这个过程：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nums = [1, 2, 3, 4, 5, 6] </span><br><span class="line">k = 2</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240222144003048.png" alt="image-20240222144003048"></p>
+<p>如果读者对上面的数学推导的理解有一定困难，也可以使用另外一种方式完成代码：使用单独的变量 count 跟踪当前已经访问的元素数量，当 count&#x3D;n 时，结束遍历过程。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void rotate(vector&lt;int&gt;&amp; nums, int k) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        k = k % n;</span><br><span class="line">        int count = gcd(k, n);</span><br><span class="line">        for (int start = 0; start &lt; count; ++start) &#123;</span><br><span class="line">            int current = start;</span><br><span class="line">            int prev = nums[start];</span><br><span class="line">            do &#123;</span><br><span class="line">                int next = (current + k) % n;</span><br><span class="line">                swap(nums[next], prev);</span><br><span class="line">                current = next;</span><br><span class="line">            &#125; while (start != current);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public void rotate(int[] nums, int k) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        k = k % n;</span><br><span class="line">        int count = gcd(k, n);</span><br><span class="line">        for (int start = 0; start &lt; count; ++start) &#123;</span><br><span class="line">            int current = start;</span><br><span class="line">            int prev = nums[start];</span><br><span class="line">            do &#123;</span><br><span class="line">                int next = (current + k) % n;</span><br><span class="line">                int temp = nums[next];</span><br><span class="line">                nums[next] = prev;</span><br><span class="line">                prev = temp;</span><br><span class="line">                current = next;</span><br><span class="line">            &#125; while (start != current);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int gcd(int x, int y) &#123;</span><br><span class="line">        return y &gt; 0 ? gcd(y, x % y) : x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 为数组的长度。每个元素只会被遍历一次。</p>
+</li>
+<li><p>空间复杂度：O(1)。我们只需常数空间存放若干变量。</p>
+</li>
+</ul>
+<h3 id="（3）数组翻转"><a href="#（3）数组翻转" class="headerlink" title="（3）数组翻转"></a>（3）数组翻转</h3><p><strong>思路及算法</strong></p>
+<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240222144349949.png" alt="image-20240222144349949"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void reverse(vector&lt;int&gt;&amp; nums, int start, int end) &#123;</span><br><span class="line">        while (start &lt; end) &#123;</span><br><span class="line">            swap(nums[start], nums[end]);</span><br><span class="line">            start += 1;</span><br><span class="line">            end -= 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void rotate(vector&lt;int&gt;&amp; nums, int k) &#123;</span><br><span class="line">        k %= nums.size();</span><br><span class="line">        reverse(nums, 0, nums.size() - 1);</span><br><span class="line">        reverse(nums, 0, k - 1);</span><br><span class="line">        reverse(nums, k, nums.size() - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public void rotate(int[] nums, int k) &#123;</span><br><span class="line">        k %= nums.length;</span><br><span class="line">        reverse(nums, 0, nums.length - 1);</span><br><span class="line">        reverse(nums, 0, k - 1);</span><br><span class="line">        reverse(nums, k, nums.length - 1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void reverse(int[] nums, int start, int end) &#123;</span><br><span class="line">        while (start &lt; end) &#123;</span><br><span class="line">            int temp = nums[start];</span><br><span class="line">            nums[start] = nums[end];</span><br><span class="line">            nums[end] = temp;</span><br><span class="line">            start += 1;</span><br><span class="line">            end -= 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 为数组的长度。每个元素被翻转两次，一共 n 个元素，因此总时间复杂度为 O(2n)&#x3D;O(n)。</p>
+</li>
+<li><p>空间复杂度：O(1)。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>除自身以外数组的乘积</title>
+    <url>/2024/02/23/%E9%99%A4%E8%87%AA%E8%BA%AB%E4%BB%A5%E5%A4%96%E6%95%B0%E7%BB%84%E7%9A%84%E4%B9%98%E7%A7%AF/</url>
+    <content><![CDATA[<h1 id="除自身以外数组的乘积"><a href="#除自身以外数组的乘积" class="headerlink" title="除自身以外数组的乘积"></a>除自身以外数组的乘积</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h2><p>给你一个整数数组 <code>nums</code>，返回 <em>数组 <code>answer</code> ，其中 <code>answer[i]</code> 等于 <code>nums</code> 中除 <code>nums[i]</code> 之外其余各元素的乘积</em> 。</p>
+<p>题目数据 <strong>保证</strong> 数组 <code>nums</code>之中任意元素的全部前缀元素和后缀的乘积都在 <strong>32 位</strong> 整数范围内。</p>
+<p>请 <strong>不要使用除法，</strong>且在 <code>O(*n*)</code> 时间复杂度内完成此题。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: nums = [1,2,3,4]</span><br><span class="line">输出: [24,12,8,6]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: nums = [-1,1,0,-3,3]</span><br><span class="line">输出: [0,0,9,0,0]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= nums.length &lt;= 105</code></li>
+<li><code>-30 &lt;= nums[i] &lt;= 30</code></li>
+<li><strong>保证</strong> 数组 <code>nums</code>之中任意元素的全部前缀元素和后缀的乘积都在 <strong>32 位</strong> 整数范围内</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="左右乘积列表"><a href="#左右乘积列表" class="headerlink" title="左右乘积列表"></a>左右乘积列表</h3><p><strong>思路及算法</strong></p>
+<p>我们不必将所有数字的乘积除以给定索引处的数字得到相应的答案，而是利用索引左侧所有数字的乘积和右侧所有数字的乘积（即前缀与后缀）相乘得到答案。</p>
+<p>对于给定索引 iii，我们将使用它左边所有数字的乘积乘以右边所有数字的乘积。下面让我们更加具体的描述这个算法。</p>
+<p>1.初始化两个空数组 L 和 R。对于给定索引 i，L[i] 代表的是 i 左侧所有数字的乘积，R[i] 代表的是 i 右侧所有数字的乘积。<br>2.我们需要用两个循环来填充 L 和 R 数组的值。对于数组 L，L[0] 应该是 1，因为第一个元素的左边没有元素。对于其他元素：L[i] &#x3D; L[i-1] * nums[i-1]。<br>3.同理，对于数组 R，R[length-1] 应为 1。length 指的是输入数组的大小。其他元素：R[i] &#x3D; R[i+1] * nums[i+1]。<br>4.当 R 和 L 数组填充完成，我们只需要在输入数组上迭代，且索引 i 处的值为：L[i] * R[i]。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; productExceptSelf(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int length = nums.size();</span><br><span class="line"></span><br><span class="line">        // L 和 R 分别表示左右两侧的乘积列表</span><br><span class="line">        vector&lt;int&gt; L(length, 0), R(length, 0);</span><br><span class="line"></span><br><span class="line">        vector&lt;int&gt; answer(length);</span><br><span class="line"></span><br><span class="line">        // L[i] 为索引 i 左侧所有元素的乘积</span><br><span class="line">        // 对于索引为 &#x27;0&#x27; 的元素，因为左侧没有元素，所以 L[0] = 1</span><br><span class="line">        L[0] = 1;</span><br><span class="line">        for (int i = 1; i &lt; length; i++) &#123;</span><br><span class="line">            L[i] = nums[i - 1] * L[i - 1];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // R[i] 为索引 i 右侧所有元素的乘积</span><br><span class="line">        // 对于索引为 &#x27;length-1&#x27; 的元素，因为右侧没有元素，所以 R[length-1] = 1</span><br><span class="line">        R[length - 1] = 1;</span><br><span class="line">        for (int i = length - 2; i &gt;= 0; i--) &#123;</span><br><span class="line">            R[i] = nums[i + 1] * R[i + 1];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 对于索引 i，除 nums[i] 之外其余各元素的乘积就是左侧所有元素的乘积乘以右侧所有元素的乘积</span><br><span class="line">        for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">            answer[i] = L[i] * R[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return answer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int[] productExceptSelf(int[] nums) &#123;</span><br><span class="line">        int length = nums.length;</span><br><span class="line"></span><br><span class="line">        // L 和 R 分别表示左右两侧的乘积列表</span><br><span class="line">        int[] L = new int[length];</span><br><span class="line">        int[] R = new int[length];</span><br><span class="line"></span><br><span class="line">        int[] answer = new int[length];</span><br><span class="line"></span><br><span class="line">        // L[i] 为索引 i 左侧所有元素的乘积</span><br><span class="line">        // 对于索引为 &#x27;0&#x27; 的元素，因为左侧没有元素，所以 L[0] = 1</span><br><span class="line">        L[0] = 1;</span><br><span class="line">        for (int i = 1; i &lt; length; i++) &#123;</span><br><span class="line">            L[i] = nums[i - 1] * L[i - 1];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // R[i] 为索引 i 右侧所有元素的乘积</span><br><span class="line">        // 对于索引为 &#x27;length-1&#x27; 的元素，因为右侧没有元素，所以 R[length-1] = 1</span><br><span class="line">        R[length - 1] = 1;</span><br><span class="line">        for (int i = length - 2; i &gt;= 0; i--) &#123;</span><br><span class="line">            R[i] = nums[i + 1] * R[i + 1];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 对于索引 i，除 nums[i] 之外其余各元素的乘积就是左侧所有元素的乘积乘以右侧所有元素的乘积</span><br><span class="line">        for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">            answer[i] = L[i] * R[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return answer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(N)，其中 N 指的是数组 nums 的大小。预处理 L 和 R 数组以及最后的遍历计算都是 O(N) 的时间复杂度。</li>
+<li>空间复杂度：O(N)，其中 N 指的是数组 nums 的大小。使用了 L 和 R 数组去构造答案，L 和 R 数组的长度为数组 nums 的大小。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>题目</title>
+    <url>/2024/02/04/%E9%A2%98%E7%9B%AE/</url>
+    <content><![CDATA[<p><strong>习题1：</strong></p>
+<h2 id="将这段话改为2级标题"><a href="#将这段话改为2级标题" class="headerlink" title="将这段话改为2级标题"></a>将这段话改为2级标题</h2><p><strong>习题2：</strong></p>
+<blockquote>
+<p>试着在你的<code>Typora</code>中编辑下面的内容：</p>
+</blockquote>
+<p>这是第1行</p>
+<p>这是第2行</p>
+<p>这是补充内容</p>
+<p>这是第3行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">这是第一行</span><br><span class="line">这是第二行</span><br><span class="line">这是补充内容</span><br><span class="line">这是第三行</span><br></pre></td></tr></table></figure>
+
+<p><strong>习题3：</strong></p>
+<blockquote>
+<p>将下面的内容改为指定的格式要求：</p>
+</blockquote>
+<p><u><em>&#x3D;&#x3D;<strong>黑体</strong>&#x3D;&#x3D;</em></u>	<em>斜体</em>	<u>下划线</u>	&#x3D;&#x3D;高亮&#x3D;&#x3D;</p>
+<p>黑体加下划线，并高亮显示</p>
+<p><strong>拓展题：</strong></p>
+<blockquote>
+<p>试着输入<code>1*2*3*...*99</code>，如何解决<code>*</code>不显示的问题？</p>
+<p>1^<em>^2^</em>^3^<em>^…^</em>^99</p>
+</blockquote>
+<blockquote>
+<p>试着输入<code>\*</code>，如何解决<code>\</code>消失的问题？</p>
+<p>* </p>
+</blockquote>
+<p><strong>习题4：</strong></p>
+<blockquote>
+<p>试着打出<code>x~1~^2^</code>，观察它的结果是不是$x_1^2$​，了解上下标的局限性。</p>
+<p>x<del>1</del>^2^  </p>
+<p><code>int a=0;</code></p>
+</blockquote>
+<p><strong>习题5</strong>：</p>
+<blockquote>
+<p>试着使用列表编辑出下面的效果：</p>
+</blockquote>
+<ol>
+<li><p>删除官方YUM库</p>
+</li>
+<li><p>编写本地YUM库配置文件</p>
+<ul>
+<li><p>内容：</p>
+<p>一个图片。</p>
+</li>
+<li><p>注意事项</p>
+</li>
+</ul>
+</li>
+<li><p>安装挂载光盘：</p>
+<ol>
+<li>插入光盘并通电，挂载</li>
+<li>将上述挂载命令写入</li>
+</ol>
+</li>
+</ol>
+<p><strong>习题6：</strong></p>
+<blockquote>
+<ol>
+<li>将习题5中的一个图片前增加区块（不是前一行）。</li>
+<li>试着打出下面的效果。</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>我们处在一个区块里。</p>
+<p>对的，没错。</p>
+</blockquote>
+<blockquote>
+<p>我们处在一个区块里。</p>
+</blockquote>
+<blockquote>
+<p>不，不对。</p>
+</blockquote>
+<p><strong>习题7：</strong></p>
+<blockquote>
+<p>使用行内代码美化下面第一段的内容（第二段用于对照）：</p>
+</blockquote>
+<p><code>即使cv::Vec&lt;&gt;是模板，但大部分的时间你都不会倾向于使用它的这个形式。相对的，有很多它的别名（typedef）以便用于通用的实例。它们有着cv::Vec2i, cv::Vec3i和cv::Vec4d这样的名称（分别对应于2个元素的整型向量、3个元素的整型向量和4个元素的双精度浮点向量）。任何有着cv::Vec&#123;2,3,4,6&#125;&#123;b,w,s,i,f,d&#125;形式的声明（b=unsigned char，w=unsigned short，s=short），对于2个到6个维度的6种数据类型的任何组合都是有效的。</code></p>
+<p>即使cv::Vec&lt;&gt;是模板，但大部分的时间你都不会倾向于使用它的这个形式。相对的，有很多它的别名（typedef）以便用于通用的实例。它们有着cv::Vec2i, cv::Vec3i和cv::Vec4d这样的名称（分别对应于2个元素的整型向量、3个元素的整型向量和4个元素的双精度浮点向量）。任何有着cv::Vec{2,3,4,6}{b,w,s,i,f,d}形式的声明（b&#x3D;unsigned char，w&#x3D;unsigned short，s&#x3D;short），对于2个到6个维度的6种数据类型的任何组合都是有效的。</p>
+<p><strong>习题8</strong>：</p>
+<blockquote>
+<p>下面试图使用多行脚注，但预期效果不对，如何解决？</p>
+</blockquote>
+<p>右边是对我<a href="%E8%BF%99%E6%98%AF%E4%B8%80%E6%AE%B5%E6%AF%94%E8%BE%83%E9%95%BF%E7%9A%84%E6%B3%A8%E8%A7%A3%E3%80%82">^1</a>的解释。</p>
+<p>这是第二行。</p>
+<p><strong>习题9：</strong></p>
+<blockquote>
+<p>试着插入一个图片，要求图片缩小1&#x2F;2，左对齐。</p>
+</blockquote>
+<p><strong>习题10：</strong></p>
+<blockquote>
+<p>下面有两个相邻的表格，如何在二者之间增加内容？</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">表1头</th>
+<th>表1头</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">表1内容</td>
+<td>表1内容</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>表2头</th>
+<th>表2头</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>表2内容</td>
+<td>表2内容</td>
+</tr>
+</tbody></table>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">我是一段很长的代码</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">我是另一段很长的代码</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>跳跃游戏I</title>
+    <url>/2024/02/29/%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8FI/</url>
+    <content><![CDATA[<h1 id="跳跃游戏I"><a href="#跳跃游戏I" class="headerlink" title="跳跃游戏I"></a>跳跃游戏I</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个非负整数数组 <code>nums</code> ，你最初位于数组的 <strong>第一个下标</strong> 。数组中的每个元素代表你在该位置可以跳跃的最大长度。</p>
+<p>判断你是否能够到达最后一个下标，如果可以，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [2,3,1,1,4]</span><br><span class="line">输出：true</span><br><span class="line">解释：可以先跳 1 步，从下标 0 到达下标 1, 然后再从下标 1 跳 3 步到达最后一个下标。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [3,2,1,0,4]</span><br><span class="line">输出：false</span><br><span class="line">解释：无论怎样，总会到达下标为 3 的位置。但该下标的最大跳跃长度是 0 ， 所以永远不可能到达最后一个下标。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 104</code></li>
+<li><code>0 &lt;= nums[i] &lt;= 105</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="贪心法"><a href="#贪心法" class="headerlink" title="贪心法"></a>贪心法</h3><p><strong>思路及算法</strong></p>
+<p>设想一下，对于数组中的任意一个位置 <code>y</code>，我们如何判断它是否可以到达？根据题目的描述，只要存在一个位置 <code>x</code>，它本身可以到达，并且它跳跃的最大长度为 <code>x+nums[x]</code>，这个值大于等于 <code>y</code>，即 <code>x+nums[x]≥y</code>，那么位置 <code>y</code> 也可以到达。</p>
+<p>换句话说，对于每一个可以到达的位置 <code>x</code>，它使得 <code>x+1,x+2,⋯ ,x+nums[x]</code> 这些连续的位置都可以到达。</p>
+<p>这样以来，我们依次遍历数组中的每一个位置，并实时维护 最远可以到达的位置。对于当前遍历到的位置 <code>x</code>，如果它在 最远可以到达的位置 的范围内，那么我们就可以从起点通过若干次跳跃到达该位置，因此我们可以用<code> x+nums[x]</code> 更新 最远可以到达的位置。</p>
+<p>在遍历的过程中，如果 最远可以到达的位置 大于等于数组中的最后一个位置，那就说明最后一个位置可达，我们就可以直接返回 <code>True</code> 作为答案。反之，如果在遍历结束后，最后一个位置仍然不可达，我们就返回 <code>False</code> 作为答案。</p>
+<p>以题目中的示例一</p>
+<p><code>[2, 3, 1, 1, 4]</code><br>为例：</p>
+<p>我们一开始在位置 0，可以跳跃的最大长度为 2，因此最远可以到达的位置被更新为 2；</p>
+<p>我们遍历到位置 1，由于 1≤2，因此位置 1 可达。我们用 1 加上它可以跳跃的最大长度 3，将最远可以到达的位置更新为 4。由于 4 大于等于最后一个位置 4，因此我们直接返回 <code>True</code>。</p>
+<p>我们再来看看题目中的示例二</p>
+<p><code>[3, 2, 1, 0, 4]</code><br>我们一开始在位置 0，可以跳跃的最大长度为 3，因此最远可以到达的位置被更新为 3；</p>
+<p>我们遍历到位置 1，由于 1≤3，因此位置 1 可达，加上它可以跳跃的最大长度 2 得到 3，没有超过最远可以到达的位置；</p>
+<p>位置 2、位置 3 同理，最远可以到达的位置不会被更新；</p>
+<p>我们遍历到位置 4，由于 4&gt;3，因此位置 4 不可达，我们也就不考虑它可以跳跃的最大长度了。</p>
+<p>在遍历完成之后，位置 4 仍然不可达，因此我们返回 <code>False</code>。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool canJump(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        int rightmost = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            if (i &lt;= rightmost) &#123;</span><br><span class="line">                rightmost = max(rightmost, i + nums[i]);</span><br><span class="line">                if (rightmost &gt;= n - 1) &#123;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public boolean canJump(int[] nums) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        int rightmost = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            if (i &lt;= rightmost) &#123;</span><br><span class="line">                rightmost = Math.max(rightmost, i + nums[i]);</span><br><span class="line">                if (rightmost &gt;= n - 1) &#123;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 为数组的大小。只需要访问 nums 数组一遍，共 n 个位置。</p>
+</li>
+<li><p>空间复杂度：O(1)，不需要额外的空间开销。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+</search>
