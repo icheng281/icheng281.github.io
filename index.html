@@ -213,7 +213,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-03-02 20:30:47 / 修改时间：20:33:06" itemprop="dateCreated datePublished" datetime="2024-03-02T20:30:47+08:00">2024-03-02</time>
+      <time title="创建时间：2024-03-02 20:30:47 / 修改时间：20:35:13" itemprop="dateCreated datePublished" datetime="2024-03-02T20:30:47+08:00">2024-03-02</time>
     </span>
 
   
@@ -223,7 +223,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>665</span>
+      <span>680</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -258,7 +258,8 @@
 <li><code>0 &lt;= gas[i], cost[i] &lt;= 104</code></li>
 </ul>
 <h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="一次遍历"><a href="#一次遍历" class="headerlink" title="一次遍历"></a>一次遍历</h3><p><strong>思路及算法</strong></p>
-<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240302202103038.png" alt="image-20240302202103038"></p>
+<img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240302202103038.png" alt="image-20240302202103038" />
+
 <p><strong>代码</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int canCompleteCircuit(vector&lt;int&gt;&amp; gas, vector&lt;int&gt;&amp; cost) &#123;</span><br><span class="line">        int n = gas.size();</span><br><span class="line">        int i = 0;</span><br><span class="line">        while (i &lt; n) &#123;</span><br><span class="line">            int sumOfGas = 0, sumOfCost = 0;</span><br><span class="line">            int cnt = 0;</span><br><span class="line">            while (cnt &lt; n) &#123;</span><br><span class="line">                int j = (i + cnt) % n;</span><br><span class="line">                sumOfGas += gas[j];</span><br><span class="line">                sumOfCost += cost[j];</span><br><span class="line">                if (sumOfCost &gt; sumOfGas) &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                cnt++;</span><br><span class="line">            &#125;</span><br><span class="line">            if (cnt == n) &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                i = i + cnt + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
