@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"icheng281.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="快乐数1.题目内容编写一个算法来判断一个数 n 是不是快乐数。 「快乐数」 定义为：  对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和。 然后重复这个过程直到这个数变为 1，也可能是 无限循环 但始终变不到 1。 如果这个过程 结果为 1，那么这个数就是快乐数。  如果 n 是 快乐数 就返回 true ；不是，则返回 false 。 示例 1： 1234567输入：n &#x3D; 19输出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="快乐数">
+<meta property="og:url" content="https://icheng281.github.io/2024/02/19/%E5%BF%AB%E4%B9%90%E6%95%B0/index.html">
+<meta property="og:site_name" content="勇者抽刃向强者的博客">
+<meta property="og:description" content="快乐数1.题目内容编写一个算法来判断一个数 n 是不是快乐数。 「快乐数」 定义为：  对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和。 然后重复这个过程直到这个数变为 1，也可能是 无限循环 但始终变不到 1。 如果这个过程 结果为 1，那么这个数就是快乐数。  如果 n 是 快乐数 就返回 true ；不是，则返回 false 。 示例 1： 1234567输入：n &#x3D; 19输出">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240219140733391.png">
+<meta property="og:image" content="c:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240219140840318.png">
+<meta property="og:image" content="c:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240219141207624.png">
+<meta property="og:image" content="c:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240219141530953.png">
+<meta property="article:published_time" content="2024-02-19T07:07:29.000Z">
+<meta property="article:modified_time" content="2024-02-19T07:08:25.508Z">
+<meta property="article:author" content="icheng281">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240219140733391.png">
+
+
+<link rel="canonical" href="https://icheng281.github.io/2024/02/19/%E5%BF%AB%E4%B9%90%E6%95%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://icheng281.github.io/2024/02/19/%E5%BF%AB%E4%B9%90%E6%95%B0/","path":"2024/02/19/快乐数/","title":"快乐数"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>快乐数 | 勇者抽刃向强者的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">勇者抽刃向强者的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">梦是现实的延续，现实是梦的终结</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BF%AB%E4%B9%90%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">快乐数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E9%A2%98%E7%9B%AE%E5%86%85%E5%AE%B9"><span class="nav-number">1.1.</span> <span class="nav-text">1.题目内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%A7%A3%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">2.解法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%93%88%E5%B8%8C%E9%9B%86%E5%90%88%E6%A3%80%E6%B5%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">（1）哈希集合检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88%E6%B3%95"><span class="nav-number">1.2.2.</span> <span class="nav-text">（2）快慢指针法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E6%95%B0%E5%AD%A6"><span class="nav-number">1.2.3.</span> <span class="nav-text">（3）数学</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="icheng281"
+      src="/images/touxiang.png">
+  <p class="site-author-name" itemprop="name">icheng281</p>
+  <div class="site-description" itemprop="description">计算机小白一枚</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/02/19/%E5%BF%AB%E4%B9%90%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="快乐数 | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          快乐数
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-02-19 15:07:29 / 修改时间：15:08:25" itemprop="dateCreated datePublished" datetime="2024-02-19T15:07:29+08:00">2024-02-19</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="快乐数"><a href="#快乐数" class="headerlink" title="快乐数"></a>快乐数</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>编写一个算法来判断一个数 <code>n</code> 是不是快乐数。</p>
+<p><strong>「快乐数」</strong> 定义为：</p>
+<ul>
+<li>对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和。</li>
+<li>然后重复这个过程直到这个数变为 1，也可能是 <strong>无限循环</strong> 但始终变不到 1。</li>
+<li>如果这个过程 <strong>结果为</strong> 1，那么这个数就是快乐数。</li>
+</ul>
+<p>如果 <code>n</code> 是 <em>快乐数</em> 就返回 <code>true</code> ；不是，则返回 <code>false</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 19</span><br><span class="line">输出：true</span><br><span class="line">解释：</span><br><span class="line">12 + 92 = 82</span><br><span class="line">82 + 22 = 68</span><br><span class="line">62 + 82 = 100</span><br><span class="line">12 + 02 + 02 = 1</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 2</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n &lt;= 231 - 1</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）哈希集合检测"><a href="#（1）哈希集合检测" class="headerlink" title="（1）哈希集合检测"></a>（1）哈希集合检测</h3><p><strong>思路及算法</strong></p>
+<img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240219140733391.png" alt="image-20240219140733391" />
+
+<img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240219140840318.png" alt="image-20240219140840318" />
+
+
+
+<p><strong>代码</strong></p>
+<p>算法分为两部分，我们需要设计和编写代码。</p>
+<p>1.给一个数字 nnn，它的下一个数字是什么？<br>2.按照一系列的数字来判断我们是否进入了一个循环。<br>第 1 部分我们按照题目的要求做数位分离，求平方和。</p>
+<p>第 2 部分可以使用哈希集合完成。每次生成链中的下一个数字时，我们都会检查它是否已经在哈希集合中。</p>
+<ul>
+<li><p>如果它不在哈希集合中，我们应该添加它。</p>
+</li>
+<li><p>如果它在哈希集合中，这意味着我们处于一个循环中，因此应该返回 false。  </p>
+<p>我们使用哈希集合而不是向量、列表或数组的原因是因为我们反复检查其中是否存在某数字。检查数字是否在哈希集合中需要 O(1)O(1)O(1) 的时间，而对于其他数据结构，则需要 O(n)O(n)O(n) 的时间。选择正确的数据结构是解决这些问题的关键部分。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    private int getNext(int n) &#123;</span><br><span class="line">        int totalSum = 0;</span><br><span class="line">        while (n &gt; 0) &#123;</span><br><span class="line">            int d = n % 10;</span><br><span class="line">            n = n / 10;</span><br><span class="line">            totalSum += d * d;</span><br><span class="line">        &#125;</span><br><span class="line">        return totalSum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean isHappy(int n) &#123;</span><br><span class="line">        Set&lt;Integer&gt; seen = new HashSet&lt;&gt;();</span><br><span class="line">        while (n != 1 &amp;&amp; !seen.contains(n)) &#123;</span><br><span class="line">            seen.add(n);</span><br><span class="line">            n = getNext(n);</span><br><span class="line">        &#125;</span><br><span class="line">        return n == 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>复杂度分析</strong></p>
+<img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240219141207624.png" alt="image-20240219141207624" />
+
+
+
+<h3 id="（2）快慢指针法"><a href="#（2）快慢指针法" class="headerlink" title="（2）快慢指针法"></a>（2）快慢指针法</h3><p><strong>思路及算法</strong></p>
+<p>通过反复调用 getNext(n) 得到的链是一个隐式的链表。隐式意味着我们没有实际的链表节点和指针，但数据仍然形成链表结构。起始数字是链表的头 “节点”，链中的所有其他数字都是节点。next 指针是通过调用 getNext(n) 函数获得。</p>
+<p>意识到我们实际有个链表，那么这个问题就可以转换为检测一个链表是否有环。因此我们在这里可以使用弗洛伊德循环查找算法。这个算法是两个奔跑选手，一个跑的快，一个跑得慢。在龟兔赛跑的寓言中，跑的慢的称为 “乌龟”，跑得快的称为 “兔子”。</p>
+<p>不管乌龟和兔子在循环中从哪里开始，它们最终都会相遇。这是因为兔子每走一步就向乌龟靠近一个节点（在它们的移动方向上）。</p>
+<p><strong>代码</strong></p>
+<p>我们不是只跟踪链表中的一个值，而是跟踪两个值，称为快跑者和慢跑者。</p>
+<p>在算法的每一步中，慢速在链表中前进 1 个节点，快跑者前进 2 个节点（对 getNext(n) 函数的嵌套调用）。</p>
+<p>如果 n 是一个快乐数，即没有循环，那么快跑者最终会比慢跑者先到达数字 1。</p>
+<p>如果 n 不是一个快乐的数字，那么最终快跑者和慢跑者将在同一个数字上相遇。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">def isHappy(self, n: int) -&gt; bool:  </span><br><span class="line">    def get_next(number):</span><br><span class="line">        total_sum = 0</span><br><span class="line">        while number &gt; 0:</span><br><span class="line">            number, digit = divmod(number, 10)</span><br><span class="line">            total_sum += digit ** 2</span><br><span class="line">        return total_sum</span><br><span class="line"></span><br><span class="line">    slow_runner = n</span><br><span class="line">    fast_runner = get_next(n)</span><br><span class="line">    while fast_runner != 1 and slow_runner != fast_runner:</span><br><span class="line">        slow_runner = get_next(slow_runner)</span><br><span class="line">        fast_runner = get_next(get_next(fast_runner))</span><br><span class="line">    return fast_runner == 1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>复杂度分析</strong></p>
+<img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240219141530953.png" alt="image-20240219141530953" />
+
+
+
+<h3 id="（3）数学"><a href="#（3）数学" class="headerlink" title="（3）数学"></a>（3）数学</h3><p><strong>思路及算法</strong></p>
+<p>根据我们之前的分析，我们知道它必须低于 243。因此，我们知道任何循环都必须包含小于 243 的数字，用这么小的数字，编写一个能找到所有周期的强力程序并不困难。</p>
+<p>如果这样做，您会发现只有一个循环：4→16→37→58→89→145→42→20→4。所有其他数字都在进入这个循环的链上，或者在进入 111 的链上。</p>
+<p>因此，我们可以硬编码一个包含这些数字的散列集，如果我们达到其中一个数字，那么我们就知道在循环中。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line"></span><br><span class="line">    private static Set&lt;Integer&gt; cycleMembers =</span><br><span class="line">        new HashSet&lt;&gt;(Arrays.asList(4, 16, 37, 58, 89, 145, 42, 20));</span><br><span class="line"></span><br><span class="line">    public int getNext(int n) &#123;</span><br><span class="line">        int totalSum = 0;</span><br><span class="line">        while (n &gt; 0) &#123;</span><br><span class="line">            int d = n % 10;</span><br><span class="line">            n = n / 10;</span><br><span class="line">            totalSum += d * d;</span><br><span class="line">        &#125;</span><br><span class="line">        return totalSum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public boolean isHappy(int n) &#123;</span><br><span class="line">        while (n != 1 &amp;&amp; !cycleMembers.contains(n)) &#123;</span><br><span class="line">            n = getNext(n);</span><br><span class="line">        &#125;</span><br><span class="line">        return n == 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(log⁡n)。</li>
+<li>空间复杂度：O(1)，我们没有保留我们所遇到的数字的历史记录。硬编码哈希集的大小是固定的。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag"># 学习</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/02/19/%E5%8D%95%E8%AF%8D%E8%A7%84%E5%BE%8B/" rel="prev" title="单词规律">
+                  <i class="fa fa-angle-left"></i> 单词规律
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/02/20/%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/" rel="next" title="移除元素">
+                  移除元素 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">icheng281</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

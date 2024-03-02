@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"icheng281.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="多数元素1.题目描述给定一个大小为 n 的数组 nums ，返回其中的多数元素。多数元素是指在数组中出现次数 大于 ⌊ n&#x2F;2 ⌋ 的元素。 你可以假设数组是非空的，并且给定的数组总是存在多数元素。 示例 1： 12输入：nums &#x3D; [3,2,3]输出：3  示例 2： 12输入：nums &#x3D; [2,2,1,1,1,2,2]输出：2  提示：  n &#x3D;&#x3D; nums.length 1 &lt;&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多数元素">
+<meta property="og:url" content="https://icheng281.github.io/2024/02/26/%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0/index.html">
+<meta property="og:site_name" content="勇者抽刃向强者的博客">
+<meta property="og:description" content="多数元素1.题目描述给定一个大小为 n 的数组 nums ，返回其中的多数元素。多数元素是指在数组中出现次数 大于 ⌊ n&#x2F;2 ⌋ 的元素。 你可以假设数组是非空的，并且给定的数组总是存在多数元素。 示例 1： 12输入：nums &#x3D; [3,2,3]输出：3  示例 2： 12输入：nums &#x3D; [2,2,1,1,1,2,2]输出：2  提示：  n &#x3D;&#x3D; nums.length 1 &lt;&#x3D;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240226092055479.png">
+<meta property="og:image" content="c:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240226093253984.png">
+<meta property="article:published_time" content="2024-02-26T01:42:29.000Z">
+<meta property="article:modified_time" content="2024-02-26T01:44:41.699Z">
+<meta property="article:author" content="icheng281">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240226092055479.png">
+
+
+<link rel="canonical" href="https://icheng281.github.io/2024/02/26/%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://icheng281.github.io/2024/02/26/%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0/","path":"2024/02/26/多数元素/","title":"多数元素"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>多数元素 | 勇者抽刃向强者的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">勇者抽刃向强者的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">梦是现实的延续，现实是梦的终结</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0"><span class="nav-number">1.</span> <span class="nav-text">多数元素</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">1.题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%A7%A3%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">2.解法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="nav-number">1.2.1.</span> <span class="nav-text">（1）哈希表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E6%8E%92%E5%BA%8F"><span class="nav-number">1.2.2.</span> <span class="nav-text">（2）排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E5%88%86%E6%B2%BB"><span class="nav-number">1.2.3.</span> <span class="nav-text">（3）分治</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="icheng281"
+      src="/images/touxiang.png">
+  <p class="site-author-name" itemprop="name">icheng281</p>
+  <div class="site-description" itemprop="description">计算机小白一枚</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/02/26/%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="多数元素 | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          多数元素
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-02-26 09:42:29 / 修改时间：09:44:41" itemprop="dateCreated datePublished" datetime="2024-02-26T09:42:29+08:00">2024-02-26</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="多数元素"><a href="#多数元素" class="headerlink" title="多数元素"></a>多数元素</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h2><p>给定一个大小为 <code>n</code> 的数组 <code>nums</code> ，返回其中的多数元素。多数元素是指在数组中出现次数 <strong>大于</strong> <code>⌊ n/2 ⌋</code> 的元素。</p>
+<p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [3,2,3]</span><br><span class="line">输出：3</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [2,2,1,1,1,2,2]</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == nums.length</code></li>
+<li><code>1 &lt;= n &lt;= 5 * 104</code></li>
+<li><code>-109 &lt;= nums[i] &lt;= 109</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><p><strong>说明</strong></p>
+<p>最简单的暴力方法是，枚举数组中的每个元素，再遍历一遍数组统计其出现次数。该方法的时间复杂度是 O(n^2^)，会超出时间限制，因此我们需要找出时间复杂度小于 O(n^2^)的优秀做法。</p>
+<h3 id="（1）哈希表"><a href="#（1）哈希表" class="headerlink" title="（1）哈希表"></a>（1）哈希表</h3><p><strong>思路及算法</strong></p>
+<p>我们知道出现次数最多的元素大于 $\dfrac{n}{2}$次，所以可以用哈希表来快速统计每个元素出现的次数。</p>
+<p>我们使用哈希映射（HashMap）来存储每个元素以及出现的次数。对于哈希映射中的每个键值对，键表示一个元素，值表示该元素出现的次数。</p>
+<p>我们用一个循环遍历数组 nums 并将数组中的每个元素加入哈希映射中。在这之后，我们遍历哈希映射中的所有键值对，返回值最大的键。我们同样也可以在遍历数组 nums 时候使用打擂台的方法，维护最大的值，这样省去了最后对哈希映射的遍历。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int majorityElement(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        unordered_map&lt;int, int&gt; counts;</span><br><span class="line">        int majority = 0, cnt = 0;</span><br><span class="line">        for (int num: nums) &#123;</span><br><span class="line">            ++counts[num];</span><br><span class="line">            if (counts[num] &gt; cnt) &#123;</span><br><span class="line">                majority = num;</span><br><span class="line">                cnt = counts[num];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return majority;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    private Map&lt;Integer, Integer&gt; countNums(int[] nums) &#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; counts = new HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        for (int num : nums) &#123;</span><br><span class="line">            if (!counts.containsKey(num)) &#123;</span><br><span class="line">                counts.put(num, 1);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                counts.put(num, counts.get(num) + 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return counts;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int majorityElement(int[] nums) &#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; counts = countNums(nums);</span><br><span class="line"></span><br><span class="line">        Map.Entry&lt;Integer, Integer&gt; majorityEntry = null;</span><br><span class="line">        for (Map.Entry&lt;Integer, Integer&gt; entry : counts.entrySet()) &#123;</span><br><span class="line">            if (majorityEntry == null || entry.getValue() &gt; majorityEntry.getValue()) &#123;</span><br><span class="line">                majorityEntry = entry;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return majorityEntry.getKey();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是数组 nums 的长度。我们遍历数组 nums 一次，对于 nums 中的每一个元素，将其插入哈希表都只需要常数时间。如果在遍历时没有维护最大值，在遍历结束后还需要对哈希表进行遍历，因为哈希表中占用的空间为 O(n)（可参考下文的空间复杂度分析），那么遍历的时间不会超过 O(n)。因此总时间复杂度为 O(n)。</p>
+</li>
+<li><p>空间复杂度：O(n)。哈希表最多包含 n−$\dfrac{n}{2}$ 个键值对，所以占用的空间为 O(n)。这是因为任意一个长度为 n 的数组最多只能包含 n 个不同的值，但题中保证 nums 一定有一个众数，会占用（最少） $\dfrac{n}{2}$ +1个数字。因此最多有n-($\dfrac{n}{2}$ +1 ) 个不同的其他数字，所以最多有 n−$\dfrac{n}{2}$ 不同的元素。</p>
+</li>
+</ul>
+<h3 id="（2）排序"><a href="#（2）排序" class="headerlink" title="（2）排序"></a>（2）排序</h3><p><strong>思路及算法</strong></p>
+<p>如果将数组 nums 中的所有元素按照单调递增或单调递减的顺序排序，那么下标为 $\dfrac{n}{2}$的元素（下标从 0 开始）一定是众数。</p>
+<p>对于这种算法，我们先将 nums 数组排序，然后返回上文所说的下标对应的元素。下面的图中解释了为什么这种策略是有效的。在下图中，第一个例子是 n 为奇数的情况，第二个例子是 n 为偶数的情况。</p>
+<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240226092055479.png" alt="image-20240226092055479"></p>
+<p>对于每种情况，数组上面的线表示如果众数是数组中的最小值时覆盖的下标，数组下面的线表示如果众数是数组中的最大值时覆盖的下标。对于其他的情况，这条线会在这两种极端情况的中间。对于这两种极端情况，它们会在下标为  $\dfrac{n}{2}$ 的地方有重叠。因此，无论众数是多少，返回$\dfrac{n}{2}$下标对应的值都是正确的。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int majorityElement(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        return nums[nums.size() / 2];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int majorityElement(int[] nums) &#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        return nums[nums.length / 2];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(nlog⁡n)。将数组排序的时间复杂度为 O(nlog⁡n)。</p>
+</li>
+<li><p>空间复杂度：O(log⁡n)。如果使用语言自带的排序算法，需要使用 O(log⁡n) 的栈空间。如果自己编写堆排序，则只需要使用 O(1)的额外空间。</p>
+</li>
+</ul>
+<h3 id="（3）分治"><a href="#（3）分治" class="headerlink" title="（3）分治"></a>（3）分治</h3><p><strong>思路及算法</strong></p>
+<p>如果数 a 是数组 nums 的众数，如果我们将 nums 分成两部分，那么 a 必定是至少一部分的众数。</p>
+<p>我们可以使用反证法来证明这个结论。假设 a 既不是左半部分的众数，也不是右半部分的众数，那么 a 出现的次数少于 l &#x2F; 2 + r &#x2F; 2 次，其中 l 和 r 分别是左半部分和右半部分的长度。由于 l &#x2F; 2 + r &#x2F; 2 &lt;&#x3D; (l + r) &#x2F; 2，说明 a 也不是数组 nums 的众数，因此出现了矛盾。所以这个结论是正确的。</p>
+<p>这样以来，我们就可以使用分治法解决这个问题：将数组分成左右两部分，分别求出左半部分的众数 a1 以及右半部分的众数 a2，随后在 a1 和 a2 中选出正确的众数。</p>
+<p>我们使用经典的分治算法递归求解，直到所有的子问题都是长度为 1 的数组。长度为 1 的子数组中唯一的数显然是众数，直接返回即可。如果回溯后某区间的长度大于 1，我们必须将左右子区间的值合并。如果它们的众数相同，那么显然这一段区间的众数是它们相同的值。否则，我们需要比较两个众数在整个区间内出现的次数来决定该区间的众数。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">    int count_in_range(vector&lt;int&gt;&amp; nums, int target, int lo, int hi) &#123;</span><br><span class="line">        int count = 0;</span><br><span class="line">        for (int i = lo; i &lt;= hi; ++i)</span><br><span class="line">            if (nums[i] == target)</span><br><span class="line">                ++count;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line">    int majority_element_rec(vector&lt;int&gt;&amp; nums, int lo, int hi) &#123;</span><br><span class="line">        if (lo == hi)</span><br><span class="line">            return nums[lo];</span><br><span class="line">        int mid = (lo + hi) / 2;</span><br><span class="line">        int left_majority = majority_element_rec(nums, lo, mid);</span><br><span class="line">        int right_majority = majority_element_rec(nums, mid + 1, hi);</span><br><span class="line">        if (count_in_range(nums, left_majority, lo, hi) &gt; (hi - lo + 1) / 2)</span><br><span class="line">            return left_majority;</span><br><span class="line">        if (count_in_range(nums, right_majority, lo, hi) &gt; (hi - lo + 1) / 2)</span><br><span class="line">            return right_majority;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">public:</span><br><span class="line">    int majorityElement(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        return majority_element_rec(nums, 0, nums.size() - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    private int countInRange(int[] nums, int num, int lo, int hi) &#123;</span><br><span class="line">        int count = 0;</span><br><span class="line">        for (int i = lo; i &lt;= hi; i++) &#123;</span><br><span class="line">            if (nums[i] == num) &#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private int majorityElementRec(int[] nums, int lo, int hi) &#123;</span><br><span class="line">        // base case; the only element in an array of size 1 is the majority</span><br><span class="line">        // element.</span><br><span class="line">        if (lo == hi) &#123;</span><br><span class="line">            return nums[lo];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // recurse on left and right halves of this slice.</span><br><span class="line">        int mid = (hi - lo) / 2 + lo;</span><br><span class="line">        int left = majorityElementRec(nums, lo, mid);</span><br><span class="line">        int right = majorityElementRec(nums, mid + 1, hi);</span><br><span class="line"></span><br><span class="line">        // if the two halves agree on the majority element, return it.</span><br><span class="line">        if (left == right) &#123;</span><br><span class="line">            return left;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // otherwise, count each element and return the &quot;winner&quot;.</span><br><span class="line">        int leftCount = countInRange(nums, left, lo, hi);</span><br><span class="line">        int rightCount = countInRange(nums, right, lo, hi);</span><br><span class="line"></span><br><span class="line">        return leftCount &gt; rightCount ? left : right;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int majorityElement(int[] nums) &#123;</span><br><span class="line">        return majorityElementRec(nums, 0, nums.length - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240226093253984.png" alt="image-20240226093253984"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag"># 学习</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/02/25/%E7%BC%BA%E5%A4%B1%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%AD%A3%E6%95%B0/" rel="prev" title="缺失的第一个正数">
+                  <i class="fa fa-angle-left"></i> 缺失的第一个正数
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/02/27/%E5%88%A0%E9%99%A4%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9I/" rel="next" title="删除有序数组的重复项I">
+                  删除有序数组的重复项I <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">icheng281</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
