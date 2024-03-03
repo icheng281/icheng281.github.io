@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,6 +174,135 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/03/N%E7%9A%87%E5%90%8E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/03/N%E7%9A%87%E5%90%8E/" class="post-title-link" itemprop="url">N皇后</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-03 13:38:43 / 修改时间：13:41:39" itemprop="dateCreated datePublished" datetime="2024-03-03T13:38:43+08:00">2024-03-03</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="N皇后问题"><a href="#N皇后问题" class="headerlink" title="N皇后问题"></a>N皇后问题</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>按照国际象棋的规则，皇后可以攻击与之处在同一行或同一列或同一斜线上的棋子。</p>
+<p><strong>n 皇后问题</strong> 研究的是如何将 <code>n</code> 个皇后放置在 <code>n×n</code> 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
+<p>给你一个整数 <code>n</code> ，返回所有不同的 <strong>n 皇后问题</strong> 的解决方案。</p>
+<p>每一种解法包含一个不同的 <strong>n 皇后问题</strong> 的棋子放置方案，该方案中 <code>&#39;Q&#39;</code> 和 <code>&#39;.&#39;</code> 分别代表了皇后和空位。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240303130938085.png" alt="image-20240303130938085"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 4</span><br><span class="line">输出：[[&quot;.Q..&quot;,&quot;...Q&quot;,&quot;Q...&quot;,&quot;..Q.&quot;],[&quot;..Q.&quot;,&quot;Q...&quot;,&quot;...Q&quot;,&quot;.Q..&quot;]]</span><br><span class="line">解释：如上图所示，4 皇后问题存在两个不同的解法。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 1</span><br><span class="line">输出：[[&quot;Q&quot;]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n &lt;= 9</code></li>
+</ul>
+<h2 id="2-题解"><a href="#2-题解" class="headerlink" title="2.题解"></a>2.题解</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>「N 皇后问题」研究的是如何将 N 个皇后放置在 N×N 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
+<p>皇后的走法是：可以横直斜走，格数不限。因此要求皇后彼此之间不能相互攻击，等价于要求任何两个皇后都不能在同一行、同一列以及同一条斜线上。</p>
+<p>直观的做法是暴力枚举将 N 个皇后放置在 N×N  的棋盘上的所有可能的情况，并对每一种情况判断是否满足皇后彼此之间不相互攻击。暴力枚举的时间复杂度是非常高的，因此必须利用限制条件加以优化。</p>
+<p>显然，每个皇后必须位于不同行和不同列，因此将 N 个皇后放置在 N×N 的棋盘上，一定是每一行有且仅有一个皇后，每一列有且仅有一个皇后，且任何两个皇后都不能在同一条斜线上。基于上述发现，可以通过回溯的方式寻找可能的解。</p>
+<p>回溯的具体做法是：使用一个数组记录每行放置的皇后的列下标，依次在每一行放置一个皇后。每次新放置的皇后都不能和已经放置的皇后之间有攻击：即新放置的皇后不能和任何一个已经放置的皇后在同一列以及同一条斜线上，并更新数组中的当前行的皇后列下标。当 N 个皇后都放置完毕，则找到一个可能的解。当找到一个可能的解之后，将数组转换成表示棋盘状态的列表，并将该棋盘状态的列表加入返回列表。</p>
+<p>由于每个皇后必须位于不同列，因此已经放置的皇后所在的列不能放置别的皇后。第一个皇后有 N 列可以选择，第二个皇后最多有 N−1 列可以选择，第三个皇后最多有 N−2 列可以选择（如果考虑到不能在同一条斜线上，可能的选择数量更少），因此所有可能的情况不会超过 N! 种，遍历这些情况的时间复杂度是 O(N!)。</p>
+<p>为了降低总时间复杂度，每次放置皇后时需要快速判断每个位置是否可以放置皇后，显然，最理想的情况是在 O(1)O(1)O(1) 的时间内判断该位置所在的列和两条斜线上是否已经有皇后。</p>
+<p>以下两种方法分别使用集合和位运算对皇后的放置位置进行判断，都可以在 O(1) 的时间内判断一个位置是否可以放置皇后，算法的总时间复杂度都是 O(N!)。</p>
+<h3 id="基于集合的回溯"><a href="#基于集合的回溯" class="headerlink" title="基于集合的回溯"></a>基于集合的回溯</h3><p><strong>思路及算法</strong></p>
+<p>为了判断一个位置所在的列和两条斜线上是否已经有皇后，使用三个集合 columns、diagonals1和 diagonals2 分别记录每一列以及两个方向的每条斜线上是否有皇后。</p>
+<p>列的表示法很直观，一共有 N 列，每一列的下标范围从 0 到 N−1，使用列的下标即可明确表示每一列。</p>
+<p>如何表示两个方向的斜线呢？对于每个方向的斜线，需要找到斜线上的每个位置的行下标与列下标之间的关系。</p>
+<p>方向一的斜线为从左上到右下方向，同一条斜线上的每个位置满足行下标与列下标之差相等，例如 (0,0) 和 (3,3) 在同一条方向一的斜线上。因此使用行下标与列下标之差即可明确表示每一条方向一的斜线。</p>
+<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240303131708795.png" alt="image-20240303131708795"></p>
+<p>方向二的斜线为从右上到左下方向，同一条斜线上的每个位置满足行下标与列下标之和相等，例如 (3,0) 和 (1,2) 在同一条方向二的斜线上。因此使用行下标与列下标之和即可明确表示每一条方向二的斜线。</p>
+<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240303132006277.png" alt="image-20240303132006277"></p>
+<p>每次放置皇后时，对于每个位置判断其是否在三个集合中，如果三个集合都不包含当前位置，则当前位置是可以放置皇后的位置。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; solveNQueens(int n) &#123;</span><br><span class="line">        auto solutions = vector&lt;vector&lt;string&gt;&gt;();</span><br><span class="line">        auto queens = vector&lt;int&gt;(n, -1);</span><br><span class="line">        auto columns = unordered_set&lt;int&gt;();</span><br><span class="line">        auto diagonals1 = unordered_set&lt;int&gt;();</span><br><span class="line">        auto diagonals2 = unordered_set&lt;int&gt;();</span><br><span class="line">        backtrack(solutions, queens, n, 0, columns, diagonals1, diagonals2);</span><br><span class="line">        return solutions;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void backtrack(vector&lt;vector&lt;string&gt;&gt; &amp;solutions, vector&lt;int&gt; &amp;queens, int n, int row, unordered_set&lt;int&gt; &amp;columns, unordered_set&lt;int&gt; &amp;diagonals1, unordered_set&lt;int&gt; &amp;diagonals2) &#123;</span><br><span class="line">        if (row == n) &#123;</span><br><span class="line">            vector&lt;string&gt; board = generateBoard(queens, n);</span><br><span class="line">            solutions.push_back(board);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">                if (columns.find(i) != columns.end()) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                int diagonal1 = row - i;</span><br><span class="line">                if (diagonals1.find(diagonal1) != diagonals1.end()) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                int diagonal2 = row + i;</span><br><span class="line">                if (diagonals2.find(diagonal2) != diagonals2.end()) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                queens[row] = i;</span><br><span class="line">                columns.insert(i);</span><br><span class="line">                diagonals1.insert(diagonal1);</span><br><span class="line">                diagonals2.insert(diagonal2);</span><br><span class="line">                backtrack(solutions, queens, n, row + 1, columns, diagonals1, diagonals2);</span><br><span class="line">                queens[row] = -1;</span><br><span class="line">                columns.erase(i);</span><br><span class="line">                diagonals1.erase(diagonal1);</span><br><span class="line">                diagonals2.erase(diagonal2);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    vector&lt;string&gt; generateBoard(vector&lt;int&gt; &amp;queens, int n) &#123;</span><br><span class="line">        auto board = vector&lt;string&gt;();</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            string row = string(n, &#x27;.&#x27;);</span><br><span class="line">            row[queens[i]] = &#x27;Q&#x27;;</span><br><span class="line">            board.push_back(row);</span><br><span class="line">        &#125;</span><br><span class="line">        return board;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;String&gt;&gt; solveNQueens(int n) &#123;</span><br><span class="line">        List&lt;List&lt;String&gt;&gt; solutions = new ArrayList&lt;List&lt;String&gt;&gt;();</span><br><span class="line">        int[] queens = new int[n];</span><br><span class="line">        Arrays.fill(queens, -1);</span><br><span class="line">        Set&lt;Integer&gt; columns = new HashSet&lt;Integer&gt;();</span><br><span class="line">        Set&lt;Integer&gt; diagonals1 = new HashSet&lt;Integer&gt;();</span><br><span class="line">        Set&lt;Integer&gt; diagonals2 = new HashSet&lt;Integer&gt;();</span><br><span class="line">        backtrack(solutions, queens, n, 0, columns, diagonals1, diagonals2);</span><br><span class="line">        return solutions;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void backtrack(List&lt;List&lt;String&gt;&gt; solutions, int[] queens, int n, int row, Set&lt;Integer&gt; columns, Set&lt;Integer&gt; diagonals1, Set&lt;Integer&gt; diagonals2) &#123;</span><br><span class="line">        if (row == n) &#123;</span><br><span class="line">            List&lt;String&gt; board = generateBoard(queens, n);</span><br><span class="line">            solutions.add(board);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">                if (columns.contains(i)) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                int diagonal1 = row - i;</span><br><span class="line">                if (diagonals1.contains(diagonal1)) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                int diagonal2 = row + i;</span><br><span class="line">                if (diagonals2.contains(diagonal2)) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                queens[row] = i;</span><br><span class="line">                columns.add(i);</span><br><span class="line">                diagonals1.add(diagonal1);</span><br><span class="line">                diagonals2.add(diagonal2);</span><br><span class="line">                backtrack(solutions, queens, n, row + 1, columns, diagonals1, diagonals2);</span><br><span class="line">                queens[row] = -1;</span><br><span class="line">                columns.remove(i);</span><br><span class="line">                diagonals1.remove(diagonal1);</span><br><span class="line">                diagonals2.remove(diagonal2);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public List&lt;String&gt; generateBoard(int[] queens, int n) &#123;</span><br><span class="line">        List&lt;String&gt; board = new ArrayList&lt;String&gt;();</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            char[] row = new char[n];</span><br><span class="line">            Arrays.fill(row, &#x27;.&#x27;);</span><br><span class="line">            row[queens[i]] = &#x27;Q&#x27;;</span><br><span class="line">            board.add(new String(row));</span><br><span class="line">        &#125;</span><br><span class="line">        return board;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(N!)，其中 N 是皇后数量。</p>
+</li>
+<li><p>空间复杂度：O(N)，其中 N 是皇后数量。空间复杂度主要取决于递归调用层数、记录每行放置的皇后的列下标的数组以及三个集合，递归调用层数不会超过 N，数组的长度为 N，每个集合的元素个数都不会超过 N。</p>
+</li>
+</ul>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240303132901348.png" alt="image-20240303132901348"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1341,151 +1470,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/02/26/%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/02/26/%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0/" class="post-title-link" itemprop="url">多数元素</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-02-26 09:42:29 / 修改时间：09:44:41" itemprop="dateCreated datePublished" datetime="2024-02-26T09:42:29+08:00">2024-02-26</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.8k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>6 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="多数元素"><a href="#多数元素" class="headerlink" title="多数元素"></a>多数元素</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h2><p>给定一个大小为 <code>n</code> 的数组 <code>nums</code> ，返回其中的多数元素。多数元素是指在数组中出现次数 <strong>大于</strong> <code>⌊ n/2 ⌋</code> 的元素。</p>
-<p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [3,2,3]</span><br><span class="line">输出：3</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [2,2,1,1,1,2,2]</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>n == nums.length</code></li>
-<li><code>1 &lt;= n &lt;= 5 * 104</code></li>
-<li><code>-109 &lt;= nums[i] &lt;= 109</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><p><strong>说明</strong></p>
-<p>最简单的暴力方法是，枚举数组中的每个元素，再遍历一遍数组统计其出现次数。该方法的时间复杂度是 O(n^2^)，会超出时间限制，因此我们需要找出时间复杂度小于 O(n^2^)的优秀做法。</p>
-<h3 id="（1）哈希表"><a href="#（1）哈希表" class="headerlink" title="（1）哈希表"></a>（1）哈希表</h3><p><strong>思路及算法</strong></p>
-<p>我们知道出现次数最多的元素大于 $\dfrac{n}{2}$次，所以可以用哈希表来快速统计每个元素出现的次数。</p>
-<p>我们使用哈希映射（HashMap）来存储每个元素以及出现的次数。对于哈希映射中的每个键值对，键表示一个元素，值表示该元素出现的次数。</p>
-<p>我们用一个循环遍历数组 nums 并将数组中的每个元素加入哈希映射中。在这之后，我们遍历哈希映射中的所有键值对，返回值最大的键。我们同样也可以在遍历数组 nums 时候使用打擂台的方法，维护最大的值，这样省去了最后对哈希映射的遍历。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int majorityElement(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        unordered_map&lt;int, int&gt; counts;</span><br><span class="line">        int majority = 0, cnt = 0;</span><br><span class="line">        for (int num: nums) &#123;</span><br><span class="line">            ++counts[num];</span><br><span class="line">            if (counts[num] &gt; cnt) &#123;</span><br><span class="line">                majority = num;</span><br><span class="line">                cnt = counts[num];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return majority;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    private Map&lt;Integer, Integer&gt; countNums(int[] nums) &#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; counts = new HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        for (int num : nums) &#123;</span><br><span class="line">            if (!counts.containsKey(num)) &#123;</span><br><span class="line">                counts.put(num, 1);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                counts.put(num, counts.get(num) + 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return counts;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int majorityElement(int[] nums) &#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; counts = countNums(nums);</span><br><span class="line"></span><br><span class="line">        Map.Entry&lt;Integer, Integer&gt; majorityEntry = null;</span><br><span class="line">        for (Map.Entry&lt;Integer, Integer&gt; entry : counts.entrySet()) &#123;</span><br><span class="line">            if (majorityEntry == null || entry.getValue() &gt; majorityEntry.getValue()) &#123;</span><br><span class="line">                majorityEntry = entry;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return majorityEntry.getKey();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是数组 nums 的长度。我们遍历数组 nums 一次，对于 nums 中的每一个元素，将其插入哈希表都只需要常数时间。如果在遍历时没有维护最大值，在遍历结束后还需要对哈希表进行遍历，因为哈希表中占用的空间为 O(n)（可参考下文的空间复杂度分析），那么遍历的时间不会超过 O(n)。因此总时间复杂度为 O(n)。</p>
-</li>
-<li><p>空间复杂度：O(n)。哈希表最多包含 n−$\dfrac{n}{2}$ 个键值对，所以占用的空间为 O(n)。这是因为任意一个长度为 n 的数组最多只能包含 n 个不同的值，但题中保证 nums 一定有一个众数，会占用（最少） $\dfrac{n}{2}$ +1个数字。因此最多有n-($\dfrac{n}{2}$ +1 ) 个不同的其他数字，所以最多有 n−$\dfrac{n}{2}$ 不同的元素。</p>
-</li>
-</ul>
-<h3 id="（2）排序"><a href="#（2）排序" class="headerlink" title="（2）排序"></a>（2）排序</h3><p><strong>思路及算法</strong></p>
-<p>如果将数组 nums 中的所有元素按照单调递增或单调递减的顺序排序，那么下标为 $\dfrac{n}{2}$的元素（下标从 0 开始）一定是众数。</p>
-<p>对于这种算法，我们先将 nums 数组排序，然后返回上文所说的下标对应的元素。下面的图中解释了为什么这种策略是有效的。在下图中，第一个例子是 n 为奇数的情况，第二个例子是 n 为偶数的情况。</p>
-<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240226092055479.png" alt="image-20240226092055479"></p>
-<p>对于每种情况，数组上面的线表示如果众数是数组中的最小值时覆盖的下标，数组下面的线表示如果众数是数组中的最大值时覆盖的下标。对于其他的情况，这条线会在这两种极端情况的中间。对于这两种极端情况，它们会在下标为  $\dfrac{n}{2}$ 的地方有重叠。因此，无论众数是多少，返回$\dfrac{n}{2}$下标对应的值都是正确的。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int majorityElement(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        return nums[nums.size() / 2];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int majorityElement(int[] nums) &#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        return nums[nums.length / 2];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(nlog⁡n)。将数组排序的时间复杂度为 O(nlog⁡n)。</p>
-</li>
-<li><p>空间复杂度：O(log⁡n)。如果使用语言自带的排序算法，需要使用 O(log⁡n) 的栈空间。如果自己编写堆排序，则只需要使用 O(1)的额外空间。</p>
-</li>
-</ul>
-<h3 id="（3）分治"><a href="#（3）分治" class="headerlink" title="（3）分治"></a>（3）分治</h3><p><strong>思路及算法</strong></p>
-<p>如果数 a 是数组 nums 的众数，如果我们将 nums 分成两部分，那么 a 必定是至少一部分的众数。</p>
-<p>我们可以使用反证法来证明这个结论。假设 a 既不是左半部分的众数，也不是右半部分的众数，那么 a 出现的次数少于 l &#x2F; 2 + r &#x2F; 2 次，其中 l 和 r 分别是左半部分和右半部分的长度。由于 l &#x2F; 2 + r &#x2F; 2 &lt;&#x3D; (l + r) &#x2F; 2，说明 a 也不是数组 nums 的众数，因此出现了矛盾。所以这个结论是正确的。</p>
-<p>这样以来，我们就可以使用分治法解决这个问题：将数组分成左右两部分，分别求出左半部分的众数 a1 以及右半部分的众数 a2，随后在 a1 和 a2 中选出正确的众数。</p>
-<p>我们使用经典的分治算法递归求解，直到所有的子问题都是长度为 1 的数组。长度为 1 的子数组中唯一的数显然是众数，直接返回即可。如果回溯后某区间的长度大于 1，我们必须将左右子区间的值合并。如果它们的众数相同，那么显然这一段区间的众数是它们相同的值。否则，我们需要比较两个众数在整个区间内出现的次数来决定该区间的众数。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">    int count_in_range(vector&lt;int&gt;&amp; nums, int target, int lo, int hi) &#123;</span><br><span class="line">        int count = 0;</span><br><span class="line">        for (int i = lo; i &lt;= hi; ++i)</span><br><span class="line">            if (nums[i] == target)</span><br><span class="line">                ++count;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line">    int majority_element_rec(vector&lt;int&gt;&amp; nums, int lo, int hi) &#123;</span><br><span class="line">        if (lo == hi)</span><br><span class="line">            return nums[lo];</span><br><span class="line">        int mid = (lo + hi) / 2;</span><br><span class="line">        int left_majority = majority_element_rec(nums, lo, mid);</span><br><span class="line">        int right_majority = majority_element_rec(nums, mid + 1, hi);</span><br><span class="line">        if (count_in_range(nums, left_majority, lo, hi) &gt; (hi - lo + 1) / 2)</span><br><span class="line">            return left_majority;</span><br><span class="line">        if (count_in_range(nums, right_majority, lo, hi) &gt; (hi - lo + 1) / 2)</span><br><span class="line">            return right_majority;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">public:</span><br><span class="line">    int majorityElement(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        return majority_element_rec(nums, 0, nums.size() - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    private int countInRange(int[] nums, int num, int lo, int hi) &#123;</span><br><span class="line">        int count = 0;</span><br><span class="line">        for (int i = lo; i &lt;= hi; i++) &#123;</span><br><span class="line">            if (nums[i] == num) &#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private int majorityElementRec(int[] nums, int lo, int hi) &#123;</span><br><span class="line">        // base case; the only element in an array of size 1 is the majority</span><br><span class="line">        // element.</span><br><span class="line">        if (lo == hi) &#123;</span><br><span class="line">            return nums[lo];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // recurse on left and right halves of this slice.</span><br><span class="line">        int mid = (hi - lo) / 2 + lo;</span><br><span class="line">        int left = majorityElementRec(nums, lo, mid);</span><br><span class="line">        int right = majorityElementRec(nums, mid + 1, hi);</span><br><span class="line"></span><br><span class="line">        // if the two halves agree on the majority element, return it.</span><br><span class="line">        if (left == right) &#123;</span><br><span class="line">            return left;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // otherwise, count each element and return the &quot;winner&quot;.</span><br><span class="line">        int leftCount = countInRange(nums, left, lo, hi);</span><br><span class="line">        int rightCount = countInRange(nums, right, lo, hi);</span><br><span class="line"></span><br><span class="line">        return leftCount &gt; rightCount ? left : right;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int majorityElement(int[] nums) &#123;</span><br><span class="line">        return majorityElementRec(nums, 0, nums.length - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240226093253984.png" alt="image-20240226093253984"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1510,14 +1494,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">27k</span>
+    <span title="站点总字数">29k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:38</span>
+    <span title="站点阅读时长">1:45</span>
   </span>
 </div>
 <div class="busuanzi-count">
