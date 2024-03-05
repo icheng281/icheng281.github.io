@@ -1808,4 +1808,39 @@
         <tag>学习</tag>
       </tags>
   </entry>
+  <entry>
+    <title>维修数据库有感</title>
+    <url>/2024/03/05/%E7%BB%B4%E4%BF%AE%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%89%E6%84%9F/</url>
+    <content><![CDATA[<h1 id="维修数据库有感"><a href="#维修数据库有感" class="headerlink" title="维修数据库有感"></a>维修数据库有感</h1><h2 id="MySQL报错：2002-Can‘t-connect-to-server-on-‘localhost‘-10061"><a href="#MySQL报错：2002-Can‘t-connect-to-server-on-‘localhost‘-10061" class="headerlink" title="MySQL报错：2002 - Can‘t connect to server on ‘localhost‘(10061)"></a>MySQL报错：2002 - Can‘t connect to server on ‘localhost‘(10061)</h2><p>今天上午，我在Navicat连接数据库的时候发现报错<strong>“2002 - Can‘t connect to server on ‘localhost‘(10061)”</strong>，一开始我照CSDN的方法在计算机管理的服务中找到MYSQL并点击启动，结果还是运行不了。同时我也发现即使我输入了正确的数据库登陆密码也会报错<strong>“Can‘t connect to server on ‘localhost‘(10061)”</strong>，所以就需要下面的方法来解决这个问题。</p>
+<h3 id="维修方法"><a href="#维修方法" class="headerlink" title="维修方法"></a>维修方法</h3><ol>
+<li><p>以管理员身份运行<code>cmd</code>,并用<code>cd</code>命令切换到mysql的bin目录下；</p>
+</li>
+<li><p>输入命令<code>mysql -u root -p</code>,登录mysql,输入密码，会返回<code>ERROR 2003 (HY000):Can&#39;t connect to MySQL server on localhost (10061)</code>;<img src="https://img-blog.csdnimg.cn/20181121113324478.jpg" alt="img"></p>
+</li>
+<li><p>将mysql加入到Windows的服务中。切换到mysql安装目录下的bin文件夹，命令行运行<code>mysqld --install</code>;<img src="https://img-blog.csdnimg.cn/20181121113528273.jpg" alt="img"></p>
+</li>
+<li><p>初始化mysql数据库，输入<code>mysqld --initialize --user=root --console</code>。<strong>最后面的 root@localhost后的文字为初始化后的root 密码，一定要记住</strong>;<img src="https://img-blog.csdnimg.cn/20181121113628764.jpg" alt="img"></p>
+</li>
+<li><p>此时使用<code>net start mysql</code>成功启动mysql;<img src="https://img-blog.csdnimg.cn/20181121113815360.jpg" alt="img"></p>
+</li>
+<li><p>用生成的密码登录mysql,这样的话就可以成功重新登陆数据库了。<img src="https://img-blog.csdnimg.cn/20181121113949992.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzM3OTg3MTUx,size_16,color_FFFFFF,t_70" alt="img"></p>
+</li>
+</ol>
+<p>但是这样的话，又会遇到一个问题：生成的密码是无序且复杂的，所以需要我们自己手动更改mysql的密码，由于本人的mysql是8.0以上的版本，因此mysql5.0版本的<code>set password=password(&#39;新密码&#39;)</code>不能使用，接下来就讲一下mysql8.0是怎么更改密码的。</p>
+<h3 id="更改数据库密码"><a href="#更改数据库密码" class="headerlink" title="更改数据库密码"></a>更改数据库密码</h3><ol>
+<li>以管理员身份运行<code>cmd</code>,并用<code>cd</code>命令切换到mysql的bin目录下；</li>
+<li>输入<code>mysql -u root -p</code>,并输入原先的密码,登录mysql;</li>
+<li>输入<code>use mysql</code> 连接数据库;</li>
+<li>输入 <code>ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;新的密码&#39;; FLUSH PRIVILEGES;</code><strong>注意最后的“；”不能去掉</strong>;</li>
+<li>输入<code>flush privileges</code>; 刷新权限，<strong>这里也要注意最后的“；”不能去掉</strong> ;</li>
+<li>输入<code>quit</code>停止；</li>
+<li>输入<code>net start mysql</code>启动我的数据库；</li>
+<li>输入<code>mysqladmin -u root -p shutdown</code>,这里的密码是新设置的密码；</li>
+<li>输入 <code>net start mysql</code> 启动mysql，输入<code>mysql -u root -p</code>，回车后输入新设置的密码，这样就可以成功修改密码了。</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>生活</tag>
+      </tags>
+  </entry>
 </search>
