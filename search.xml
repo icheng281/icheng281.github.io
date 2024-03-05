@@ -244,6 +244,58 @@
       </tags>
   </entry>
   <entry>
+    <title>买卖股票的最佳时机I</title>
+    <url>/2024/02/28/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BAI/</url>
+    <content><![CDATA[<h1 id="买卖股票的最佳时机I"><a href="#买卖股票的最佳时机I" class="headerlink" title="买卖股票的最佳时机I"></a>买卖股票的最佳时机I</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个数组 <code>prices</code> ，它的第 <code>i</code> 个元素 <code>prices[i]</code> 表示一支给定股票第 <code>i</code> 天的价格。</p>
+<p>你只能选择 <strong>某一天</strong> 买入这只股票，并选择在 <strong>未来的某一个不同的日子</strong> 卖出该股票。设计一个算法来计算你所能获取的最大利润。</p>
+<p>返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 <code>0</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：[7,1,5,3,6,4]</span><br><span class="line">输出：5</span><br><span class="line">解释：在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。</span><br><span class="line">     注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：prices = [7,6,4,3,1]</span><br><span class="line">输出：0</span><br><span class="line">解释：在这种情况下, 没有交易完成, 所以最大利润为 0。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= prices.length &lt;= 105</code></li>
+<li><code>0 &lt;= prices[i] &lt;= 104</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><p><strong>解决方案</strong></p>
+<p>我们需要找出给定数组中两个数字之间的最大差值（即，最大利润）。此外，第二个数字（卖出价格）必须大于第一个数字（买入价格）。</p>
+<p>形式上，对于每组 <code>i</code> 和<code>j</code>（其中<code> j&gt;i</code>）我们需要找出 <code>max⁡(prices[j]−prices[i])</code>。</p>
+<h3 id="（1）暴力法【超时】"><a href="#（1）暴力法【超时】" class="headerlink" title="（1）暴力法【超时】"></a>（1）暴力法【超时】</h3><p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxProfit(vector&lt;int&gt;&amp; prices) &#123;</span><br><span class="line">        int n = (int)prices.size(), ans = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i)&#123;</span><br><span class="line">            for (int j = i + 1; j &lt; n; ++j) &#123;</span><br><span class="line">                ans = max(ans, prices[j] - prices[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public int maxProfit(int[] prices) &#123;</span><br><span class="line">        int maxprofit = 0;</span><br><span class="line">        for (int i = 0; i &lt; prices.length - 1; i++) &#123;</span><br><span class="line">            for (int j = i + 1; j &lt; prices.length; j++) &#123;</span><br><span class="line">                int profit = prices[j] - prices[i];</span><br><span class="line">                if (profit &gt; maxprofit) &#123;</span><br><span class="line">                    maxprofit = profit;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return maxprofit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n^2^)。循环运行 $\dfrac{n (n-1)}{2} $次。</li>
+<li>空间复杂度：O(1)。只使用了常数个变量。</li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="（2）一次遍历"><a href="#（2）一次遍历" class="headerlink" title="（2）一次遍历"></a>（2）一次遍历</h3><p><strong>思路及算法</strong></p>
+<p>假设给定的数组为：<code>[7, 1, 5, 3, 6, 4]</code></p>
+<p>如果我们在图表上绘制给定数组中的数字，我们将会得到：</p>
+<p><img src="https://pic.leetcode-cn.com/cc4ef55d97cfef6f9215285c7573027c4b265c31101dd54e8555a7021c95c927-file_1555699418271" alt="Profit Graph"></p>
+<p>我们来假设自己来购买股票。随着时间的推移，每天我们都可以选择出售股票与否。那么，假设在第<code> i</code> 天，如果我们要在今天卖股票，那么我们能赚多少钱呢？</p>
+<p>显然，如果我们真的在买卖股票，我们肯定会想：如果我是在历史最低点买的股票就好了！太好了，在题目中，我们只要用一个变量记录一个历史最低价格 <code>minprice</code>，我们就可以假设自己的股票是在那天买的。那么我们在第 i 天卖出股票能得到的利润就是 <code>prices[i] - minprice</code>。</p>
+<p>因此，我们只需要遍历价格数组一遍，记录历史最低点，然后在每一天考虑这么一个问题：如果我是在历史最低点买进的，那么我今天卖出能赚多少钱？当考虑完所有天数之时，我们就得到了最好的答案。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxProfit(vector&lt;int&gt;&amp; prices) &#123;</span><br><span class="line">        int inf = 1e9;</span><br><span class="line">        int minprice = inf, maxprofit = 0;</span><br><span class="line">        for (int price: prices) &#123;</span><br><span class="line">            maxprofit = max(maxprofit, price - minprice);</span><br><span class="line">            minprice = min(price, minprice);</span><br><span class="line">        &#125;</span><br><span class="line">        return maxprofit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public int maxProfit(int prices[]) &#123;</span><br><span class="line">        int minprice = Integer.MAX_VALUE;</span><br><span class="line">        int maxprofit = 0;</span><br><span class="line">        for (int i = 0; i &lt; prices.length; i++) &#123;</span><br><span class="line">            if (prices[i] &lt; minprice) &#123;</span><br><span class="line">                minprice = prices[i];</span><br><span class="line">            &#125; else if (prices[i] - minprice &gt; maxprofit) &#123;</span><br><span class="line">                maxprofit = prices[i] - minprice;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return maxprofit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，只需要遍历一次。</li>
+<li>空间复杂度：O(1)，只使用了常数个变量。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>买卖股票的最佳时机II</title>
     <url>/2024/02/28/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BAII/</url>
     <content><![CDATA[<h1 id="买卖股票的最佳时机II"><a href="#买卖股票的最佳时机II" class="headerlink" title="买卖股票的最佳时机II"></a>买卖股票的最佳时机II</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个整数数组 <code>prices</code> ，其中 <code>prices[i]</code> 表示某支股票第 <code>i</code> 天的价格。</p>
@@ -301,141 +353,6 @@
 </li>
 <li><p>空间复杂度：O(1)。只需要常数空间存放若干变量。</p>
 </li>
-</ul>
-]]></content>
-      <tags>
-        <tag>学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>分发糖果</title>
-    <url>/2024/03/04/%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/</url>
-    <content><![CDATA[<h1 id="分发糖果"><a href="#分发糖果" class="headerlink" title="分发糖果"></a>分发糖果</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p><code>n</code> 个孩子站成一排。给你一个整数数组 <code>ratings</code> 表示每个孩子的评分。</p>
-<p>你需要按照以下要求，给这些孩子分发糖果：</p>
-<ul>
-<li>每个孩子至少分配到 <code>1</code> 个糖果。</li>
-<li>相邻两个孩子评分更高的孩子会获得更多的糖果。</li>
-</ul>
-<p>请你给每个孩子分发糖果，计算并返回需要准备的 <strong>最少糖果数目</strong> 。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：ratings = [1,0,2]</span><br><span class="line">输出：5</span><br><span class="line">解释：你可以分别给第一个、第二个、第三个孩子分发 2、1、2 颗糖果。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：ratings = [1,2,2]</span><br><span class="line">输出：4</span><br><span class="line">解释：你可以分别给第一个、第二个、第三个孩子分发 1、2、1 颗糖果。</span><br><span class="line">     第三个孩子只得到 1 颗糖果，这满足题面中的两个条件。</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>n == ratings.length</code></li>
-<li><code>1 &lt;= n &lt;= 2 * 104</code></li>
-<li><code>0 &lt;= ratings[i] &lt;= 2 * 104</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）两次遍历"><a href="#（1）两次遍历" class="headerlink" title="（1）两次遍历"></a>（1）两次遍历</h3><p><strong>思路及算法</strong></p>
-<p>我们可以将「相邻的孩子中，评分高的孩子必须获得更多的糖果」这句话拆分为两个规则，分别处理。</p>
-<ul>
-<li><p>左规则：当 ratings[i−1]&lt;ratings[i] 时，iii 号学生的糖果数量将比 i−1 号孩子的糖果数量多。</p>
-</li>
-<li><p>右规则：当 ratings[i]&gt;ratings[i+1] 时，iii 号学生的糖果数量将比 i+1 号孩子的糖果数量多。</p>
-</li>
-</ul>
-<p>我们遍历该数组两次，处理出每一个学生分别满足左规则或右规则时，最少需要被分得的糖果数量。每个人最终分得的糖果数量即为这两个数量的最大值。</p>
-<p>具体地，以左规则为例：我们从左到右遍历该数组，假设当前遍历到位置 i，如果有 ratings[i−1]&lt;ratings[i] 那么 iii 号学生的糖果数量将比 i−1 号孩子的糖果数量多，我们令 left[i]&#x3D;left[i−1]+1 即可，否则我们令 left[i]&#x3D;1。</p>
-<p>在实际代码中，我们先计算出左规则 left 数组，在计算右规则的时候只需要用单个变量记录当前位置的右规则，同时计算答案即可。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int candy(vector&lt;int&gt;&amp; ratings) &#123;</span><br><span class="line">        int n = ratings.size();</span><br><span class="line">        vector&lt;int&gt; left(n);</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            if (i &gt; 0 &amp;&amp; ratings[i] &gt; ratings[i - 1]) &#123;</span><br><span class="line">                left[i] = left[i - 1] + 1;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                left[i] = 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int right = 0, ret = 0;</span><br><span class="line">        for (int i = n - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">            if (i &lt; n - 1 &amp;&amp; ratings[i] &gt; ratings[i + 1]) &#123;</span><br><span class="line">                right++;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                right = 1;</span><br><span class="line">            &#125;</span><br><span class="line">            ret += max(left[i], right);</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int candy(int[] ratings) &#123;</span><br><span class="line">        int n = ratings.length;</span><br><span class="line">        int[] left = new int[n];</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            if (i &gt; 0 &amp;&amp; ratings[i] &gt; ratings[i - 1]) &#123;</span><br><span class="line">                left[i] = left[i - 1] + 1;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                left[i] = 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int right = 0, ret = 0;</span><br><span class="line">        for (int i = n - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">            if (i &lt; n - 1 &amp;&amp; ratings[i] &gt; ratings[i + 1]) &#123;</span><br><span class="line">                right++;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                right = 1;</span><br><span class="line">            &#125;</span><br><span class="line">            ret += Math.max(left[i], right);</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是孩子的数量。我们需要遍历两次数组以分别计算满足左规则或右规则的最少糖果数量。</p>
-</li>
-<li><p>空间复杂度：O(n)，其中 n 是孩子的数量。我们需要保存所有的左规则对应的糖果数量。</p>
-</li>
-</ul>
-<h3 id="（2）常数空间遍历"><a href="#（2）常数空间遍历" class="headerlink" title="（2）常数空间遍历"></a>（2）常数空间遍历</h3><p><strong>思路及算法</strong></p>
-<p>注意到糖果总是尽量少给，且从 1 开始累计，每次要么比相邻的同学多给一个，要么重新置为 1。依据此规则，我们可以画出下图：</p>
-<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240304094722606.png" alt="image-20240304094722606"></p>
-<p>其中相同颜色的柱状图的高度总恰好为 1,2,3…。</p>
-<p>而高度也不一定一定是升序，也可能是 …3,2,1 的降序：</p>
-<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240304094824673.png" alt="image-20240304094824673"></p>
-<p>注意到在上图中，对于第三个同学，他既可以被认为是属于绿色的升序部分，也可以被认为是属于蓝色的降序部分。因为他同时比两边的同学评分更高。我们对序列稍作修改：</p>
-<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240304094921825.png" alt="image-20240304094921825"></p>
-<p>注意到右边的升序部分变长了，使得第三个同学不得不被分配 4 个糖果。</p>
-<p>依据前面总结的规律，我们可以提出本题的解法。我们从左到右枚举每一个同学，记前一个同学分得的糖果数量为 pre：</p>
-<ul>
-<li><p>如果当前同学比上一个同学评分高，说明我们就在最近的递增序列中，直接分配给该同学 pre+1 个糖果即可。</p>
-</li>
-<li><p>否则我们就在一个递减序列中，我们直接分配给当前同学一个糖果，并把该同学所在的递减序列中所有的同学都再多分配一个糖果，以保证糖果数量还是满足条件。</p>
-<ul>
-<li>我们无需显式地额外分配糖果，只需要记录当前的递减序列长度，即可知道需要额外分配的糖果数量。</li>
-<li>同时注意当当前的递减序列长度和上一个递增序列等长时，需要把最近的递增序列的最后一个同学也并进递减序列中。</li>
-</ul>
-</li>
-</ul>
-<p>这样，我们只要记录当前递减序列的长度 dec，最近的递增序列的长度 inc 和前一个同学分得的糖果数量 pre即可。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int candy(vector&lt;int&gt;&amp; ratings) &#123;</span><br><span class="line">        int n = ratings.size();</span><br><span class="line">        int ret = 1;</span><br><span class="line">        int inc = 1, dec = 0, pre = 1;</span><br><span class="line">        for (int i = 1; i &lt; n; i++) &#123;</span><br><span class="line">            if (ratings[i] &gt;= ratings[i - 1]) &#123;</span><br><span class="line">                dec = 0;</span><br><span class="line">                pre = ratings[i] == ratings[i - 1] ? 1 : pre + 1;</span><br><span class="line">                ret += pre;</span><br><span class="line">                inc = pre;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                dec++;</span><br><span class="line">                if (dec == inc) &#123;</span><br><span class="line">                    dec++;</span><br><span class="line">                &#125;</span><br><span class="line">                ret += dec;</span><br><span class="line">                pre = 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int candy(int[] ratings) &#123;</span><br><span class="line">        int n = ratings.length;</span><br><span class="line">        int ret = 1;</span><br><span class="line">        int inc = 1, dec = 0, pre = 1;</span><br><span class="line">        for (int i = 1; i &lt; n; i++) &#123;</span><br><span class="line">            if (ratings[i] &gt;= ratings[i - 1]) &#123;</span><br><span class="line">                dec = 0;</span><br><span class="line">                pre = ratings[i] == ratings[i - 1] ? 1 : pre + 1;</span><br><span class="line">                ret += pre;</span><br><span class="line">                inc = pre;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                dec++;</span><br><span class="line">                if (dec == inc) &#123;</span><br><span class="line">                    dec++;</span><br><span class="line">                &#125;</span><br><span class="line">                ret += dec;</span><br><span class="line">                pre = 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是孩子的数量。我们需要遍历两次数组以分别计算满足左规则或右规则的最少糖果数量。</p>
-</li>
-<li><p>空间复杂度：O(1)。我们只需要常数的空间保存若干变量。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>买卖股票的最佳时机I</title>
-    <url>/2024/02/28/%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BAI/</url>
-    <content><![CDATA[<h1 id="买卖股票的最佳时机I"><a href="#买卖股票的最佳时机I" class="headerlink" title="买卖股票的最佳时机I"></a>买卖股票的最佳时机I</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个数组 <code>prices</code> ，它的第 <code>i</code> 个元素 <code>prices[i]</code> 表示一支给定股票第 <code>i</code> 天的价格。</p>
-<p>你只能选择 <strong>某一天</strong> 买入这只股票，并选择在 <strong>未来的某一个不同的日子</strong> 卖出该股票。设计一个算法来计算你所能获取的最大利润。</p>
-<p>返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 <code>0</code> 。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：[7,1,5,3,6,4]</span><br><span class="line">输出：5</span><br><span class="line">解释：在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。</span><br><span class="line">     注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：prices = [7,6,4,3,1]</span><br><span class="line">输出：0</span><br><span class="line">解释：在这种情况下, 没有交易完成, 所以最大利润为 0。</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= prices.length &lt;= 105</code></li>
-<li><code>0 &lt;= prices[i] &lt;= 104</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><p><strong>解决方案</strong></p>
-<p>我们需要找出给定数组中两个数字之间的最大差值（即，最大利润）。此外，第二个数字（卖出价格）必须大于第一个数字（买入价格）。</p>
-<p>形式上，对于每组 <code>i</code> 和<code>j</code>（其中<code> j&gt;i</code>）我们需要找出 <code>max⁡(prices[j]−prices[i])</code>。</p>
-<h3 id="（1）暴力法【超时】"><a href="#（1）暴力法【超时】" class="headerlink" title="（1）暴力法【超时】"></a>（1）暴力法【超时】</h3><p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxProfit(vector&lt;int&gt;&amp; prices) &#123;</span><br><span class="line">        int n = (int)prices.size(), ans = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i)&#123;</span><br><span class="line">            for (int j = i + 1; j &lt; n; ++j) &#123;</span><br><span class="line">                ans = max(ans, prices[j] - prices[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public int maxProfit(int[] prices) &#123;</span><br><span class="line">        int maxprofit = 0;</span><br><span class="line">        for (int i = 0; i &lt; prices.length - 1; i++) &#123;</span><br><span class="line">            for (int j = i + 1; j &lt; prices.length; j++) &#123;</span><br><span class="line">                int profit = prices[j] - prices[i];</span><br><span class="line">                if (profit &gt; maxprofit) &#123;</span><br><span class="line">                    maxprofit = profit;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return maxprofit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(n^2^)。循环运行 $\dfrac{n (n-1)}{2} $次。</li>
-<li>空间复杂度：O(1)。只使用了常数个变量。</li>
-</ul>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="（2）一次遍历"><a href="#（2）一次遍历" class="headerlink" title="（2）一次遍历"></a>（2）一次遍历</h3><p><strong>思路及算法</strong></p>
-<p>假设给定的数组为：<code>[7, 1, 5, 3, 6, 4]</code></p>
-<p>如果我们在图表上绘制给定数组中的数字，我们将会得到：</p>
-<p><img src="https://pic.leetcode-cn.com/cc4ef55d97cfef6f9215285c7573027c4b265c31101dd54e8555a7021c95c927-file_1555699418271" alt="Profit Graph"></p>
-<p>我们来假设自己来购买股票。随着时间的推移，每天我们都可以选择出售股票与否。那么，假设在第<code> i</code> 天，如果我们要在今天卖股票，那么我们能赚多少钱呢？</p>
-<p>显然，如果我们真的在买卖股票，我们肯定会想：如果我是在历史最低点买的股票就好了！太好了，在题目中，我们只要用一个变量记录一个历史最低价格 <code>minprice</code>，我们就可以假设自己的股票是在那天买的。那么我们在第 i 天卖出股票能得到的利润就是 <code>prices[i] - minprice</code>。</p>
-<p>因此，我们只需要遍历价格数组一遍，记录历史最低点，然后在每一天考虑这么一个问题：如果我是在历史最低点买进的，那么我今天卖出能赚多少钱？当考虑完所有天数之时，我们就得到了最好的答案。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxProfit(vector&lt;int&gt;&amp; prices) &#123;</span><br><span class="line">        int inf = 1e9;</span><br><span class="line">        int minprice = inf, maxprofit = 0;</span><br><span class="line">        for (int price: prices) &#123;</span><br><span class="line">            maxprofit = max(maxprofit, price - minprice);</span><br><span class="line">            minprice = min(price, minprice);</span><br><span class="line">        &#125;</span><br><span class="line">        return maxprofit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public int maxProfit(int prices[]) &#123;</span><br><span class="line">        int minprice = Integer.MAX_VALUE;</span><br><span class="line">        int maxprofit = 0;</span><br><span class="line">        for (int i = 0; i &lt; prices.length; i++) &#123;</span><br><span class="line">            if (prices[i] &lt; minprice) &#123;</span><br><span class="line">                minprice = prices[i];</span><br><span class="line">            &#125; else if (prices[i] - minprice &gt; maxprofit) &#123;</span><br><span class="line">                maxprofit = prices[i] - minprice;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return maxprofit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(n)，只需要遍历一次。</li>
-<li>空间复杂度：O(1)，只使用了常数个变量。</li>
 </ul>
 ]]></content>
       <tags>
@@ -538,6 +455,89 @@
       </tags>
   </entry>
   <entry>
+    <title>分发糖果</title>
+    <url>/2024/03/04/%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/</url>
+    <content><![CDATA[<h1 id="分发糖果"><a href="#分发糖果" class="headerlink" title="分发糖果"></a>分发糖果</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p><code>n</code> 个孩子站成一排。给你一个整数数组 <code>ratings</code> 表示每个孩子的评分。</p>
+<p>你需要按照以下要求，给这些孩子分发糖果：</p>
+<ul>
+<li>每个孩子至少分配到 <code>1</code> 个糖果。</li>
+<li>相邻两个孩子评分更高的孩子会获得更多的糖果。</li>
+</ul>
+<p>请你给每个孩子分发糖果，计算并返回需要准备的 <strong>最少糖果数目</strong> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：ratings = [1,0,2]</span><br><span class="line">输出：5</span><br><span class="line">解释：你可以分别给第一个、第二个、第三个孩子分发 2、1、2 颗糖果。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：ratings = [1,2,2]</span><br><span class="line">输出：4</span><br><span class="line">解释：你可以分别给第一个、第二个、第三个孩子分发 1、2、1 颗糖果。</span><br><span class="line">     第三个孩子只得到 1 颗糖果，这满足题面中的两个条件。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == ratings.length</code></li>
+<li><code>1 &lt;= n &lt;= 2 * 104</code></li>
+<li><code>0 &lt;= ratings[i] &lt;= 2 * 104</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）两次遍历"><a href="#（1）两次遍历" class="headerlink" title="（1）两次遍历"></a>（1）两次遍历</h3><p><strong>思路及算法</strong></p>
+<p>我们可以将「相邻的孩子中，评分高的孩子必须获得更多的糖果」这句话拆分为两个规则，分别处理。</p>
+<ul>
+<li><p>左规则：当 ratings[i−1]&lt;ratings[i] 时，iii 号学生的糖果数量将比 i−1 号孩子的糖果数量多。</p>
+</li>
+<li><p>右规则：当 ratings[i]&gt;ratings[i+1] 时，iii 号学生的糖果数量将比 i+1 号孩子的糖果数量多。</p>
+</li>
+</ul>
+<p>我们遍历该数组两次，处理出每一个学生分别满足左规则或右规则时，最少需要被分得的糖果数量。每个人最终分得的糖果数量即为这两个数量的最大值。</p>
+<p>具体地，以左规则为例：我们从左到右遍历该数组，假设当前遍历到位置 i，如果有 ratings[i−1]&lt;ratings[i] 那么 iii 号学生的糖果数量将比 i−1 号孩子的糖果数量多，我们令 left[i]&#x3D;left[i−1]+1 即可，否则我们令 left[i]&#x3D;1。</p>
+<p>在实际代码中，我们先计算出左规则 left 数组，在计算右规则的时候只需要用单个变量记录当前位置的右规则，同时计算答案即可。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int candy(vector&lt;int&gt;&amp; ratings) &#123;</span><br><span class="line">        int n = ratings.size();</span><br><span class="line">        vector&lt;int&gt; left(n);</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            if (i &gt; 0 &amp;&amp; ratings[i] &gt; ratings[i - 1]) &#123;</span><br><span class="line">                left[i] = left[i - 1] + 1;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                left[i] = 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int right = 0, ret = 0;</span><br><span class="line">        for (int i = n - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">            if (i &lt; n - 1 &amp;&amp; ratings[i] &gt; ratings[i + 1]) &#123;</span><br><span class="line">                right++;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                right = 1;</span><br><span class="line">            &#125;</span><br><span class="line">            ret += max(left[i], right);</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int candy(int[] ratings) &#123;</span><br><span class="line">        int n = ratings.length;</span><br><span class="line">        int[] left = new int[n];</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            if (i &gt; 0 &amp;&amp; ratings[i] &gt; ratings[i - 1]) &#123;</span><br><span class="line">                left[i] = left[i - 1] + 1;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                left[i] = 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int right = 0, ret = 0;</span><br><span class="line">        for (int i = n - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">            if (i &lt; n - 1 &amp;&amp; ratings[i] &gt; ratings[i + 1]) &#123;</span><br><span class="line">                right++;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                right = 1;</span><br><span class="line">            &#125;</span><br><span class="line">            ret += Math.max(left[i], right);</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是孩子的数量。我们需要遍历两次数组以分别计算满足左规则或右规则的最少糖果数量。</p>
+</li>
+<li><p>空间复杂度：O(n)，其中 n 是孩子的数量。我们需要保存所有的左规则对应的糖果数量。</p>
+</li>
+</ul>
+<h3 id="（2）常数空间遍历"><a href="#（2）常数空间遍历" class="headerlink" title="（2）常数空间遍历"></a>（2）常数空间遍历</h3><p><strong>思路及算法</strong></p>
+<p>注意到糖果总是尽量少给，且从 1 开始累计，每次要么比相邻的同学多给一个，要么重新置为 1。依据此规则，我们可以画出下图：</p>
+<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240304094722606.png" alt="image-20240304094722606"></p>
+<p>其中相同颜色的柱状图的高度总恰好为 1,2,3…。</p>
+<p>而高度也不一定一定是升序，也可能是 …3,2,1 的降序：</p>
+<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240304094824673.png" alt="image-20240304094824673"></p>
+<p>注意到在上图中，对于第三个同学，他既可以被认为是属于绿色的升序部分，也可以被认为是属于蓝色的降序部分。因为他同时比两边的同学评分更高。我们对序列稍作修改：</p>
+<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240304094921825.png" alt="image-20240304094921825"></p>
+<p>注意到右边的升序部分变长了，使得第三个同学不得不被分配 4 个糖果。</p>
+<p>依据前面总结的规律，我们可以提出本题的解法。我们从左到右枚举每一个同学，记前一个同学分得的糖果数量为 pre：</p>
+<ul>
+<li><p>如果当前同学比上一个同学评分高，说明我们就在最近的递增序列中，直接分配给该同学 pre+1 个糖果即可。</p>
+</li>
+<li><p>否则我们就在一个递减序列中，我们直接分配给当前同学一个糖果，并把该同学所在的递减序列中所有的同学都再多分配一个糖果，以保证糖果数量还是满足条件。</p>
+<ul>
+<li>我们无需显式地额外分配糖果，只需要记录当前的递减序列长度，即可知道需要额外分配的糖果数量。</li>
+<li>同时注意当当前的递减序列长度和上一个递增序列等长时，需要把最近的递增序列的最后一个同学也并进递减序列中。</li>
+</ul>
+</li>
+</ul>
+<p>这样，我们只要记录当前递减序列的长度 dec，最近的递增序列的长度 inc 和前一个同学分得的糖果数量 pre即可。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int candy(vector&lt;int&gt;&amp; ratings) &#123;</span><br><span class="line">        int n = ratings.size();</span><br><span class="line">        int ret = 1;</span><br><span class="line">        int inc = 1, dec = 0, pre = 1;</span><br><span class="line">        for (int i = 1; i &lt; n; i++) &#123;</span><br><span class="line">            if (ratings[i] &gt;= ratings[i - 1]) &#123;</span><br><span class="line">                dec = 0;</span><br><span class="line">                pre = ratings[i] == ratings[i - 1] ? 1 : pre + 1;</span><br><span class="line">                ret += pre;</span><br><span class="line">                inc = pre;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                dec++;</span><br><span class="line">                if (dec == inc) &#123;</span><br><span class="line">                    dec++;</span><br><span class="line">                &#125;</span><br><span class="line">                ret += dec;</span><br><span class="line">                pre = 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int candy(int[] ratings) &#123;</span><br><span class="line">        int n = ratings.length;</span><br><span class="line">        int ret = 1;</span><br><span class="line">        int inc = 1, dec = 0, pre = 1;</span><br><span class="line">        for (int i = 1; i &lt; n; i++) &#123;</span><br><span class="line">            if (ratings[i] &gt;= ratings[i - 1]) &#123;</span><br><span class="line">                dec = 0;</span><br><span class="line">                pre = ratings[i] == ratings[i - 1] ? 1 : pre + 1;</span><br><span class="line">                ret += pre;</span><br><span class="line">                inc = pre;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                dec++;</span><br><span class="line">                if (dec == inc) &#123;</span><br><span class="line">                    dec++;</span><br><span class="line">                &#125;</span><br><span class="line">                ret += dec;</span><br><span class="line">                pre = 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是孩子的数量。我们需要遍历两次数组以分别计算满足左规则或右规则的最少糖果数量。</p>
+</li>
+<li><p>空间复杂度：O(1)。我们只需要常数的空间保存若干变量。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>单词规律</title>
     <url>/2024/02/19/%E5%8D%95%E8%AF%8D%E8%A7%84%E5%BE%8B/</url>
     <content><![CDATA[<h1 id="单词规律"><a href="#单词规律" class="headerlink" title="单词规律"></a>单词规律</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一种规律 <code>pattern</code> 和一个字符串 <code>s</code> ，判断 <code>s</code> 是否遵循相同的规律。</p>
@@ -575,43 +575,6 @@
 </li>
 <li><p>空间复杂度：O(n+m)，其中 n 为 pattern 的长度，m 为 str 的长度。最坏情况下，我们需要存储 pattern 中的每一个字符和 str 中的每一个字符串。</p>
 </li>
-</ul>
-]]></content>
-      <tags>
-        <tag>学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>加油站</title>
-    <url>/2024/03/02/%E5%8A%A0%E6%B2%B9%E7%AB%99/</url>
-    <content><![CDATA[<h1 id="加油站"><a href="#加油站" class="headerlink" title="加油站"></a>加油站</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>在一条环路上有 <code>n</code> 个加油站，其中第 <code>i</code> 个加油站有汽油 <code>gas[i]</code> 升。</p>
-<p>你有一辆油箱容量无限的的汽车，从第 <code>i</code> 个加油站开往第 <code>i+1</code> 个加油站需要消耗汽油 <code>cost[i]</code> 升。你从其中的一个加油站出发，开始时油箱为空。</p>
-<p>给定两个整数数组 <code>gas</code> 和 <code>cost</code> ，如果你可以按顺序绕环路行驶一周，则返回出发时加油站的编号，否则返回 <code>-1</code> 。如果存在解，则 <strong>保证</strong> 它是 <strong>唯一</strong> 的。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: gas = [1,2,3,4,5], cost = [3,4,5,1,2]</span><br><span class="line">输出: 3</span><br><span class="line">解释:</span><br><span class="line">从 3 号加油站(索引为 3 处)出发，可获得 4 升汽油。此时油箱有 = 0 + 4 = 4 升汽油</span><br><span class="line">开往 4 号加油站，此时油箱有 4 - 1 + 5 = 8 升汽油</span><br><span class="line">开往 0 号加油站，此时油箱有 8 - 2 + 1 = 7 升汽油</span><br><span class="line">开往 1 号加油站，此时油箱有 7 - 3 + 2 = 6 升汽油</span><br><span class="line">开往 2 号加油站，此时油箱有 6 - 4 + 3 = 5 升汽油</span><br><span class="line">开往 3 号加油站，你需要消耗 5 升汽油，正好足够你返回到 3 号加油站。</span><br><span class="line">因此，3 可为起始索引。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: gas = [2,3,4], cost = [3,4,3]</span><br><span class="line">输出: -1</span><br><span class="line">解释:</span><br><span class="line">你不能从 0 号或 1 号加油站出发，因为没有足够的汽油可以让你行驶到下一个加油站。</span><br><span class="line">我们从 2 号加油站出发，可以获得 4 升汽油。 此时油箱有 = 0 + 4 = 4 升汽油</span><br><span class="line">开往 0 号加油站，此时油箱有 4 - 3 + 2 = 3 升汽油</span><br><span class="line">开往 1 号加油站，此时油箱有 3 - 3 + 3 = 3 升汽油</span><br><span class="line">你无法返回 2 号加油站，因为返程需要消耗 4 升汽油，但是你的油箱只有 3 升汽油。</span><br><span class="line">因此，无论怎样，你都不可能绕环路行驶一周。</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示:</strong></p>
-<ul>
-<li><code>gas.length == n</code></li>
-<li><code>cost.length == n</code></li>
-<li><code>1 &lt;= n &lt;= 105</code></li>
-<li><code>0 &lt;= gas[i], cost[i] &lt;= 104</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="一次遍历"><a href="#一次遍历" class="headerlink" title="一次遍历"></a>一次遍历</h3><p><strong>思路及算法</strong></p>
-<img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240302202103038.png" alt="image-20240302202103038" />
-
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int canCompleteCircuit(vector&lt;int&gt;&amp; gas, vector&lt;int&gt;&amp; cost) &#123;</span><br><span class="line">        int n = gas.size();</span><br><span class="line">        int i = 0;</span><br><span class="line">        while (i &lt; n) &#123;</span><br><span class="line">            int sumOfGas = 0, sumOfCost = 0;</span><br><span class="line">            int cnt = 0;</span><br><span class="line">            while (cnt &lt; n) &#123;</span><br><span class="line">                int j = (i + cnt) % n;</span><br><span class="line">                sumOfGas += gas[j];</span><br><span class="line">                sumOfCost += cost[j];</span><br><span class="line">                if (sumOfCost &gt; sumOfGas) &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                cnt++;</span><br><span class="line">            &#125;</span><br><span class="line">            if (cnt == n) &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                i = i + cnt + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int canCompleteCircuit(int[] gas, int[] cost) &#123;</span><br><span class="line">        int n = gas.length;</span><br><span class="line">        int i = 0;</span><br><span class="line">        while (i &lt; n) &#123;</span><br><span class="line">            int sumOfGas = 0, sumOfCost = 0;</span><br><span class="line">            int cnt = 0;</span><br><span class="line">            while (cnt &lt; n) &#123;</span><br><span class="line">                int j = (i + cnt) % n;</span><br><span class="line">                sumOfGas += gas[j];</span><br><span class="line">                sumOfCost += cost[j];</span><br><span class="line">                if (sumOfCost &gt; sumOfGas) &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                cnt++;</span><br><span class="line">            &#125;</span><br><span class="line">            if (cnt == n) &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                i = i + cnt + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(N)，其中 N 为数组的长度。我们对数组进行了单次遍历。</li>
-<li>空间复杂度：O(1)。</li>
 </ul>
 ]]></content>
       <tags>
@@ -691,69 +654,37 @@
       </tags>
   </entry>
   <entry>
-    <title>多数元素</title>
-    <url>/2024/02/26/%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0/</url>
-    <content><![CDATA[<h1 id="多数元素"><a href="#多数元素" class="headerlink" title="多数元素"></a>多数元素</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h2><p>给定一个大小为 <code>n</code> 的数组 <code>nums</code> ，返回其中的多数元素。多数元素是指在数组中出现次数 <strong>大于</strong> <code>⌊ n/2 ⌋</code> 的元素。</p>
-<p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [3,2,3]</span><br><span class="line">输出：3</span><br></pre></td></tr></table></figure>
+    <title>加油站</title>
+    <url>/2024/03/02/%E5%8A%A0%E6%B2%B9%E7%AB%99/</url>
+    <content><![CDATA[<h1 id="加油站"><a href="#加油站" class="headerlink" title="加油站"></a>加油站</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>在一条环路上有 <code>n</code> 个加油站，其中第 <code>i</code> 个加油站有汽油 <code>gas[i]</code> 升。</p>
+<p>你有一辆油箱容量无限的的汽车，从第 <code>i</code> 个加油站开往第 <code>i+1</code> 个加油站需要消耗汽油 <code>cost[i]</code> 升。你从其中的一个加油站出发，开始时油箱为空。</p>
+<p>给定两个整数数组 <code>gas</code> 和 <code>cost</code> ，如果你可以按顺序绕环路行驶一周，则返回出发时加油站的编号，否则返回 <code>-1</code> 。如果存在解，则 <strong>保证</strong> 它是 <strong>唯一</strong> 的。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: gas = [1,2,3,4,5], cost = [3,4,5,1,2]</span><br><span class="line">输出: 3</span><br><span class="line">解释:</span><br><span class="line">从 3 号加油站(索引为 3 处)出发，可获得 4 升汽油。此时油箱有 = 0 + 4 = 4 升汽油</span><br><span class="line">开往 4 号加油站，此时油箱有 4 - 1 + 5 = 8 升汽油</span><br><span class="line">开往 0 号加油站，此时油箱有 8 - 2 + 1 = 7 升汽油</span><br><span class="line">开往 1 号加油站，此时油箱有 7 - 3 + 2 = 6 升汽油</span><br><span class="line">开往 2 号加油站，此时油箱有 6 - 4 + 3 = 5 升汽油</span><br><span class="line">开往 3 号加油站，你需要消耗 5 升汽油，正好足够你返回到 3 号加油站。</span><br><span class="line">因此，3 可为起始索引。</span><br></pre></td></tr></table></figure>
 
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [2,2,1,1,1,2,2]</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: gas = [2,3,4], cost = [3,4,3]</span><br><span class="line">输出: -1</span><br><span class="line">解释:</span><br><span class="line">你不能从 0 号或 1 号加油站出发，因为没有足够的汽油可以让你行驶到下一个加油站。</span><br><span class="line">我们从 2 号加油站出发，可以获得 4 升汽油。 此时油箱有 = 0 + 4 = 4 升汽油</span><br><span class="line">开往 0 号加油站，此时油箱有 4 - 3 + 2 = 3 升汽油</span><br><span class="line">开往 1 号加油站，此时油箱有 3 - 3 + 3 = 3 升汽油</span><br><span class="line">你无法返回 2 号加油站，因为返程需要消耗 4 升汽油，但是你的油箱只有 3 升汽油。</span><br><span class="line">因此，无论怎样，你都不可能绕环路行驶一周。</span><br></pre></td></tr></table></figure>
 
-<p><strong>提示：</strong></p>
+<p><strong>提示:</strong></p>
 <ul>
-<li><code>n == nums.length</code></li>
-<li><code>1 &lt;= n &lt;= 5 * 104</code></li>
-<li><code>-109 &lt;= nums[i] &lt;= 109</code></li>
+<li><code>gas.length == n</code></li>
+<li><code>cost.length == n</code></li>
+<li><code>1 &lt;= n &lt;= 105</code></li>
+<li><code>0 &lt;= gas[i], cost[i] &lt;= 104</code></li>
 </ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><p><strong>说明</strong></p>
-<p>最简单的暴力方法是，枚举数组中的每个元素，再遍历一遍数组统计其出现次数。该方法的时间复杂度是 O(n^2^)，会超出时间限制，因此我们需要找出时间复杂度小于 O(n^2^)的优秀做法。</p>
-<h3 id="（1）哈希表"><a href="#（1）哈希表" class="headerlink" title="（1）哈希表"></a>（1）哈希表</h3><p><strong>思路及算法</strong></p>
-<p>我们知道出现次数最多的元素大于 $\dfrac{n}{2}$次，所以可以用哈希表来快速统计每个元素出现的次数。</p>
-<p>我们使用哈希映射（HashMap）来存储每个元素以及出现的次数。对于哈希映射中的每个键值对，键表示一个元素，值表示该元素出现的次数。</p>
-<p>我们用一个循环遍历数组 nums 并将数组中的每个元素加入哈希映射中。在这之后，我们遍历哈希映射中的所有键值对，返回值最大的键。我们同样也可以在遍历数组 nums 时候使用打擂台的方法，维护最大的值，这样省去了最后对哈希映射的遍历。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int majorityElement(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        unordered_map&lt;int, int&gt; counts;</span><br><span class="line">        int majority = 0, cnt = 0;</span><br><span class="line">        for (int num: nums) &#123;</span><br><span class="line">            ++counts[num];</span><br><span class="line">            if (counts[num] &gt; cnt) &#123;</span><br><span class="line">                majority = num;</span><br><span class="line">                cnt = counts[num];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return majority;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="一次遍历"><a href="#一次遍历" class="headerlink" title="一次遍历"></a>一次遍历</h3><p><strong>思路及算法</strong></p>
+<img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240302202103038.png" alt="image-20240302202103038" />
 
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    private Map&lt;Integer, Integer&gt; countNums(int[] nums) &#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; counts = new HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        for (int num : nums) &#123;</span><br><span class="line">            if (!counts.containsKey(num)) &#123;</span><br><span class="line">                counts.put(num, 1);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                counts.put(num, counts.get(num) + 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return counts;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int majorityElement(int[] nums) &#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; counts = countNums(nums);</span><br><span class="line"></span><br><span class="line">        Map.Entry&lt;Integer, Integer&gt; majorityEntry = null;</span><br><span class="line">        for (Map.Entry&lt;Integer, Integer&gt; entry : counts.entrySet()) &#123;</span><br><span class="line">            if (majorityEntry == null || entry.getValue() &gt; majorityEntry.getValue()) &#123;</span><br><span class="line">                majorityEntry = entry;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return majorityEntry.getKey();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int canCompleteCircuit(vector&lt;int&gt;&amp; gas, vector&lt;int&gt;&amp; cost) &#123;</span><br><span class="line">        int n = gas.size();</span><br><span class="line">        int i = 0;</span><br><span class="line">        while (i &lt; n) &#123;</span><br><span class="line">            int sumOfGas = 0, sumOfCost = 0;</span><br><span class="line">            int cnt = 0;</span><br><span class="line">            while (cnt &lt; n) &#123;</span><br><span class="line">                int j = (i + cnt) % n;</span><br><span class="line">                sumOfGas += gas[j];</span><br><span class="line">                sumOfCost += cost[j];</span><br><span class="line">                if (sumOfCost &gt; sumOfGas) &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                cnt++;</span><br><span class="line">            &#125;</span><br><span class="line">            if (cnt == n) &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                i = i + cnt + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int canCompleteCircuit(int[] gas, int[] cost) &#123;</span><br><span class="line">        int n = gas.length;</span><br><span class="line">        int i = 0;</span><br><span class="line">        while (i &lt; n) &#123;</span><br><span class="line">            int sumOfGas = 0, sumOfCost = 0;</span><br><span class="line">            int cnt = 0;</span><br><span class="line">            while (cnt &lt; n) &#123;</span><br><span class="line">                int j = (i + cnt) % n;</span><br><span class="line">                sumOfGas += gas[j];</span><br><span class="line">                sumOfCost += cost[j];</span><br><span class="line">                if (sumOfCost &gt; sumOfGas) &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                cnt++;</span><br><span class="line">            &#125;</span><br><span class="line">            if (cnt == n) &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                i = i + cnt + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li><p>时间复杂度：O(n)，其中 n 是数组 nums 的长度。我们遍历数组 nums 一次，对于 nums 中的每一个元素，将其插入哈希表都只需要常数时间。如果在遍历时没有维护最大值，在遍历结束后还需要对哈希表进行遍历，因为哈希表中占用的空间为 O(n)（可参考下文的空间复杂度分析），那么遍历的时间不会超过 O(n)。因此总时间复杂度为 O(n)。</p>
-</li>
-<li><p>空间复杂度：O(n)。哈希表最多包含 n−$\dfrac{n}{2}$ 个键值对，所以占用的空间为 O(n)。这是因为任意一个长度为 n 的数组最多只能包含 n 个不同的值，但题中保证 nums 一定有一个众数，会占用（最少） $\dfrac{n}{2}$ +1个数字。因此最多有n-($\dfrac{n}{2}$ +1 ) 个不同的其他数字，所以最多有 n−$\dfrac{n}{2}$ 不同的元素。</p>
-</li>
+<li>时间复杂度：O(N)，其中 N 为数组的长度。我们对数组进行了单次遍历。</li>
+<li>空间复杂度：O(1)。</li>
 </ul>
-<h3 id="（2）排序"><a href="#（2）排序" class="headerlink" title="（2）排序"></a>（2）排序</h3><p><strong>思路及算法</strong></p>
-<p>如果将数组 nums 中的所有元素按照单调递增或单调递减的顺序排序，那么下标为 $\dfrac{n}{2}$的元素（下标从 0 开始）一定是众数。</p>
-<p>对于这种算法，我们先将 nums 数组排序，然后返回上文所说的下标对应的元素。下面的图中解释了为什么这种策略是有效的。在下图中，第一个例子是 n 为奇数的情况，第二个例子是 n 为偶数的情况。</p>
-<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240226092055479.png" alt="image-20240226092055479"></p>
-<p>对于每种情况，数组上面的线表示如果众数是数组中的最小值时覆盖的下标，数组下面的线表示如果众数是数组中的最大值时覆盖的下标。对于其他的情况，这条线会在这两种极端情况的中间。对于这两种极端情况，它们会在下标为  $\dfrac{n}{2}$ 的地方有重叠。因此，无论众数是多少，返回$\dfrac{n}{2}$下标对应的值都是正确的。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int majorityElement(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        return nums[nums.size() / 2];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int majorityElement(int[] nums) &#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        return nums[nums.length / 2];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(nlog⁡n)。将数组排序的时间复杂度为 O(nlog⁡n)。</p>
-</li>
-<li><p>空间复杂度：O(log⁡n)。如果使用语言自带的排序算法，需要使用 O(log⁡n) 的栈空间。如果自己编写堆排序，则只需要使用 O(1)的额外空间。</p>
-</li>
-</ul>
-<h3 id="（3）分治"><a href="#（3）分治" class="headerlink" title="（3）分治"></a>（3）分治</h3><p><strong>思路及算法</strong></p>
-<p>如果数 a 是数组 nums 的众数，如果我们将 nums 分成两部分，那么 a 必定是至少一部分的众数。</p>
-<p>我们可以使用反证法来证明这个结论。假设 a 既不是左半部分的众数，也不是右半部分的众数，那么 a 出现的次数少于 l &#x2F; 2 + r &#x2F; 2 次，其中 l 和 r 分别是左半部分和右半部分的长度。由于 l &#x2F; 2 + r &#x2F; 2 &lt;&#x3D; (l + r) &#x2F; 2，说明 a 也不是数组 nums 的众数，因此出现了矛盾。所以这个结论是正确的。</p>
-<p>这样以来，我们就可以使用分治法解决这个问题：将数组分成左右两部分，分别求出左半部分的众数 a1 以及右半部分的众数 a2，随后在 a1 和 a2 中选出正确的众数。</p>
-<p>我们使用经典的分治算法递归求解，直到所有的子问题都是长度为 1 的数组。长度为 1 的子数组中唯一的数显然是众数，直接返回即可。如果回溯后某区间的长度大于 1，我们必须将左右子区间的值合并。如果它们的众数相同，那么显然这一段区间的众数是它们相同的值。否则，我们需要比较两个众数在整个区间内出现的次数来决定该区间的众数。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">    int count_in_range(vector&lt;int&gt;&amp; nums, int target, int lo, int hi) &#123;</span><br><span class="line">        int count = 0;</span><br><span class="line">        for (int i = lo; i &lt;= hi; ++i)</span><br><span class="line">            if (nums[i] == target)</span><br><span class="line">                ++count;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line">    int majority_element_rec(vector&lt;int&gt;&amp; nums, int lo, int hi) &#123;</span><br><span class="line">        if (lo == hi)</span><br><span class="line">            return nums[lo];</span><br><span class="line">        int mid = (lo + hi) / 2;</span><br><span class="line">        int left_majority = majority_element_rec(nums, lo, mid);</span><br><span class="line">        int right_majority = majority_element_rec(nums, mid + 1, hi);</span><br><span class="line">        if (count_in_range(nums, left_majority, lo, hi) &gt; (hi - lo + 1) / 2)</span><br><span class="line">            return left_majority;</span><br><span class="line">        if (count_in_range(nums, right_majority, lo, hi) &gt; (hi - lo + 1) / 2)</span><br><span class="line">            return right_majority;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">public:</span><br><span class="line">    int majorityElement(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        return majority_element_rec(nums, 0, nums.size() - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    private int countInRange(int[] nums, int num, int lo, int hi) &#123;</span><br><span class="line">        int count = 0;</span><br><span class="line">        for (int i = lo; i &lt;= hi; i++) &#123;</span><br><span class="line">            if (nums[i] == num) &#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private int majorityElementRec(int[] nums, int lo, int hi) &#123;</span><br><span class="line">        // base case; the only element in an array of size 1 is the majority</span><br><span class="line">        // element.</span><br><span class="line">        if (lo == hi) &#123;</span><br><span class="line">            return nums[lo];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // recurse on left and right halves of this slice.</span><br><span class="line">        int mid = (hi - lo) / 2 + lo;</span><br><span class="line">        int left = majorityElementRec(nums, lo, mid);</span><br><span class="line">        int right = majorityElementRec(nums, mid + 1, hi);</span><br><span class="line"></span><br><span class="line">        // if the two halves agree on the majority element, return it.</span><br><span class="line">        if (left == right) &#123;</span><br><span class="line">            return left;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // otherwise, count each element and return the &quot;winner&quot;.</span><br><span class="line">        int leftCount = countInRange(nums, left, lo, hi);</span><br><span class="line">        int rightCount = countInRange(nums, right, lo, hi);</span><br><span class="line"></span><br><span class="line">        return leftCount &gt; rightCount ? left : right;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int majorityElement(int[] nums) &#123;</span><br><span class="line">        return majorityElementRec(nums, 0, nums.length - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240226093253984.png" alt="image-20240226093253984"></p>
 ]]></content>
       <tags>
         <tag>学习</tag>
@@ -842,6 +773,75 @@
 <li>时间复杂度：O(n)，其中 n 为字符串的长度。我们只需同时遍历一遍字符串 s 和 t 即可。</li>
 <li>空间复杂度：O(∣Σ∣)，其中 Σ 是字符串的字符集。哈希表存储字符的空间取决于字符串的字符集大小，最坏情况下每个字符均不相同，需要 O(∣Σ∣) 的空间。</li>
 </ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多数元素</title>
+    <url>/2024/02/26/%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0/</url>
+    <content><![CDATA[<h1 id="多数元素"><a href="#多数元素" class="headerlink" title="多数元素"></a>多数元素</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h2><p>给定一个大小为 <code>n</code> 的数组 <code>nums</code> ，返回其中的多数元素。多数元素是指在数组中出现次数 <strong>大于</strong> <code>⌊ n/2 ⌋</code> 的元素。</p>
+<p>你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [3,2,3]</span><br><span class="line">输出：3</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [2,2,1,1,1,2,2]</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == nums.length</code></li>
+<li><code>1 &lt;= n &lt;= 5 * 104</code></li>
+<li><code>-109 &lt;= nums[i] &lt;= 109</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><p><strong>说明</strong></p>
+<p>最简单的暴力方法是，枚举数组中的每个元素，再遍历一遍数组统计其出现次数。该方法的时间复杂度是 O(n^2^)，会超出时间限制，因此我们需要找出时间复杂度小于 O(n^2^)的优秀做法。</p>
+<h3 id="（1）哈希表"><a href="#（1）哈希表" class="headerlink" title="（1）哈希表"></a>（1）哈希表</h3><p><strong>思路及算法</strong></p>
+<p>我们知道出现次数最多的元素大于 $\dfrac{n}{2}$次，所以可以用哈希表来快速统计每个元素出现的次数。</p>
+<p>我们使用哈希映射（HashMap）来存储每个元素以及出现的次数。对于哈希映射中的每个键值对，键表示一个元素，值表示该元素出现的次数。</p>
+<p>我们用一个循环遍历数组 nums 并将数组中的每个元素加入哈希映射中。在这之后，我们遍历哈希映射中的所有键值对，返回值最大的键。我们同样也可以在遍历数组 nums 时候使用打擂台的方法，维护最大的值，这样省去了最后对哈希映射的遍历。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int majorityElement(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        unordered_map&lt;int, int&gt; counts;</span><br><span class="line">        int majority = 0, cnt = 0;</span><br><span class="line">        for (int num: nums) &#123;</span><br><span class="line">            ++counts[num];</span><br><span class="line">            if (counts[num] &gt; cnt) &#123;</span><br><span class="line">                majority = num;</span><br><span class="line">                cnt = counts[num];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return majority;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    private Map&lt;Integer, Integer&gt; countNums(int[] nums) &#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; counts = new HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        for (int num : nums) &#123;</span><br><span class="line">            if (!counts.containsKey(num)) &#123;</span><br><span class="line">                counts.put(num, 1);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                counts.put(num, counts.get(num) + 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return counts;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int majorityElement(int[] nums) &#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; counts = countNums(nums);</span><br><span class="line"></span><br><span class="line">        Map.Entry&lt;Integer, Integer&gt; majorityEntry = null;</span><br><span class="line">        for (Map.Entry&lt;Integer, Integer&gt; entry : counts.entrySet()) &#123;</span><br><span class="line">            if (majorityEntry == null || entry.getValue() &gt; majorityEntry.getValue()) &#123;</span><br><span class="line">                majorityEntry = entry;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return majorityEntry.getKey();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是数组 nums 的长度。我们遍历数组 nums 一次，对于 nums 中的每一个元素，将其插入哈希表都只需要常数时间。如果在遍历时没有维护最大值，在遍历结束后还需要对哈希表进行遍历，因为哈希表中占用的空间为 O(n)（可参考下文的空间复杂度分析），那么遍历的时间不会超过 O(n)。因此总时间复杂度为 O(n)。</p>
+</li>
+<li><p>空间复杂度：O(n)。哈希表最多包含 n−$\dfrac{n}{2}$ 个键值对，所以占用的空间为 O(n)。这是因为任意一个长度为 n 的数组最多只能包含 n 个不同的值，但题中保证 nums 一定有一个众数，会占用（最少） $\dfrac{n}{2}$ +1个数字。因此最多有n-($\dfrac{n}{2}$ +1 ) 个不同的其他数字，所以最多有 n−$\dfrac{n}{2}$ 不同的元素。</p>
+</li>
+</ul>
+<h3 id="（2）排序"><a href="#（2）排序" class="headerlink" title="（2）排序"></a>（2）排序</h3><p><strong>思路及算法</strong></p>
+<p>如果将数组 nums 中的所有元素按照单调递增或单调递减的顺序排序，那么下标为 $\dfrac{n}{2}$的元素（下标从 0 开始）一定是众数。</p>
+<p>对于这种算法，我们先将 nums 数组排序，然后返回上文所说的下标对应的元素。下面的图中解释了为什么这种策略是有效的。在下图中，第一个例子是 n 为奇数的情况，第二个例子是 n 为偶数的情况。</p>
+<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240226092055479.png" alt="image-20240226092055479"></p>
+<p>对于每种情况，数组上面的线表示如果众数是数组中的最小值时覆盖的下标，数组下面的线表示如果众数是数组中的最大值时覆盖的下标。对于其他的情况，这条线会在这两种极端情况的中间。对于这两种极端情况，它们会在下标为  $\dfrac{n}{2}$ 的地方有重叠。因此，无论众数是多少，返回$\dfrac{n}{2}$下标对应的值都是正确的。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int majorityElement(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        return nums[nums.size() / 2];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int majorityElement(int[] nums) &#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        return nums[nums.length / 2];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(nlog⁡n)。将数组排序的时间复杂度为 O(nlog⁡n)。</p>
+</li>
+<li><p>空间复杂度：O(log⁡n)。如果使用语言自带的排序算法，需要使用 O(log⁡n) 的栈空间。如果自己编写堆排序，则只需要使用 O(1)的额外空间。</p>
+</li>
+</ul>
+<h3 id="（3）分治"><a href="#（3）分治" class="headerlink" title="（3）分治"></a>（3）分治</h3><p><strong>思路及算法</strong></p>
+<p>如果数 a 是数组 nums 的众数，如果我们将 nums 分成两部分，那么 a 必定是至少一部分的众数。</p>
+<p>我们可以使用反证法来证明这个结论。假设 a 既不是左半部分的众数，也不是右半部分的众数，那么 a 出现的次数少于 l &#x2F; 2 + r &#x2F; 2 次，其中 l 和 r 分别是左半部分和右半部分的长度。由于 l &#x2F; 2 + r &#x2F; 2 &lt;&#x3D; (l + r) &#x2F; 2，说明 a 也不是数组 nums 的众数，因此出现了矛盾。所以这个结论是正确的。</p>
+<p>这样以来，我们就可以使用分治法解决这个问题：将数组分成左右两部分，分别求出左半部分的众数 a1 以及右半部分的众数 a2，随后在 a1 和 a2 中选出正确的众数。</p>
+<p>我们使用经典的分治算法递归求解，直到所有的子问题都是长度为 1 的数组。长度为 1 的子数组中唯一的数显然是众数，直接返回即可。如果回溯后某区间的长度大于 1，我们必须将左右子区间的值合并。如果它们的众数相同，那么显然这一段区间的众数是它们相同的值。否则，我们需要比较两个众数在整个区间内出现的次数来决定该区间的众数。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">    int count_in_range(vector&lt;int&gt;&amp; nums, int target, int lo, int hi) &#123;</span><br><span class="line">        int count = 0;</span><br><span class="line">        for (int i = lo; i &lt;= hi; ++i)</span><br><span class="line">            if (nums[i] == target)</span><br><span class="line">                ++count;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line">    int majority_element_rec(vector&lt;int&gt;&amp; nums, int lo, int hi) &#123;</span><br><span class="line">        if (lo == hi)</span><br><span class="line">            return nums[lo];</span><br><span class="line">        int mid = (lo + hi) / 2;</span><br><span class="line">        int left_majority = majority_element_rec(nums, lo, mid);</span><br><span class="line">        int right_majority = majority_element_rec(nums, mid + 1, hi);</span><br><span class="line">        if (count_in_range(nums, left_majority, lo, hi) &gt; (hi - lo + 1) / 2)</span><br><span class="line">            return left_majority;</span><br><span class="line">        if (count_in_range(nums, right_majority, lo, hi) &gt; (hi - lo + 1) / 2)</span><br><span class="line">            return right_majority;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">public:</span><br><span class="line">    int majorityElement(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        return majority_element_rec(nums, 0, nums.size() - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    private int countInRange(int[] nums, int num, int lo, int hi) &#123;</span><br><span class="line">        int count = 0;</span><br><span class="line">        for (int i = lo; i &lt;= hi; i++) &#123;</span><br><span class="line">            if (nums[i] == num) &#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private int majorityElementRec(int[] nums, int lo, int hi) &#123;</span><br><span class="line">        // base case; the only element in an array of size 1 is the majority</span><br><span class="line">        // element.</span><br><span class="line">        if (lo == hi) &#123;</span><br><span class="line">            return nums[lo];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // recurse on left and right halves of this slice.</span><br><span class="line">        int mid = (hi - lo) / 2 + lo;</span><br><span class="line">        int left = majorityElementRec(nums, lo, mid);</span><br><span class="line">        int right = majorityElementRec(nums, mid + 1, hi);</span><br><span class="line"></span><br><span class="line">        // if the two halves agree on the majority element, return it.</span><br><span class="line">        if (left == right) &#123;</span><br><span class="line">            return left;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // otherwise, count each element and return the &quot;winner&quot;.</span><br><span class="line">        int leftCount = countInRange(nums, left, lo, hi);</span><br><span class="line">        int rightCount = countInRange(nums, right, lo, hi);</span><br><span class="line"></span><br><span class="line">        return leftCount &gt; rightCount ? left : right;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int majorityElement(int[] nums) &#123;</span><br><span class="line">        return majorityElementRec(nums, 0, nums.length - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240226093253984.png" alt="image-20240226093253984"></p>
 ]]></content>
       <tags>
         <tag>学习</tag>
@@ -1035,95 +1035,6 @@
       </tags>
   </entry>
   <entry>
-    <title>接雨水</title>
-    <url>/2024/03/05/%E6%8E%A5%E9%9B%A8%E6%B0%B4/</url>
-    <content><![CDATA[<h1 id="接雨水"><a href="#接雨水" class="headerlink" title="接雨水"></a>接雨水</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定 <code>n</code> 个非负整数表示每个宽度为 <code>1</code> 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/22/rainwatertrap.png" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：height = [0,1,0,2,1,0,1,3,2,1,2,1]</span><br><span class="line">输出：6</span><br><span class="line">解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。 </span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：height = [4,2,0,3,2,5]</span><br><span class="line">输出：9</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>n == height.length</code></li>
-<li><code>1 &lt;= n &lt;= 2 * 104</code></li>
-<li><code>0 &lt;= height[i] &lt;= 105</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）动态规划"><a href="#（1）动态规划" class="headerlink" title="（1）动态规划"></a>（1）动态规划</h3><p><strong>思路及算法</strong></p>
-<p>对于下标 i，下雨后水能到达的最大高度等于下标 i 两边的最大高度的最小值，下标 iii 处能接的雨水量等于下标 i 处的水能到达的最大高度减去 height[i]。</p>
-<p>朴素的做法是对于数组 height 中的每个元素，分别向左和向右扫描并记录左边和右边的最大高度，然后计算每个下标位置能接的雨水量。假设数组 height 的长度为 n，该做法需要对每个下标位置使用 O(n) 的时间向两边扫描并得到最大高度，因此总时间复杂度是 O(n^2^)。</p>
-<p>上述做法的时间复杂度较高是因为需要对每个下标位置都向两边扫描。如果已经知道每个位置两边的最大高度，则可以在 O(n) 的时间内得到能接的雨水总量。使用动态规划的方法，可以在 O(n) 的时间内预处理得到每个位置两边的最大高度。</p>
-<p>创建两个长度为 n 的数组 leftMax 和 rightMax。对于 0≤i&lt;n，leftMax[i] 表示下标 iii 及其左边的位置中，height 的最大高度，rightMax[i] 表示下标 i 及其右边的位置中，height 的最大高度。</p>
-<p>显然，leftMax[0]&#x3D;height[0]，rightMax[n−1]&#x3D;height[n−1]。两个数组的其余元素的计算如下：</p>
-<ul>
-<li><p>当 1≤i≤n−1 时，leftMax[i]&#x3D;max⁡(leftMax[i−1],height[i])；</p>
-</li>
-<li><p>当 0≤i≤n−2 时，rightMax[i]&#x3D;max⁡(rightMax[i+1],height[i])。</p>
-</li>
-</ul>
-<p>因此可以正向遍历数组 height 得到数组 leftMax 的每个元素值，反向遍历数组 height 得到数组 rightMax 的每个元素值。</p>
-<p>在得到数组 leftMax 和 rightMax 的每个元素值之后，对于 0≤i&lt;n，下标 i 处能接的雨水量等于 min⁡(leftMax[i],rightMax[i])−height[i]。遍历每个下标位置即可得到能接的雨水总量。</p>
-<p>动态规划做法可以由下图体现。</p>
-<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240305140032638.png" alt="image-20240305140032638"></p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int n = height.size();</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;int&gt; leftMax(n);</span><br><span class="line">        leftMax[0] = height[0];</span><br><span class="line">        for (int i = 1; i &lt; n; ++i) &#123;</span><br><span class="line">            leftMax[i] = max(leftMax[i - 1], height[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vector&lt;int&gt; rightMax(n);</span><br><span class="line">        rightMax[n - 1] = height[n - 1];</span><br><span class="line">        for (int i = n - 2; i &gt;= 0; --i) &#123;</span><br><span class="line">            rightMax[i] = max(rightMax[i + 1], height[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int ans = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            ans += min(leftMax[i], rightMax[i]) - height[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int trap(int[] height) &#123;</span><br><span class="line">        int n = height.length;</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int[] leftMax = new int[n];</span><br><span class="line">        leftMax[0] = height[0];</span><br><span class="line">        for (int i = 1; i &lt; n; ++i) &#123;</span><br><span class="line">            leftMax[i] = Math.max(leftMax[i - 1], height[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int[] rightMax = new int[n];</span><br><span class="line">        rightMax[n - 1] = height[n - 1];</span><br><span class="line">        for (int i = n - 2; i &gt;= 0; --i) &#123;</span><br><span class="line">            rightMax[i] = Math.max(rightMax[i + 1], height[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int ans = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            ans += Math.min(leftMax[i], rightMax[i]) - height[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是数组 height 的长度。计算数组 leftMax 和 rightMax 的元素值各需要遍历数组 height 一次，计算能接的雨水总量还需要遍历一次。</p>
-</li>
-<li><p>空间复杂度：O(n)，其中 n 是数组 height 的长度。需要创建两个长度为 n 的数组 leftMax 和 rightMax。</p>
-</li>
-</ul>
-<h3 id="（2）单调栈"><a href="#（2）单调栈" class="headerlink" title="（2）单调栈"></a>（2）单调栈</h3><p><strong>思路及算法</strong></p>
-<p>除了计算并存储每个位置两边的最大高度以外，也可以用单调栈计算能接的雨水总量。</p>
-<p>维护一个单调栈，单调栈存储的是下标，满足从栈底到栈顶的下标对应的数组 height 中的元素递减。</p>
-<p>从左到右遍历数组，遍历到下标 i 时，如果栈内至少有两个元素，记栈顶元素为 top，top 的下面一个元素是 left，则一定有 height[left]≥height[top]。如果 height[i]&gt;height[top]，则得到一个可以接雨水的区域，该区域的宽度是 i−left−1，高度是 min⁡(height[left],height[i])−height[top]，根据宽度和高度即可计算得到该区域能接的雨水量。</p>
-<p>为了得到 left，需要将 top 出栈。在对 top 计算能接的雨水量之后，left 变成新的 top，重复上述操作，直到栈变为空，或者栈顶下标对应的 height 中的元素大于或等于 height[i]。</p>
-<p>在对下标 i 处计算能接的雨水量之后，将 iii 入栈，继续遍历后面的下标，计算能接的雨水量。遍历结束之后即可得到能接的雨水总量。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        stack&lt;int&gt; stk;</span><br><span class="line">        int n = height.size();</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            while (!stk.empty() &amp;&amp; height[i] &gt; height[stk.top()]) &#123;</span><br><span class="line">                int top = stk.top();</span><br><span class="line">                stk.pop();</span><br><span class="line">                if (stk.empty()) &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                int left = stk.top();</span><br><span class="line">                int currWidth = i - left - 1;</span><br><span class="line">                int currHeight = min(height[left], height[i]) - height[top];</span><br><span class="line">                ans += currWidth * currHeight;</span><br><span class="line">            &#125;</span><br><span class="line">            stk.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int trap(int[] height) &#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        Deque&lt;Integer&gt; stack = new LinkedList&lt;Integer&gt;();</span><br><span class="line">        int n = height.length;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            while (!stack.isEmpty() &amp;&amp; height[i] &gt; height[stack.peek()]) &#123;</span><br><span class="line">                int top = stack.pop();</span><br><span class="line">                if (stack.isEmpty()) &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                int left = stack.peek();</span><br><span class="line">                int currWidth = i - left - 1;</span><br><span class="line">                int currHeight = Math.min(height[left], height[i]) - height[top];</span><br><span class="line">                ans += currWidth * currHeight;</span><br><span class="line">            &#125;</span><br><span class="line">            stack.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是数组 height 的长度。从 0 到 n−1 的每个下标最多只会入栈和出栈各一次。</p>
-</li>
-<li><p>空间复杂度：O(n)，其中 n 是数组 height 的长度。空间复杂度主要取决于栈空间，栈的大小不会超过 n。</p>
-</li>
-</ul>
-<h3 id="（3）双指针"><a href="#（3）双指针" class="headerlink" title="（3）双指针"></a>（3）双指针</h3><p><strong>思路及算法</strong></p>
-<p>动态规划的做法中，需要维护两个数组 leftMax 和 rightMax，因此空间复杂度是 O(n)。是否可以将空间复杂度降到 O(1)？</p>
-<p>注意到下标 iii 处能接的雨水量由 leftMax[i] 和 rightMax[i] 中的最小值决定。由于数组 leftMax 是从左往右计算，数组 rightMax 是从右往左计算，因此可以使用双指针和两个变量代替两个数组。</p>
-<p>维护两个指针 left 和 right，以及两个变量 leftMax 和 rightMax，初始时 left&#x3D;0,right&#x3D;n−1,leftMax&#x3D;0,rightMax&#x3D;0。指针 left 只会向右移动，指针 right 只会向左移动，在移动指针的过程中维护两个变量 leftMax 和 rightMax 的值。</p>
-<p>当两个指针没有相遇时，进行如下操作：</p>
-<p>使用 height[left] 和 height[right] 的值更新 leftMax 和 rightMax 的值；</p>
-<p>如果 height[left]&lt;height[right]，则必有 leftMax&lt;rightMax，下标 left 处能接的雨水量等于 leftMax−height[left]，将下标 left 处能接的雨水量加到能接的雨水总量，然后将 left 加 1（即向右移动一位）；</p>
-<p>如果 height[left]≥height[right]，则必有 leftMax≥rightMax，下标 right 处能接的雨水量等于 rightMax−height[right]，将下标 right 处能接的雨水量加到能接的雨水总量，然后将 right 减 1（即向左移动一位）。</p>
-<p>当两个指针相遇时，即可得到能接的雨水总量。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        int left = 0, right = height.size() - 1;</span><br><span class="line">        int leftMax = 0, rightMax = 0;</span><br><span class="line">        while (left &lt; right) &#123;</span><br><span class="line">            leftMax = max(leftMax, height[left]);</span><br><span class="line">            rightMax = max(rightMax, height[right]);</span><br><span class="line">            if (height[left] &lt; height[right]) &#123;</span><br><span class="line">                ans += leftMax - height[left];</span><br><span class="line">                ++left;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                ans += rightMax - height[right];</span><br><span class="line">                --right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int trap(int[] height) &#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        int left = 0, right = height.length - 1;</span><br><span class="line">        int leftMax = 0, rightMax = 0;</span><br><span class="line">        while (left &lt; right) &#123;</span><br><span class="line">            leftMax = Math.max(leftMax, height[left]);</span><br><span class="line">            rightMax = Math.max(rightMax, height[right]);</span><br><span class="line">            if (height[left] &lt; height[right]) &#123;</span><br><span class="line">                ans += leftMax - height[left];</span><br><span class="line">                ++left;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                ans += rightMax - height[right];</span><br><span class="line">                --right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是数组 height 的长度。两个指针的移动总次数不超过 n。</p>
-</li>
-<li><p>空间复杂度：O(1)。只需要使用常数的额外空间。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>学习</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>最大子数组和</title>
     <url>/2024/02/20/%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84%E5%92%8C/</url>
     <content><![CDATA[<h1 id="最大子数组和"><a href="#最大子数组和" class="headerlink" title="最大子数组和"></a>最大子数组和</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个整数数组 <code>nums</code> ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
@@ -1216,6 +1127,95 @@
 <li><p>时间复杂度：O(n)，其中 n为数组的长度。具体分析已在上面正文中给出。</p>
 </li>
 <li><p>空间复杂度：O(n)。哈希表存储数组中所有的数需要 O(n) 的空间。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>接雨水</title>
+    <url>/2024/03/05/%E6%8E%A5%E9%9B%A8%E6%B0%B4/</url>
+    <content><![CDATA[<h1 id="接雨水"><a href="#接雨水" class="headerlink" title="接雨水"></a>接雨水</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定 <code>n</code> 个非负整数表示每个宽度为 <code>1</code> 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/22/rainwatertrap.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：height = [0,1,0,2,1,0,1,3,2,1,2,1]</span><br><span class="line">输出：6</span><br><span class="line">解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。 </span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：height = [4,2,0,3,2,5]</span><br><span class="line">输出：9</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == height.length</code></li>
+<li><code>1 &lt;= n &lt;= 2 * 104</code></li>
+<li><code>0 &lt;= height[i] &lt;= 105</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）动态规划"><a href="#（1）动态规划" class="headerlink" title="（1）动态规划"></a>（1）动态规划</h3><p><strong>思路及算法</strong></p>
+<p>对于下标 i，下雨后水能到达的最大高度等于下标 i 两边的最大高度的最小值，下标 iii 处能接的雨水量等于下标 i 处的水能到达的最大高度减去 height[i]。</p>
+<p>朴素的做法是对于数组 height 中的每个元素，分别向左和向右扫描并记录左边和右边的最大高度，然后计算每个下标位置能接的雨水量。假设数组 height 的长度为 n，该做法需要对每个下标位置使用 O(n) 的时间向两边扫描并得到最大高度，因此总时间复杂度是 O(n^2^)。</p>
+<p>上述做法的时间复杂度较高是因为需要对每个下标位置都向两边扫描。如果已经知道每个位置两边的最大高度，则可以在 O(n) 的时间内得到能接的雨水总量。使用动态规划的方法，可以在 O(n) 的时间内预处理得到每个位置两边的最大高度。</p>
+<p>创建两个长度为 n 的数组 leftMax 和 rightMax。对于 0≤i&lt;n，leftMax[i] 表示下标 iii 及其左边的位置中，height 的最大高度，rightMax[i] 表示下标 i 及其右边的位置中，height 的最大高度。</p>
+<p>显然，leftMax[0]&#x3D;height[0]，rightMax[n−1]&#x3D;height[n−1]。两个数组的其余元素的计算如下：</p>
+<ul>
+<li><p>当 1≤i≤n−1 时，leftMax[i]&#x3D;max⁡(leftMax[i−1],height[i])；</p>
+</li>
+<li><p>当 0≤i≤n−2 时，rightMax[i]&#x3D;max⁡(rightMax[i+1],height[i])。</p>
+</li>
+</ul>
+<p>因此可以正向遍历数组 height 得到数组 leftMax 的每个元素值，反向遍历数组 height 得到数组 rightMax 的每个元素值。</p>
+<p>在得到数组 leftMax 和 rightMax 的每个元素值之后，对于 0≤i&lt;n，下标 i 处能接的雨水量等于 min⁡(leftMax[i],rightMax[i])−height[i]。遍历每个下标位置即可得到能接的雨水总量。</p>
+<p>动态规划做法可以由下图体现。</p>
+<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240305140032638.png" alt="image-20240305140032638"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int n = height.size();</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;int&gt; leftMax(n);</span><br><span class="line">        leftMax[0] = height[0];</span><br><span class="line">        for (int i = 1; i &lt; n; ++i) &#123;</span><br><span class="line">            leftMax[i] = max(leftMax[i - 1], height[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vector&lt;int&gt; rightMax(n);</span><br><span class="line">        rightMax[n - 1] = height[n - 1];</span><br><span class="line">        for (int i = n - 2; i &gt;= 0; --i) &#123;</span><br><span class="line">            rightMax[i] = max(rightMax[i + 1], height[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int ans = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            ans += min(leftMax[i], rightMax[i]) - height[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int trap(int[] height) &#123;</span><br><span class="line">        int n = height.length;</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int[] leftMax = new int[n];</span><br><span class="line">        leftMax[0] = height[0];</span><br><span class="line">        for (int i = 1; i &lt; n; ++i) &#123;</span><br><span class="line">            leftMax[i] = Math.max(leftMax[i - 1], height[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int[] rightMax = new int[n];</span><br><span class="line">        rightMax[n - 1] = height[n - 1];</span><br><span class="line">        for (int i = n - 2; i &gt;= 0; --i) &#123;</span><br><span class="line">            rightMax[i] = Math.max(rightMax[i + 1], height[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int ans = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            ans += Math.min(leftMax[i], rightMax[i]) - height[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是数组 height 的长度。计算数组 leftMax 和 rightMax 的元素值各需要遍历数组 height 一次，计算能接的雨水总量还需要遍历一次。</p>
+</li>
+<li><p>空间复杂度：O(n)，其中 n 是数组 height 的长度。需要创建两个长度为 n 的数组 leftMax 和 rightMax。</p>
+</li>
+</ul>
+<h3 id="（2）单调栈"><a href="#（2）单调栈" class="headerlink" title="（2）单调栈"></a>（2）单调栈</h3><p><strong>思路及算法</strong></p>
+<p>除了计算并存储每个位置两边的最大高度以外，也可以用单调栈计算能接的雨水总量。</p>
+<p>维护一个单调栈，单调栈存储的是下标，满足从栈底到栈顶的下标对应的数组 height 中的元素递减。</p>
+<p>从左到右遍历数组，遍历到下标 i 时，如果栈内至少有两个元素，记栈顶元素为 top，top 的下面一个元素是 left，则一定有 height[left]≥height[top]。如果 height[i]&gt;height[top]，则得到一个可以接雨水的区域，该区域的宽度是 i−left−1，高度是 min⁡(height[left],height[i])−height[top]，根据宽度和高度即可计算得到该区域能接的雨水量。</p>
+<p>为了得到 left，需要将 top 出栈。在对 top 计算能接的雨水量之后，left 变成新的 top，重复上述操作，直到栈变为空，或者栈顶下标对应的 height 中的元素大于或等于 height[i]。</p>
+<p>在对下标 i 处计算能接的雨水量之后，将 iii 入栈，继续遍历后面的下标，计算能接的雨水量。遍历结束之后即可得到能接的雨水总量。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        stack&lt;int&gt; stk;</span><br><span class="line">        int n = height.size();</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            while (!stk.empty() &amp;&amp; height[i] &gt; height[stk.top()]) &#123;</span><br><span class="line">                int top = stk.top();</span><br><span class="line">                stk.pop();</span><br><span class="line">                if (stk.empty()) &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                int left = stk.top();</span><br><span class="line">                int currWidth = i - left - 1;</span><br><span class="line">                int currHeight = min(height[left], height[i]) - height[top];</span><br><span class="line">                ans += currWidth * currHeight;</span><br><span class="line">            &#125;</span><br><span class="line">            stk.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int trap(int[] height) &#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        Deque&lt;Integer&gt; stack = new LinkedList&lt;Integer&gt;();</span><br><span class="line">        int n = height.length;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            while (!stack.isEmpty() &amp;&amp; height[i] &gt; height[stack.peek()]) &#123;</span><br><span class="line">                int top = stack.pop();</span><br><span class="line">                if (stack.isEmpty()) &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                int left = stack.peek();</span><br><span class="line">                int currWidth = i - left - 1;</span><br><span class="line">                int currHeight = Math.min(height[left], height[i]) - height[top];</span><br><span class="line">                ans += currWidth * currHeight;</span><br><span class="line">            &#125;</span><br><span class="line">            stack.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是数组 height 的长度。从 0 到 n−1 的每个下标最多只会入栈和出栈各一次。</p>
+</li>
+<li><p>空间复杂度：O(n)，其中 n 是数组 height 的长度。空间复杂度主要取决于栈空间，栈的大小不会超过 n。</p>
+</li>
+</ul>
+<h3 id="（3）双指针"><a href="#（3）双指针" class="headerlink" title="（3）双指针"></a>（3）双指针</h3><p><strong>思路及算法</strong></p>
+<p>动态规划的做法中，需要维护两个数组 leftMax 和 rightMax，因此空间复杂度是 O(n)。是否可以将空间复杂度降到 O(1)？</p>
+<p>注意到下标 iii 处能接的雨水量由 leftMax[i] 和 rightMax[i] 中的最小值决定。由于数组 leftMax 是从左往右计算，数组 rightMax 是从右往左计算，因此可以使用双指针和两个变量代替两个数组。</p>
+<p>维护两个指针 left 和 right，以及两个变量 leftMax 和 rightMax，初始时 left&#x3D;0,right&#x3D;n−1,leftMax&#x3D;0,rightMax&#x3D;0。指针 left 只会向右移动，指针 right 只会向左移动，在移动指针的过程中维护两个变量 leftMax 和 rightMax 的值。</p>
+<p>当两个指针没有相遇时，进行如下操作：</p>
+<p>使用 height[left] 和 height[right] 的值更新 leftMax 和 rightMax 的值；</p>
+<p>如果 height[left]&lt;height[right]，则必有 leftMax&lt;rightMax，下标 left 处能接的雨水量等于 leftMax−height[left]，将下标 left 处能接的雨水量加到能接的雨水总量，然后将 left 加 1（即向右移动一位）；</p>
+<p>如果 height[left]≥height[right]，则必有 leftMax≥rightMax，下标 right 处能接的雨水量等于 rightMax−height[right]，将下标 right 处能接的雨水量加到能接的雨水总量，然后将 right 减 1（即向左移动一位）。</p>
+<p>当两个指针相遇时，即可得到能接的雨水总量。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        int left = 0, right = height.size() - 1;</span><br><span class="line">        int leftMax = 0, rightMax = 0;</span><br><span class="line">        while (left &lt; right) &#123;</span><br><span class="line">            leftMax = max(leftMax, height[left]);</span><br><span class="line">            rightMax = max(rightMax, height[right]);</span><br><span class="line">            if (height[left] &lt; height[right]) &#123;</span><br><span class="line">                ans += leftMax - height[left];</span><br><span class="line">                ++left;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                ans += rightMax - height[right];</span><br><span class="line">                --right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int trap(int[] height) &#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        int left = 0, right = height.length - 1;</span><br><span class="line">        int leftMax = 0, rightMax = 0;</span><br><span class="line">        while (left &lt; right) &#123;</span><br><span class="line">            leftMax = Math.max(leftMax, height[left]);</span><br><span class="line">            rightMax = Math.max(rightMax, height[right]);</span><br><span class="line">            if (height[left] &lt; height[right]) &#123;</span><br><span class="line">                ans += leftMax - height[left];</span><br><span class="line">                ++left;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                ans += rightMax - height[right];</span><br><span class="line">                --right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是数组 height 的长度。两个指针的移动总次数不超过 n。</p>
+</li>
+<li><p>空间复杂度：O(1)。只需要使用常数的额外空间。</p>
 </li>
 </ul>
 ]]></content>
@@ -1355,51 +1355,6 @@
       </tags>
   </entry>
   <entry>
-    <title>赎金信</title>
-    <url>/2024/02/14/%E8%B5%8E%E9%87%91%E4%BF%A1/</url>
-    <content><![CDATA[<h1 id="赎金信"><a href="#赎金信" class="headerlink" title="赎金信"></a>赎金信</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你两个字符串：<code>ransomNote</code> 和 <code>magazine</code> ，判断 <code>ransomNote</code> 能不能由 <code>magazine</code> 里面的字符构成。</p>
-<p>如果可以，返回 <code>true</code> ；否则返回 <code>false</code> 。</p>
-<p><code>magazine</code> 中的每个字符只能在 <code>ransomNote</code> 中使用一次。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：ransomNote = &quot;a&quot;, magazine = &quot;b&quot;</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：ransomNote = &quot;aa&quot;, magazine = &quot;ab&quot;</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：ransomNote = &quot;aa&quot;, magazine = &quot;aab&quot;</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= ransomNote.length, magazine.length &lt;= 105</code></li>
-<li><code>ransomNote</code> 和 <code>magazine</code> 由小写英文字母组成</li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="字符统计法"><a href="#字符统计法" class="headerlink" title="字符统计法"></a>字符统计法</h3><p><strong>思路及算法</strong></p>
-<p>题目要求使用字符串magazine中的字符来构建新的字符串ransomNote，且ransomNote中的每个字符只能使用一次，只需要满足字符串magazine中的每个英文字母(’a’-’z’)的统计次数都大于等于ransomNote中相同字母的统计次数即可。</p>
-<ul>
-<li>如果字符串magazine的长度小于字符串ransomNote的长度，则我们可以肯定magazine无法构成ransomNote，此时直接返回 false。</li>
-<li>首先统计magazine中每个英文字母a的次数cnt[a]，再遍历统计ransomNote中每个英文字母的次数，如果发现ransomNote中存在某个英文字母c的统计次数大于magazine中该字母统计次数cnt[c]，则此时我们直接返回false。</li>
-</ul>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool canConstruct(string ransomNote, string magazine) &#123;</span><br><span class="line">        if (ransomNote.size() &gt; magazine.size()) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;int&gt; cnt(26);</span><br><span class="line">        for (auto &amp; c : magazine) &#123;</span><br><span class="line">            cnt[c - &#x27;a&#x27;]++;</span><br><span class="line">        &#125;</span><br><span class="line">        for (auto &amp; c : ransomNote) &#123;</span><br><span class="line">            cnt[c - &#x27;a&#x27;]--;</span><br><span class="line">            if (cnt[c - &#x27;a&#x27;] &lt; 0) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public boolean canConstruct(String ransomNote, String magazine) &#123;</span><br><span class="line">        if (ransomNote.length() &gt; magazine.length()) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        int[] cnt = new int[26];</span><br><span class="line">        for (char c : magazine.toCharArray()) &#123;</span><br><span class="line">            cnt[c - &#x27;a&#x27;]++;</span><br><span class="line">        &#125;</span><br><span class="line">        for (char c : ransomNote.toCharArray()) &#123;</span><br><span class="line">            cnt[c - &#x27;a&#x27;]--;</span><br><span class="line">            if(cnt[c - &#x27;a&#x27;] &lt; 0) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(m+n)，其中 m 是字符串 ransomNote 的长度，n 是字符串 magazine 的长度，我们只需要遍历两个字符一次即可。</p>
-</li>
-<li><p>空间复杂度：O(∣S∣)，S 是字符集，这道题中 S 为全部小写英语字母，因此 ∣S∣&#x3D;26。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>学习</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>维修数据库有感</title>
     <url>/2024/03/05/%E7%BB%B4%E4%BF%AE%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%89%E6%84%9F/</url>
     <content><![CDATA[<h1 id="维修数据库有感"><a href="#维修数据库有感" class="headerlink" title="维修数据库有感"></a>维修数据库有感</h1><h2 id="MySQL报错：2002-Can‘t-connect-to-server-on-‘localhost‘-10061"><a href="#MySQL报错：2002-Can‘t-connect-to-server-on-‘localhost‘-10061" class="headerlink" title="MySQL报错：2002 - Can‘t connect to server on ‘localhost‘(10061)"></a>MySQL报错：2002 - Can‘t connect to server on ‘localhost‘(10061)</h2><p>今天上午，我在Navicat连接数据库的时候发现报错<strong>“2002 - Can‘t connect to server on ‘localhost‘(10061)”</strong>，一开始我照CSDN的方法在计算机管理的服务中找到MYSQL并点击启动，结果还是运行不了。同时我也发现即使我输入了正确的数据库登陆密码也会报错<strong>“Can‘t connect to server on ‘localhost‘(10061)”</strong>，所以就需要下面的方法来解决这个问题。</p>
@@ -1432,54 +1387,6 @@
 ]]></content>
       <tags>
         <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>跳跃游戏I</title>
-    <url>/2024/02/29/%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8FI/</url>
-    <content><![CDATA[<h1 id="跳跃游戏I"><a href="#跳跃游戏I" class="headerlink" title="跳跃游戏I"></a>跳跃游戏I</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个非负整数数组 <code>nums</code> ，你最初位于数组的 <strong>第一个下标</strong> 。数组中的每个元素代表你在该位置可以跳跃的最大长度。</p>
-<p>判断你是否能够到达最后一个下标，如果可以，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [2,3,1,1,4]</span><br><span class="line">输出：true</span><br><span class="line">解释：可以先跳 1 步，从下标 0 到达下标 1, 然后再从下标 1 跳 3 步到达最后一个下标。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [3,2,1,0,4]</span><br><span class="line">输出：false</span><br><span class="line">解释：无论怎样，总会到达下标为 3 的位置。但该下标的最大跳跃长度是 0 ， 所以永远不可能到达最后一个下标。</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= nums.length &lt;= 104</code></li>
-<li><code>0 &lt;= nums[i] &lt;= 105</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="贪心法"><a href="#贪心法" class="headerlink" title="贪心法"></a>贪心法</h3><p><strong>思路及算法</strong></p>
-<p>设想一下，对于数组中的任意一个位置 <code>y</code>，我们如何判断它是否可以到达？根据题目的描述，只要存在一个位置 <code>x</code>，它本身可以到达，并且它跳跃的最大长度为 <code>x+nums[x]</code>，这个值大于等于 <code>y</code>，即 <code>x+nums[x]≥y</code>，那么位置 <code>y</code> 也可以到达。</p>
-<p>换句话说，对于每一个可以到达的位置 <code>x</code>，它使得 <code>x+1,x+2,⋯ ,x+nums[x]</code> 这些连续的位置都可以到达。</p>
-<p>这样以来，我们依次遍历数组中的每一个位置，并实时维护 最远可以到达的位置。对于当前遍历到的位置 <code>x</code>，如果它在 最远可以到达的位置 的范围内，那么我们就可以从起点通过若干次跳跃到达该位置，因此我们可以用<code> x+nums[x]</code> 更新 最远可以到达的位置。</p>
-<p>在遍历的过程中，如果 最远可以到达的位置 大于等于数组中的最后一个位置，那就说明最后一个位置可达，我们就可以直接返回 <code>True</code> 作为答案。反之，如果在遍历结束后，最后一个位置仍然不可达，我们就返回 <code>False</code> 作为答案。</p>
-<p>以题目中的示例一</p>
-<p><code>[2, 3, 1, 1, 4]</code><br>为例：</p>
-<p>我们一开始在位置 0，可以跳跃的最大长度为 2，因此最远可以到达的位置被更新为 2；</p>
-<p>我们遍历到位置 1，由于 1≤2，因此位置 1 可达。我们用 1 加上它可以跳跃的最大长度 3，将最远可以到达的位置更新为 4。由于 4 大于等于最后一个位置 4，因此我们直接返回 <code>True</code>。</p>
-<p>我们再来看看题目中的示例二</p>
-<p><code>[3, 2, 1, 0, 4]</code><br>我们一开始在位置 0，可以跳跃的最大长度为 3，因此最远可以到达的位置被更新为 3；</p>
-<p>我们遍历到位置 1，由于 1≤3，因此位置 1 可达，加上它可以跳跃的最大长度 2 得到 3，没有超过最远可以到达的位置；</p>
-<p>位置 2、位置 3 同理，最远可以到达的位置不会被更新；</p>
-<p>我们遍历到位置 4，由于 4&gt;3，因此位置 4 不可达，我们也就不考虑它可以跳跃的最大长度了。</p>
-<p>在遍历完成之后，位置 4 仍然不可达，因此我们返回 <code>False</code>。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool canJump(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        int rightmost = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            if (i &lt;= rightmost) &#123;</span><br><span class="line">                rightmost = max(rightmost, i + nums[i]);</span><br><span class="line">                if (rightmost &gt;= n - 1) &#123;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public boolean canJump(int[] nums) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        int rightmost = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            if (i &lt;= rightmost) &#123;</span><br><span class="line">                rightmost = Math.max(rightmost, i + nums[i]);</span><br><span class="line">                if (rightmost &gt;= n - 1) &#123;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 为数组的大小。只需要访问 nums 数组一遍，共 n 个位置。</p>
-</li>
-<li><p>空间复杂度：O(1)，不需要额外的空间开销。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>学习</tag>
       </tags>
   </entry>
   <entry>
@@ -1543,36 +1450,92 @@
       </tags>
   </entry>
   <entry>
-    <title>除自身以外数组的乘积</title>
-    <url>/2024/02/23/%E9%99%A4%E8%87%AA%E8%BA%AB%E4%BB%A5%E5%A4%96%E6%95%B0%E7%BB%84%E7%9A%84%E4%B9%98%E7%A7%AF/</url>
-    <content><![CDATA[<h1 id="除自身以外数组的乘积"><a href="#除自身以外数组的乘积" class="headerlink" title="除自身以外数组的乘积"></a>除自身以外数组的乘积</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h2><p>给你一个整数数组 <code>nums</code>，返回 <em>数组 <code>answer</code> ，其中 <code>answer[i]</code> 等于 <code>nums</code> 中除 <code>nums[i]</code> 之外其余各元素的乘积</em> 。</p>
-<p>题目数据 <strong>保证</strong> 数组 <code>nums</code>之中任意元素的全部前缀元素和后缀的乘积都在 <strong>32 位</strong> 整数范围内。</p>
-<p>请 <strong>不要使用除法，</strong>且在 <code>O(*n*)</code> 时间复杂度内完成此题。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: nums = [1,2,3,4]</span><br><span class="line">输出: [24,12,8,6]</span><br></pre></td></tr></table></figure>
+    <title>赎金信</title>
+    <url>/2024/02/14/%E8%B5%8E%E9%87%91%E4%BF%A1/</url>
+    <content><![CDATA[<h1 id="赎金信"><a href="#赎金信" class="headerlink" title="赎金信"></a>赎金信</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你两个字符串：<code>ransomNote</code> 和 <code>magazine</code> ，判断 <code>ransomNote</code> 能不能由 <code>magazine</code> 里面的字符构成。</p>
+<p>如果可以，返回 <code>true</code> ；否则返回 <code>false</code> 。</p>
+<p><code>magazine</code> 中的每个字符只能在 <code>ransomNote</code> 中使用一次。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：ransomNote = &quot;a&quot;, magazine = &quot;b&quot;</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
 
-<p><strong>示例 2:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: nums = [-1,1,0,-3,3]</span><br><span class="line">输出: [0,0,9,0,0]</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：ransomNote = &quot;aa&quot;, magazine = &quot;ab&quot;</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：ransomNote = &quot;aa&quot;, magazine = &quot;aab&quot;</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
 
 <p><strong>提示：</strong></p>
 <ul>
-<li><code>2 &lt;= nums.length &lt;= 105</code></li>
-<li><code>-30 &lt;= nums[i] &lt;= 30</code></li>
-<li><strong>保证</strong> 数组 <code>nums</code>之中任意元素的全部前缀元素和后缀的乘积都在 <strong>32 位</strong> 整数范围内</li>
+<li><code>1 &lt;= ransomNote.length, magazine.length &lt;= 105</code></li>
+<li><code>ransomNote</code> 和 <code>magazine</code> 由小写英文字母组成</li>
 </ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="左右乘积列表"><a href="#左右乘积列表" class="headerlink" title="左右乘积列表"></a>左右乘积列表</h3><p><strong>思路及算法</strong></p>
-<p>我们不必将所有数字的乘积除以给定索引处的数字得到相应的答案，而是利用索引左侧所有数字的乘积和右侧所有数字的乘积（即前缀与后缀）相乘得到答案。</p>
-<p>对于给定索引 iii，我们将使用它左边所有数字的乘积乘以右边所有数字的乘积。下面让我们更加具体的描述这个算法。</p>
-<p>1.初始化两个空数组 L 和 R。对于给定索引 i，L[i] 代表的是 i 左侧所有数字的乘积，R[i] 代表的是 i 右侧所有数字的乘积。<br>2.我们需要用两个循环来填充 L 和 R 数组的值。对于数组 L，L[0] 应该是 1，因为第一个元素的左边没有元素。对于其他元素：L[i] &#x3D; L[i-1] * nums[i-1]。<br>3.同理，对于数组 R，R[length-1] 应为 1。length 指的是输入数组的大小。其他元素：R[i] &#x3D; R[i+1] * nums[i+1]。<br>4.当 R 和 L 数组填充完成，我们只需要在输入数组上迭代，且索引 i 处的值为：L[i] * R[i]。</p>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="字符统计法"><a href="#字符统计法" class="headerlink" title="字符统计法"></a>字符统计法</h3><p><strong>思路及算法</strong></p>
+<p>题目要求使用字符串magazine中的字符来构建新的字符串ransomNote，且ransomNote中的每个字符只能使用一次，只需要满足字符串magazine中的每个英文字母(’a’-’z’)的统计次数都大于等于ransomNote中相同字母的统计次数即可。</p>
+<ul>
+<li>如果字符串magazine的长度小于字符串ransomNote的长度，则我们可以肯定magazine无法构成ransomNote，此时直接返回 false。</li>
+<li>首先统计magazine中每个英文字母a的次数cnt[a]，再遍历统计ransomNote中每个英文字母的次数，如果发现ransomNote中存在某个英文字母c的统计次数大于magazine中该字母统计次数cnt[c]，则此时我们直接返回false。</li>
+</ul>
 <p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; productExceptSelf(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int length = nums.size();</span><br><span class="line"></span><br><span class="line">        // L 和 R 分别表示左右两侧的乘积列表</span><br><span class="line">        vector&lt;int&gt; L(length, 0), R(length, 0);</span><br><span class="line"></span><br><span class="line">        vector&lt;int&gt; answer(length);</span><br><span class="line"></span><br><span class="line">        // L[i] 为索引 i 左侧所有元素的乘积</span><br><span class="line">        // 对于索引为 &#x27;0&#x27; 的元素，因为左侧没有元素，所以 L[0] = 1</span><br><span class="line">        L[0] = 1;</span><br><span class="line">        for (int i = 1; i &lt; length; i++) &#123;</span><br><span class="line">            L[i] = nums[i - 1] * L[i - 1];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // R[i] 为索引 i 右侧所有元素的乘积</span><br><span class="line">        // 对于索引为 &#x27;length-1&#x27; 的元素，因为右侧没有元素，所以 R[length-1] = 1</span><br><span class="line">        R[length - 1] = 1;</span><br><span class="line">        for (int i = length - 2; i &gt;= 0; i--) &#123;</span><br><span class="line">            R[i] = nums[i + 1] * R[i + 1];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 对于索引 i，除 nums[i] 之外其余各元素的乘积就是左侧所有元素的乘积乘以右侧所有元素的乘积</span><br><span class="line">        for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">            answer[i] = L[i] * R[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return answer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool canConstruct(string ransomNote, string magazine) &#123;</span><br><span class="line">        if (ransomNote.size() &gt; magazine.size()) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;int&gt; cnt(26);</span><br><span class="line">        for (auto &amp; c : magazine) &#123;</span><br><span class="line">            cnt[c - &#x27;a&#x27;]++;</span><br><span class="line">        &#125;</span><br><span class="line">        for (auto &amp; c : ransomNote) &#123;</span><br><span class="line">            cnt[c - &#x27;a&#x27;]--;</span><br><span class="line">            if (cnt[c - &#x27;a&#x27;] &lt; 0) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int[] productExceptSelf(int[] nums) &#123;</span><br><span class="line">        int length = nums.length;</span><br><span class="line"></span><br><span class="line">        // L 和 R 分别表示左右两侧的乘积列表</span><br><span class="line">        int[] L = new int[length];</span><br><span class="line">        int[] R = new int[length];</span><br><span class="line"></span><br><span class="line">        int[] answer = new int[length];</span><br><span class="line"></span><br><span class="line">        // L[i] 为索引 i 左侧所有元素的乘积</span><br><span class="line">        // 对于索引为 &#x27;0&#x27; 的元素，因为左侧没有元素，所以 L[0] = 1</span><br><span class="line">        L[0] = 1;</span><br><span class="line">        for (int i = 1; i &lt; length; i++) &#123;</span><br><span class="line">            L[i] = nums[i - 1] * L[i - 1];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // R[i] 为索引 i 右侧所有元素的乘积</span><br><span class="line">        // 对于索引为 &#x27;length-1&#x27; 的元素，因为右侧没有元素，所以 R[length-1] = 1</span><br><span class="line">        R[length - 1] = 1;</span><br><span class="line">        for (int i = length - 2; i &gt;= 0; i--) &#123;</span><br><span class="line">            R[i] = nums[i + 1] * R[i + 1];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 对于索引 i，除 nums[i] 之外其余各元素的乘积就是左侧所有元素的乘积乘以右侧所有元素的乘积</span><br><span class="line">        for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">            answer[i] = L[i] * R[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return answer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public boolean canConstruct(String ransomNote, String magazine) &#123;</span><br><span class="line">        if (ransomNote.length() &gt; magazine.length()) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        int[] cnt = new int[26];</span><br><span class="line">        for (char c : magazine.toCharArray()) &#123;</span><br><span class="line">            cnt[c - &#x27;a&#x27;]++;</span><br><span class="line">        &#125;</span><br><span class="line">        for (char c : ransomNote.toCharArray()) &#123;</span><br><span class="line">            cnt[c - &#x27;a&#x27;]--;</span><br><span class="line">            if(cnt[c - &#x27;a&#x27;] &lt; 0) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：O(N)，其中 N 指的是数组 nums 的大小。预处理 L 和 R 数组以及最后的遍历计算都是 O(N) 的时间复杂度。</li>
-<li>空间复杂度：O(N)，其中 N 指的是数组 nums 的大小。使用了 L 和 R 数组去构造答案，L 和 R 数组的长度为数组 nums 的大小。</li>
+<li><p>时间复杂度：O(m+n)，其中 m 是字符串 ransomNote 的长度，n 是字符串 magazine 的长度，我们只需要遍历两个字符一次即可。</p>
+</li>
+<li><p>空间复杂度：O(∣S∣)，S 是字符集，这道题中 S 为全部小写英语字母，因此 ∣S∣&#x3D;26。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>跳跃游戏I</title>
+    <url>/2024/02/29/%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8FI/</url>
+    <content><![CDATA[<h1 id="跳跃游戏I"><a href="#跳跃游戏I" class="headerlink" title="跳跃游戏I"></a>跳跃游戏I</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个非负整数数组 <code>nums</code> ，你最初位于数组的 <strong>第一个下标</strong> 。数组中的每个元素代表你在该位置可以跳跃的最大长度。</p>
+<p>判断你是否能够到达最后一个下标，如果可以，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [2,3,1,1,4]</span><br><span class="line">输出：true</span><br><span class="line">解释：可以先跳 1 步，从下标 0 到达下标 1, 然后再从下标 1 跳 3 步到达最后一个下标。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：nums = [3,2,1,0,4]</span><br><span class="line">输出：false</span><br><span class="line">解释：无论怎样，总会到达下标为 3 的位置。但该下标的最大跳跃长度是 0 ， 所以永远不可能到达最后一个下标。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 104</code></li>
+<li><code>0 &lt;= nums[i] &lt;= 105</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="贪心法"><a href="#贪心法" class="headerlink" title="贪心法"></a>贪心法</h3><p><strong>思路及算法</strong></p>
+<p>设想一下，对于数组中的任意一个位置 <code>y</code>，我们如何判断它是否可以到达？根据题目的描述，只要存在一个位置 <code>x</code>，它本身可以到达，并且它跳跃的最大长度为 <code>x+nums[x]</code>，这个值大于等于 <code>y</code>，即 <code>x+nums[x]≥y</code>，那么位置 <code>y</code> 也可以到达。</p>
+<p>换句话说，对于每一个可以到达的位置 <code>x</code>，它使得 <code>x+1,x+2,⋯ ,x+nums[x]</code> 这些连续的位置都可以到达。</p>
+<p>这样以来，我们依次遍历数组中的每一个位置，并实时维护 最远可以到达的位置。对于当前遍历到的位置 <code>x</code>，如果它在 最远可以到达的位置 的范围内，那么我们就可以从起点通过若干次跳跃到达该位置，因此我们可以用<code> x+nums[x]</code> 更新 最远可以到达的位置。</p>
+<p>在遍历的过程中，如果 最远可以到达的位置 大于等于数组中的最后一个位置，那就说明最后一个位置可达，我们就可以直接返回 <code>True</code> 作为答案。反之，如果在遍历结束后，最后一个位置仍然不可达，我们就返回 <code>False</code> 作为答案。</p>
+<p>以题目中的示例一</p>
+<p><code>[2, 3, 1, 1, 4]</code><br>为例：</p>
+<p>我们一开始在位置 0，可以跳跃的最大长度为 2，因此最远可以到达的位置被更新为 2；</p>
+<p>我们遍历到位置 1，由于 1≤2，因此位置 1 可达。我们用 1 加上它可以跳跃的最大长度 3，将最远可以到达的位置更新为 4。由于 4 大于等于最后一个位置 4，因此我们直接返回 <code>True</code>。</p>
+<p>我们再来看看题目中的示例二</p>
+<p><code>[3, 2, 1, 0, 4]</code><br>我们一开始在位置 0，可以跳跃的最大长度为 3，因此最远可以到达的位置被更新为 3；</p>
+<p>我们遍历到位置 1，由于 1≤3，因此位置 1 可达，加上它可以跳跃的最大长度 2 得到 3，没有超过最远可以到达的位置；</p>
+<p>位置 2、位置 3 同理，最远可以到达的位置不会被更新；</p>
+<p>我们遍历到位置 4，由于 4&gt;3，因此位置 4 不可达，我们也就不考虑它可以跳跃的最大长度了。</p>
+<p>在遍历完成之后，位置 4 仍然不可达，因此我们返回 <code>False</code>。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool canJump(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        int rightmost = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            if (i &lt;= rightmost) &#123;</span><br><span class="line">                rightmost = max(rightmost, i + nums[i]);</span><br><span class="line">                if (rightmost &gt;= n - 1) &#123;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public boolean canJump(int[] nums) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        int rightmost = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            if (i &lt;= rightmost) &#123;</span><br><span class="line">                rightmost = Math.max(rightmost, i + nums[i]);</span><br><span class="line">                if (rightmost &gt;= n - 1) &#123;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 为数组的大小。只需要访问 nums 数组一遍，共 n 个位置。</p>
+</li>
+<li><p>空间复杂度：O(1)，不需要额外的空间开销。</p>
+</li>
 </ul>
 ]]></content>
       <tags>
@@ -1631,6 +1594,43 @@
 <ul>
 <li>时间复杂度：O(n)，其中 n 是数组长度。</li>
 <li>空间复杂度：O(1)。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>除自身以外数组的乘积</title>
+    <url>/2024/02/23/%E9%99%A4%E8%87%AA%E8%BA%AB%E4%BB%A5%E5%A4%96%E6%95%B0%E7%BB%84%E7%9A%84%E4%B9%98%E7%A7%AF/</url>
+    <content><![CDATA[<h1 id="除自身以外数组的乘积"><a href="#除自身以外数组的乘积" class="headerlink" title="除自身以外数组的乘积"></a>除自身以外数组的乘积</h1><h2 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1.题目描述"></a>1.题目描述</h2><p>给你一个整数数组 <code>nums</code>，返回 <em>数组 <code>answer</code> ，其中 <code>answer[i]</code> 等于 <code>nums</code> 中除 <code>nums[i]</code> 之外其余各元素的乘积</em> 。</p>
+<p>题目数据 <strong>保证</strong> 数组 <code>nums</code>之中任意元素的全部前缀元素和后缀的乘积都在 <strong>32 位</strong> 整数范围内。</p>
+<p>请 <strong>不要使用除法，</strong>且在 <code>O(*n*)</code> 时间复杂度内完成此题。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: nums = [1,2,3,4]</span><br><span class="line">输出: [24,12,8,6]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: nums = [-1,1,0,-3,3]</span><br><span class="line">输出: [0,0,9,0,0]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>2 &lt;= nums.length &lt;= 105</code></li>
+<li><code>-30 &lt;= nums[i] &lt;= 30</code></li>
+<li><strong>保证</strong> 数组 <code>nums</code>之中任意元素的全部前缀元素和后缀的乘积都在 <strong>32 位</strong> 整数范围内</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="左右乘积列表"><a href="#左右乘积列表" class="headerlink" title="左右乘积列表"></a>左右乘积列表</h3><p><strong>思路及算法</strong></p>
+<p>我们不必将所有数字的乘积除以给定索引处的数字得到相应的答案，而是利用索引左侧所有数字的乘积和右侧所有数字的乘积（即前缀与后缀）相乘得到答案。</p>
+<p>对于给定索引 iii，我们将使用它左边所有数字的乘积乘以右边所有数字的乘积。下面让我们更加具体的描述这个算法。</p>
+<p>1.初始化两个空数组 L 和 R。对于给定索引 i，L[i] 代表的是 i 左侧所有数字的乘积，R[i] 代表的是 i 右侧所有数字的乘积。<br>2.我们需要用两个循环来填充 L 和 R 数组的值。对于数组 L，L[0] 应该是 1，因为第一个元素的左边没有元素。对于其他元素：L[i] &#x3D; L[i-1] * nums[i-1]。<br>3.同理，对于数组 R，R[length-1] 应为 1。length 指的是输入数组的大小。其他元素：R[i] &#x3D; R[i+1] * nums[i+1]。<br>4.当 R 和 L 数组填充完成，我们只需要在输入数组上迭代，且索引 i 处的值为：L[i] * R[i]。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; productExceptSelf(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int length = nums.size();</span><br><span class="line"></span><br><span class="line">        // L 和 R 分别表示左右两侧的乘积列表</span><br><span class="line">        vector&lt;int&gt; L(length, 0), R(length, 0);</span><br><span class="line"></span><br><span class="line">        vector&lt;int&gt; answer(length);</span><br><span class="line"></span><br><span class="line">        // L[i] 为索引 i 左侧所有元素的乘积</span><br><span class="line">        // 对于索引为 &#x27;0&#x27; 的元素，因为左侧没有元素，所以 L[0] = 1</span><br><span class="line">        L[0] = 1;</span><br><span class="line">        for (int i = 1; i &lt; length; i++) &#123;</span><br><span class="line">            L[i] = nums[i - 1] * L[i - 1];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // R[i] 为索引 i 右侧所有元素的乘积</span><br><span class="line">        // 对于索引为 &#x27;length-1&#x27; 的元素，因为右侧没有元素，所以 R[length-1] = 1</span><br><span class="line">        R[length - 1] = 1;</span><br><span class="line">        for (int i = length - 2; i &gt;= 0; i--) &#123;</span><br><span class="line">            R[i] = nums[i + 1] * R[i + 1];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 对于索引 i，除 nums[i] 之外其余各元素的乘积就是左侧所有元素的乘积乘以右侧所有元素的乘积</span><br><span class="line">        for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">            answer[i] = L[i] * R[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return answer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int[] productExceptSelf(int[] nums) &#123;</span><br><span class="line">        int length = nums.length;</span><br><span class="line"></span><br><span class="line">        // L 和 R 分别表示左右两侧的乘积列表</span><br><span class="line">        int[] L = new int[length];</span><br><span class="line">        int[] R = new int[length];</span><br><span class="line"></span><br><span class="line">        int[] answer = new int[length];</span><br><span class="line"></span><br><span class="line">        // L[i] 为索引 i 左侧所有元素的乘积</span><br><span class="line">        // 对于索引为 &#x27;0&#x27; 的元素，因为左侧没有元素，所以 L[0] = 1</span><br><span class="line">        L[0] = 1;</span><br><span class="line">        for (int i = 1; i &lt; length; i++) &#123;</span><br><span class="line">            L[i] = nums[i - 1] * L[i - 1];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // R[i] 为索引 i 右侧所有元素的乘积</span><br><span class="line">        // 对于索引为 &#x27;length-1&#x27; 的元素，因为右侧没有元素，所以 R[length-1] = 1</span><br><span class="line">        R[length - 1] = 1;</span><br><span class="line">        for (int i = length - 2; i &gt;= 0; i--) &#123;</span><br><span class="line">            R[i] = nums[i + 1] * R[i + 1];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 对于索引 i，除 nums[i] 之外其余各元素的乘积就是左侧所有元素的乘积乘以右侧所有元素的乘积</span><br><span class="line">        for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">            answer[i] = L[i] * R[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return answer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(N)，其中 N 指的是数组 nums 的大小。预处理 L 和 R 数组以及最后的遍历计算都是 O(N) 的时间复杂度。</li>
+<li>空间复杂度：O(N)，其中 N 指的是数组 nums 的大小。使用了 L 和 R 数组去构造答案，L 和 R 数组的长度为数组 nums 的大小。</li>
 </ul>
 ]]></content>
       <tags>
