@@ -74,7 +74,7 @@
 <p>给你一个整数 <code>n</code> ，返回所有不同的 <strong>n 皇后问题</strong> 的解决方案。</p>
 <p>每一种解法包含一个不同的 <strong>n 皇后问题</strong> 的棋子放置方案，该方案中 <code>&#39;Q&#39;</code> 和 <code>&#39;.&#39;</code> 分别代表了皇后和空位。</p>
 <p><strong>示例 1：</strong></p>
-<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240303130938085.png" alt="image-20240303130938085"></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/11/13/queens.jpg" alt="img"></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：n = 4</span><br><span class="line">输出：[[&quot;.Q..&quot;,&quot;...Q&quot;,&quot;Q...&quot;,&quot;..Q.&quot;],[&quot;..Q.&quot;,&quot;Q...&quot;,&quot;...Q&quot;,&quot;.Q..&quot;]]</span><br><span class="line">解释：如上图所示，4 皇后问题存在两个不同的解法。</span><br></pre></td></tr></table></figure>
 
 <p><strong>示例 2：</strong></p>
@@ -97,9 +97,9 @@
 <p>列的表示法很直观，一共有 N 列，每一列的下标范围从 0 到 N−1，使用列的下标即可明确表示每一列。</p>
 <p>如何表示两个方向的斜线呢？对于每个方向的斜线，需要找到斜线上的每个位置的行下标与列下标之间的关系。</p>
 <p>方向一的斜线为从左上到右下方向，同一条斜线上的每个位置满足行下标与列下标之差相等，例如 (0,0) 和 (3,3) 在同一条方向一的斜线上。因此使用行下标与列下标之差即可明确表示每一条方向一的斜线。</p>
-<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240303131708795.png" alt="image-20240303131708795"></p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/51/1.png" alt="fig1"></p>
 <p>方向二的斜线为从右上到左下方向，同一条斜线上的每个位置满足行下标与列下标之和相等，例如 (3,0) 和 (1,2) 在同一条方向二的斜线上。因此使用行下标与列下标之和即可明确表示每一条方向二的斜线。</p>
-<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240303132006277.png" alt="image-20240303132006277"></p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/51/2.png" alt="fig2"></p>
 <p>每次放置皇后时，对于每个位置判断其是否在三个集合中，如果三个集合都不包含当前位置，则当前位置是可以放置皇后的位置。</p>
 <p><strong>代码</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; solveNQueens(int n) &#123;</span><br><span class="line">        auto solutions = vector&lt;vector&lt;string&gt;&gt;();</span><br><span class="line">        auto queens = vector&lt;int&gt;(n, -1);</span><br><span class="line">        auto columns = unordered_set&lt;int&gt;();</span><br><span class="line">        auto diagonals1 = unordered_set&lt;int&gt;();</span><br><span class="line">        auto diagonals2 = unordered_set&lt;int&gt;();</span><br><span class="line">        backtrack(solutions, queens, n, 0, columns, diagonals1, diagonals2);</span><br><span class="line">        return solutions;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void backtrack(vector&lt;vector&lt;string&gt;&gt; &amp;solutions, vector&lt;int&gt; &amp;queens, int n, int row, unordered_set&lt;int&gt; &amp;columns, unordered_set&lt;int&gt; &amp;diagonals1, unordered_set&lt;int&gt; &amp;diagonals2) &#123;</span><br><span class="line">        if (row == n) &#123;</span><br><span class="line">            vector&lt;string&gt; board = generateBoard(queens, n);</span><br><span class="line">            solutions.push_back(board);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">                if (columns.find(i) != columns.end()) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                int diagonal1 = row - i;</span><br><span class="line">                if (diagonals1.find(diagonal1) != diagonals1.end()) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                int diagonal2 = row + i;</span><br><span class="line">                if (diagonals2.find(diagonal2) != diagonals2.end()) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                queens[row] = i;</span><br><span class="line">                columns.insert(i);</span><br><span class="line">                diagonals1.insert(diagonal1);</span><br><span class="line">                diagonals2.insert(diagonal2);</span><br><span class="line">                backtrack(solutions, queens, n, row + 1, columns, diagonals1, diagonals2);</span><br><span class="line">                queens[row] = -1;</span><br><span class="line">                columns.erase(i);</span><br><span class="line">                diagonals1.erase(diagonal1);</span><br><span class="line">                diagonals2.erase(diagonal2);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    vector&lt;string&gt; generateBoard(vector&lt;int&gt; &amp;queens, int n) &#123;</span><br><span class="line">        auto board = vector&lt;string&gt;();</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            string row = string(n, &#x27;.&#x27;);</span><br><span class="line">            row[queens[i]] = &#x27;Q&#x27;;</span><br><span class="line">            board.push_back(row);</span><br><span class="line">        &#125;</span><br><span class="line">        return board;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -1837,6 +1837,154 @@
 </li>
 <li><p>空间复杂度：O(1)。</p>
 </li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>整数转罗马数字</title>
+    <url>/2024/03/06/%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97/</url>
+    <content><![CDATA[<h1 id="整数转罗马数字"><a href="#整数转罗马数字" class="headerlink" title="整数转罗马数字"></a>整数转罗马数字</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>罗马数字包含以下七种字符： <code>I</code>， <code>V</code>， <code>X</code>， <code>L</code>，<code>C</code>，<code>D</code> 和 <code>M</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">字符          数值</span><br><span class="line">I             1</span><br><span class="line">V             5</span><br><span class="line">X             10</span><br><span class="line">L             50</span><br><span class="line">C             100</span><br><span class="line">D             500</span><br><span class="line">M             1000</span><br></pre></td></tr></table></figure>
+
+<p>例如， 罗马数字 2 写做 <code>II</code> ，即为两个并列的 1。12 写做 <code>XII</code> ，即为 <code>X</code> + <code>II</code> 。 27 写做 <code>XXVII</code>, 即为 <code>XX</code> + <code>V</code> + <code>II</code> 。</p>
+<p>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 <code>IIII</code>，而是 <code>IV</code>。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 <code>IX</code>。这个特殊的规则只适用于以下六种情况：</p>
+<ul>
+<li><code>I</code> 可以放在 <code>V</code> (5) 和 <code>X</code> (10) 的左边，来表示 4 和 9。</li>
+<li><code>X</code> 可以放在 <code>L</code> (50) 和 <code>C</code> (100) 的左边，来表示 40 和 90。 </li>
+<li><code>C</code> 可以放在 <code>D</code> (500) 和 <code>M</code> (1000) 的左边，来表示 400 和 900。</li>
+</ul>
+<p>给你一个整数，将其转为罗马数字。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: num = 3</span><br><span class="line">输出: &quot;III&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: num = 4</span><br><span class="line">输出: &quot;IV&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: num = 9</span><br><span class="line">输出: &quot;IX&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 4:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: num = 58</span><br><span class="line">输出: &quot;LVIII&quot;</span><br><span class="line">解释: L = 50, V = 5, III = 3.</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 5:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: num = 1994</span><br><span class="line">输出: &quot;MCMXCIV&quot;</span><br><span class="line">解释: M = 1000, CM = 900, XC = 90, IV = 4.</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= num &lt;= 3999</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><p><strong>罗马数字符号</strong></p>
+<p>罗马数字由 7 个不同的单字母符号组成，每个符号对应一个具体的数值。此外，减法规则（如问题描述中所述）给出了额外的 6 个复合符号。这给了我们总共 13 个独特的符号（每个符号由 1 个或 2 个字母组成），如下图所示。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/12/1.png" alt="fig1"></p>
+<p><strong>罗马数字的唯一标识法</strong></p>
+<p>让我们从一个例子入手。考虑 140 的罗马数字表示，下面哪一个是正确的？</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/12/2.png" alt="fig2"></p>
+<p>我们用来确定罗马数字的规则是：对于罗马数字从左到右的每一位，选择尽可能大的符号值。对于 140，最大可以选择的符号值为 C&#x3D;100。接下来，对于剩余的数字 40，最大可以选择的符号值为 XL&#x3D;40。因此，140140140 的对应的罗马数字为 C+XL&#x3D;CXL。</p>
+<h3 id="（1）模拟法"><a href="#（1）模拟法" class="headerlink" title="（1）模拟法"></a>（1）模拟法</h3><p><strong>思路及算法</strong></p>
+<p>根据罗马数字的唯一表示法，为了表示一个给定的整数 num，我们寻找不超过 num 的最大符号值，将 num 减去该符号值，然后继续寻找不超过 num 的最大符号值，将该符号拼接在上一个找到的符号之后，循环直至 num 为 0。最后得到的字符串即为 num 的罗马数字表示。</p>
+<p>编程时，可以建立一个数值-符号对的列表 valueSymbols，按数值从大到小排列。遍历 valueSymbols 中的每个数值-符号对，若当前数值 value 不超过 num，则从 num 中不断减去 value，直至 num 小于 value，然后遍历下一个数值-符号对。若遍历中 num 为 0 则跳出循环。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">const pair&lt;int, string&gt; valueSymbols[] = &#123;</span><br><span class="line">    &#123;1000, &quot;M&quot;&#125;,</span><br><span class="line">    &#123;900,  &quot;CM&quot;&#125;,</span><br><span class="line">    &#123;500,  &quot;D&quot;&#125;,</span><br><span class="line">    &#123;400,  &quot;CD&quot;&#125;,</span><br><span class="line">    &#123;100,  &quot;C&quot;&#125;,</span><br><span class="line">    &#123;90,   &quot;XC&quot;&#125;,</span><br><span class="line">    &#123;50,   &quot;L&quot;&#125;,</span><br><span class="line">    &#123;40,   &quot;XL&quot;&#125;,</span><br><span class="line">    &#123;10,   &quot;X&quot;&#125;,</span><br><span class="line">    &#123;9,    &quot;IX&quot;&#125;,</span><br><span class="line">    &#123;5,    &quot;V&quot;&#125;,</span><br><span class="line">    &#123;4,    &quot;IV&quot;&#125;,</span><br><span class="line">    &#123;1,    &quot;I&quot;&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    string intToRoman(int num) &#123;</span><br><span class="line">        string roman;</span><br><span class="line">        for (const auto &amp;[value, symbol] : valueSymbols) &#123;</span><br><span class="line">            while (num &gt;= value) &#123;</span><br><span class="line">                num -= value;</span><br><span class="line">                roman += symbol;</span><br><span class="line">            &#125;</span><br><span class="line">            if (num == 0) &#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return roman;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    int[] values = &#123;1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1&#125;;</span><br><span class="line">    String[] symbols = &#123;&quot;M&quot;, &quot;CM&quot;, &quot;D&quot;, &quot;CD&quot;, &quot;C&quot;, &quot;XC&quot;, &quot;L&quot;, &quot;XL&quot;, &quot;X&quot;, &quot;IX&quot;, &quot;V&quot;, &quot;IV&quot;, &quot;I&quot;&#125;;</span><br><span class="line"></span><br><span class="line">    public String intToRoman(int num) &#123;</span><br><span class="line">        StringBuffer roman = new StringBuffer();</span><br><span class="line">        for (int i = 0; i &lt; values.length; ++i) &#123;</span><br><span class="line">            int value = values[i];</span><br><span class="line">            String symbol = symbols[i];</span><br><span class="line">            while (num &gt;= value) &#123;</span><br><span class="line">                num -= value;</span><br><span class="line">                roman.append(symbol);</span><br><span class="line">            &#125;</span><br><span class="line">            if (num == 0) &#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return roman.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(1)。由于 valueSymbols 长度是固定的，且这 13 字符中的每个字符的出现次数均不会超过 3，因此循环次数有一个确定的上限。对于本题给出的数据范围，循环次数不会超过 15 次。</p>
+</li>
+<li><p>空间复杂度：O(1)。</p>
+</li>
+</ul>
+<h3 id="（2）硬编码数字"><a href="#（2）硬编码数字" class="headerlink" title="（2）硬编码数字"></a>（2）硬编码数字</h3><p><strong>思路及算法</strong></p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/12/1.png" alt="fig3"></p>
+<p>回顾前言中列出的这 13 个符号，可以发现：</p>
+<ul>
+<li>千位数字只能由 M 表示；</li>
+<li>百位数字只能由 C，CD，D 和 CM 表示；</li>
+<li>十位数字只能由 X，XL，L 和 XC 表示；</li>
+<li>个位数字只能由 I，IV，V 和 IX 表示。</li>
+</ul>
+<p>这恰好把这 13 个符号分为四组，且组与组之间没有公共的符号。因此，整数 num 的十进制表示中的每一个数字都是可以单独处理的。</p>
+<p>进一步地，我们可以计算出每个数字在每个位上的表示形式，整理成一张硬编码表。如下图所示，其中 000 对应的是空字符串。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/12/3.png" alt="fig4"></p>
+<p>利用模运算和除法运算，我们可以得到 num 每个位上的数字：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">thousands_digit = num / 1000</span><br><span class="line">hundreds_digit = (num % 1000) / 100</span><br><span class="line">tens_digit = (num % 100) / 10</span><br><span class="line">ones_digit = num % 10</span><br></pre></td></tr></table></figure>
+
+<p>最后，根据 num 每个位上的数字，在硬编码表中查找对应的罗马字符，并将结果拼接在一起，即为 num 对应的罗马数字。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">const string thousands[] = &#123;&quot;&quot;, &quot;M&quot;, &quot;MM&quot;, &quot;MMM&quot;&#125;;</span><br><span class="line">const string hundreds[]  = &#123;&quot;&quot;, &quot;C&quot;, &quot;CC&quot;, &quot;CCC&quot;, &quot;CD&quot;, &quot;D&quot;, &quot;DC&quot;, &quot;DCC&quot;, &quot;DCCC&quot;, &quot;CM&quot;&#125;;</span><br><span class="line">const string tens[]      = &#123;&quot;&quot;, &quot;X&quot;, &quot;XX&quot;, &quot;XXX&quot;, &quot;XL&quot;, &quot;L&quot;, &quot;LX&quot;, &quot;LXX&quot;, &quot;LXXX&quot;, &quot;XC&quot;&#125;;</span><br><span class="line">const string ones[]      = &#123;&quot;&quot;, &quot;I&quot;, &quot;II&quot;, &quot;III&quot;, &quot;IV&quot;, &quot;V&quot;, &quot;VI&quot;, &quot;VII&quot;, &quot;VIII&quot;, &quot;IX&quot;&#125;;</span><br><span class="line"></span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    string intToRoman(int num) &#123;</span><br><span class="line">        return thousands[num / 1000] + hundreds[num % 1000 / 100] + tens[num % 100 / 10] + ones[num % 10];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    String[] thousands = &#123;&quot;&quot;, &quot;M&quot;, &quot;MM&quot;, &quot;MMM&quot;&#125;;</span><br><span class="line">    String[] hundreds  = &#123;&quot;&quot;, &quot;C&quot;, &quot;CC&quot;, &quot;CCC&quot;, &quot;CD&quot;, &quot;D&quot;, &quot;DC&quot;, &quot;DCC&quot;, &quot;DCCC&quot;, &quot;CM&quot;&#125;;</span><br><span class="line">    String[] tens      = &#123;&quot;&quot;, &quot;X&quot;, &quot;XX&quot;, &quot;XXX&quot;, &quot;XL&quot;, &quot;L&quot;, &quot;LX&quot;, &quot;LXX&quot;, &quot;LXXX&quot;, &quot;XC&quot;&#125;;</span><br><span class="line">    String[] ones      = &#123;&quot;&quot;, &quot;I&quot;, &quot;II&quot;, &quot;III&quot;, &quot;IV&quot;, &quot;V&quot;, &quot;VI&quot;, &quot;VII&quot;, &quot;VIII&quot;, &quot;IX&quot;&#125;;</span><br><span class="line"></span><br><span class="line">    public String intToRoman(int num) &#123;</span><br><span class="line">        StringBuffer roman = new StringBuffer();</span><br><span class="line">        roman.append(thousands[num / 1000]);</span><br><span class="line">        roman.append(hundreds[num % 1000 / 100]);</span><br><span class="line">        roman.append(tens[num % 100 / 10]);</span><br><span class="line">        roman.append(ones[num % 10]);</span><br><span class="line">        return roman.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(1)。计算量与输入数字的大小无关。</li>
+<li>空间复杂度：O(1)。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>罗马数字转整数</title>
+    <url>/2024/03/06/%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="罗马数字转整数"><a href="#罗马数字转整数" class="headerlink" title="罗马数字转整数"></a>罗马数字转整数</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>罗马数字包含以下七种字符: <code>I</code>， <code>V</code>， <code>X</code>， <code>L</code>，<code>C</code>，<code>D</code> 和 <code>M</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">字符          数值</span><br><span class="line">I             1</span><br><span class="line">V             5</span><br><span class="line">X             10</span><br><span class="line">L             50</span><br><span class="line">C             100</span><br><span class="line">D             500</span><br><span class="line">M             1000</span><br></pre></td></tr></table></figure>
+
+<p>例如， 罗马数字 <code>2</code> 写做 <code>II</code> ，即为两个并列的 1 。<code>12</code> 写做 <code>XII</code> ，即为 <code>X</code> + <code>II</code> 。 <code>27</code> 写做 <code>XXVII</code>, 即为 <code>XX</code> + <code>V</code> + <code>II</code> 。</p>
+<p>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 <code>IIII</code>，而是 <code>IV</code>。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 <code>IX</code>。这个特殊的规则只适用于以下六种情况：</p>
+<ul>
+<li><code>I</code> 可以放在 <code>V</code> (5) 和 <code>X</code> (10) 的左边，来表示 4 和 9。</li>
+<li><code>X</code> 可以放在 <code>L</code> (50) 和 <code>C</code> (100) 的左边，来表示 40 和 90。 </li>
+<li><code>C</code> 可以放在 <code>D</code> (500) 和 <code>M</code> (1000) 的左边，来表示 400 和 900。</li>
+</ul>
+<p>给定一个罗马数字，将其转换成整数。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: s = &quot;III&quot;</span><br><span class="line">输出: 3</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: s = &quot;IV&quot;</span><br><span class="line">输出: 4</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: s = &quot;IX&quot;</span><br><span class="line">输出: 9</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 4:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: s = &quot;LVIII&quot;</span><br><span class="line">输出: 58</span><br><span class="line">解释: L = 50, V= 5, III = 3.</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 5:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: s = &quot;MCMXCIV&quot;</span><br><span class="line">输出: 1994</span><br><span class="line">解释: M = 1000, CM = 900, XC = 90, IV = 4.</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><p><code>1 &lt;= s.length &lt;= 15</code></p>
+</li>
+<li><p><code>s</code> 仅含字符 <code>(&#39;I&#39;, &#39;V&#39;, &#39;X&#39;, &#39;L&#39;, &#39;C&#39;, &#39;D&#39;, &#39;M&#39;)</code></p>
+</li>
+<li><p>题目数据保证 <code>s</code> 是一个有效的罗马数字，且表示整数在范围 <code>[1, 3999]</code> 内</p>
+</li>
+<li><p>题目所给测试用例皆符合罗马数字书写规则，不会出现跨位等情况。</p>
+</li>
+<li><p>IL 和 IM 这样的例子并不符合题目要求，49 应该写作 XLIX，999 应该写作 CMXCIX 。</p>
+</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="模拟法"><a href="#模拟法" class="headerlink" title="模拟法"></a>模拟法</h3><p><strong>思路及算法</strong></p>
+<p>通常情况下，罗马数字中小的数字在大的数字的右边。若输入的字符串满足该情况，那么可以将每个字符视作一个单独的值，累加每个字符对应的数值即可。</p>
+<p>例如 XXVII 可视作 X+X+V+I+I&#x3D;10+10+5+1+1&#x3D;27。</p>
+<p>若存在小的数字在大的数字的左边的情况，根据规则需要减去小的数字。对于这种情况，我们也可以将每个字符视作一个单独的值，若一个数字右侧的数字比它大，则将该数字的符号取反。</p>
+<p>例如 XIV 可视作 X−I+V&#x3D;10−1+5&#x3D;14。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">private:</span><br><span class="line">    unordered_map&lt;char, int&gt; symbolValues = &#123;</span><br><span class="line">        &#123;&#x27;I&#x27;, 1&#125;,</span><br><span class="line">        &#123;&#x27;V&#x27;, 5&#125;,</span><br><span class="line">        &#123;&#x27;X&#x27;, 10&#125;,</span><br><span class="line">        &#123;&#x27;L&#x27;, 50&#125;,</span><br><span class="line">        &#123;&#x27;C&#x27;, 100&#125;,</span><br><span class="line">        &#123;&#x27;D&#x27;, 500&#125;,</span><br><span class="line">        &#123;&#x27;M&#x27;, 1000&#125;,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    int romanToInt(string s) &#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        int n = s.length();</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            int value = symbolValues[s[i]];</span><br><span class="line">            if (i &lt; n - 1 &amp;&amp; value &lt; symbolValues[s[i + 1]]) &#123;</span><br><span class="line">                ans -= value;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                ans += value;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    Map&lt;Character, Integer&gt; symbolValues = new HashMap&lt;Character, Integer&gt;() &#123;&#123;</span><br><span class="line">        put(&#x27;I&#x27;, 1);</span><br><span class="line">        put(&#x27;V&#x27;, 5);</span><br><span class="line">        put(&#x27;X&#x27;, 10);</span><br><span class="line">        put(&#x27;L&#x27;, 50);</span><br><span class="line">        put(&#x27;C&#x27;, 100);</span><br><span class="line">        put(&#x27;D&#x27;, 500);</span><br><span class="line">        put(&#x27;M&#x27;, 1000);</span><br><span class="line">    &#125;&#125;;</span><br><span class="line"></span><br><span class="line">    public int romanToInt(String s) &#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        int n = s.length();</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            int value = symbolValues.get(s.charAt(i));</span><br><span class="line">            if (i &lt; n - 1 &amp;&amp; value &lt; symbolValues.get(s.charAt(i + 1))) &#123;</span><br><span class="line">                ans -= value;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                ans += value;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，其中 n 是字符串 s 的长度。</li>
+<li>空间复杂度：O(1)。</li>
 </ul>
 ]]></content>
       <tags>
