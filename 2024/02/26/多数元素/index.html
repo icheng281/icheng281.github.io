@@ -26,14 +26,14 @@
 <meta property="og:site_name" content="勇者抽刃向强者的博客">
 <meta property="og:description" content="多数元素1.题目描述给定一个大小为 n 的数组 nums ，返回其中的多数元素。多数元素是指在数组中出现次数 大于 ⌊ n&#x2F;2 ⌋ 的元素。 你可以假设数组是非空的，并且给定的数组总是存在多数元素。 示例 1： 12输入：nums &#x3D; [3,2,3]输出：3  示例 2： 12输入：nums &#x3D; [2,2,1,1,1,2,2]输出：2  提示：  n &#x3D;&#x3D; nums.length 1 &lt;&#x3D;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="c:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240226092055479.png">
+<meta property="og:image" content="https://pic.leetcode-cn.com/a70cb9316157ecd7eeffe7900d3ca83849079824964e8a0aaefbcffd4040f175-image.png">
 <meta property="og:image" content="c:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240226093253984.png">
 <meta property="article:published_time" content="2024-02-26T01:42:29.000Z">
-<meta property="article:modified_time" content="2024-02-26T01:44:41.699Z">
+<meta property="article:modified_time" content="2024-03-07T13:07:39.851Z">
 <meta property="article:author" content="icheng281">
 <meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240226092055479.png">
+<meta name="twitter:image" content="https://pic.leetcode-cn.com/a70cb9316157ecd7eeffe7900d3ca83849079824964e8a0aaefbcffd4040f175-image.png">
 
 
 <link rel="canonical" href="https://icheng281.github.io/2024/02/26/%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0/">
@@ -219,9 +219,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-02-26 09:42:29 / 修改时间：09:44:41" itemprop="dateCreated datePublished" datetime="2024-02-26T09:42:29+08:00">2024-02-26</time>
+      <time title="创建时间：2024-02-26 09:42:29" itemprop="dateCreated datePublished" datetime="2024-02-26T09:42:29+08:00">2024-02-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-07 21:07:39" itemprop="dateModified" datetime="2024-03-07T21:07:39+08:00">2024-03-07</time>
     </span>
 
   
@@ -238,7 +244,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.8k</span>
+      <span>1.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -290,7 +296,7 @@
 <h3 id="（2）排序"><a href="#（2）排序" class="headerlink" title="（2）排序"></a>（2）排序</h3><p><strong>思路及算法</strong></p>
 <p>如果将数组 nums 中的所有元素按照单调递增或单调递减的顺序排序，那么下标为 $\dfrac{n}{2}$的元素（下标从 0 开始）一定是众数。</p>
 <p>对于这种算法，我们先将 nums 数组排序，然后返回上文所说的下标对应的元素。下面的图中解释了为什么这种策略是有效的。在下图中，第一个例子是 n 为奇数的情况，第二个例子是 n 为偶数的情况。</p>
-<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240226092055479.png" alt="image-20240226092055479"></p>
+<p><img src="https://pic.leetcode-cn.com/a70cb9316157ecd7eeffe7900d3ca83849079824964e8a0aaefbcffd4040f175-image.png" alt="image.png"></p>
 <p>对于每种情况，数组上面的线表示如果众数是数组中的最小值时覆盖的下标，数组下面的线表示如果众数是数组中的最大值时覆盖的下标。对于其他的情况，这条线会在这两种极端情况的中间。对于这两种极端情况，它们会在下标为  $\dfrac{n}{2}$ 的地方有重叠。因此，无论众数是多少，返回$\dfrac{n}{2}$下标对应的值都是正确的。</p>
 <p><strong>代码</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int majorityElement(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        return nums[nums.size() / 2];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -371,14 +377,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">36k</span>
+    <span title="站点总字数">40k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:12</span>
+    <span title="站点阅读时长">2:24</span>
   </span>
 </div>
 <div class="busuanzi-count">

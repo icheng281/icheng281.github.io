@@ -753,9 +753,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-03-05 14:27:47 / 修改时间：21:17:38" itemprop="dateCreated datePublished" datetime="2024-03-05T14:27:47+08:00">2024-03-05</time>
+      <time title="创建时间：2024-03-05 14:27:47" itemprop="dateCreated datePublished" datetime="2024-03-05T14:27:47+08:00">2024-03-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-07 20:42:41" itemprop="dateModified" datetime="2024-03-07T20:42:41+08:00">2024-03-07</time>
     </span>
 
   
@@ -811,8 +817,7 @@
 </ul>
 <p>因此可以正向遍历数组 height 得到数组 leftMax 的每个元素值，反向遍历数组 height 得到数组 rightMax 的每个元素值。</p>
 <p>在得到数组 leftMax 和 rightMax 的每个元素值之后，对于 0≤i&lt;n，下标 i 处能接的雨水量等于 min⁡(leftMax[i],rightMax[i])−height[i]。遍历每个下标位置即可得到能接的雨水总量。</p>
-<p>动态规划做法可以由下图体现。</p>
-<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240305140032638.png" alt="img"></p>
+<p>动态规划做法可以由下图体现。<img src="https://assets.leetcode-cn.com/solution-static/42/1.png" alt="fig1"></p>
 <p><strong>代码</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int n = height.size();</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;int&gt; leftMax(n);</span><br><span class="line">        leftMax[0] = height[0];</span><br><span class="line">        for (int i = 1; i &lt; n; ++i) &#123;</span><br><span class="line">            leftMax[i] = max(leftMax[i - 1], height[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vector&lt;int&gt; rightMax(n);</span><br><span class="line">        rightMax[n - 1] = height[n - 1];</span><br><span class="line">        for (int i = n - 2; i &gt;= 0; --i) &#123;</span><br><span class="line">            rightMax[i] = max(rightMax[i + 1], height[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int ans = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            ans += min(leftMax[i], rightMax[i]) - height[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
@@ -918,9 +923,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-03-04 09:57:44 / 修改时间：09:58:53" itemprop="dateCreated datePublished" datetime="2024-03-04T09:57:44+08:00">2024-03-04</time>
+      <time title="创建时间：2024-03-04 09:57:44" itemprop="dateCreated datePublished" datetime="2024-03-04T09:57:44+08:00">2024-03-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-07 20:44:56" itemprop="dateModified" datetime="2024-03-07T20:44:56+08:00">2024-03-07</time>
     </span>
 
   
@@ -992,12 +1003,12 @@
 </ul>
 <h3 id="（2）常数空间遍历"><a href="#（2）常数空间遍历" class="headerlink" title="（2）常数空间遍历"></a>（2）常数空间遍历</h3><p><strong>思路及算法</strong></p>
 <p>注意到糖果总是尽量少给，且从 1 开始累计，每次要么比相邻的同学多给一个，要么重新置为 1。依据此规则，我们可以画出下图：</p>
-<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240304094722606.png" alt="image-20240304094722606"></p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/135/1.png" alt="fig1"></p>
 <p>其中相同颜色的柱状图的高度总恰好为 1,2,3…。</p>
 <p>而高度也不一定一定是升序，也可能是 …3,2,1 的降序：</p>
-<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240304094824673.png" alt="image-20240304094824673"></p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/135/2.png" alt="fig2"></p>
 <p>注意到在上图中，对于第三个同学，他既可以被认为是属于绿色的升序部分，也可以被认为是属于蓝色的降序部分。因为他同时比两边的同学评分更高。我们对序列稍作修改：</p>
-<p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240304094921825.png" alt="image-20240304094921825"></p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/135/3.png" alt="fig3"></p>
 <p>注意到右边的升序部分变长了，使得第三个同学不得不被分配 4 个糖果。</p>
 <p>依据前面总结的规律，我们可以提出本题的解法。我们从左到右枚举每一个同学，记前一个同学分得的糖果数量为 pre：</p>
 <ul>
@@ -1212,9 +1223,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-03-02 20:30:47 / 修改时间：20:35:13" itemprop="dateCreated datePublished" datetime="2024-03-02T20:30:47+08:00">2024-03-02</time>
+      <time title="创建时间：2024-03-02 20:30:47" itemprop="dateCreated datePublished" datetime="2024-03-02T20:30:47+08:00">2024-03-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-07 20:54:09" itemprop="dateModified" datetime="2024-03-07T20:54:09+08:00">2024-03-07</time>
     </span>
 
   
@@ -1224,14 +1241,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>680</span>
+      <span>955</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -1259,8 +1276,12 @@
 <li><code>0 &lt;= gas[i], cost[i] &lt;= 104</code></li>
 </ul>
 <h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="一次遍历"><a href="#一次遍历" class="headerlink" title="一次遍历"></a>一次遍历</h3><p><strong>思路及算法</strong></p>
-<img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240302202103038.png" alt="image-20240302202103038" />
-
+<p>最容易想到的解法是：从头到尾遍历每个加油站，并检查以该加油站为起点，最终能否行驶一周。我们可以通过减小被检查的加油站数目，来降低总的时间复杂度。假设我们此前发现，从加油站 x 出发，每经过一个加油站就加一次油（包括起始加油站），最后一个可以到达的加油站是 y（不妨设 x&lt;y）。这就说明：</p>
+<p>$\sum\limits_{i&#x3D;x}^y gas[i]$ &lt; $\sum\limits_{i&#x3D;x}^y cost[i]$</p>
+<p>$\sum\limits_{i&#x3D;x}^j gas[i]$ $\ge$ $\sum\limits_{i&#x3D;x}^j cost[i]$</p>
+<p>第一个式子表明无法到达加油站 y 的下一个加油站，第二个式子表明可以到达 y 以及 y 之前的所有加油站。</p>
+<p>现在，考虑任意一个位于 x,y 之间的加油站 z（包括 x 和 y），我们现在考察从该加油站出发，能否到达加油站 y 的下一个加油站，也就是要判断 $\sum\limits_{i&#x3D;z}^y gas[i]$与 $\sum\limits_{i&#x3D;z}^y cost[i]$之间的大小关系: </p>
+<p>$\sum\limits_{i&#x3D;z}^y gas[i]$ &#x3D; $\sum\limits_{i&#x3D;z}^y cost[i]$ </p>
 <p><strong>代码</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int canCompleteCircuit(vector&lt;int&gt;&amp; gas, vector&lt;int&gt;&amp; cost) &#123;</span><br><span class="line">        int n = gas.size();</span><br><span class="line">        int i = 0;</span><br><span class="line">        while (i &lt; n) &#123;</span><br><span class="line">            int sumOfGas = 0, sumOfCost = 0;</span><br><span class="line">            int cnt = 0;</span><br><span class="line">            while (cnt &lt; n) &#123;</span><br><span class="line">                int j = (i + cnt) % n;</span><br><span class="line">                sumOfGas += gas[j];</span><br><span class="line">                sumOfCost += cost[j];</span><br><span class="line">                if (sumOfCost &gt; sumOfGas) &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                cnt++;</span><br><span class="line">            &#125;</span><br><span class="line">            if (cnt == n) &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                i = i + cnt + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
@@ -1593,14 +1614,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">36k</span>
+    <span title="站点总字数">40k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:12</span>
+    <span title="站点阅读时长">2:24</span>
   </span>
 </div>
 <div class="busuanzi-count">
