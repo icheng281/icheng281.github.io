@@ -1280,7 +1280,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-03-06 11:06:57" itemprop="dateModified" datetime="2024-03-06T11:06:57+08:00">2024-03-06</time>
+      <time title="修改时间：2024-03-08 11:18:18" itemprop="dateModified" datetime="2024-03-08T11:18:18+08:00">2024-03-08</time>
     </span>
 
   
@@ -1290,14 +1290,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.8k</span>
+      <span>2.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>6 分钟</span>
+      <span>8 分钟</span>
     </span>
 </div>
 
@@ -1352,7 +1352,13 @@
 <li><p>空间复杂度：O(N)，其中 N 是皇后数量。空间复杂度主要取决于递归调用层数、记录每行放置的皇后的列下标的数组以及三个集合，递归调用层数不会超过 N，数组的长度为 N，每个集合的元素个数都不会超过 N。</p>
 </li>
 </ul>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p><img src="C:\Users\ZhangCheng\AppData\Roaming\Typora\typora-user-images\image-20240303132901348.png" alt="image-20240303132901348"></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>回顾这道题，拿到这道题的时候，其实我们很容易看出需要使用枚举的方法来求解这个问题，当我们不知道用什么办法来枚举是最优的时候，可以从下面三个方向考虑：</p>
+<ul>
+<li>子集枚举：可以把问题转化成「从 n^2^ 个格子中选一个子集，使得子集中恰好有 n 个格子，且任意选出两个都不在同行、同列或者同对角线」，这里枚举的规模是 2的n^2^ 次方；</li>
+<li>组合枚举：可以把问题转化成「从 n^2^ 个格子中选择 n 个，且任意选出两个都不在同行、同列或者同对角线」，这里的枚举规模是 $$<br>\begin{pmatrix}<br>n^2&amp;\<br>&amp;n\<br>\end{pmatrix}<br>$$；</li>
+<li>排列枚举：因为这里每行只能放置一个皇后，而所有行中皇后的列号正好构成一个 1 到 n 的排列，所以我们可以把问题转化为一个排列枚举，规模是 n!。</li>
+</ul>
+<p>带入一些 n 进这三种方法验证，就可以知道哪种方法的枚举规模是最小的，这里我们发现第三种方法的枚举规模最小。这道题给出的两个方法其实和排列枚举的本质是类似的。</p>
 
       
     </div>
@@ -1656,14 +1662,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">42k</span>
+    <span title="站点总字数">43k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:34</span>
+    <span title="站点阅读时长">2:35</span>
   </span>
 </div>
 <div class="busuanzi-count">
