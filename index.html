@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,6 +174,190 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/08/%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8C%B9%E9%85%8D%E9%A1%B9%E7%9A%84%E4%B8%8B%E6%A0%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/08/%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8C%B9%E9%85%8D%E9%A1%B9%E7%9A%84%E4%B8%8B%E6%A0%87/" class="post-title-link" itemprop="url">找出字符串中第一个匹配项的下标</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-08 11:07:00 / 修改时间：11:07:23" itemprop="dateCreated datePublished" datetime="2024-03-08T11:07:00+08:00">2024-03-08</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>9 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="找出字符串中第一个匹配项的下标"><a href="#找出字符串中第一个匹配项的下标" class="headerlink" title="找出字符串中第一个匹配项的下标"></a>找出字符串中第一个匹配项的下标</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你两个字符串 <code>haystack</code> 和 <code>needle</code> ，请你在 <code>haystack</code> 字符串中找出 <code>needle</code> 字符串的第一个匹配项的下标（下标从 0 开始）。如果 <code>needle</code> 不是 <code>haystack</code> 的一部分，则返回 <code>-1</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：haystack = &quot;sadbutsad&quot;, needle = &quot;sad&quot;</span><br><span class="line">输出：0</span><br><span class="line">解释：&quot;sad&quot; 在下标 0 和 6 处匹配。</span><br><span class="line">第一个匹配项的下标是 0 ，所以返回 0 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：haystack = &quot;leetcode&quot;, needle = &quot;leeto&quot;</span><br><span class="line">输出：-1</span><br><span class="line">解释：&quot;leeto&quot; 没有在 &quot;leetcode&quot; 中出现，所以返回 -1 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= haystack.length, needle.length &lt;= 104</code></li>
+<li><code>haystack</code> 和 <code>needle</code> 仅由小写英文字符组成</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）暴力匹配"><a href="#（1）暴力匹配" class="headerlink" title="（1）暴力匹配"></a>（1）暴力匹配</h3><p><strong>思路及算法</strong></p>
+<p>我们可以让字符串 needle 与字符串 haystack 的所有长度为 m 的子串均匹配一次。</p>
+<p>为了减少不必要的匹配，我们每次匹配失败即立刻停止当前子串的匹配，对下一个子串继续匹配。如果当前子串匹配成功，我们返回当前子串的开始位置即可。如果所有子串都匹配失败，则返回 −1。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int strStr(string haystack, string needle) &#123;</span><br><span class="line">        int n = haystack.size(), m = needle.size();</span><br><span class="line">        for (int i = 0; i + m &lt;= n; i++) &#123;</span><br><span class="line">            bool flag = true;</span><br><span class="line">            for (int j = 0; j &lt; m; j++) &#123;</span><br><span class="line">                if (haystack[i + j] != needle[j]) &#123;</span><br><span class="line">                    flag = false;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (flag) &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int strStr(String haystack, String needle) &#123;</span><br><span class="line">        int n = haystack.length(), m = needle.length();</span><br><span class="line">        for (int i = 0; i + m &lt;= n; i++) &#123;</span><br><span class="line">            boolean flag = true;</span><br><span class="line">            for (int j = 0; j &lt; m; j++) &#123;</span><br><span class="line">                if (haystack.charAt(i + j) != needle.charAt(j)) &#123;</span><br><span class="line">                    flag = false;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (flag) &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n×m)，其中 n 是字符串 haystack 的长度，m 是字符串 needle 的长度。最坏情况下我们需要将字符串 needle 与字符串 haystack 的所有长度为 m 的子串均匹配一次。</p>
+</li>
+<li><p>空间复杂度：O(1)。我们只需要常数的空间保存若干变量。</p>
+</li>
+</ul>
+<h3 id="（2）KMP算法"><a href="#（2）KMP算法" class="headerlink" title="（2）KMP算法"></a>（2）KMP算法</h3><p>KMP 算法是一个快速查找匹配串的算法，它的作用其实就是本题问题：<strong>如何快速在「原字符串」中找到「匹配字符串」</strong>。</p>
+<p>上述的朴素解法，不考虑剪枝的话复杂度是 O(m∗n) 的，而 KMP 算法的复杂度为 O(m+n)。</p>
+<p><strong>KMP 之所以能够在 O(m+n) 复杂度内完成查找，是因为其能在「非完全匹配」的过程中提取到有效信息进行复用，以减少「重复匹配」的消耗</strong>。</p>
+<h4 id="1-匹配过程"><a href="#1-匹配过程" class="headerlink" title="1.匹配过程"></a>1.匹配过程</h4><p>在模拟 KMP 匹配过程之前，我们先建立两个概念：</p>
+<ul>
+<li>前缀：对于字符串 <code>abcxxxxefg</code>，我们称 <code>abc</code> 属于<code> abcxxxxefg</code> 的某个前缀。</li>
+<li>后缀：对于字符串 <code>abcxxxxefg</code>，我们称 <code>efg</code> 属于 <code>abcxxxxefg</code> 的某个后缀。</li>
+</ul>
+<p>然后我们假设原串为 <code>abeababeabf</code>，匹配串为 <code>abeabf</code>：</p>
+<p><img src="https://pic.leetcode-cn.com/1618739635-lrhElP-image.png" alt="image.png"></p>
+<p>我们可以先看看如果不使用 KMP，会如何进行匹配（不使用 substring 函数的情况下）。</p>
+<p>首先在「原串」和「匹配串」分别各自有一个指针指向当前匹配的位置。</p>
+<p>首次匹配的「发起点」是第一个字符 a。显然，后面的 abeab 都是匹配的，两个指针会同时往右移动（黑标）。</p>
+<p>在都能匹配上 abeab 的部分，「朴素匹配」和「KMP」并无不同。</p>
+<p>直到出现第一个不同的位置（红标）：</p>
+<p><img src="https://pic.leetcode-cn.com/1618741727-pqXsfg-image.png" alt="image.png"></p>
+<p><strong>接下来，正是「朴素匹配」和「KMP」出现不同的地方：</strong></p>
+<p><strong>先看下「朴素匹配」逻辑：</strong></p>
+<ol>
+<li><p><strong>将原串的指针移动至本次「发起点」的下一个位置（b 字符处）；匹配串的指针移动至起始位置。</strong></p>
+</li>
+<li><p><strong>尝试匹配，发现对不上，原串的指针会一直往后移动，直到能够与匹配串对上位置。</strong></p>
+</li>
+</ol>
+<p>如图：</p>
+<p><img src="https://pic.leetcode-cn.com/1618742678-lTXSgV-image.png" alt="image.png"></p>
+<p>也就是说，对于「朴素匹配」而言，一旦匹配失败，将会将原串指针调整至下一个「发起点」，匹配串的指针调整至起始位置，然后重新尝试匹配。</p>
+<p>这也就不难理解为什么「朴素匹配」的复杂度是 O(m∗n))了。</p>
+<p><strong>然后我们再看看「KMP 匹配」过程：</strong><br><strong>首先匹配串会检查之前已经匹配成功的部分中里是否存在相同的「前缀」和「后缀」。如果存在，则跳转到「前缀」的下一个位置继续往下匹配：</strong></p>
+<p><img src="https://pic.leetcode-cn.com/1618845342-ydYJRp-9364346F937803F03CD1A0AE645EA0F1.jpg" alt="9364346F937803F03CD1A0AE645EA0F1.jpg"></p>
+<p><strong>跳转到下一匹配位置后，尝试匹配，发现两个指针的字符对不上，并且此时匹配串指针前面不存在相同的「前缀」和「后缀」，这时候只能回到匹配串的起始位置重新开始：</strong></p>
+<p><img src="https://pic.leetcode-cn.com/1618755191-ddejks-image.png" alt="image.png"></p>
+<p><strong>到这里，你应该清楚 KMP 为什么相比于朴素解法更快：</strong></p>
+<p><strong>因为 KMP 利用已匹配部分中相同的「前缀」和「后缀」来加速下一次的匹配。</strong></p>
+<p><strong>因为 KMP 的原串指针不会进行回溯（没有朴素匹配中回到下一个「发起点」的过程）。</strong></p>
+<ul>
+<li><p>第一点很直观，也很好理解。</p>
+</li>
+<li><p>我们可以把重点放在第二点上，原串不回溯至「发起点」意味着什么？</p>
+</li>
+</ul>
+<p><strong>其实是意味着：随着匹配过程的进行，原串指针的不断右移，我们本质上是在不断地在否决一些「不可能」的方案。</strong></p>
+<p><strong>当我们的原串指针从 <code>i </code>位置后移到<code> j</code> 位置，不仅仅代表着「原串」下标范围为 [i,j) 的字符与「匹配串」匹配或者不匹配，更是在否决那些以「原串」下标范围为 [i,j) 为「匹配发起点」的子集。</strong></p>
+<h4 id="2-分析实现"><a href="#2-分析实现" class="headerlink" title="2.分析实现"></a>2.分析实现</h4><p>到这里，就结束了吗？要开始动手实现上述匹配过程了吗？</p>
+<p>我们可以先分析一下复杂度。如果严格按照上述解法的话，最坏情况下我们需要扫描整个原串，复杂度为 O(n)。同时在每一次匹配失败时，去检查已匹配部分的相同「前缀」和「后缀」，跳转到相应的位置，如果不匹配则再检查前面部分是否有相同「前缀」和「后缀」，再跳转到相应的位置 … 这部分的复杂度是 O(m^2^)，因此整体的复杂度是 O(n∗m^2^)，而我们的朴素解法是 O(m∗n) 的。</p>
+<p>说明还有一些性质我们没有利用到。</p>
+<p>显然，扫描完整原串操作这一操作是不可避免的，我们可以优化的只能是<strong>「检查已匹配部分的相同前缀和后缀」</strong>这一过程。</p>
+<p>再进一步，我们检查「前缀」和「后缀」的目的其实是「为了确定匹配串中的下一段开始匹配的位置」。</p>
+<p><strong>同时我们发现，对于匹配串的任意一个位置而言，由该位置发起的下一个匹配点位置其实与原串无关。</strong></p>
+<p>举个例子，对于匹配串<code>abcabd</code>的字符 <code>d</code> 而言，由它发起的下一个匹配点跳转必然是字符 <code>c</code> 的位置。因为字符 <code>d </code>位置的相同「前缀」和「后缀」字符 <code>ab</code> 的下一位置就是字符 <code>c</code>。</p>
+<p><strong>可见从匹配串某个位置跳转下一个匹配位置这一过程是与原串无关的，我们将这一过程称为找 <code>next</code> 点。</strong></p>
+<p><strong>显然我们可以预处理出 next 数组，数组中每个位置的值就是该下标应该跳转的目标位置（ <code>next</code> 点）。</strong></p>
+<p>当我们进行了这一步优化之后，复杂度是多少呢？</p>
+<p>预处理 <code>next</code> 数组的复杂度未知，匹配过程最多扫描完整个原串，复杂度为 O(n)。</p>
+<p>因此如果我们希望整个 KMP 过程是 O(m+n) 的话，那么我们需要在 O(m) 的复杂度内预处理出 <code>next</code> 数组。</p>
+<p>所以我们的重点在于如何在 O(m) 复杂度内处理处 <code>next</code> 数组。</p>
+<p><strong>所以我们的重点在于如何在 O(m)O复杂度内处理处 <code>next</code> 数组。</strong></p>
+<h4 id="3-next数组"><a href="#3-next数组" class="headerlink" title="3.next数组"></a>3.<code>next</code>数组</h4><p>接下来，我们看看 <code>next</code> 数组是如何在 O(m) 的复杂度内被预处理出来的。</p>
+<p>假设有匹配串 <code>aaabbab</code>，我们来看看对应的 <code>next</code> 是如何被构建出来的。</p>
+<p><img src="https://pic.leetcode-cn.com/1618846927-xFAEXE-010FD8AE2B79FFE03DC3735ACD224A6A.png" alt="010FD8AE2B79FFE03DC3735ACD224A6A.png"></p>
+<p><img src="https://pic.leetcode-cn.com/1618847960-lkVIDM-B9497542844478144BED83E9ADA0C12F.png" alt="B9497542844478144BED83E9ADA0C12F.png"></p>
+<p><img src="https://pic.leetcode-cn.com/1618847981-wncoqJ-161584A2D930A7B91092A2C3872D9DE5.png" alt="161584A2D930A7B91092A2C3872D9DE5.png"></p>
+<p><img src="https://pic.leetcode-cn.com/1618847995-vRWimV-6127EBA37435560C20BB8B15D5B790B6.png" alt="6127EBA37435560C20BB8B15D5B790B6.png"></p>
+<p>这就是整个 <code>next</code> 数组的构建过程，时空复杂度均为 O(m)。</p>
+<p>至此整个 KMP 匹配过程复杂度是 O(m+n) 的。</p>
+<h4 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4.代码实现"></a>4.代码实现</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int strStr(string s, string p) &#123;</span><br><span class="line">        int n = s.size(), m = p.size();</span><br><span class="line">        if(m == 0) return 0;</span><br><span class="line">        //设置哨兵</span><br><span class="line">        s.insert(s.begin(),&#x27; &#x27;);</span><br><span class="line">        p.insert(p.begin(),&#x27; &#x27;);</span><br><span class="line">        vector&lt;int&gt; next(m + 1);</span><br><span class="line">        //预处理next数组</span><br><span class="line">        for(int i = 2, j = 0; i &lt;= m; i++)&#123;</span><br><span class="line">            while(j and p[i] != p[j + 1]) j = next[j];</span><br><span class="line">            if(p[i] == p[j + 1]) j++;</span><br><span class="line">            next[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        //匹配过程</span><br><span class="line">        for(int i = 1, j = 0; i &lt;= n; i++)&#123;</span><br><span class="line">            while(j and s[i] != p[j + 1]) j = next[j];</span><br><span class="line">            if(s[i] == p[j + 1]) j++;</span><br><span class="line">            if(j == m) return i - m;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    // KMP 算法</span><br><span class="line">    // ss: 原串(string)  pp: 匹配串(pattern)</span><br><span class="line">    public int strStr(String ss, String pp) &#123;</span><br><span class="line">        if (pp.isEmpty()) return 0;</span><br><span class="line">        </span><br><span class="line">        // 分别读取原串和匹配串的长度</span><br><span class="line">        int n = ss.length(), m = pp.length();</span><br><span class="line">        // 原串和匹配串前面都加空格，使其下标从 1 开始</span><br><span class="line">        ss = &quot; &quot; + ss;</span><br><span class="line">        pp = &quot; &quot; + pp;</span><br><span class="line"></span><br><span class="line">        char[] s = ss.toCharArray();</span><br><span class="line">        char[] p = pp.toCharArray();</span><br><span class="line"></span><br><span class="line">        // 构建 next 数组，数组长度为匹配串的长度（next 数组是和匹配串相关的）</span><br><span class="line">        int[] next = new int[m + 1];</span><br><span class="line">        // 构造过程 i = 2，j = 0 开始，i 小于等于匹配串长度 【构造 i 从 2 开始】</span><br><span class="line">        for (int i = 2, j = 0; i &lt;= m; i++) &#123;</span><br><span class="line">            // 匹配不成功的话，j = next(j)</span><br><span class="line">            while (j &gt; 0 &amp;&amp; p[i] != p[j + 1]) j = next[j];</span><br><span class="line">            // 匹配成功的话，先让 j++</span><br><span class="line">            if (p[i] == p[j + 1]) j++;</span><br><span class="line">            // 更新 next[i]，结束本次循环，i++</span><br><span class="line">            next[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 匹配过程，i = 1，j = 0 开始，i 小于等于原串长度 【匹配 i 从 1 开始】</span><br><span class="line">        for (int i = 1, j = 0; i &lt;= n; i++) &#123;</span><br><span class="line">            // 匹配不成功 j = next(j)</span><br><span class="line">            while (j &gt; 0 &amp;&amp; s[i] != p[j + 1]) j = next[j];</span><br><span class="line">            // 匹配成功的话，先让 j++，结束本次循环后 i++</span><br><span class="line">            if (s[i] == p[j + 1]) j++;</span><br><span class="line">            // 整一段匹配成功，直接返回下标</span><br><span class="line">            if (j == m) return i - m;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-复杂度分析"><a href="#5-复杂度分析" class="headerlink" title="5.复杂度分析"></a>5.复杂度分析</h4><ul>
+<li>时间复杂度：<code>n</code> 为原串的长度，<code>m</code> 为匹配串的长度。复杂度为 O(m+n)。</li>
+<li>空间复杂度：构建了 <code>next</code> 数组。复杂度为 O(m)。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1448,148 +1632,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/01/H%E6%8C%87%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/01/H%E6%8C%87%E6%95%B0/" class="post-title-link" itemprop="url">H指数</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-03-01 11:15:36 / 修改时间：11:23:43" itemprop="dateCreated datePublished" datetime="2024-03-01T11:15:36+08:00">2024-03-01</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="H指数"><a href="#H指数" class="headerlink" title="H指数"></a>H指数</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个整数数组 <code>citations</code> ，其中 <code>citations[i]</code> 表示研究者的第 <code>i</code> 篇论文被引用的次数。计算并返回该研究者的 <strong><code>h</code> 指数</strong>。</p>
-<p>根据维基百科上 h 指数的定义：<code>h</code> 代表“高引用次数” ，一名科研人员的 <code>h</code> <strong>指数</strong> 是指他（她）至少发表了 <code>h</code> 篇论文，并且 <strong>至少</strong> 有 <code>h</code> 篇论文被引用次数大于等于 <code>h</code> 。如果 <code>h</code> 有多种可能的值，**<code>h</code> 指数** 是其中最大的那个。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：citations = [3,0,6,1,5]</span><br><span class="line">输出：3 </span><br><span class="line">解释：给定数组表示研究者总共有 5 篇论文，每篇论文相应的被引用了 3, 0, 6, 1, 5 次。</span><br><span class="line">     由于研究者有 3 篇论文每篇 至少 被引用了 3 次，其余两篇论文每篇被引用 不多于 3 次，所以她的 h 指数是 3。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：citations = [1,3,1]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>n == citations.length</code></li>
-<li><code>1 &lt;= n &lt;= 5000</code></li>
-<li><code>0 &lt;= citations[i] &lt;= 1000</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）排序"><a href="#（1）排序" class="headerlink" title="（1）排序"></a>（1）排序</h3><p><strong>思路及算法</strong></p>
-<p>首先我们可以将初始的 H 指数 h 设为 0，然后将引用次数排序，并且对排序后的数组从大到小遍历。</p>
-<p>根据 H 指数的定义，如果当前 H 指数为 h 并且在遍历过程中找到当前值 citations[i]&gt;h，则说明我们找到了一篇被引用了至少 h+1 次的论文，所以将现有的 h 值加 1。继续遍历直到 h 无法继续增大。最后返回 h 作为最终答案。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int hIndex(vector&lt;int&gt;&amp; citations) &#123;</span><br><span class="line">        sort(citations.begin(), citations.end());</span><br><span class="line">        int h = 0, i = citations.size() - 1;</span><br><span class="line">        while (i &gt;= 0 &amp;&amp; citations[i] &gt; h) &#123;</span><br><span class="line">            h++;</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">        return h;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int hIndex(int[] citations) &#123;</span><br><span class="line">        Arrays.sort(citations);</span><br><span class="line">        int h = 0, i = citations.length - 1; </span><br><span class="line">        while (i &gt;= 0 &amp;&amp; citations[i] &gt; h) &#123;</span><br><span class="line">            h++; </span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">        return h;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(nlog⁡n)，其中 n 为数组 citations 的长度。即为排序的时间复杂度。</p>
-</li>
-<li><p>空间复杂度：O(log⁡n)，其中 n 为数组 citations 的长度。即为排序的空间复杂度。</p>
-</li>
-</ul>
-<h3 id="（2）计数排序"><a href="#（2）计数排序" class="headerlink" title="（2）计数排序"></a>（2）计数排序</h3><p><strong>思路及算法</strong></p>
-<p>根据上述解法我们发现，最终的时间复杂度与排序算法的时间复杂度有关，所以我们可以使用计数排序算法，新建并维护一个数组 counter 用来记录当前引用次数的论文有几篇。</p>
-<p>根据定义，我们可以发现 H 指数不可能大于总的论文发表数，所以对于引用次数超过论文发表数的情况，我们可以将其按照总的论文发表数来计算即可。这样我们可以限制参与排序的数的大小为 [0,n]（其中 n 为总的论文发表数），使得计数排序的时间复杂度降低到 O(n)。</p>
-<p>最后我们可以从后向前遍历数组 counter，对于每个 0≤i≤n，在数组 counter 中得到大于或等于当前引用次数 iii 的总论文数。当我们找到一个 H 指数时跳出循环，并返回结果。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int hIndex(vector&lt;int&gt;&amp; citations) &#123;</span><br><span class="line">        int n = citations.size(), tot = 0;</span><br><span class="line">        vector&lt;int&gt; counter(n + 1);</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            if (citations[i] &gt;= n) &#123;</span><br><span class="line">                counter[n]++;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                counter[citations[i]]++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = n; i &gt;= 0; i--) &#123;</span><br><span class="line">            tot += counter[i];</span><br><span class="line">            if (tot &gt;= i) &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public int hIndex(int[] citations) &#123;</span><br><span class="line">        int n = citations.length, tot = 0;</span><br><span class="line">        int[] counter = new int[n + 1];</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            if (citations[i] &gt;= n) &#123;</span><br><span class="line">                counter[n]++;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                counter[citations[i]]++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = n; i &gt;= 0; i--) &#123;</span><br><span class="line">            tot += counter[i];</span><br><span class="line">            if (tot &gt;= i) &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 为数组 citations 的长度。需要遍历数组 citations 一次，以及遍历长度为 n+1 的数组 counter 一次。</p>
-</li>
-<li><p>空间复杂度：O(n)，其中 n 为数组 citations 的长度。需要创建长度为 n+1 的数组 counter。</p>
-</li>
-</ul>
-<h3 id="（3）二分搜索"><a href="#（3）二分搜索" class="headerlink" title="（3）二分搜索"></a>（3）二分搜索</h3><p><strong>思路及算法</strong></p>
-<p>我们需要找到一个值 h，它是满足「有 <code>h</code> 篇论文的引用次数至少为<code> h</code>」的最大值。小于等于<code>h</code>的所有值 <code>x</code> 都满足这个性质，而大于 <code>h</code> 的值都不满足这个性质。同时因为我们可以用较短时间（扫描一遍数组的时间复杂度为 O(n)，其中 n 为数组 citations 的长度）来判断 <code>x</code> 是否满足这个性质，所以这个问题可以用二分搜索来解决。</p>
-<p>设查找范围的初始左边界 left 为 0，初始右边界 right 为 n。每次在查找范围内取中点 mid，同时扫描整个数组，判断是否至少有 mid 个数大于 mid。如果有，说明要寻找的 h 在搜索区间的右边，反之则在左边。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int hIndex(vector&lt;int&gt;&amp; citations) &#123;</span><br><span class="line">        int left=0,right=citations.size();</span><br><span class="line">        int mid=0,cnt=0;</span><br><span class="line">        while(left&lt;right)&#123;</span><br><span class="line">            // +1 防止死循环</span><br><span class="line">            mid=(left+right+1)&gt;&gt;1;</span><br><span class="line">            cnt=0;</span><br><span class="line">            for(int i=0;i&lt;citations.size();i++)&#123;</span><br><span class="line">                if(citations[i]&gt;=mid)&#123;</span><br><span class="line">                    cnt++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(cnt&gt;=mid)&#123;</span><br><span class="line">                // 要找的答案在 [mid,right] 区间内</span><br><span class="line">                left=mid;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                // 要找的答案在 [0,mid) 区间内</span><br><span class="line">                right=mid-1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int hIndex(int[] citations) &#123;</span><br><span class="line">        int left=0,right=citations.length;</span><br><span class="line">        int mid=0,cnt=0;</span><br><span class="line">        while(left&lt;right)&#123;</span><br><span class="line">            // +1 防止死循环</span><br><span class="line">            mid=(left+right+1)&gt;&gt;1;</span><br><span class="line">            cnt=0;</span><br><span class="line">            for(int i=0;i&lt;citations.length;i++)&#123;</span><br><span class="line">                if(citations[i]&gt;=mid)&#123;</span><br><span class="line">                    cnt++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(cnt&gt;=mid)&#123;</span><br><span class="line">                // 要找的答案在 [mid,right] 区间内</span><br><span class="line">                left=mid;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                // 要找的答案在 [0,mid) 区间内</span><br><span class="line">                right=mid-1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(nlogn)，其中 n 为数组 citations 的长度。需要进行 logn 次二分搜索，每次二分搜索需要遍历数组 citations 一次。</li>
-<li>空间复杂度：O(1)，只需要常数个变量来进行二分搜索。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1614,14 +1656,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">40k</span>
+    <span title="站点总字数">42k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:24</span>
+    <span title="站点阅读时长">2:34</span>
   </span>
 </div>
 <div class="busuanzi-count">
