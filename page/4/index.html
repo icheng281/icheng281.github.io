@@ -211,9 +211,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-02-13 14:02:38 / 修改时间：14:03:28" itemprop="dateCreated datePublished" datetime="2024-02-13T14:02:38+08:00">2024-02-13</time>
+      <time title="创建时间：2024-02-13 14:02:38" itemprop="dateCreated datePublished" datetime="2024-02-13T14:02:38+08:00">2024-02-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-08 13:48:13" itemprop="dateModified" datetime="2024-03-08T13:48:13+08:00">2024-03-08</time>
     </span>
 
   
@@ -223,7 +229,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>850</span>
+      <span>846</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -259,7 +265,7 @@
 <p>对于匹配的过程，暴力的方法是 O(n)遍历数组去看是否存在这个数，但其实更高效的方法是用一个哈希表存储数组中的数，这样查看一个数是否存在即能优化至 O(1)的时间复杂度。</p>
 <p>仅仅是这样我们的算法时间复杂度最坏情况下还是会达到 O(n^2^)（即外层需要枚举 O(n)个数，内层需要暴力匹配 O(n)次），无法满足题目的要求。但仔细分析这个过程，我们会发现其中执行了很多不必要的枚举，如果已知有一个 x,x+1,x+2,⋯ ,x+y的连续序列，而我们却重新从 x+1，x+2或者是 x+y处开始尝试匹配，那么得到的结果肯定不会优于枚举 x 为起点的答案，因此我们在外层循环的时候碰到这种情况跳过即可。</p>
 <p>那么怎么判断是否跳过呢？由于我们要枚举的数 x一定是在数组中不存在前驱数 x−1 的，不然按照上面的分析我们会从 x−1 开始尝试匹配，因此我们每次在哈希表中检查是否存在 x−1即能判断是否需要跳过了。</p>
-<p>增加了判断跳过的逻辑之后，时间复杂度是多少呢？外层循环需要 O(n) 的时间复杂度，只有当一个数是连续序列的第一个数的情况下才会进入内层循环，然后在内层循环中匹配连续序列中的数，因此数组中的每个数只会进入内层循环一次。根据上述分析可知，总时间复杂度为 O(n)O(n)O(n)，符合题目要求。</p>
+<p>增加了判断跳过的逻辑之后，时间复杂度是多少呢？外层循环需要 O(n) 的时间复杂度，只有当一个数是连续序列的第一个数的情况下才会进入内层循环，然后在内层循环中匹配连续序列中的数，因此数组中的每个数只会进入内层循环一次。根据上述分析可知，总时间复杂度为 O(n)，符合题目要求。</p>
 <p><strong>代码</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int longestConsecutive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        unordered_set&lt;int&gt; num_set;</span><br><span class="line">        for (const int&amp; num : nums) &#123;</span><br><span class="line">            num_set.insert(num);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int longestStreak = 0;</span><br><span class="line"></span><br><span class="line">        for (const int&amp; num : num_set) &#123;</span><br><span class="line">            if (!num_set.count(num - 1)) &#123;</span><br><span class="line">                int currentNum = num;</span><br><span class="line">                int currentStreak = 1;</span><br><span class="line"></span><br><span class="line">                while (num_set.count(currentNum + 1)) &#123;</span><br><span class="line">                    currentNum += 1;</span><br><span class="line">                    currentStreak += 1;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                longestStreak = max(longestStreak, currentStreak);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return longestStreak;           </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
@@ -336,7 +342,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-02-13 14:03:42" itemprop="dateModified" datetime="2024-02-13T14:03:42+08:00">2024-02-13</time>
+      <time title="修改时间：2024-03-08 13:49:11" itemprop="dateModified" datetime="2024-03-08T13:49:11+08:00">2024-03-08</time>
     </span>
 
   
@@ -395,9 +401,9 @@
 <li><p>空间复杂度：O(nk)，其中 n 是 strs中的字符串的数量，k是 strs 中的字符串的的最大长度。需要用哈希表存储全部字符串。</p>
 </li>
 </ul>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="（2）计数"><a href="#（2）计数" class="headerlink" title="（2）计数"></a>（2）计数</h3><p><strong>思路及算法</strong></p>
+<h3 id="（2）计数"><a href="#（2）计数" class="headerlink" title="（2）计数"></a>（2）计数</h3><p><strong>思路及算法</strong></p>
 <p>由于互为字母异位词的两个字符串包含的字母相同，因此两个字符串中的相同字母出现的次数一定是相同的，故可以将每个字母出现的次数使用字符串表示，作为哈希表的键。</p>
-<p>由于字符串只包含小写字母，因此对于每个字符串，可以使用长度为 262626 的数组记录每个字母出现的次数。需要注意的是，在使用数组作为哈希表的键时，不同语言的支持程度不同，因此不同语言的实现方式也不同。</p>
+<p>由于字符串只包含小写字母，因此对于每个字符串，可以使用长度为 26 的数组记录每个字母出现的次数。需要注意的是，在使用数组作为哈希表的键时，不同语言的支持程度不同，因此不同语言的实现方式也不同。</p>
 <p><strong>代码</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; groupAnagrams(vector&lt;string&gt;&amp; strs) &#123;</span><br><span class="line">        // 自定义对 array&lt;int, 26&gt; 类型的哈希函数</span><br><span class="line">        auto arrayHash = [fn = hash&lt;int&gt;&#123;&#125;] (const array&lt;int, 26&gt;&amp; arr) -&gt; size_t &#123;</span><br><span class="line">            return accumulate(arr.begin(), arr.end(), 0u, [&amp;](size_t acc, int num) &#123;</span><br><span class="line">                return (acc &lt;&lt; 1) ^ fn(num);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        unordered_map&lt;array&lt;int, 26&gt;, vector&lt;string&gt;, decltype(arrayHash)&gt; mp(0, arrayHash);</span><br><span class="line">        for (string&amp; str: strs) &#123;</span><br><span class="line">            array&lt;int, 26&gt; counts&#123;&#125;;</span><br><span class="line">            int length = str.length();</span><br><span class="line">            for (int i = 0; i &lt; length; ++i) &#123;</span><br><span class="line">                counts[str[i] - &#x27;a&#x27;] ++;</span><br><span class="line">            &#125;</span><br><span class="line">            mp[counts].emplace_back(str);</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;vector&lt;string&gt;&gt; ans;</span><br><span class="line">        for (auto it = mp.begin(); it != mp.end(); ++it) &#123;</span><br><span class="line">            ans.emplace_back(it-&gt;second);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
@@ -612,9 +618,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-02-09 21:46:25 / 修改时间：21:50:26" itemprop="dateCreated datePublished" datetime="2024-02-09T21:46:25+08:00">2024-02-09</time>
+      <time title="创建时间：2024-02-09 21:46:25" itemprop="dateCreated datePublished" datetime="2024-02-09T21:46:25+08:00">2024-02-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-08 13:51:30" itemprop="dateModified" datetime="2024-03-08T13:51:30+08:00">2024-03-08</time>
     </span>
 
   
@@ -624,7 +636,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>786</span>
+      <span>778</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -667,7 +679,7 @@
 </ul>
 <h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）哈希表"><a href="#（1）哈希表" class="headerlink" title="（1）哈希表"></a>（1）哈希表</h3><p><strong>思路及算法</strong></p>
 <p>注意到方法一的时间复杂度较高的原因是寻找 target - x 的时间复杂度过高。因此，我们需要一种更优秀的方法，能够快速寻找数组中是否存在目标元素。如果存在，我们需要找出它的索引。</p>
-<p>使用哈希表，可以将寻找 target - x 的时间复杂度降低到从 O(N)O(N)O(N) 降低到 O(1)O(1)O(1)。</p>
+<p>使用哈希表，可以将寻找 target - x 的时间复杂度降低到从 O(N) 降低到 O(1)。</p>
 <p>这样我们创建一个哈希表，对于每一个 x，我们首先查询哈希表中是否存在 target - x，然后将 x 插入到哈希表中，即可保证不会让 x 和自己匹配。</p>
 <p><strong>代码</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        unordered_map&lt;int, int&gt; hashtable;</span><br><span class="line">        for (int i = 0; i &lt; nums.size(); ++i) &#123;</span><br><span class="line">            auto it = hashtable.find(target - nums[i]);</span><br><span class="line">            if (it != hashtable.end()) &#123;</span><br><span class="line">                return &#123;it-&gt;second, i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            hashtable[nums[i]] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        return &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>

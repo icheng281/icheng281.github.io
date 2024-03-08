@@ -90,7 +90,7 @@
 <p>显然，每个皇后必须位于不同行和不同列，因此将 N 个皇后放置在 N×N 的棋盘上，一定是每一行有且仅有一个皇后，每一列有且仅有一个皇后，且任何两个皇后都不能在同一条斜线上。基于上述发现，可以通过回溯的方式寻找可能的解。</p>
 <p>回溯的具体做法是：使用一个数组记录每行放置的皇后的列下标，依次在每一行放置一个皇后。每次新放置的皇后都不能和已经放置的皇后之间有攻击：即新放置的皇后不能和任何一个已经放置的皇后在同一列以及同一条斜线上，并更新数组中的当前行的皇后列下标。当 N 个皇后都放置完毕，则找到一个可能的解。当找到一个可能的解之后，将数组转换成表示棋盘状态的列表，并将该棋盘状态的列表加入返回列表。</p>
 <p>由于每个皇后必须位于不同列，因此已经放置的皇后所在的列不能放置别的皇后。第一个皇后有 N 列可以选择，第二个皇后最多有 N−1 列可以选择，第三个皇后最多有 N−2 列可以选择（如果考虑到不能在同一条斜线上，可能的选择数量更少），因此所有可能的情况不会超过 N! 种，遍历这些情况的时间复杂度是 O(N!)。</p>
-<p>为了降低总时间复杂度，每次放置皇后时需要快速判断每个位置是否可以放置皇后，显然，最理想的情况是在 O(1)O(1)O(1) 的时间内判断该位置所在的列和两条斜线上是否已经有皇后。</p>
+<p>为了降低总时间复杂度，每次放置皇后时需要快速判断每个位置是否可以放置皇后，显然，最理想的情况是在 O(1) 的时间内判断该位置所在的列和两条斜线上是否已经有皇后。</p>
 <p>以下两种方法分别使用集合和位运算对皇后的放置位置进行判断，都可以在 O(1) 的时间内判断一个位置是否可以放置皇后，算法的总时间复杂度都是 O(N!)。</p>
 <h3 id="基于集合的回溯"><a href="#基于集合的回溯" class="headerlink" title="基于集合的回溯"></a>基于集合的回溯</h3><p><strong>思路及算法</strong></p>
 <p>为了判断一个位置所在的列和两条斜线上是否已经有皇后，使用三个集合 columns、diagonals1和 diagonals2 分别记录每一列以及两个方向的每条斜线上是否有皇后。</p>
@@ -215,7 +215,7 @@
 </ul>
 <h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）哈希表"><a href="#（1）哈希表" class="headerlink" title="（1）哈希表"></a>（1）哈希表</h3><p><strong>思路及算法</strong></p>
 <p>注意到方法一的时间复杂度较高的原因是寻找 target - x 的时间复杂度过高。因此，我们需要一种更优秀的方法，能够快速寻找数组中是否存在目标元素。如果存在，我们需要找出它的索引。</p>
-<p>使用哈希表，可以将寻找 target - x 的时间复杂度降低到从 O(N)O(N)O(N) 降低到 O(1)O(1)O(1)。</p>
+<p>使用哈希表，可以将寻找 target - x 的时间复杂度降低到从 O(N) 降低到 O(1)。</p>
 <p>这样我们创建一个哈希表，对于每一个 x，我们首先查询哈希表中是否存在 target - x，然后将 x 插入到哈希表中，即可保证不会让 x 和自己匹配。</p>
 <p><strong>代码</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        unordered_map&lt;int, int&gt; hashtable;</span><br><span class="line">        for (int i = 0; i &lt; nums.size(); ++i) &#123;</span><br><span class="line">            auto it = hashtable.find(target - nums[i]);</span><br><span class="line">            if (it != hashtable.end()) &#123;</span><br><span class="line">                return &#123;it-&gt;second, i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            hashtable[nums[i]] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        return &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -400,7 +400,7 @@
 <p>这道题目的要求是：对给定的有序数组 nums删除重复元素，在删除重复元素之后，每个元素只出现一次，并返回新的长度，上述操作必须通过原地修改数组的方法，使用 O(1)的空间复杂度完成。</p>
 <p>由于给定的数组 nums 是有序的，因此对于任意 i&lt;j，如果 nums[i]&#x3D;nums[j]，则对任意 i≤k≤j，必有 nums[i]&#x3D;nums[k]&#x3D;nums[j]，即相等的元素在数组中的下标一定是连续的。利用数组有序的特点，可以通过双指针的方法删除重复元素。</p>
 <p>如果数组 nums 的长度为 0，则数组不包含任何元素，因此返回 0。</p>
-<p>当数组 nums 的长度大于 000 时，数组中至少包含一个元素，在删除重复元素之后也至少剩下一个元素，因此 nums[0] 保持原状即可，从下标 1 开始删除重复元素。</p>
+<p>当数组 nums 的长度大于 0 时，数组中至少包含一个元素，在删除重复元素之后也至少剩下一个元素，因此 nums[0] 保持原状即可，从下标 1 开始删除重复元素。</p>
 <p>定义两个指针 fast 和 slow 分别为快指针和慢指针，快指针表示遍历数组到达的下标位置，慢指针表示下一个不同元素要填入的下标位置，初始时两个指针都指向下标 1。</p>
 <p>假设数组 nums的长度为 n。将快指针 fast 依次遍历从 1 到 n−1 的每个位置，对于每个位置，如果 nums[fast]≠nums[fast−1]，说明 nums[fast] 和之前的元素都不同，因此将 nums[fast] 的值复制到 nums[slow]，然后将 slow 的值加 1，即指向下一个位置。</p>
 <p>遍历结束之后，从 nums[0] 到 nums[slow−1] 的每个元素都不相同且包含原数组中的每个不同的元素，因此新的长度即为 slow，返回 slow 即可。</p>
@@ -901,9 +901,9 @@
 <li><p>空间复杂度：O(nk)，其中 n 是 strs中的字符串的数量，k是 strs 中的字符串的的最大长度。需要用哈希表存储全部字符串。</p>
 </li>
 </ul>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="（2）计数"><a href="#（2）计数" class="headerlink" title="（2）计数"></a>（2）计数</h3><p><strong>思路及算法</strong></p>
+<h3 id="（2）计数"><a href="#（2）计数" class="headerlink" title="（2）计数"></a>（2）计数</h3><p><strong>思路及算法</strong></p>
 <p>由于互为字母异位词的两个字符串包含的字母相同，因此两个字符串中的相同字母出现的次数一定是相同的，故可以将每个字母出现的次数使用字符串表示，作为哈希表的键。</p>
-<p>由于字符串只包含小写字母，因此对于每个字符串，可以使用长度为 262626 的数组记录每个字母出现的次数。需要注意的是，在使用数组作为哈希表的键时，不同语言的支持程度不同，因此不同语言的实现方式也不同。</p>
+<p>由于字符串只包含小写字母，因此对于每个字符串，可以使用长度为 26 的数组记录每个字母出现的次数。需要注意的是，在使用数组作为哈希表的键时，不同语言的支持程度不同，因此不同语言的实现方式也不同。</p>
 <p><strong>代码</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; groupAnagrams(vector&lt;string&gt;&amp; strs) &#123;</span><br><span class="line">        // 自定义对 array&lt;int, 26&gt; 类型的哈希函数</span><br><span class="line">        auto arrayHash = [fn = hash&lt;int&gt;&#123;&#125;] (const array&lt;int, 26&gt;&amp; arr) -&gt; size_t &#123;</span><br><span class="line">            return accumulate(arr.begin(), arr.end(), 0u, [&amp;](size_t acc, int num) &#123;</span><br><span class="line">                return (acc &lt;&lt; 1) ^ fn(num);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        unordered_map&lt;array&lt;int, 26&gt;, vector&lt;string&gt;, decltype(arrayHash)&gt; mp(0, arrayHash);</span><br><span class="line">        for (string&amp; str: strs) &#123;</span><br><span class="line">            array&lt;int, 26&gt; counts&#123;&#125;;</span><br><span class="line">            int length = str.length();</span><br><span class="line">            for (int i = 0; i &lt; length; ++i) &#123;</span><br><span class="line">                counts[str[i] - &#x27;a&#x27;] ++;</span><br><span class="line">            &#125;</span><br><span class="line">            mp[counts].emplace_back(str);</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;vector&lt;string&gt;&gt; ans;</span><br><span class="line">        for (auto it = mp.begin(); it != mp.end(); ++it) &#123;</span><br><span class="line">            ans.emplace_back(it-&gt;second);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
@@ -1224,7 +1224,7 @@
 <p>对于匹配的过程，暴力的方法是 O(n)遍历数组去看是否存在这个数，但其实更高效的方法是用一个哈希表存储数组中的数，这样查看一个数是否存在即能优化至 O(1)的时间复杂度。</p>
 <p>仅仅是这样我们的算法时间复杂度最坏情况下还是会达到 O(n^2^)（即外层需要枚举 O(n)个数，内层需要暴力匹配 O(n)次），无法满足题目的要求。但仔细分析这个过程，我们会发现其中执行了很多不必要的枚举，如果已知有一个 x,x+1,x+2,⋯ ,x+y的连续序列，而我们却重新从 x+1，x+2或者是 x+y处开始尝试匹配，那么得到的结果肯定不会优于枚举 x 为起点的答案，因此我们在外层循环的时候碰到这种情况跳过即可。</p>
 <p>那么怎么判断是否跳过呢？由于我们要枚举的数 x一定是在数组中不存在前驱数 x−1 的，不然按照上面的分析我们会从 x−1 开始尝试匹配，因此我们每次在哈希表中检查是否存在 x−1即能判断是否需要跳过了。</p>
-<p>增加了判断跳过的逻辑之后，时间复杂度是多少呢？外层循环需要 O(n) 的时间复杂度，只有当一个数是连续序列的第一个数的情况下才会进入内层循环，然后在内层循环中匹配连续序列中的数，因此数组中的每个数只会进入内层循环一次。根据上述分析可知，总时间复杂度为 O(n)O(n)O(n)，符合题目要求。</p>
+<p>增加了判断跳过的逻辑之后，时间复杂度是多少呢？外层循环需要 O(n) 的时间复杂度，只有当一个数是连续序列的第一个数的情况下才会进入内层循环，然后在内层循环中匹配连续序列中的数，因此数组中的每个数只会进入内层循环一次。根据上述分析可知，总时间复杂度为 O(n)，符合题目要求。</p>
 <p><strong>代码</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int longestConsecutive(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        unordered_set&lt;int&gt; num_set;</span><br><span class="line">        for (const int&amp; num : nums) &#123;</span><br><span class="line">            num_set.insert(num);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int longestStreak = 0;</span><br><span class="line"></span><br><span class="line">        for (const int&amp; num : num_set) &#123;</span><br><span class="line">            if (!num_set.count(num - 1)) &#123;</span><br><span class="line">                int currentNum = num;</span><br><span class="line">                int currentStreak = 1;</span><br><span class="line"></span><br><span class="line">                while (num_set.count(currentNum + 1)) &#123;</span><br><span class="line">                    currentNum += 1;</span><br><span class="line">                    currentStreak += 1;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                longestStreak = max(longestStreak, currentStreak);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return longestStreak;           </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
@@ -1533,7 +1533,7 @@
 
 <p><strong>复杂度分析</strong></p>
 <ul>
-<li>时间复杂度：O(N)，其中 NN* 是数组的长度。</li>
+<li>时间复杂度：O(N)，其中 N 是数组的长度。</li>
 <li>空间复杂度：O(1)。</li>
 </ul>
 <h3 id="（2）置换"><a href="#（2）置换" class="headerlink" title="（2）置换"></a>（2）置换</h3><p><strong>思路及算法</strong></p>
