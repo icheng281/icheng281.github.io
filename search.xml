@@ -2745,4 +2745,69 @@
         <tag>学习</tag>
       </tags>
   </entry>
+  <entry>
+    <title>盛最多水的容器</title>
+    <url>/2024/03/12/%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/</url>
+    <content><![CDATA[<h1 id="盛最多水的容器"><a href="#盛最多水的容器" class="headerlink" title="盛最多水的容器"></a>盛最多水的容器</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个长度为 <code>n</code> 的整数数组 <code>height</code> 。有 <code>n</code> 条垂线，第 <code>i</code> 条线的两个端点是 <code>(i, 0)</code> 和 <code>(i, height[i])</code> 。</p>
+<p>找出其中的两条线，使得它们与 <code>x</code> 轴共同构成的容器可以容纳最多的水。</p>
+<p>返回容器可以储存的最大水量。</p>
+<p><strong>说明：</strong>你不能倾斜容器。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://aliyun-lc-upload.oss-cn-hangzhou.aliyuncs.com/aliyun-lc-upload/uploads/2018/07/25/question_11.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：[1,8,6,2,5,4,8,3,7]</span><br><span class="line">输出：49 </span><br><span class="line">解释：图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为 49。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：height = [1,1]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == height.length</code></li>
+<li><code>2 &lt;= n &lt;= 105</code></li>
+<li><code>0 &lt;= height[i] &lt;= 104</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h3><p>设两指针 i , j ，指向的水槽板高度分别为 h[i], h[j] ，此状态下水槽面积为 S(i,j) 。由于可容纳水的高度由两板中的<strong>短板</strong>决定，因此可得如下面积公式：S(i,j)&#x3D;min(h[i],h[j])×(j−i)</p>
+<p><img src="https://pic.leetcode-cn.com/1628780627-VtSmcP-Picture0.png" alt="Picture0.png"></p>
+<p>在每个状态下，无论长板或短板向中间收窄一格，都会导致水槽 底边宽度 −1 变短：</p>
+<ul>
+<li>若向内 移动短板 ，水槽的短板 min(h[i],h[j]) 可能变大，因此下个水槽的面积 可能增大 。</li>
+<li>若向内 移动长板 ，水槽的短板 min(h[i],h[j]) 不变或变小，因此下个水槽的面积 一定变小 。</li>
+</ul>
+<p>因此，初始化双指针分列水槽左右两端，循环每轮将短板向内移动一格，并更新面积最大值，直到两指针相遇时跳出；即可获得最大面积。</p>
+<p><strong>算法流程</strong></p>
+<ol>
+<li>初始化： 双指针 iii , jjj 分列水槽左右两端；</li>
+<li>循环收窄： 直至双指针相遇时跳出；<br>a. 更新面积最大值 resresres ；<br>b. 选定两板高度中的短板，向中间收窄一格；</li>
+<li>返回值： 返回面积最大值 resresres 即可；</li>
+</ol>
+<p><strong>正确性证明</strong></p>
+<p>若暴力枚举，水槽两板围成面积 S(i,j) 的状态总数为 C(n,2) 。</p>
+<p>假设状态 S(i,j)下 h[i]&lt;h[j] ，在向内移动短板至 S(i+1,j) ，则相当于消去了 S(i,j−1),S(i,j−2),…,S(i,i+1) 状态集合。而所有消去状态的面积一定都小于当前面积（即 &lt;S(i,j)），因为这些状态：</p>
+<ul>
+<li>短板高度：相比 S(i,j) 相同或更短（即 ≤h[i] ）；</li>
+<li>底边宽度：相比 S(i,j) 更短；</li>
+</ul>
+<p>因此，每轮向内移动短板，所有消去的状态都 不会导致面积最大值丢失 ，证毕。</p>
+<p><img src="https://pic.leetcode-cn.com/1628780225-zCGBee-Picture1.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1628780225-eWztoV-Picture2.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1628780225-dtPYHC-Picture3.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1628780225-wgDSRQ-Picture4.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1628780225-YejZak-Picture5.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1628780225-wCBsti-Picture6.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1628780225-BeEZOH-Picture7.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1628780225-OkAgOd-Picture8.png" alt="img"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxArea(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int i = 0, j = height.size() - 1, res = 0;</span><br><span class="line">        while(i &lt; j) &#123;</span><br><span class="line">            res = height[i] &lt; height[j] ? </span><br><span class="line">                max(res, (j - i) * height[i++]): </span><br><span class="line">                max(res, (j - i) * height[j--]); </span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int maxArea(int[] height) &#123;</span><br><span class="line">        int i = 0, j = height.length - 1, res = 0;</span><br><span class="line">        while(i &lt; j) &#123;</span><br><span class="line">            res = height[i] &lt; height[j] ? </span><br><span class="line">                Math.max(res, (j - i) * height[i++]): </span><br><span class="line">                Math.max(res, (j - i) * height[j--]); </span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度 O(N) ： 双指针遍历一次底边宽度 N 。</li>
+<li>空间复杂度 O(1) ： 变量 i , j , res 使用常数额外空间。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
 </search>
