@@ -3623,4 +3623,156 @@
         <tag>学习</tag>
       </tags>
   </entry>
+  <entry>
+    <title>有效的数独</title>
+    <url>/2024/03/26/%E6%9C%89%E6%95%88%E7%9A%84%E6%95%B0%E7%8B%AC/</url>
+    <content><![CDATA[<h1 id="有效的数独"><a href="#有效的数独" class="headerlink" title="有效的数独"></a>有效的数独</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>请你判断一个 <code>9 x 9</code> 的数独是否有效。只需要 <strong>根据以下规则</strong> ，验证已经填入的数字是否有效即可。</p>
+<ol>
+<li>数字 <code>1-9</code> 在每一行只能出现一次。</li>
+<li>数字 <code>1-9</code> 在每一列只能出现一次。</li>
+<li>数字 <code>1-9</code> 在每一个以粗实线分隔的 <code>3x3</code> 宫内只能出现一次。（请参考示例图）</li>
+</ol>
+<p><strong>注意：</strong></p>
+<ul>
+<li>一个有效的数独（部分已被填充）不一定是可解的。</li>
+<li>只需要根据以上规则，验证已经填入的数字是否有效即可。</li>
+<li>空白格用 <code>&#39;.&#39;</code> 表示。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2021/04/12/250px-sudoku-by-l2g-20050714svg.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：board = </span><br><span class="line">[[&quot;5&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]</span><br><span class="line">,[&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]</span><br><span class="line">,[&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;]</span><br><span class="line">,[&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;]</span><br><span class="line">,[&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;]</span><br><span class="line">,[&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;]</span><br><span class="line">,[&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;]</span><br><span class="line">,[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;]</span><br><span class="line">,[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]]</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：board = </span><br><span class="line">[[&quot;8&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]</span><br><span class="line">,[&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]</span><br><span class="line">,[&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;]</span><br><span class="line">,[&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;]</span><br><span class="line">,[&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;]</span><br><span class="line">,[&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;]</span><br><span class="line">,[&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;]</span><br><span class="line">,[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;]</span><br><span class="line">,[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]]</span><br><span class="line">输出：false</span><br><span class="line">解释：除了第一行的第一个数字从 5 改为 8 以外，空格内其他数字均与 示例1 相同。 但由于位于左上角的 3x3 宫内有两个 8 存在, 因此这个数独是无效的。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>board.length == 9</code></li>
+<li><code>board[i].length == 9</code></li>
+<li><code>board[i][j]</code> 是一位数字（<code>1-9</code>）或者 <code>&#39;.&#39;</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="一次遍历"><a href="#一次遍历" class="headerlink" title="一次遍历"></a>一次遍历</h3><p><strong>思路及算法</strong></p>
+<p>有效的数独满足以下三个条件：</p>
+<ul>
+<li><p>同一个数字在每一行只能出现一次；</p>
+</li>
+<li><p>同一个数字在每一列只能出现一次；</p>
+</li>
+<li><p>同一个数字在每一个小九宫格只能出现一次。</p>
+</li>
+</ul>
+<p>可以使用哈希表记录每一行、每一列和每一个小九宫格中，每个数字出现的次数。只需要遍历数独一次，在遍历的过程中更新哈希表中的计数，并判断是否满足有效的数独的条件即可。</p>
+<p>对于数独的第 i 行第 j 列的单元格，其中 0≤i,j&lt;9该单元格所在的行下标和列下标分别为 i 和 j，该单元格所在的小九宫格的行数和列数分别为 ⌊i&#x2F;3⌋ 和 ⌊j&#x2F;3⌋，其中 0≤⌊i&#x2F;3⌋,⌊j&#x2F;3⌋&lt;3。</p>
+<p>由于数独中的数字范围是 1 到 9，因此可以使用数组代替哈希表进行计数。</p>
+<p>具体做法是，创建二维数组 rows 和 columns 分别记录数独的每一行和每一列中的每个数字的出现次数，创建三维数组 subboxes 记录数独的每一个小九宫格中的每个数字的出现次数，其中 rows[i] [index]、columns[j] [index] 和 subboxes[⌊i&#x2F;3⌋] [⌊j&#x2F;3⌋] [index] 分别表示数独的第 i 行第 j 列的单元格所在的行、列和小九宫格中，数字 index+1 出现的次数，其中 0≤index&lt;9，对应的数字 index+1 满足 1≤index+1≤9。</p>
+<p>如果 board[i] [j] 填入了数字 n，则将 rows[i] [n−1]、columns[j] [n−1] 和 subboxes[⌊i&#x2F;3⌋] [⌊j3⌋] [n−1] 各加 1。如果更新后的计数大于 1，则不符合有效的数独的条件，返回 false。</p>
+<p>如果遍历结束之后没有出现计数大于 1 的情况，则符合有效的数独的条件，返回 true。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public boolean isValidSudoku(char[][] board) &#123;</span><br><span class="line">        int[][] rows = new int[9][9];</span><br><span class="line">        int[][] columns = new int[9][9];</span><br><span class="line">        int[][][] subboxes = new int[3][3][9];</span><br><span class="line">        for (int i = 0; i &lt; 9; i++) &#123;</span><br><span class="line">            for (int j = 0; j &lt; 9; j++) &#123;</span><br><span class="line">                char c = board[i][j];</span><br><span class="line">                if (c != &#x27;.&#x27;) &#123;</span><br><span class="line">                    int index = c - &#x27;0&#x27; - 1;</span><br><span class="line">                    rows[i][index]++;</span><br><span class="line">                    columns[j][index]++;</span><br><span class="line">                    subboxes[i / 3][j / 3][index]++;</span><br><span class="line">                    if (rows[i][index] &gt; 1 || columns[j][index] &gt; 1 || subboxes[i / 3][j / 3][index] &gt; 1) &#123;</span><br><span class="line">                        return false;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isValidSudoku(vector&lt;vector&lt;char&gt;&gt;&amp; board) &#123;</span><br><span class="line">        int rows[9][9];</span><br><span class="line">        int columns[9][9];</span><br><span class="line">        int subboxes[3][3][9];</span><br><span class="line">        </span><br><span class="line">        memset(rows,0,sizeof(rows));</span><br><span class="line">        memset(columns,0,sizeof(columns));</span><br><span class="line">        memset(subboxes,0,sizeof(subboxes));</span><br><span class="line">        for (int i = 0; i &lt; 9; i++) &#123;</span><br><span class="line">            for (int j = 0; j &lt; 9; j++) &#123;</span><br><span class="line">                char c = board[i][j];</span><br><span class="line">                if (c != &#x27;.&#x27;) &#123;</span><br><span class="line">                    int index = c - &#x27;0&#x27; - 1;</span><br><span class="line">                    rows[i][index]++;</span><br><span class="line">                    columns[j][index]++;</span><br><span class="line">                    subboxes[i / 3][j / 3][index]++;</span><br><span class="line">                    if (rows[i][index] &gt; 1 || columns[j][index] &gt; 1 || subboxes[i / 3][j / 3][index] &gt; 1) &#123;</span><br><span class="line">                        return false;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(1)。数独共有 81 个单元格，只需要对每个单元格遍历一次即可。</p>
+</li>
+<li><p>空间复杂度：O(1)。由于数独的大小固定，因此哈希表的空间也是固定的。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>生命游戏</title>
+    <url>/2024/03/26/%E7%94%9F%E5%91%BD%E6%B8%B8%E6%88%8F/</url>
+    <content><![CDATA[<h1 id="生命游戏"><a href="#生命游戏" class="headerlink" title="生命游戏"></a>生命游戏</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个包含 <code>m × n</code> 个格子的面板，每一个格子都可以看成是一个细胞。每个细胞都具有一个初始状态： <code>1</code> 即为 <strong>活细胞</strong> （live），或 <code>0</code> 即为 <strong>死细胞</strong> （dead）。每个细胞与其八个相邻位置（水平，垂直，对角线）的细胞都遵循以下四条生存定律：</p>
+<ol>
+<li>如果活细胞周围八个位置的活细胞数少于两个，则该位置活细胞死亡；</li>
+<li>如果活细胞周围八个位置有两个或三个活细胞，则该位置活细胞仍然存活；</li>
+<li>如果活细胞周围八个位置有超过三个活细胞，则该位置活细胞死亡；</li>
+<li>如果死细胞周围正好有三个活细胞，则该位置死细胞复活；</li>
+</ol>
+<p>下一个状态是通过将上述规则同时应用于当前状态下的每个细胞所形成的，其中细胞的出生和死亡是同时发生的。</p>
+<p>给你 <code>m x n</code> 网格面板 <code>board</code> 的当前状态，返回下一个状态。</p>
+<p> <strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/12/26/grid1.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：board = [[0,1,0],[0,0,1],[1,1,1],[0,0,0]]</span><br><span class="line">输出：[[0,0,0],[1,0,1],[0,1,1],[0,1,0]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/12/26/grid2.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：board = [[1,1],[1,0]]</span><br><span class="line">输出：[[1,1],[1,1]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>m == board.length</code></li>
+<li><code>n == board[i].length</code></li>
+<li><code>1 &lt;= m, n &lt;= 25</code></li>
+<li><code>board[i][j]</code> 为 <code>0</code> 或 <code>1</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><p><strong>分析</strong></p>
+<p>在讲具体解法之前，请先根据下面的图片理解题目中描述的细胞遵循的生存定律，这有助于我们后面的讲解。</p>
+<p><img src="https://pic.leetcode-cn.com/Figures/289/Game_of_life_1.png" alt="fig"></p>
+<p><img src="https://pic.leetcode-cn.com/Figures/289/Game_of_life_2.png" alt="fig"></p>
+<h3 id="（1）复制原数组进行模拟"><a href="#（1）复制原数组进行模拟" class="headerlink" title="（1）复制原数组进行模拟"></a>（1）复制原数组进行模拟</h3><p><strong>思路及算法</strong></p>
+<p>这个问题看起来很简单，但有一个陷阱，如果你直接根据规则更新原始数组，那么就做不到题目中说的同步更新。假设你直接将更新后的细胞状态填入原始数组，那么当前轮次其他细胞状态的更新就会引用到当前轮已更新细胞的状态，但实际上每一轮更新需要依赖上一轮细胞的状态，是不能用这一轮的细胞状态来更新的。</p>
+<p><img src="https://pic.leetcode-cn.com/Figures/289/Game_of_life_3.png" alt="fig"></p>
+<p>如上图所示，已更新细胞的状态会影响到周围其他还未更新细胞状态的计算。一个最简单的解决方法就是复制一份原始数组，复制的那一份永远不修改，只作为更新规则的引用。这样原始数组的细胞值就不会被污染了。</p>
+<p><img src="https://pic.leetcode-cn.com/Figures/289/Game_of_life_4.png" alt="fig"></p>
+<p><strong>代码</strong></p>
+<ul>
+<li>复制一份原始数组；</li>
+<li>根据复制数组中邻居细胞的状态来更新 <code>board</code> 中的细胞状态。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void gameOfLife(vector&lt;vector&lt;int&gt;&gt;&amp; board) &#123;</span><br><span class="line">        int neighbors[3] = &#123;0, 1, -1&#125;;</span><br><span class="line"></span><br><span class="line">        int rows = board.size();</span><br><span class="line">        int cols = board[0].size();</span><br><span class="line"></span><br><span class="line">        // 创建复制数组 copyBoard</span><br><span class="line">        vector&lt;vector&lt;int&gt; &gt;copyBoard(rows, vector&lt;int&gt;(cols, 0));</span><br><span class="line"></span><br><span class="line">        // 从原数组复制一份到 copyBoard 中</span><br><span class="line">        for (int row = 0; row &lt; rows; row++) &#123;</span><br><span class="line">            for (int col = 0; col &lt; cols; col++) &#123;</span><br><span class="line">                copyBoard[row][col] = board[row][col];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 遍历面板每一个格子里的细胞</span><br><span class="line">        for (int row = 0; row &lt; rows; row++) &#123;</span><br><span class="line">            for (int col = 0; col &lt; cols; col++) &#123;</span><br><span class="line"></span><br><span class="line">                // 对于每一个细胞统计其八个相邻位置里的活细胞数量</span><br><span class="line">                int liveNeighbors = 0;</span><br><span class="line"></span><br><span class="line">                for (int i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">                    for (int j = 0; j &lt; 3; j++) &#123;</span><br><span class="line"></span><br><span class="line">                        if (!(neighbors[i] == 0 &amp;&amp; neighbors[j] == 0)) &#123;</span><br><span class="line">                            int r = (row + neighbors[i]);</span><br><span class="line">                            int c = (col + neighbors[j]);</span><br><span class="line"></span><br><span class="line">                            // 查看相邻的细胞是否是活细胞</span><br><span class="line">                            if ((r &lt; rows &amp;&amp; r &gt;= 0) &amp;&amp; (c &lt; cols &amp;&amp; c &gt;= 0) &amp;&amp; (copyBoard[r][c] == 1)) &#123;</span><br><span class="line">                                liveNeighbors += 1;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                // 规则 1 或规则 3      </span><br><span class="line">                if ((copyBoard[row][col] == 1) &amp;&amp; (liveNeighbors &lt; 2 || liveNeighbors &gt; 3)) &#123;</span><br><span class="line">                    board[row][col] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">                // 规则 4</span><br><span class="line">                if (copyBoard[row][col] == 0 &amp;&amp; liveNeighbors == 3) &#123;</span><br><span class="line">                    board[row][col] = 1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public void gameOfLife(int[][] board) &#123;</span><br><span class="line">        int[] neighbors = &#123;0, 1, -1&#125;;</span><br><span class="line"></span><br><span class="line">        int rows = board.length;</span><br><span class="line">        int cols = board[0].length;</span><br><span class="line"></span><br><span class="line">        // 创建复制数组 copyBoard</span><br><span class="line">        int[][] copyBoard = new int[rows][cols];</span><br><span class="line"></span><br><span class="line">        // 从原数组复制一份到 copyBoard 中</span><br><span class="line">        for (int row = 0; row &lt; rows; row++) &#123;</span><br><span class="line">            for (int col = 0; col &lt; cols; col++) &#123;</span><br><span class="line">                copyBoard[row][col] = board[row][col];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 遍历面板每一个格子里的细胞</span><br><span class="line">        for (int row = 0; row &lt; rows; row++) &#123;</span><br><span class="line">            for (int col = 0; col &lt; cols; col++) &#123;</span><br><span class="line"></span><br><span class="line">                // 对于每一个细胞统计其八个相邻位置里的活细胞数量</span><br><span class="line">                int liveNeighbors = 0;</span><br><span class="line"></span><br><span class="line">                for (int i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">                    for (int j = 0; j &lt; 3; j++) &#123;</span><br><span class="line"></span><br><span class="line">                        if (!(neighbors[i] == 0 &amp;&amp; neighbors[j] == 0)) &#123;</span><br><span class="line">                            int r = (row + neighbors[i]);</span><br><span class="line">                            int c = (col + neighbors[j]);</span><br><span class="line"></span><br><span class="line">                            // 查看相邻的细胞是否是活细胞</span><br><span class="line">                            if ((r &lt; rows &amp;&amp; r &gt;= 0) &amp;&amp; (c &lt; cols &amp;&amp; c &gt;= 0) &amp;&amp; (copyBoard[r][c] == 1)) &#123;</span><br><span class="line">                                liveNeighbors += 1;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                // 规则 1 或规则 3      </span><br><span class="line">                if ((copyBoard[row][col] == 1) &amp;&amp; (liveNeighbors &lt; 2 || liveNeighbors &gt; 3)) &#123;</span><br><span class="line">                    board[row][col] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">                // 规则 4</span><br><span class="line">                if (copyBoard[row][col] == 0 &amp;&amp; liveNeighbors == 3) &#123;</span><br><span class="line">                    board[row][col] = 1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(mn)，其中 m 和 n 分别为 <code>board</code> 的行数和列数。</p>
+</li>
+<li><p>空间复杂度：O(mn)，为复制数组占用的空间。</p>
+</li>
+</ul>
+<h3 id="（2）使用额外的状态"><a href="#（2）使用额外的状态" class="headerlink" title="（2）使用额外的状态"></a>（2）使用额外的状态</h3><p><strong>思路及算法</strong><br>方法一中 O(mn) 的空间复杂度在数组很大的时候内存消耗是非常昂贵的。题目中每个细胞只有两种状态 <code>live(1)</code> 或 <code>dead(0)</code>，但我们可以拓展一些复合状态使其包含之前的状态。举个例子，如果细胞之前的状态是 <code>0</code>，但是在更新之后变成了 <code>1</code>，我们就可以给它定义一个复合状态 <code>2</code>。这样我们看到 <code>2</code>，既能知道目前这个细胞是活的，还能知道它之前是死的。</p>
+<p><img src="https://pic.leetcode-cn.com/Figures/289/Game_of_life_5.png" alt="fig"></p>
+<p><strong>代码</strong></p>
+<ul>
+<li><p>遍历 <code>board </code>中的细胞。</p>
+</li>
+<li><p>根据数组的细胞状态计算新一轮的细胞状态，这里会用到能同时代表过去状态和现在状态的复合状态。</p>
+</li>
+<li><p>具体的计算规则如下所示：</p>
+<ul>
+<li>规则 1：如果活细胞周围八个位置的活细胞数少于两个，则该位置活细胞死亡。这时候，将细胞值改为 <code>-1</code>，代表这个细胞过去是活的现在死了； </li>
+<li>规则 2：如果活细胞周围八个位置有两个或三个活细胞，则该位置活细胞仍然存活。这时候不改变细胞的值，仍为 <code>1</code>；</li>
+<li>规则 3：如果活细胞周围八个位置有超过三个活细胞，则该位置活细胞死亡。这时候，将细胞的值改为 <code>-1</code>，代表这个细胞过去是活的现在死了。可以看到，因为规则 1 和规则 3 下细胞的起始终止状态是一致的，因此它们的复合状态也一致；</li>
+<li>规则 4：如果死细胞周围正好有三个活细胞，则该位置死细胞复活。这时候，将细胞的值改为 <code>2</code>，代表这个细胞过去是死的现在活了。</li>
+</ul>
+</li>
+<li><p>根据新的规则更新数组；</p>
+</li>
+<li><p>现在复合状态隐含了过去细胞的状态，所以我们可以在不复制数组的情况下完成原地更新；</p>
+</li>
+<li><p>对于最终的输出，需要将<code>board</code> 转成 <code>0</code>，<code>1</code> 的形式。因此这时候需要再遍历一次数组，将复合状态为 <code>2</code> 的细胞的值改为<code> 1</code>，复合状态为 <code>-1</code> 的细胞的值改为 <code>0</code>。</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void gameOfLife(vector&lt;vector&lt;int&gt;&gt;&amp; board) &#123;</span><br><span class="line">        int neighbors[3] = &#123;0, 1, -1&#125;;</span><br><span class="line"></span><br><span class="line">        int rows = board.size();</span><br><span class="line">        int cols = board[0].size();</span><br><span class="line"></span><br><span class="line">        // 遍历面板每一个格子里的细胞</span><br><span class="line">        for (int row = 0; row &lt; rows; row++) &#123;</span><br><span class="line">            for (int col = 0; col &lt; cols; col++) &#123;</span><br><span class="line"></span><br><span class="line">                // 对于每一个细胞统计其八个相邻位置里的活细胞数量</span><br><span class="line">                int liveNeighbors = 0;</span><br><span class="line"></span><br><span class="line">                for (int i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">                    for (int j = 0; j &lt; 3; j++) &#123;</span><br><span class="line"></span><br><span class="line">                        if (!(neighbors[i] == 0 &amp;&amp; neighbors[j] == 0)) &#123;</span><br><span class="line">                            // 相邻位置的坐标</span><br><span class="line">                            int r = (row + neighbors[i]);</span><br><span class="line">                            int c = (col + neighbors[j]);</span><br><span class="line"></span><br><span class="line">                            // 查看相邻的细胞是否是活细胞</span><br><span class="line">                            if ((r &lt; rows &amp;&amp; r &gt;= 0) &amp;&amp; (c &lt; cols &amp;&amp; c &gt;= 0) &amp;&amp; (abs(board[r][c]) == 1)) &#123;</span><br><span class="line">                                liveNeighbors += 1;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                // 规则 1 或规则 3 </span><br><span class="line">                if ((board[row][col] == 1) &amp;&amp; (liveNeighbors &lt; 2 || liveNeighbors &gt; 3)) &#123;</span><br><span class="line">                    // -1 代表这个细胞过去是活的现在死了</span><br><span class="line">                    board[row][col] = -1;</span><br><span class="line">                &#125;</span><br><span class="line">                // 规则 4</span><br><span class="line">                if (board[row][col] == 0 &amp;&amp; liveNeighbors == 3) &#123;</span><br><span class="line">                    // 2 代表这个细胞过去是死的现在活了</span><br><span class="line">                    board[row][col] = 2;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 遍历 board 得到一次更新后的状态</span><br><span class="line">        for (int row = 0; row &lt; rows; row++) &#123;</span><br><span class="line">            for (int col = 0; col &lt; cols; col++) &#123;</span><br><span class="line">                if (board[row][col] &gt; 0) &#123;</span><br><span class="line">                    board[row][col] = 1;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    board[row][col] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public void gameOfLife(int[][] board) &#123;</span><br><span class="line">        int[] neighbors = &#123;0, 1, -1&#125;;</span><br><span class="line"></span><br><span class="line">        int rows = board.length;</span><br><span class="line">        int cols = board[0].length;</span><br><span class="line"></span><br><span class="line">        // 遍历面板每一个格子里的细胞</span><br><span class="line">        for (int row = 0; row &lt; rows; row++) &#123;</span><br><span class="line">            for (int col = 0; col &lt; cols; col++) &#123;</span><br><span class="line"></span><br><span class="line">                // 对于每一个细胞统计其八个相邻位置里的活细胞数量</span><br><span class="line">                int liveNeighbors = 0;</span><br><span class="line"></span><br><span class="line">                for (int i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">                    for (int j = 0; j &lt; 3; j++) &#123;</span><br><span class="line"></span><br><span class="line">                        if (!(neighbors[i] == 0 &amp;&amp; neighbors[j] == 0)) &#123;</span><br><span class="line">                            // 相邻位置的坐标</span><br><span class="line">                            int r = (row + neighbors[i]);</span><br><span class="line">                            int c = (col + neighbors[j]);</span><br><span class="line"></span><br><span class="line">                            // 查看相邻的细胞是否是活细胞</span><br><span class="line">                            if ((r &lt; rows &amp;&amp; r &gt;= 0) &amp;&amp; (c &lt; cols &amp;&amp; c &gt;= 0) &amp;&amp; (Math.abs(board[r][c]) == 1)) &#123;</span><br><span class="line">                                liveNeighbors += 1;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                // 规则 1 或规则 3 </span><br><span class="line">                if ((board[row][col] == 1) &amp;&amp; (liveNeighbors &lt; 2 || liveNeighbors &gt; 3)) &#123;</span><br><span class="line">                    // -1 代表这个细胞过去是活的现在死了</span><br><span class="line">                    board[row][col] = -1;</span><br><span class="line">                &#125;</span><br><span class="line">                // 规则 4</span><br><span class="line">                if (board[row][col] == 0 &amp;&amp; liveNeighbors == 3) &#123;</span><br><span class="line">                    // 2 代表这个细胞过去是死的现在活了</span><br><span class="line">                    board[row][col] = 2;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 遍历 board 得到一次更新后的状态</span><br><span class="line">        for (int row = 0; row &lt; rows; row++) &#123;</span><br><span class="line">            for (int col = 0; col &lt; cols; col++) &#123;</span><br><span class="line">                if (board[row][col] &gt; 0) &#123;</span><br><span class="line">                    board[row][col] = 1;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    board[row][col] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(mn)，其中 m，n 分别为<code>board</code>的行数和列数。</p>
+</li>
+<li><p>空间复杂度：O(1)，除原数组外只需要常数的空间存放若干变量。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
 </search>
