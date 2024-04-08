@@ -4209,4 +4209,89 @@
         <tag>学习</tag>
       </tags>
   </entry>
+  <entry>
+    <title>删除链表的第N个结点</title>
+    <url>/2024/04/08/%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%ACN%E4%B8%AA%E7%BB%93%E7%82%B9/</url>
+    <content><![CDATA[<h1 id="删除链表的倒数第N个结点"><a href="#删除链表的倒数第N个结点" class="headerlink" title="删除链表的倒数第N个结点"></a>删除链表的倒数第N个结点</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个链表，删除链表的倒数第 <code>n</code> 个结点，并且返回链表的头结点。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/10/03/remove_ex1.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：head = [1,2,3,4,5], n = 2</span><br><span class="line">输出：[1,2,3,5]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：head = [1], n = 1</span><br><span class="line">输出：[]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：head = [1,2], n = 1</span><br><span class="line">输出：[1]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>链表中结点的数目为 <code>sz</code></li>
+<li><code>1 &lt;= sz &lt;= 30</code></li>
+<li><code>0 &lt;= Node.val &lt;= 100</code></li>
+<li><code>1 &lt;= n &lt;= sz</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><p><strong>前言</strong></p>
+<p>在对链表进行操作时，一种常用的技巧是添加一个哑节点（dummy node），它的 next 指针指向链表的头节点。这样一来，我们就不需要对头节点进行特殊的判断了。</p>
+<p>例如，在本题中，如果我们要删除节点 y，我们需要知道节点 y 的前驱节点 x，并将 x 的指针指向 y 的后继节点。但由于头节点不存在前驱节点，因此我们需要在删除头节点时进行特殊判断。但如果我们添加了哑节点，那么头节点的前驱节点就是哑节点本身，此时我们就只需要考虑通用的情况即可。</p>
+<p>特别地，在某些语言中，由于需要自行对内存进行管理。因此在实际的面试中，对于「是否需要释放被删除节点对应的空间」这一问题，我们需要和面试官进行积极的沟通以达成一致。下面的代码中默认不释放空间。</p>
+<h3 id="（1）计算链表长度"><a href="#（1）计算链表长度" class="headerlink" title="（1）计算链表长度"></a>（1）计算链表长度</h3><p><strong>思路及算法</strong></p>
+<p>一种容易想到的方法是，我们首先从头节点开始对链表进行一次遍历，得到链表的长度 L。随后我们再从头节点开始对链表进行一次遍历，当遍历到第 L−n+1 个节点时，它就是我们需要删除的节点。</p>
+<p>为了与题目中的 n 保持一致，节点的编号从 1开始，头节点为编号 1 的节点。</p>
+<p>为了方便删除操作，我们可以从哑节点开始遍历 L−n+1 个节点。当遍历到第 L−n+1 个节点时，它的下一个节点就是我们需要删除的节点，这样我们只需要修改一次指针，就能完成删除操作。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int getLength(ListNode* head) &#123;</span><br><span class="line">        int length = 0;</span><br><span class="line">        while (head) &#123;</span><br><span class="line">            ++length;</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        return length;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ListNode* removeNthFromEnd(ListNode* head, int n) &#123;</span><br><span class="line">        ListNode* dummy = new ListNode(0, head);</span><br><span class="line">        int length = getLength(head);</span><br><span class="line">        ListNode* cur = dummy;</span><br><span class="line">        for (int i = 1; i &lt; length - n + 1; ++i) &#123;</span><br><span class="line">            cur = cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        cur-&gt;next = cur-&gt;next-&gt;next;</span><br><span class="line">        ListNode* ans = dummy-&gt;next;</span><br><span class="line">        delete dummy;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode removeNthFromEnd(ListNode head, int n) &#123;</span><br><span class="line">        ListNode dummy = new ListNode(0, head);</span><br><span class="line">        int length = getLength(head);</span><br><span class="line">        ListNode cur = dummy;</span><br><span class="line">        for (int i = 1; i &lt; length - n + 1; ++i) &#123;</span><br><span class="line">            cur = cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        cur.next = cur.next.next;</span><br><span class="line">        ListNode ans = dummy.next;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int getLength(ListNode head) &#123;</span><br><span class="line">        int length = 0;</span><br><span class="line">        while (head != null) &#123;</span><br><span class="line">            ++length;</span><br><span class="line">            head = head.next;</span><br><span class="line">        &#125;</span><br><span class="line">        return length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(L)，其中 L 是链表的长度。</li>
+<li>空间复杂度：O(1)。</li>
+</ul>
+<h3 id="（2）栈"><a href="#（2）栈" class="headerlink" title="（2）栈"></a>（2）栈</h3><p><strong>思路及算法</strong></p>
+<p>我们也可以在遍历链表的同时将所有节点依次入栈。根据栈「先进后出」的原则，我们弹出栈的第 n 个节点就是需要删除的节点，并且目前栈顶的节点就是待删除节点的前驱节点。这样一来，删除操作就变得十分方便了。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/19/1.png" alt="img"></p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/19/2.png" alt="img"></p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/19/3.png" alt="img"></p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/19/4.png" alt="img"></p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/19/5.png" alt="img"></p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/19/6.png" alt="img"></p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/19/7.png" alt="img"></p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/19/8.png" alt="img"></p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/19/9.png" alt="img"></p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/19/10.png" alt="img"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* removeNthFromEnd(ListNode* head, int n) &#123;</span><br><span class="line">        ListNode* dummy = new ListNode(0, head);</span><br><span class="line">        stack&lt;ListNode*&gt; stk;</span><br><span class="line">        ListNode* cur = dummy;</span><br><span class="line">        while (cur) &#123;</span><br><span class="line">            stk.push(cur);</span><br><span class="line">            cur = cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            stk.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode* prev = stk.top();</span><br><span class="line">        prev-&gt;next = prev-&gt;next-&gt;next;</span><br><span class="line">        ListNode* ans = dummy-&gt;next;</span><br><span class="line">        delete dummy;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode removeNthFromEnd(ListNode head, int n) &#123;</span><br><span class="line">        ListNode dummy = new ListNode(0, head);</span><br><span class="line">        Deque&lt;ListNode&gt; stack = new LinkedList&lt;ListNode&gt;();</span><br><span class="line">        ListNode cur = dummy;</span><br><span class="line">        while (cur != null) &#123;</span><br><span class="line">            stack.push(cur);</span><br><span class="line">            cur = cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            stack.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode prev = stack.peek();</span><br><span class="line">        prev.next = prev.next.next;</span><br><span class="line">        ListNode ans = dummy.next;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(L)，其中 L 是链表的长度。</p>
+</li>
+<li><p>空间复杂度：O(L)，其中 L 是链表的长度。主要为栈的开销。</p>
+</li>
+</ul>
+<h3 id="（3）双指针"><a href="#（3）双指针" class="headerlink" title="（3）双指针"></a>（3）双指针</h3><p><strong>思路及算法</strong></p>
+<p>我们也可以在不预处理出链表的长度，以及使用常数空间的前提下解决本题。</p>
+<p>由于我们需要找到倒数第 n 个节点，因此我们可以使用两个指针 first 和 second 同时对链表进行遍历，并且 first 比 second 超前 n 个节点。当 first 遍历到链表的末尾时，second 就恰好处于倒数第 n 个节点。</p>
+<p>具体地，初始时 first 和 second 均指向头节点。我们首先使用 first 对链表进行遍历，遍历的次数为 n。此时，first 和 second 之间间隔了 n−1 个节点，即 first 比 second 超前了 n 个节点。</p>
+<p>在这之后，我们同时使用 first 和 second 对链表进行遍历。当 first 遍历到链表的末尾（即 first 为空指针）时，second 恰好指向倒数第 n 个节点。</p>
+<p>根据方法一和方法二，如果我们能够得到的是倒数第 n 个节点的前驱节点而不是倒数第 n 个节点的话，删除操作会更加方便。因此我们可以考虑在初始时将 second 指向哑节点，其余的操作步骤不变。这样一来，当 first 遍历到链表的末尾时，second 的下一个节点就是我们需要删除的节点。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/19/p3.png" alt="p3"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* removeNthFromEnd(ListNode* head, int n) &#123;</span><br><span class="line">        ListNode* dummy = new ListNode(0, head);</span><br><span class="line">        ListNode* first = head;</span><br><span class="line">        ListNode* second = dummy;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            first = first-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        while (first) &#123;</span><br><span class="line">            first = first-&gt;next;</span><br><span class="line">            second = second-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        second-&gt;next = second-&gt;next-&gt;next;</span><br><span class="line">        ListNode* ans = dummy-&gt;next;</span><br><span class="line">        delete dummy;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode removeNthFromEnd(ListNode head, int n) &#123;</span><br><span class="line">        ListNode dummy = new ListNode(0, head);</span><br><span class="line">        ListNode first = head;</span><br><span class="line">        ListNode second = dummy;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            first = first.next;</span><br><span class="line">        &#125;</span><br><span class="line">        while (first != null) &#123;</span><br><span class="line">            first = first.next;</span><br><span class="line">            second = second.next;</span><br><span class="line">        &#125;</span><br><span class="line">        second.next = second.next.next;</span><br><span class="line">        ListNode ans = dummy.next;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(L)，其中 L 是链表的长度。</li>
+<li>空间复杂度：O(1)。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
 </search>
