@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-count">76</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,6 +174,288 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/01/H%E6%8C%87%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/01/H%E6%8C%87%E6%95%B0/" class="post-title-link" itemprop="url">H指数</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-01 11:15:36 / 修改时间：11:23:43" itemprop="dateCreated datePublished" datetime="2024-03-01T11:15:36+08:00">2024-03-01</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="H指数"><a href="#H指数" class="headerlink" title="H指数"></a>H指数</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个整数数组 <code>citations</code> ，其中 <code>citations[i]</code> 表示研究者的第 <code>i</code> 篇论文被引用的次数。计算并返回该研究者的 <strong><code>h</code> 指数</strong>。</p>
+<p>根据维基百科上 h 指数的定义：<code>h</code> 代表“高引用次数” ，一名科研人员的 <code>h</code> <strong>指数</strong> 是指他（她）至少发表了 <code>h</code> 篇论文，并且 <strong>至少</strong> 有 <code>h</code> 篇论文被引用次数大于等于 <code>h</code> 。如果 <code>h</code> 有多种可能的值，**<code>h</code> 指数** 是其中最大的那个。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：citations = [3,0,6,1,5]</span><br><span class="line">输出：3 </span><br><span class="line">解释：给定数组表示研究者总共有 5 篇论文，每篇论文相应的被引用了 3, 0, 6, 1, 5 次。</span><br><span class="line">     由于研究者有 3 篇论文每篇 至少 被引用了 3 次，其余两篇论文每篇被引用 不多于 3 次，所以她的 h 指数是 3。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：citations = [1,3,1]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == citations.length</code></li>
+<li><code>1 &lt;= n &lt;= 5000</code></li>
+<li><code>0 &lt;= citations[i] &lt;= 1000</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）排序"><a href="#（1）排序" class="headerlink" title="（1）排序"></a>（1）排序</h3><p><strong>思路及算法</strong></p>
+<p>首先我们可以将初始的 H 指数 h 设为 0，然后将引用次数排序，并且对排序后的数组从大到小遍历。</p>
+<p>根据 H 指数的定义，如果当前 H 指数为 h 并且在遍历过程中找到当前值 citations[i]&gt;h，则说明我们找到了一篇被引用了至少 h+1 次的论文，所以将现有的 h 值加 1。继续遍历直到 h 无法继续增大。最后返回 h 作为最终答案。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int hIndex(vector&lt;int&gt;&amp; citations) &#123;</span><br><span class="line">        sort(citations.begin(), citations.end());</span><br><span class="line">        int h = 0, i = citations.size() - 1;</span><br><span class="line">        while (i &gt;= 0 &amp;&amp; citations[i] &gt; h) &#123;</span><br><span class="line">            h++;</span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">        return h;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int hIndex(int[] citations) &#123;</span><br><span class="line">        Arrays.sort(citations);</span><br><span class="line">        int h = 0, i = citations.length - 1; </span><br><span class="line">        while (i &gt;= 0 &amp;&amp; citations[i] &gt; h) &#123;</span><br><span class="line">            h++; </span><br><span class="line">            i--;</span><br><span class="line">        &#125;</span><br><span class="line">        return h;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(nlog⁡n)，其中 n 为数组 citations 的长度。即为排序的时间复杂度。</p>
+</li>
+<li><p>空间复杂度：O(log⁡n)，其中 n 为数组 citations 的长度。即为排序的空间复杂度。</p>
+</li>
+</ul>
+<h3 id="（2）计数排序"><a href="#（2）计数排序" class="headerlink" title="（2）计数排序"></a>（2）计数排序</h3><p><strong>思路及算法</strong></p>
+<p>根据上述解法我们发现，最终的时间复杂度与排序算法的时间复杂度有关，所以我们可以使用计数排序算法，新建并维护一个数组 counter 用来记录当前引用次数的论文有几篇。</p>
+<p>根据定义，我们可以发现 H 指数不可能大于总的论文发表数，所以对于引用次数超过论文发表数的情况，我们可以将其按照总的论文发表数来计算即可。这样我们可以限制参与排序的数的大小为 [0,n]（其中 n 为总的论文发表数），使得计数排序的时间复杂度降低到 O(n)。</p>
+<p>最后我们可以从后向前遍历数组 counter，对于每个 0≤i≤n，在数组 counter 中得到大于或等于当前引用次数 iii 的总论文数。当我们找到一个 H 指数时跳出循环，并返回结果。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int hIndex(vector&lt;int&gt;&amp; citations) &#123;</span><br><span class="line">        int n = citations.size(), tot = 0;</span><br><span class="line">        vector&lt;int&gt; counter(n + 1);</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            if (citations[i] &gt;= n) &#123;</span><br><span class="line">                counter[n]++;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                counter[citations[i]]++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = n; i &gt;= 0; i--) &#123;</span><br><span class="line">            tot += counter[i];</span><br><span class="line">            if (tot &gt;= i) &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public int hIndex(int[] citations) &#123;</span><br><span class="line">        int n = citations.length, tot = 0;</span><br><span class="line">        int[] counter = new int[n + 1];</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            if (citations[i] &gt;= n) &#123;</span><br><span class="line">                counter[n]++;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                counter[citations[i]]++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = n; i &gt;= 0; i--) &#123;</span><br><span class="line">            tot += counter[i];</span><br><span class="line">            if (tot &gt;= i) &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 为数组 citations 的长度。需要遍历数组 citations 一次，以及遍历长度为 n+1 的数组 counter 一次。</p>
+</li>
+<li><p>空间复杂度：O(n)，其中 n 为数组 citations 的长度。需要创建长度为 n+1 的数组 counter。</p>
+</li>
+</ul>
+<h3 id="（3）二分搜索"><a href="#（3）二分搜索" class="headerlink" title="（3）二分搜索"></a>（3）二分搜索</h3><p><strong>思路及算法</strong></p>
+<p>我们需要找到一个值 h，它是满足「有 <code>h</code> 篇论文的引用次数至少为<code> h</code>」的最大值。小于等于<code>h</code>的所有值 <code>x</code> 都满足这个性质，而大于 <code>h</code> 的值都不满足这个性质。同时因为我们可以用较短时间（扫描一遍数组的时间复杂度为 O(n)，其中 n 为数组 citations 的长度）来判断 <code>x</code> 是否满足这个性质，所以这个问题可以用二分搜索来解决。</p>
+<p>设查找范围的初始左边界 left 为 0，初始右边界 right 为 n。每次在查找范围内取中点 mid，同时扫描整个数组，判断是否至少有 mid 个数大于 mid。如果有，说明要寻找的 h 在搜索区间的右边，反之则在左边。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int hIndex(vector&lt;int&gt;&amp; citations) &#123;</span><br><span class="line">        int left=0,right=citations.size();</span><br><span class="line">        int mid=0,cnt=0;</span><br><span class="line">        while(left&lt;right)&#123;</span><br><span class="line">            // +1 防止死循环</span><br><span class="line">            mid=(left+right+1)&gt;&gt;1;</span><br><span class="line">            cnt=0;</span><br><span class="line">            for(int i=0;i&lt;citations.size();i++)&#123;</span><br><span class="line">                if(citations[i]&gt;=mid)&#123;</span><br><span class="line">                    cnt++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(cnt&gt;=mid)&#123;</span><br><span class="line">                // 要找的答案在 [mid,right] 区间内</span><br><span class="line">                left=mid;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                // 要找的答案在 [0,mid) 区间内</span><br><span class="line">                right=mid-1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int hIndex(int[] citations) &#123;</span><br><span class="line">        int left=0,right=citations.length;</span><br><span class="line">        int mid=0,cnt=0;</span><br><span class="line">        while(left&lt;right)&#123;</span><br><span class="line">            // +1 防止死循环</span><br><span class="line">            mid=(left+right+1)&gt;&gt;1;</span><br><span class="line">            cnt=0;</span><br><span class="line">            for(int i=0;i&lt;citations.length;i++)&#123;</span><br><span class="line">                if(citations[i]&gt;=mid)&#123;</span><br><span class="line">                    cnt++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(cnt&gt;=mid)&#123;</span><br><span class="line">                // 要找的答案在 [mid,right] 区间内</span><br><span class="line">                left=mid;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                // 要找的答案在 [0,mid) 区间内</span><br><span class="line">                right=mid-1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(nlogn)，其中 n 为数组 citations 的长度。需要进行 logn 次二分搜索，每次二分搜索需要遍历数组 citations 一次。</li>
+<li>空间复杂度：O(1)，只需要常数个变量来进行二分搜索。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/02/29/%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8FII/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/02/29/%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8FII/" class="post-title-link" itemprop="url">跳跃游戏II</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-02-29 19:13:40" itemprop="dateCreated datePublished" datetime="2024-02-29T19:13:40+08:00">2024-02-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-07 20:56:18" itemprop="dateModified" datetime="2024-03-07T20:56:18+08:00">2024-03-07</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="跳跃游戏II"><a href="#跳跃游戏II" class="headerlink" title="跳跃游戏II"></a>跳跃游戏II</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个长度为 <code>n</code> 的 <strong>0 索引</strong>整数数组 <code>nums</code>。初始位置为 <code>nums[0]</code>。</p>
+<p>每个元素 <code>nums[i]</code> 表示从索引 <code>i</code> 向前跳转的最大长度。换句话说，如果你在 <code>nums[i]</code> 处，你可以跳转到任意 <code>nums[i + j]</code> 处:</p>
+<ul>
+<li><code>0 &lt;= j &lt;= nums[i]</code> </li>
+<li><code>i + j &lt; n</code></li>
+</ul>
+<p>返回到达 <code>nums[n - 1]</code> 的最小跳跃次数。生成的测试用例可以到达 <code>nums[n - 1]</code>。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: nums = [2,3,1,1,4]</span><br><span class="line">输出: 2</span><br><span class="line">解释: 跳到最后一个位置的最小跳跃数是 2。</span><br><span class="line">     从下标为 0 跳到下标为 1 的位置，跳 1 步，然后跳 3 步到达数组的最后一个位置。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: nums = [2,3,0,1,4]</span><br><span class="line">输出: 2</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示:</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 104</code></li>
+<li><code>0 &lt;= nums[i] &lt;= 1000</code></li>
+<li>题目保证可以到达 <code>nums[n-1]</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）反向查找出发位置"><a href="#（1）反向查找出发位置" class="headerlink" title="（1）反向查找出发位置"></a>（1）反向查找出发位置</h3><p><strong>思路及算法</strong></p>
+<p>我们的目标是到达数组的最后一个位置，因此我们可以考虑最后一步跳跃前所在的位置，该位置通过跳跃能够到达最后一个位置。</p>
+<p>如果有多个位置通过跳跃都能够到达最后一个位置，那么我们应该如何进行选择呢？直观上来看，我们可以「贪心」地选择距离最后一个位置最远的那个位置，也就是对应下标最小的那个位置。因此，我们可以从左到右遍历数组，选择第一个满足要求的位置。</p>
+<p>找到最后一步跳跃前所在的位置之后，我们继续贪心地寻找倒数第二步跳跃前所在的位置，以此类推，直到找到数组的开始位置。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int jump(int[] nums) &#123;</span><br><span class="line">        int position = nums.length - 1;</span><br><span class="line">        int steps = 0;</span><br><span class="line">        while (position &gt; 0) &#123;</span><br><span class="line">            for (int i = 0; i &lt; position; i++) &#123;</span><br><span class="line">                if (i + nums[i] &gt;= position) &#123;</span><br><span class="line">                    position = i;</span><br><span class="line">                    steps++;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return steps;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n^2^)，其中 n 是数组长度。有两层嵌套循环，在最坏的情况下，例如数组中的所有元素都是 1，position 需要遍历数组中的每个位置，对于 position 的每个值都有一次循环。</p>
+</li>
+<li><p>空间复杂度：O(1)。</p>
+</li>
+</ul>
+<h3 id="（2）正向查找可到达的最大位置"><a href="#（2）正向查找可到达的最大位置" class="headerlink" title="（2）正向查找可到达的最大位置"></a>（2）正向查找可到达的最大位置</h3><p><strong>思路及算法</strong></p>
+<p>如果我们「贪心」地进行正向查找，每次找到可到达的最远位置，就可以在线性时间内得到最少的跳跃次数。</p>
+<p>例如，对于数组 <code>[2,3,1,2,4,2,3]</code>，初始位置是下标 0，从下标 0 出发，最远可到达下标 2。下标 0 可到达的位置中，下标 1 的值是 3，从下标 1 出发可以达到更远的位置，因此第一步到达下标 1。</p>
+<p>从下标 1 出发，最远可到达下标 4。下标 1 可到达的位置中，下标 4 的值是 4 ，从下标 4 出发可以达到更远的位置，因此第二步到达下标 4。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/45/45_fig1.png" alt="fig1"></p>
+<p>在具体的实现中，我们维护当前能够到达的最大下标位置，记为边界。我们从左到右遍历数组，到达边界时，更新边界并将跳跃次数增加 1。</p>
+<p>在遍历数组时，我们不访问最后一个元素，这是因为在访问最后一个元素之前，我们的边界一定大于等于最后一个位置，否则就无法跳到最后一个位置了。如果访问最后一个元素，在边界正好为最后一个位置的情况下，我们会增加一次「不必要的跳跃次数」，因此我们不必访问最后一个元素。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int jump(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int maxPos = 0, n = nums.size(), end = 0, step = 0;</span><br><span class="line">        for (int i = 0; i &lt; n - 1; ++i) &#123;</span><br><span class="line">            if (maxPos &gt;= i) &#123;</span><br><span class="line">                maxPos = max(maxPos, i + nums[i]);</span><br><span class="line">                if (i == end) &#123;</span><br><span class="line">                    end = maxPos;</span><br><span class="line">                    ++step;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return step;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int jump(int[] nums) &#123;</span><br><span class="line">        int length = nums.length;</span><br><span class="line">        int end = 0;</span><br><span class="line">        int maxPosition = 0; </span><br><span class="line">        int steps = 0;</span><br><span class="line">        for (int i = 0; i &lt; length - 1; i++) &#123;</span><br><span class="line">            maxPosition = Math.max(maxPosition, i + nums[i]); </span><br><span class="line">            if (i == end) &#123;</span><br><span class="line">                end = maxPosition;</span><br><span class="line">                steps++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return steps;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，其中 n 是数组长度。</li>
+<li>空间复杂度：O(1)。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1248,319 +1530,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/02/22/%E8%BD%AE%E8%BD%AC%E6%95%B0%E7%BB%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/02/22/%E8%BD%AE%E8%BD%AC%E6%95%B0%E7%BB%84/" class="post-title-link" itemprop="url">轮转数组</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-02-22 14:56:09" itemprop="dateCreated datePublished" datetime="2024-02-22T14:56:09+08:00">2024-02-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-03-07 21:32:38" itemprop="dateModified" datetime="2024-03-07T21:32:38+08:00">2024-03-07</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.5k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="轮转数组"><a href="#轮转数组" class="headerlink" title="轮转数组"></a>轮转数组</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个整数数组 <code>nums</code>，将数组中的元素向右轮转 <code>k</code> 个位置，其中 <code>k</code> 是非负数。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入: nums = [1,2,3,4,5,6,7], k = 3</span><br><span class="line">输出: [5,6,7,1,2,3,4]</span><br><span class="line">解释:</span><br><span class="line">向右轮转 1 步: [7,1,2,3,4,5,6]</span><br><span class="line">向右轮转 2 步: [6,7,1,2,3,4,5]</span><br><span class="line">向右轮转 3 步: [5,6,7,1,2,3,4]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [-1,-100,3,99], k = 2</span><br><span class="line">输出：[3,99,-1,-100]</span><br><span class="line">解释: </span><br><span class="line">向右轮转 1 步: [99,-1,-100,3]</span><br><span class="line">向右轮转 2 步: [3,99,-1,-100]</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= nums.length &lt;= 105</code></li>
-<li><code>-231 &lt;= nums[i] &lt;= 231 - 1</code></li>
-<li><code>0 &lt;= k &lt;= 105</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）使用额外的数组"><a href="#（1）使用额外的数组" class="headerlink" title="（1）使用额外的数组"></a>（1）使用额外的数组</h3><p><strong>思路及算法</strong></p>
-<p>我们可以使用额外的数组来将每个元素放至正确的位置。用 <code>n</code> 表示数组的长度，我们遍历原数组，将原数组下标为 <code>i</code> 的元素放至新数组下标为 <code>(i+k) mod  n</code> 的位置，最后将新数组拷贝至原数组即可。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void rotate(vector&lt;int&gt;&amp; nums, int k) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        vector&lt;int&gt; newArr(n);</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            newArr[(i + k) % n] = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        nums.assign(newArr.begin(), newArr.end());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public void rotate(int[] nums, int k) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        int[] newArr = new int[n];</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            newArr[(i + k) % n] = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        System.arraycopy(newArr, 0, nums, 0, n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度： O(n)，其中 n 为数组的长度。</li>
-<li>空间复杂度： O(n)。</li>
-</ul>
-<h3 id="（2）环状替换"><a href="#（2）环状替换" class="headerlink" title="（2）环状替换"></a>（2）环状替换</h3><p><strong>思路及算法</strong></p>
-<p>使用额外数组的原因在于如果我们直接将每个数字放至它最后的位置，这样被放置位置的元素会被覆盖从而丢失。因此，从另一个角度，我们可以将被替换的元素保存在变量 <code>temp</code> 中，从而避免了额外数组的开销。</p>
-<p>我们从位置 0 开始，最初令<code>temp=nums[0]</code>。根据规则，位置 0 的元素会放至 <code>(0+k) mod  n</code> 的位置，令 <code>x=(0+k) mod  n</code>，此时交换 <code>temp</code> 和 <code>nums[x]</code>，完成位置 <code>x</code> 的更新。然后，我们考察位置 <code>x</code>，并交换<code> temp</code>和<code> nums[(x+k) mod  n]</code>，从而完成下一个位置的更新。不断进行上述过程，直至回到初始位置 0。</p>
-<p>容易发现，当回到初始位置 0 时，有些数字可能还没有遍历到，此时我们应该从下一个数字开始重复的过程，可是这个时候怎么才算遍历结束呢？我们不妨先考虑这样一个问题：从 0 开始不断遍历，最终回到起点 0 的过程中，我们遍历了多少个元素？</p>
-<p>由于最终回到了起点，故该过程恰好走了整数数量的圈，不妨设为 <code>a </code>圈；再设该过程总共遍历了 <code>b</code> 个元素。因此，我们有 a<del>n</del>&#x3D;b，即 a 一定为 <code>n,kn,kn,k</code> 的公倍数。又因为我们在第一次回到起点时就结束，因此 a 要尽可能小，故 a<del>n</del> 就是 <code>n,kn,kn,k</code> 的最小公倍数 <code>lcm(n,k)</code>，因此 b 就为<code> lcm(n,k)/k</code>。</p>
-<p>这说明单次遍历会访问到 <code>lcm(n,k)/k</code>个元素。为了访问到所有的元素，我们需要进行遍历的次数为</p>
-<p>$\frac{n}{lcm(n,k)&#x2F;k}$ &#x3D;$\frac{nk}{lcm(n,k)}$ &#x3D;gcd(n,k)</p>
-<p>其中 <code>gcd </code>指的是最大公约数。</p>
-<p>我们用下面的例子更具体地说明这个过程：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nums = [1, 2, 3, 4, 5, 6] </span><br><span class="line">k = 2</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://pic.leetcode-cn.com/f0493a97cdb7bc46b37306ca14e555451496f9f9c21effcad8517a81a26f30d6-image.png" alt="image.png"></p>
-<p>如果读者对上面的数学推导的理解有一定困难，也可以使用另外一种方式完成代码：使用单独的变量 count 跟踪当前已经访问的元素数量，当 count&#x3D;n 时，结束遍历过程。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void rotate(vector&lt;int&gt;&amp; nums, int k) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        k = k % n;</span><br><span class="line">        int count = gcd(k, n);</span><br><span class="line">        for (int start = 0; start &lt; count; ++start) &#123;</span><br><span class="line">            int current = start;</span><br><span class="line">            int prev = nums[start];</span><br><span class="line">            do &#123;</span><br><span class="line">                int next = (current + k) % n;</span><br><span class="line">                swap(nums[next], prev);</span><br><span class="line">                current = next;</span><br><span class="line">            &#125; while (start != current);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public void rotate(int[] nums, int k) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        k = k % n;</span><br><span class="line">        int count = gcd(k, n);</span><br><span class="line">        for (int start = 0; start &lt; count; ++start) &#123;</span><br><span class="line">            int current = start;</span><br><span class="line">            int prev = nums[start];</span><br><span class="line">            do &#123;</span><br><span class="line">                int next = (current + k) % n;</span><br><span class="line">                int temp = nums[next];</span><br><span class="line">                nums[next] = prev;</span><br><span class="line">                prev = temp;</span><br><span class="line">                current = next;</span><br><span class="line">            &#125; while (start != current);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int gcd(int x, int y) &#123;</span><br><span class="line">        return y &gt; 0 ? gcd(y, x % y) : x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 为数组的长度。每个元素只会被遍历一次。</p>
-</li>
-<li><p>空间复杂度：O(1)。我们只需常数空间存放若干变量。</p>
-</li>
-</ul>
-<h3 id="（3）数组翻转"><a href="#（3）数组翻转" class="headerlink" title="（3）数组翻转"></a>（3）数组翻转</h3><p><strong>思路及算法</strong></p>
-<p>该方法基于如下的事实：当我们将数组的元素向右移动 k 次后，尾部 k mod n 个元素会移动至数组头部，其余元素向后移动 k mod n 个位置。</p>
-<p>该方法为数组的翻转：我们可以先将所有元素翻转，这样尾部的 k mod n 个元素就被移至数组头部，然后我们再翻转 [0,k mod n−1] 区间的元素和 [k mod n,n−1] 区间的元素即能得到最后的答案。</p>
-<p>我们以 n&#x3D;7，k&#x3D;3 为例进行如下展示：</p>
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>结果</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>原始数组</td>
-<td>1 2 3 4 5 6 7</td>
-</tr>
-<tr>
-<td>翻转所有元素</td>
-<td>7 6 5 4 3 2 1</td>
-</tr>
-<tr>
-<td>翻转 [0,k mod n−1] 区间的元素</td>
-<td>5 6 7 4 3 2 1</td>
-</tr>
-<tr>
-<td>翻转[k mod n,n−1] 区间的元素</td>
-<td>5 6 7 1 2 3 4</td>
-</tr>
-</tbody></table>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void reverse(vector&lt;int&gt;&amp; nums, int start, int end) &#123;</span><br><span class="line">        while (start &lt; end) &#123;</span><br><span class="line">            swap(nums[start], nums[end]);</span><br><span class="line">            start += 1;</span><br><span class="line">            end -= 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void rotate(vector&lt;int&gt;&amp; nums, int k) &#123;</span><br><span class="line">        k %= nums.size();</span><br><span class="line">        reverse(nums, 0, nums.size() - 1);</span><br><span class="line">        reverse(nums, 0, k - 1);</span><br><span class="line">        reverse(nums, k, nums.size() - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public void rotate(int[] nums, int k) &#123;</span><br><span class="line">        k %= nums.length;</span><br><span class="line">        reverse(nums, 0, nums.length - 1);</span><br><span class="line">        reverse(nums, 0, k - 1);</span><br><span class="line">        reverse(nums, k, nums.length - 1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void reverse(int[] nums, int start, int end) &#123;</span><br><span class="line">        while (start &lt; end) &#123;</span><br><span class="line">            int temp = nums[start];</span><br><span class="line">            nums[start] = nums[end];</span><br><span class="line">            nums[end] = temp;</span><br><span class="line">            start += 1;</span><br><span class="line">            end -= 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 为数组的长度。每个元素被翻转两次，一共 n 个元素，因此总时间复杂度为 O(2n)&#x3D;O(n)。</p>
-</li>
-<li><p>空间复杂度：O(1)。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/02/21/%E5%90%88%E5%B9%B6%E5%8C%BA%E9%97%B4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/02/21/%E5%90%88%E5%B9%B6%E5%8C%BA%E9%97%B4/" class="post-title-link" itemprop="url">合并区间</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-02-21 15:18:40" itemprop="dateCreated datePublished" datetime="2024-02-21T15:18:40+08:00">2024-02-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-03-07 20:23:52" itemprop="dateModified" datetime="2024-03-07T20:23:52+08:00">2024-03-07</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>881</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="合并区间"><a href="#合并区间" class="headerlink" title="合并区间"></a>合并区间</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>以数组 <code>intervals</code> 表示若干个区间的集合，其中单个区间为 <code>intervals[i] = [starti, endi]</code> 。请你合并所有重叠的区间，并返回 一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：intervals = [[1,3],[2,6],[8,10],[15,18]]</span><br><span class="line">输出：[[1,6],[8,10],[15,18]]</span><br><span class="line">解释：区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6].</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：intervals = [[1,4],[4,5]]</span><br><span class="line">输出：[[1,5]]</span><br><span class="line">解释：区间 [1,4] 和 [4,5] 可被视为重叠区间。</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= intervals.length &lt;= 104</code></li>
-<li><code>intervals[i].length == 2</code></li>
-<li><code>0 &lt;= starti &lt;= endi &lt;= 104</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><p><strong>思路及算法</strong></p>
-<p>如果我们按照区间的左端点排序，那么在排完序的列表中，可以合并的区间一定是连续的。如下图所示，标记为蓝色、黄色和绿色的区间分别可以合并成一个大区间，它们在排完序的列表中是连续的：</p>
-<p><img src="https://pic.leetcode-cn.com/50417462969bd13230276c0847726c0909873d22135775ef4022e806475d763e-56-2.png" alt="56-2.png"></p>
-<p>我们用数组 merged 存储最终的答案。</p>
-<p>首先，我们将列表中的区间按照左端点升序排序。然后我们将第一个区间加入 merged 数组中，并按顺序依次考虑之后的每个区间：</p>
-<ul>
-<li><p>如果当前区间的左端点在数组 merged 中最后一个区间的右端点之后，那么它们不会重合，我们可以直接将这个区间加入数组 merged 的末尾；</p>
-</li>
-<li><p>否则，它们重合，我们需要用当前区间的右端点更新数组 merged 中最后一个区间的右端点，将其置为二者的较大值。</p>
-</li>
-</ul>
-<p>上述算法的正确性可以用反证法来证明：在排完序后的数组中，两个本应合并的区间没能被合并，那么说明存在这样的三元组 (i,j,k) 以及数组中的三个区间 a[i],a[j],a[k] 满足 i&lt;j&lt;k 并且 (a[i],a[k]) 可以合并，但 (a[i],a[j]) 和 (a[j],a[k]) 不能合并。这说明它们满足下面的不等式：<br>a[i].end&lt;a[j].start(a[i] 和 a[j] 不能合并)<br>a[j].end&lt;a[k].start(a[j] 和 a[k] 不能合并)<br>a[i].end≥a[k].start(a[i] 和 a[k] 可以合并)<br>我们联立这些不等式（注意还有一个显然的不等式 a[j].start≤a[j].end），可以得到：a[i].end&lt;a[j].start≤a[j].end&lt;a[k].start<br>产生了矛盾！这说明假设是不成立的。因此，所有能够合并的区间都必然是连续的。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; merge(vector&lt;vector&lt;int&gt;&gt;&amp; intervals) &#123;</span><br><span class="line">        if (intervals.size() == 0) &#123;</span><br><span class="line">            return &#123;&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(intervals.begin(), intervals.end());</span><br><span class="line">        vector&lt;vector&lt;int&gt;&gt; merged;</span><br><span class="line">        for (int i = 0; i &lt; intervals.size(); ++i) &#123;</span><br><span class="line">            int L = intervals[i][0], R = intervals[i][1];</span><br><span class="line">            if (!merged.size() || merged.back()[1] &lt; L) &#123;</span><br><span class="line">                merged.push_back(&#123;L, R&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">            else &#123;</span><br><span class="line">                merged.back()[1] = max(merged.back()[1], R);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return merged;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int[][] merge(int[][] intervals) &#123;</span><br><span class="line">        if (intervals.length == 0) &#123;</span><br><span class="line">            return new int[0][2];</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(intervals, new Comparator&lt;int[]&gt;() &#123;</span><br><span class="line">            public int compare(int[] interval1, int[] interval2) &#123;</span><br><span class="line">                return interval1[0] - interval2[0];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        List&lt;int[]&gt; merged = new ArrayList&lt;int[]&gt;();</span><br><span class="line">        for (int i = 0; i &lt; intervals.length; ++i) &#123;</span><br><span class="line">            int L = intervals[i][0], R = intervals[i][1];</span><br><span class="line">            if (merged.size() == 0 || merged.get(merged.size() - 1)[1] &lt; L) &#123;</span><br><span class="line">                merged.add(new int[]&#123;L, R&#125;);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                merged.get(merged.size() - 1)[1] = Math.max(merged.get(merged.size() - 1)[1], R);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return merged.toArray(new int[merged.size()][]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(nlog⁡n)，其中 n 为区间的数量。除去排序的开销，我们只需要一次线性扫描，所以主要的时间开销是排序的 O(nlog⁡n)。</p>
-</li>
-<li><p>空间复杂度：O(log⁡n)，其中 n 为区间的数量。这里计算的是存储答案之外，使用的额外空间。O(log⁡n) 即为排序所需要的空间复杂度。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1585,14 +1554,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">85k</span>
+    <span title="站点总字数">87k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">5:10</span>
+    <span title="站点阅读时长">5:16</span>
   </span>
 </div>
 <div class="busuanzi-count">

@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-count">76</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,6 +174,279 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/13/%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/13/%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/" class="post-title-link" itemprop="url">三数之和</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-13 10:37:51 / 修改时间：10:39:28" itemprop="dateCreated datePublished" datetime="2024-03-13T10:37:51+08:00">2024-03-13</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="三数之和"><a href="#三数之和" class="headerlink" title="三数之和"></a>三数之和</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个整数数组 <code>nums</code> ，判断是否存在三元组 <code>[nums[i], nums[j], nums[k]]</code> 满足 <code>i != j</code>、<code>i != k</code> 且 <code>j != k</code> ，同时还满足 <code>nums[i] + nums[j] + nums[k] == 0</code> 。请</p>
+<p>你返回所有和为 <code>0</code> 且不重复的三元组。</p>
+<p><strong>注意：</strong>答案中不可以包含重复的三元组。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [-1,0,1,2,-1,-4]</span><br><span class="line">输出：[[-1,-1,2],[-1,0,1]]</span><br><span class="line">解释：</span><br><span class="line">nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0 。</span><br><span class="line">nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0 。</span><br><span class="line">nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0 。</span><br><span class="line">不同的三元组是 [-1,0,1] 和 [-1,-1,2] 。</span><br><span class="line">注意，输出的顺序和三元组的顺序并不重要。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [0,1,1]</span><br><span class="line">输出：[]</span><br><span class="line">解释：唯一可能的三元组和不为 0 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [0,0,0]</span><br><span class="line">输出：[[0,0,0]]</span><br><span class="line">解释：唯一可能的三元组和为 0 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>3 &lt;= nums.length &lt;= 3000</code></li>
+<li><code>-105 &lt;= nums[i] &lt;= 105</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="排序加双指针"><a href="#排序加双指针" class="headerlink" title="排序加双指针"></a>排序加双指针</h3><p><strong>思路及算法</strong></p>
+<p>题目中要求找到所有「不重复」且和为 0 的三元组，这个「不重复」的要求使得我们无法简单地使用三重循环枚举所有的三元组。这是因为在最坏的情况下，数组中的元素全部为 0，即</p>
+<p><code>[0, 0, 0, 0, 0, ..., 0, 0, 0]</code></p>
+<p>任意一个三元组的和都为 0。如果我们直接使用三重循环枚举三元组，会得到 O(N^3^) 个满足题目要求的三元组（其中 N 是数组的长度）时间复杂度至少为 O(N^3^)。在这之后，我们还需要使用哈希表进行去重操作，得到不包含重复三元组的最终答案，又消耗了大量的空间。这个做法的时间复杂度和空间复杂度都很高，因此我们要换一种思路来考虑这个问题。</p>
+<p>「不重复」的本质是什么？我们保持三重循环的大框架不变，只需要保证：</p>
+<ul>
+<li><p>第二重循环枚举到的元素不小于当前第一重循环枚举到的元素；</p>
+</li>
+<li><p>第三重循环枚举到的元素不小于当前第二重循环枚举到的元素。</p>
+</li>
+</ul>
+<p>也就是说，我们枚举的三元组 (a,b,c) 满足 a≤b≤c，保证了只有 (a,b,c)这个顺序会被枚举到，而 (b,a,c)、(c,b,a) 等等这些不会，这样就减少了重复。要实现这一点，我们可以将数组中的元素从小到大进行排序，随后使用普通的三重循环就可以满足上面的要求。</p>
+<p>同时，对于每一重循环而言，相邻两次枚举的元素不能相同，否则也会造成重复。举个例子，如果排完序的数组为</p>
+<p><code>[0, 1, 2, 2, 2, 3]</code><br><code> ^  ^  ^</code><br>我们使用三重循环枚举到的第一个三元组为 (0,1,2)，如果第三重循环继续枚举下一个元素，那么仍然是三元组 (0,1,2)，产生了重复。因此我们需要将第三重循环「跳到」下一个不相同的元素，即数组中的最后一个元素 3，枚举三元组 (0,1,3)。</p>
+<p>下面给出了改进的方法的伪代码实现：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">nums.sort()</span><br><span class="line">for first = 0 .. n-1</span><br><span class="line">    // 只有和上一次枚举的元素不相同，我们才会进行枚举</span><br><span class="line">    if first == 0 or nums[first] != nums[first-1] then</span><br><span class="line">        for second = first+1 .. n-1</span><br><span class="line">            if second == first+1 or nums[second] != nums[second-1] then</span><br><span class="line">                for third = second+1 .. n-1</span><br><span class="line">                    if third == second+1 or nums[third] != nums[third-1] then</span><br><span class="line">                        // 判断是否有 a+b+c==0</span><br><span class="line">                        check(first, second, third)</span><br></pre></td></tr></table></figure>
+
+<p>这个方法就是我们常说的「双指针」，当我们需要枚举数组中的两个元素时，如果我们发现随着第一个元素的递增，第二个元素是递减的，那么就可以使用双指针的方法，将枚举的时间复杂度从 O(N^2^) 减少至 O(N)。为什么是 O(N) 呢？这是因为在枚举的过程每一步中「左指针」会向右移动一个位置（也就是题目中的b），而「右指针」会向左移动若干个位置，这个与数组的元素有关，但我们知道它一共会移动的位置数为 O(N)，均摊下来，每次也向左移动一个位置，因此时间复杂度为 O(N)。</p>
+<p>注意到我们的伪代码中还有第一重循环，时间复杂度为 O(N)，因此枚举的总时间复杂度为 O(N^2^)。由于排序的时间复杂度为 O(Nlog⁡N)，在渐进意义下小于前者，因此算法的总时间复杂度为 O(N^2^)。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; threeSum(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        vector&lt;vector&lt;int&gt;&gt; ans;</span><br><span class="line">        // 枚举 a</span><br><span class="line">        for (int first = 0; first &lt; n; ++first) &#123;</span><br><span class="line">            // 需要和上一次枚举的数不相同</span><br><span class="line">            if (first &gt; 0 &amp;&amp; nums[first] == nums[first - 1]) &#123;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            // c 对应的指针初始指向数组的最右端</span><br><span class="line">            int third = n - 1;</span><br><span class="line">            int target = -nums[first];</span><br><span class="line">            // 枚举 b</span><br><span class="line">            for (int second = first + 1; second &lt; n; ++second) &#123;</span><br><span class="line">                // 需要和上一次枚举的数不相同</span><br><span class="line">                if (second &gt; first + 1 &amp;&amp; nums[second] == nums[second - 1]) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                // 需要保证 b 的指针在 c 的指针的左侧</span><br><span class="line">                while (second &lt; third &amp;&amp; nums[second] + nums[third] &gt; target) &#123;</span><br><span class="line">                    --third;</span><br><span class="line">                &#125;</span><br><span class="line">                // 如果指针重合，随着 b 后续的增加</span><br><span class="line">                // 就不会有满足 a+b+c=0 并且 b&lt;c 的 c 了，可以退出循环</span><br><span class="line">                if (second == third) &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                if (nums[second] + nums[third] == target) &#123;</span><br><span class="line">                    ans.push_back(&#123;nums[first], nums[second], nums[third]&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;Integer&gt;&gt; threeSum(int[] nums) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; ans = new ArrayList&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line">        // 枚举 a</span><br><span class="line">        for (int first = 0; first &lt; n; ++first) &#123;</span><br><span class="line">            // 需要和上一次枚举的数不相同</span><br><span class="line">            if (first &gt; 0 &amp;&amp; nums[first] == nums[first - 1]) &#123;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            // c 对应的指针初始指向数组的最右端</span><br><span class="line">            int third = n - 1;</span><br><span class="line">            int target = -nums[first];</span><br><span class="line">            // 枚举 b</span><br><span class="line">            for (int second = first + 1; second &lt; n; ++second) &#123;</span><br><span class="line">                // 需要和上一次枚举的数不相同</span><br><span class="line">                if (second &gt; first + 1 &amp;&amp; nums[second] == nums[second - 1]) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                // 需要保证 b 的指针在 c 的指针的左侧</span><br><span class="line">                while (second &lt; third &amp;&amp; nums[second] + nums[third] &gt; target) &#123;</span><br><span class="line">                    --third;</span><br><span class="line">                &#125;</span><br><span class="line">                // 如果指针重合，随着 b 后续的增加</span><br><span class="line">                // 就不会有满足 a+b+c=0 并且 b&lt;c 的 c 了，可以退出循环</span><br><span class="line">                if (second == third) &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                if (nums[second] + nums[third] == target) &#123;</span><br><span class="line">                    List&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;();</span><br><span class="line">                    list.add(nums[first]);</span><br><span class="line">                    list.add(nums[second]);</span><br><span class="line">                    list.add(nums[third]);</span><br><span class="line">                    ans.add(list);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(N^2^)，其中 N 是数组 nums 的长度。</p>
+</li>
+<li><p>空间复杂度：O(log⁡N)。我们忽略存储答案的空间，额外的排序的空间复杂度为 O(log⁡N)。然而我们修改了输入的数组 nums，在实际情况下不一定允许，因此也可以看成使用了一个额外的数组存储了 nums 的副本并进行排序，空间复杂度为 O(N)。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/12/%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/12/%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/" class="post-title-link" itemprop="url">盛最多水的容器</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-12 10:57:16 / 修改时间：10:58:22" itemprop="dateCreated datePublished" datetime="2024-03-12T10:57:16+08:00">2024-03-12</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>778</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="盛最多水的容器"><a href="#盛最多水的容器" class="headerlink" title="盛最多水的容器"></a>盛最多水的容器</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个长度为 <code>n</code> 的整数数组 <code>height</code> 。有 <code>n</code> 条垂线，第 <code>i</code> 条线的两个端点是 <code>(i, 0)</code> 和 <code>(i, height[i])</code> 。</p>
+<p>找出其中的两条线，使得它们与 <code>x</code> 轴共同构成的容器可以容纳最多的水。</p>
+<p>返回容器可以储存的最大水量。</p>
+<p><strong>说明：</strong>你不能倾斜容器。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://aliyun-lc-upload.oss-cn-hangzhou.aliyuncs.com/aliyun-lc-upload/uploads/2018/07/25/question_11.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：[1,8,6,2,5,4,8,3,7]</span><br><span class="line">输出：49 </span><br><span class="line">解释：图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为 49。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：height = [1,1]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == height.length</code></li>
+<li><code>2 &lt;= n &lt;= 105</code></li>
+<li><code>0 &lt;= height[i] &lt;= 104</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h3><p>设两指针 i , j ，指向的水槽板高度分别为 h[i], h[j] ，此状态下水槽面积为 S(i,j) 。由于可容纳水的高度由两板中的<strong>短板</strong>决定，因此可得如下面积公式：S(i,j)&#x3D;min(h[i],h[j])×(j−i)</p>
+<p><img src="https://pic.leetcode-cn.com/1628780627-VtSmcP-Picture0.png" alt="Picture0.png"></p>
+<p>在每个状态下，无论长板或短板向中间收窄一格，都会导致水槽 底边宽度 −1 变短：</p>
+<ul>
+<li>若向内 移动短板 ，水槽的短板 min(h[i],h[j]) 可能变大，因此下个水槽的面积 可能增大 。</li>
+<li>若向内 移动长板 ，水槽的短板 min(h[i],h[j]) 不变或变小，因此下个水槽的面积 一定变小 。</li>
+</ul>
+<p>因此，初始化双指针分列水槽左右两端，循环每轮将短板向内移动一格，并更新面积最大值，直到两指针相遇时跳出；即可获得最大面积。</p>
+<p><strong>算法流程</strong></p>
+<ol>
+<li>初始化： 双指针 iii , jjj 分列水槽左右两端；</li>
+<li>循环收窄： 直至双指针相遇时跳出；<br>a. 更新面积最大值 resresres ；<br>b. 选定两板高度中的短板，向中间收窄一格；</li>
+<li>返回值： 返回面积最大值 resresres 即可；</li>
+</ol>
+<p><strong>正确性证明</strong></p>
+<p>若暴力枚举，水槽两板围成面积 S(i,j) 的状态总数为 C(n,2) 。</p>
+<p>假设状态 S(i,j)下 h[i]&lt;h[j] ，在向内移动短板至 S(i+1,j) ，则相当于消去了 S(i,j−1),S(i,j−2),…,S(i,i+1) 状态集合。而所有消去状态的面积一定都小于当前面积（即 &lt;S(i,j)），因为这些状态：</p>
+<ul>
+<li>短板高度：相比 S(i,j) 相同或更短（即 ≤h[i] ）；</li>
+<li>底边宽度：相比 S(i,j) 更短；</li>
+</ul>
+<p>因此，每轮向内移动短板，所有消去的状态都 不会导致面积最大值丢失 ，证毕。</p>
+<p><img src="https://pic.leetcode-cn.com/1628780225-zCGBee-Picture1.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1628780225-eWztoV-Picture2.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1628780225-dtPYHC-Picture3.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1628780225-wgDSRQ-Picture4.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1628780225-YejZak-Picture5.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1628780225-wCBsti-Picture6.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1628780225-BeEZOH-Picture7.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1628780225-OkAgOd-Picture8.png" alt="img"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxArea(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int i = 0, j = height.size() - 1, res = 0;</span><br><span class="line">        while(i &lt; j) &#123;</span><br><span class="line">            res = height[i] &lt; height[j] ? </span><br><span class="line">                max(res, (j - i) * height[i++]): </span><br><span class="line">                max(res, (j - i) * height[j--]); </span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int maxArea(int[] height) &#123;</span><br><span class="line">        int i = 0, j = height.length - 1, res = 0;</span><br><span class="line">        while(i &lt; j) &#123;</span><br><span class="line">            res = height[i] &lt; height[j] ? </span><br><span class="line">                Math.max(res, (j - i) * height[i++]): </span><br><span class="line">                Math.max(res, (j - i) * height[j--]); </span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度 O(N) ： 双指针遍历一次底边宽度 N 。</li>
+<li>空间复杂度 O(1) ： 变量 i , j , res 使用常数额外空间。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1239,321 +1512,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/08/%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8C%B9%E9%85%8D%E9%A1%B9%E7%9A%84%E4%B8%8B%E6%A0%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/08/%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8C%B9%E9%85%8D%E9%A1%B9%E7%9A%84%E4%B8%8B%E6%A0%87/" class="post-title-link" itemprop="url">找出字符串中第一个匹配项的下标</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-03-08 11:07:00 / 修改时间：11:07:23" itemprop="dateCreated datePublished" datetime="2024-03-08T11:07:00+08:00">2024-03-08</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2.5k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>9 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="找出字符串中第一个匹配项的下标"><a href="#找出字符串中第一个匹配项的下标" class="headerlink" title="找出字符串中第一个匹配项的下标"></a>找出字符串中第一个匹配项的下标</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你两个字符串 <code>haystack</code> 和 <code>needle</code> ，请你在 <code>haystack</code> 字符串中找出 <code>needle</code> 字符串的第一个匹配项的下标（下标从 0 开始）。如果 <code>needle</code> 不是 <code>haystack</code> 的一部分，则返回 <code>-1</code> 。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：haystack = &quot;sadbutsad&quot;, needle = &quot;sad&quot;</span><br><span class="line">输出：0</span><br><span class="line">解释：&quot;sad&quot; 在下标 0 和 6 处匹配。</span><br><span class="line">第一个匹配项的下标是 0 ，所以返回 0 。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：haystack = &quot;leetcode&quot;, needle = &quot;leeto&quot;</span><br><span class="line">输出：-1</span><br><span class="line">解释：&quot;leeto&quot; 没有在 &quot;leetcode&quot; 中出现，所以返回 -1 。</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= haystack.length, needle.length &lt;= 104</code></li>
-<li><code>haystack</code> 和 <code>needle</code> 仅由小写英文字符组成</li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）暴力匹配"><a href="#（1）暴力匹配" class="headerlink" title="（1）暴力匹配"></a>（1）暴力匹配</h3><p><strong>思路及算法</strong></p>
-<p>我们可以让字符串 needle 与字符串 haystack 的所有长度为 m 的子串均匹配一次。</p>
-<p>为了减少不必要的匹配，我们每次匹配失败即立刻停止当前子串的匹配，对下一个子串继续匹配。如果当前子串匹配成功，我们返回当前子串的开始位置即可。如果所有子串都匹配失败，则返回 −1。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int strStr(string haystack, string needle) &#123;</span><br><span class="line">        int n = haystack.size(), m = needle.size();</span><br><span class="line">        for (int i = 0; i + m &lt;= n; i++) &#123;</span><br><span class="line">            bool flag = true;</span><br><span class="line">            for (int j = 0; j &lt; m; j++) &#123;</span><br><span class="line">                if (haystack[i + j] != needle[j]) &#123;</span><br><span class="line">                    flag = false;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (flag) &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int strStr(String haystack, String needle) &#123;</span><br><span class="line">        int n = haystack.length(), m = needle.length();</span><br><span class="line">        for (int i = 0; i + m &lt;= n; i++) &#123;</span><br><span class="line">            boolean flag = true;</span><br><span class="line">            for (int j = 0; j &lt; m; j++) &#123;</span><br><span class="line">                if (haystack.charAt(i + j) != needle.charAt(j)) &#123;</span><br><span class="line">                    flag = false;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (flag) &#123;</span><br><span class="line">                return i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n×m)，其中 n 是字符串 haystack 的长度，m 是字符串 needle 的长度。最坏情况下我们需要将字符串 needle 与字符串 haystack 的所有长度为 m 的子串均匹配一次。</p>
-</li>
-<li><p>空间复杂度：O(1)。我们只需要常数的空间保存若干变量。</p>
-</li>
-</ul>
-<h3 id="（2）KMP算法"><a href="#（2）KMP算法" class="headerlink" title="（2）KMP算法"></a>（2）KMP算法</h3><p>KMP 算法是一个快速查找匹配串的算法，它的作用其实就是本题问题：<strong>如何快速在「原字符串」中找到「匹配字符串」</strong>。</p>
-<p>上述的朴素解法，不考虑剪枝的话复杂度是 O(m∗n) 的，而 KMP 算法的复杂度为 O(m+n)。</p>
-<p><strong>KMP 之所以能够在 O(m+n) 复杂度内完成查找，是因为其能在「非完全匹配」的过程中提取到有效信息进行复用，以减少「重复匹配」的消耗</strong>。</p>
-<h4 id="1-匹配过程"><a href="#1-匹配过程" class="headerlink" title="1.匹配过程"></a>1.匹配过程</h4><p>在模拟 KMP 匹配过程之前，我们先建立两个概念：</p>
-<ul>
-<li>前缀：对于字符串 <code>abcxxxxefg</code>，我们称 <code>abc</code> 属于<code> abcxxxxefg</code> 的某个前缀。</li>
-<li>后缀：对于字符串 <code>abcxxxxefg</code>，我们称 <code>efg</code> 属于 <code>abcxxxxefg</code> 的某个后缀。</li>
-</ul>
-<p>然后我们假设原串为 <code>abeababeabf</code>，匹配串为 <code>abeabf</code>：</p>
-<p><img src="https://pic.leetcode-cn.com/1618739635-lrhElP-image.png" alt="image.png"></p>
-<p>我们可以先看看如果不使用 KMP，会如何进行匹配（不使用 substring 函数的情况下）。</p>
-<p>首先在「原串」和「匹配串」分别各自有一个指针指向当前匹配的位置。</p>
-<p>首次匹配的「发起点」是第一个字符 a。显然，后面的 abeab 都是匹配的，两个指针会同时往右移动（黑标）。</p>
-<p>在都能匹配上 abeab 的部分，「朴素匹配」和「KMP」并无不同。</p>
-<p>直到出现第一个不同的位置（红标）：</p>
-<p><img src="https://pic.leetcode-cn.com/1618741727-pqXsfg-image.png" alt="image.png"></p>
-<p><strong>接下来，正是「朴素匹配」和「KMP」出现不同的地方：</strong></p>
-<p><strong>先看下「朴素匹配」逻辑：</strong></p>
-<ol>
-<li><p><strong>将原串的指针移动至本次「发起点」的下一个位置（b 字符处）；匹配串的指针移动至起始位置。</strong></p>
-</li>
-<li><p><strong>尝试匹配，发现对不上，原串的指针会一直往后移动，直到能够与匹配串对上位置。</strong></p>
-</li>
-</ol>
-<p>如图：</p>
-<p><img src="https://pic.leetcode-cn.com/1618742678-lTXSgV-image.png" alt="image.png"></p>
-<p>也就是说，对于「朴素匹配」而言，一旦匹配失败，将会将原串指针调整至下一个「发起点」，匹配串的指针调整至起始位置，然后重新尝试匹配。</p>
-<p>这也就不难理解为什么「朴素匹配」的复杂度是 O(m∗n))了。</p>
-<p><strong>然后我们再看看「KMP 匹配」过程：</strong><br><strong>首先匹配串会检查之前已经匹配成功的部分中里是否存在相同的「前缀」和「后缀」。如果存在，则跳转到「前缀」的下一个位置继续往下匹配：</strong></p>
-<p><img src="https://pic.leetcode-cn.com/1618845342-ydYJRp-9364346F937803F03CD1A0AE645EA0F1.jpg" alt="9364346F937803F03CD1A0AE645EA0F1.jpg"></p>
-<p><strong>跳转到下一匹配位置后，尝试匹配，发现两个指针的字符对不上，并且此时匹配串指针前面不存在相同的「前缀」和「后缀」，这时候只能回到匹配串的起始位置重新开始：</strong></p>
-<p><img src="https://pic.leetcode-cn.com/1618755191-ddejks-image.png" alt="image.png"></p>
-<p><strong>到这里，你应该清楚 KMP 为什么相比于朴素解法更快：</strong></p>
-<p><strong>因为 KMP 利用已匹配部分中相同的「前缀」和「后缀」来加速下一次的匹配。</strong></p>
-<p><strong>因为 KMP 的原串指针不会进行回溯（没有朴素匹配中回到下一个「发起点」的过程）。</strong></p>
-<ul>
-<li><p>第一点很直观，也很好理解。</p>
-</li>
-<li><p>我们可以把重点放在第二点上，原串不回溯至「发起点」意味着什么？</p>
-</li>
-</ul>
-<p><strong>其实是意味着：随着匹配过程的进行，原串指针的不断右移，我们本质上是在不断地在否决一些「不可能」的方案。</strong></p>
-<p><strong>当我们的原串指针从 <code>i </code>位置后移到<code> j</code> 位置，不仅仅代表着「原串」下标范围为 [i,j) 的字符与「匹配串」匹配或者不匹配，更是在否决那些以「原串」下标范围为 [i,j) 为「匹配发起点」的子集。</strong></p>
-<h4 id="2-分析实现"><a href="#2-分析实现" class="headerlink" title="2.分析实现"></a>2.分析实现</h4><p>到这里，就结束了吗？要开始动手实现上述匹配过程了吗？</p>
-<p>我们可以先分析一下复杂度。如果严格按照上述解法的话，最坏情况下我们需要扫描整个原串，复杂度为 O(n)。同时在每一次匹配失败时，去检查已匹配部分的相同「前缀」和「后缀」，跳转到相应的位置，如果不匹配则再检查前面部分是否有相同「前缀」和「后缀」，再跳转到相应的位置 … 这部分的复杂度是 O(m^2^)，因此整体的复杂度是 O(n∗m^2^)，而我们的朴素解法是 O(m∗n) 的。</p>
-<p>说明还有一些性质我们没有利用到。</p>
-<p>显然，扫描完整原串操作这一操作是不可避免的，我们可以优化的只能是<strong>「检查已匹配部分的相同前缀和后缀」</strong>这一过程。</p>
-<p>再进一步，我们检查「前缀」和「后缀」的目的其实是「为了确定匹配串中的下一段开始匹配的位置」。</p>
-<p><strong>同时我们发现，对于匹配串的任意一个位置而言，由该位置发起的下一个匹配点位置其实与原串无关。</strong></p>
-<p>举个例子，对于匹配串<code>abcabd</code>的字符 <code>d</code> 而言，由它发起的下一个匹配点跳转必然是字符 <code>c</code> 的位置。因为字符 <code>d </code>位置的相同「前缀」和「后缀」字符 <code>ab</code> 的下一位置就是字符 <code>c</code>。</p>
-<p><strong>可见从匹配串某个位置跳转下一个匹配位置这一过程是与原串无关的，我们将这一过程称为找 <code>next</code> 点。</strong></p>
-<p><strong>显然我们可以预处理出 next 数组，数组中每个位置的值就是该下标应该跳转的目标位置（ <code>next</code> 点）。</strong></p>
-<p>当我们进行了这一步优化之后，复杂度是多少呢？</p>
-<p>预处理 <code>next</code> 数组的复杂度未知，匹配过程最多扫描完整个原串，复杂度为 O(n)。</p>
-<p>因此如果我们希望整个 KMP 过程是 O(m+n) 的话，那么我们需要在 O(m) 的复杂度内预处理出 <code>next</code> 数组。</p>
-<p>所以我们的重点在于如何在 O(m) 复杂度内处理处 <code>next</code> 数组。</p>
-<p><strong>所以我们的重点在于如何在 O(m)O复杂度内处理处 <code>next</code> 数组。</strong></p>
-<h4 id="3-next数组"><a href="#3-next数组" class="headerlink" title="3.next数组"></a>3.<code>next</code>数组</h4><p>接下来，我们看看 <code>next</code> 数组是如何在 O(m) 的复杂度内被预处理出来的。</p>
-<p>假设有匹配串 <code>aaabbab</code>，我们来看看对应的 <code>next</code> 是如何被构建出来的。</p>
-<p><img src="https://pic.leetcode-cn.com/1618846927-xFAEXE-010FD8AE2B79FFE03DC3735ACD224A6A.png" alt="010FD8AE2B79FFE03DC3735ACD224A6A.png"></p>
-<p><img src="https://pic.leetcode-cn.com/1618847960-lkVIDM-B9497542844478144BED83E9ADA0C12F.png" alt="B9497542844478144BED83E9ADA0C12F.png"></p>
-<p><img src="https://pic.leetcode-cn.com/1618847981-wncoqJ-161584A2D930A7B91092A2C3872D9DE5.png" alt="161584A2D930A7B91092A2C3872D9DE5.png"></p>
-<p><img src="https://pic.leetcode-cn.com/1618847995-vRWimV-6127EBA37435560C20BB8B15D5B790B6.png" alt="6127EBA37435560C20BB8B15D5B790B6.png"></p>
-<p>这就是整个 <code>next</code> 数组的构建过程，时空复杂度均为 O(m)。</p>
-<p>至此整个 KMP 匹配过程复杂度是 O(m+n) 的。</p>
-<h4 id="4-代码实现"><a href="#4-代码实现" class="headerlink" title="4.代码实现"></a>4.代码实现</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int strStr(string s, string p) &#123;</span><br><span class="line">        int n = s.size(), m = p.size();</span><br><span class="line">        if(m == 0) return 0;</span><br><span class="line">        //设置哨兵</span><br><span class="line">        s.insert(s.begin(),&#x27; &#x27;);</span><br><span class="line">        p.insert(p.begin(),&#x27; &#x27;);</span><br><span class="line">        vector&lt;int&gt; next(m + 1);</span><br><span class="line">        //预处理next数组</span><br><span class="line">        for(int i = 2, j = 0; i &lt;= m; i++)&#123;</span><br><span class="line">            while(j and p[i] != p[j + 1]) j = next[j];</span><br><span class="line">            if(p[i] == p[j + 1]) j++;</span><br><span class="line">            next[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        //匹配过程</span><br><span class="line">        for(int i = 1, j = 0; i &lt;= n; i++)&#123;</span><br><span class="line">            while(j and s[i] != p[j + 1]) j = next[j];</span><br><span class="line">            if(s[i] == p[j + 1]) j++;</span><br><span class="line">            if(j == m) return i - m;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    // KMP 算法</span><br><span class="line">    // ss: 原串(string)  pp: 匹配串(pattern)</span><br><span class="line">    public int strStr(String ss, String pp) &#123;</span><br><span class="line">        if (pp.isEmpty()) return 0;</span><br><span class="line">        </span><br><span class="line">        // 分别读取原串和匹配串的长度</span><br><span class="line">        int n = ss.length(), m = pp.length();</span><br><span class="line">        // 原串和匹配串前面都加空格，使其下标从 1 开始</span><br><span class="line">        ss = &quot; &quot; + ss;</span><br><span class="line">        pp = &quot; &quot; + pp;</span><br><span class="line"></span><br><span class="line">        char[] s = ss.toCharArray();</span><br><span class="line">        char[] p = pp.toCharArray();</span><br><span class="line"></span><br><span class="line">        // 构建 next 数组，数组长度为匹配串的长度（next 数组是和匹配串相关的）</span><br><span class="line">        int[] next = new int[m + 1];</span><br><span class="line">        // 构造过程 i = 2，j = 0 开始，i 小于等于匹配串长度 【构造 i 从 2 开始】</span><br><span class="line">        for (int i = 2, j = 0; i &lt;= m; i++) &#123;</span><br><span class="line">            // 匹配不成功的话，j = next(j)</span><br><span class="line">            while (j &gt; 0 &amp;&amp; p[i] != p[j + 1]) j = next[j];</span><br><span class="line">            // 匹配成功的话，先让 j++</span><br><span class="line">            if (p[i] == p[j + 1]) j++;</span><br><span class="line">            // 更新 next[i]，结束本次循环，i++</span><br><span class="line">            next[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 匹配过程，i = 1，j = 0 开始，i 小于等于原串长度 【匹配 i 从 1 开始】</span><br><span class="line">        for (int i = 1, j = 0; i &lt;= n; i++) &#123;</span><br><span class="line">            // 匹配不成功 j = next(j)</span><br><span class="line">            while (j &gt; 0 &amp;&amp; s[i] != p[j + 1]) j = next[j];</span><br><span class="line">            // 匹配成功的话，先让 j++，结束本次循环后 i++</span><br><span class="line">            if (s[i] == p[j + 1]) j++;</span><br><span class="line">            // 整一段匹配成功，直接返回下标</span><br><span class="line">            if (j == m) return i - m;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-复杂度分析"><a href="#5-复杂度分析" class="headerlink" title="5.复杂度分析"></a>5.复杂度分析</h4><ul>
-<li>时间复杂度：<code>n</code> 为原串的长度，<code>m</code> 为匹配串的长度。复杂度为 O(m+n)。</li>
-<li>空间复杂度：构建了 <code>next</code> 数组。复杂度为 O(m)。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/07/%E6%96%87%E6%9C%AC%E5%B7%A6%E5%8F%B3%E5%AF%B9%E9%BD%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/07/%E6%96%87%E6%9C%AC%E5%B7%A6%E5%8F%B3%E5%AF%B9%E9%BD%90/" class="post-title-link" itemprop="url">文本左右对齐</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-03-07 11:11:21 / 修改时间：11:12:11" itemprop="dateCreated datePublished" datetime="2024-03-07T11:11:21+08:00">2024-03-07</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="文本左右对齐"><a href="#文本左右对齐" class="headerlink" title="文本左右对齐"></a>文本左右对齐</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个单词数组 <code>words</code> 和一个长度 <code>maxWidth</code> ，重新排版单词，使其成为每行恰好有 <code>maxWidth</code> 个字符，且左右两端对齐的文本。</p>
-<p>你应该使用 “<strong>贪心算法</strong>” 来放置给定的单词；也就是说，尽可能多地往每行中放置单词。必要时可用空格 <code>&#39; &#39;</code> 填充，使得每行恰好有 <em>maxWidth</em> 个字符。</p>
-<p>要求尽可能均匀分配单词间的空格数量。如果某一行单词间的空格不能均匀分配，则左侧放置的空格数要多于右侧的空格数。</p>
-<p>文本的最后一行应为左对齐，且单词之间不插入<strong>额外的</strong>空格。</p>
-<p><strong>注意:</strong></p>
-<ul>
-<li>单词是指由非空格字符组成的字符序列。</li>
-<li>每个单词的长度大于 0，小于等于 <em>maxWidth</em>。</li>
-<li>输入单词数组 <code>words</code> 至少包含一个单词。</li>
-</ul>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入: words = [&quot;This&quot;, &quot;is&quot;, &quot;an&quot;, &quot;example&quot;, &quot;of&quot;, &quot;text&quot;, &quot;justification.&quot;], maxWidth = 16</span><br><span class="line">输出:</span><br><span class="line">[</span><br><span class="line">   &quot;This    is    an&quot;,</span><br><span class="line">   &quot;example  of text&quot;,</span><br><span class="line">   &quot;justification.  &quot;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输入:words = [&quot;What&quot;,&quot;must&quot;,&quot;be&quot;,&quot;acknowledgment&quot;,&quot;shall&quot;,&quot;be&quot;], maxWidth = 16</span><br><span class="line">输出:</span><br><span class="line">[</span><br><span class="line">  &quot;What   must   be&quot;,</span><br><span class="line">  &quot;acknowledgment  &quot;,</span><br><span class="line">  &quot;shall be        &quot;</span><br><span class="line">]</span><br><span class="line">解释: 注意最后一行的格式应为 &quot;shall be    &quot; 而不是 &quot;shall     be&quot;,</span><br><span class="line">     因为最后一行应为左对齐，而不是左右两端对齐。       </span><br><span class="line">     第二行同样为左对齐，这是因为这行只包含一个单词。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输入:words = [&quot;Science&quot;,&quot;is&quot;,&quot;what&quot;,&quot;we&quot;,&quot;understand&quot;,&quot;well&quot;,&quot;enough&quot;,&quot;to&quot;,&quot;explain&quot;,&quot;to&quot;,&quot;a&quot;,&quot;computer.&quot;,&quot;Art&quot;,&quot;is&quot;,&quot;everything&quot;,&quot;else&quot;,&quot;we&quot;,&quot;do&quot;]，maxWidth = 20</span><br><span class="line">输出:</span><br><span class="line">[</span><br><span class="line">  &quot;Science  is  what we&quot;,</span><br><span class="line">  &quot;understand      well&quot;,</span><br><span class="line">  &quot;enough to explain to&quot;,</span><br><span class="line">  &quot;a  computer.  Art is&quot;,</span><br><span class="line">  &quot;everything  else  we&quot;,</span><br><span class="line">  &quot;do                  &quot;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示:</strong></p>
-<ul>
-<li><code>1 &lt;= words.length &lt;= 300</code></li>
-<li><code>1 &lt;= words[i].length &lt;= 20</code></li>
-<li><code>words[i]</code> 由小写英文字母和符号组成</li>
-<li><code>1 &lt;= maxWidth &lt;= 100</code></li>
-<li><code>words[i].length &lt;= maxWidth</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="模拟法"><a href="#模拟法" class="headerlink" title="模拟法"></a>模拟法</h3><p><strong>思路及算法</strong></p>
-<p>根据题干描述的贪心算法，对于每一行，我们首先确定最多可以放置多少单词，这样可以得到该行的空格个数，从而确定该行单词之间的空格个数。</p>
-<p>根据题目中填充空格的细节，我们分以下三种情况讨论：</p>
-<ul>
-<li>当前行是最后一行：单词左对齐，且单词之间应只有一个空格，在行末填充剩余空格；</li>
-<li>当前行不是最后一行，且只有一个单词：该单词左对齐，在行末填充空格；</li>
-<li>当前行不是最后一行，且不只一个单词：设当前行单词数为 numWords，空格数为 numSpaces，我们需要将空格均匀分配在单词之间，则单词之间应至少有avgSpaces&#x3D;$\frac{numSpaces}{numWords-1}$​个空格，对于多出来的extraSpaces&#x3D;numSpaces mod (numWords−1)个空格，应填在前 extraSpaces 个单词之间。因此，前 extraSpaces 个单词之间填充 avgSpaces+1 个空格，其余单词之间填充 avgSpaces 个空格。</li>
-</ul>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">    // blank 返回长度为 n 的由空格组成的字符串</span><br><span class="line">    string blank(int n) &#123;</span><br><span class="line">        return string(n, &#x27; &#x27;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // join 返回用 sep 拼接 [left, right) 范围内的 words 组成的字符串</span><br><span class="line">    string join(vector&lt;string&gt; &amp;words, int left, int right, string sep) &#123;</span><br><span class="line">        string s = words[left];</span><br><span class="line">        for (int i = left + 1; i &lt; right; ++i) &#123;</span><br><span class="line">            s += sep + words[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return s;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    vector&lt;string&gt; fullJustify(vector&lt;string&gt; &amp;words, int maxWidth) &#123;</span><br><span class="line">        vector&lt;string&gt; ans;</span><br><span class="line">        int right = 0, n = words.size();</span><br><span class="line">        while (true) &#123;</span><br><span class="line">            int left = right; // 当前行的第一个单词在 words 的位置</span><br><span class="line">            int sumLen = 0; // 统计这一行单词长度之和</span><br><span class="line">            // 循环确定当前行可以放多少单词，注意单词之间应至少有一个空格</span><br><span class="line">            while (right &lt; n &amp;&amp; sumLen + words[right].length() + right - left &lt;= maxWidth) &#123;</span><br><span class="line">                sumLen += words[right++].length();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            // 当前行是最后一行：单词左对齐，且单词之间应只有一个空格，在行末填充剩余空格</span><br><span class="line">            if (right == n) &#123;</span><br><span class="line">                string s = join(words, left, n, &quot; &quot;);</span><br><span class="line">                ans.emplace_back(s + blank(maxWidth - s.length()));</span><br><span class="line">                return ans;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            int numWords = right - left;</span><br><span class="line">            int numSpaces = maxWidth - sumLen;</span><br><span class="line"></span><br><span class="line">            // 当前行只有一个单词：该单词左对齐，在行末填充剩余空格</span><br><span class="line">            if (numWords == 1) &#123;</span><br><span class="line">                ans.emplace_back(words[left] + blank(numSpaces));</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            // 当前行不只一个单词</span><br><span class="line">            int avgSpaces = numSpaces / (numWords - 1);</span><br><span class="line">            int extraSpaces = numSpaces % (numWords - 1);</span><br><span class="line">            string s1 = join(words, left, left + extraSpaces + 1, blank(avgSpaces + 1)); // 拼接额外加一个空格的单词</span><br><span class="line">            string s2 = join(words, left + extraSpaces + 1, right, blank(avgSpaces)); // 拼接其余单词</span><br><span class="line">            ans.emplace_back(s1 + blank(avgSpaces) + s2);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;String&gt; fullJustify(String[] words, int maxWidth) &#123;</span><br><span class="line">        List&lt;String&gt; ans = new ArrayList&lt;String&gt;();</span><br><span class="line">        int right = 0, n = words.length;</span><br><span class="line">        while (true) &#123;</span><br><span class="line">            int left = right; // 当前行的第一个单词在 words 的位置</span><br><span class="line">            int sumLen = 0; // 统计这一行单词长度之和</span><br><span class="line">            // 循环确定当前行可以放多少单词，注意单词之间应至少有一个空格</span><br><span class="line">            while (right &lt; n &amp;&amp; sumLen + words[right].length() + right - left &lt;= maxWidth) &#123;</span><br><span class="line">                sumLen += words[right++].length();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            // 当前行是最后一行：单词左对齐，且单词之间应只有一个空格，在行末填充剩余空格</span><br><span class="line">            if (right == n) &#123;</span><br><span class="line">                StringBuffer sb = join(words, left, n, &quot; &quot;);</span><br><span class="line">                sb.append(blank(maxWidth - sb.length()));</span><br><span class="line">                ans.add(sb.toString());</span><br><span class="line">                return ans;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            int numWords = right - left;</span><br><span class="line">            int numSpaces = maxWidth - sumLen;</span><br><span class="line"></span><br><span class="line">            // 当前行只有一个单词：该单词左对齐，在行末填充剩余空格</span><br><span class="line">            if (numWords == 1) &#123;</span><br><span class="line">                StringBuffer sb = new StringBuffer(words[left]);</span><br><span class="line">                sb.append(blank(numSpaces));</span><br><span class="line">                ans.add(sb.toString());</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            // 当前行不只一个单词</span><br><span class="line">            int avgSpaces = numSpaces / (numWords - 1);</span><br><span class="line">            int extraSpaces = numSpaces % (numWords - 1);</span><br><span class="line">            StringBuffer sb = new StringBuffer();</span><br><span class="line">            sb.append(join(words, left, left + extraSpaces + 1, blank(avgSpaces + 1))); // 拼接额外加一个空格的单词</span><br><span class="line">            sb.append(blank(avgSpaces));</span><br><span class="line">            sb.append(join(words, left + extraSpaces + 1, right, blank(avgSpaces))); // 拼接其余单词</span><br><span class="line">            ans.add(sb.toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // blank 返回长度为 n 的由空格组成的字符串</span><br><span class="line">    public String blank(int n) &#123;</span><br><span class="line">        StringBuffer sb = new StringBuffer();</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            sb.append(&#x27; &#x27;);</span><br><span class="line">        &#125;</span><br><span class="line">        return sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // join 返回用 sep 拼接 [left, right) 范围内的 words 组成的字符串</span><br><span class="line">    public StringBuffer join(String[] words, int left, int right, String sep) &#123;</span><br><span class="line">        StringBuffer sb = new StringBuffer(words[left]);</span><br><span class="line">        for (int i = left + 1; i &lt; right; ++i) &#123;</span><br><span class="line">            sb.append(sep);</span><br><span class="line">            sb.append(words[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return sb;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(m)，其中 m 是数组 words 中所有字符串的长度之和。</p>
-</li>
-<li><p>空间复杂度：O(m)。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1578,14 +1536,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">85k</span>
+    <span title="站点总字数">87k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">5:10</span>
+    <span title="站点阅读时长">5:16</span>
   </span>
 </div>
 <div class="busuanzi-count">
