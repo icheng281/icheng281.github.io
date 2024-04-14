@@ -4660,4 +4660,202 @@
         <tag>学习</tag>
       </tags>
   </entry>
+  <entry>
+    <title>反转链表</title>
+    <url>/2024/04/14/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8II/</url>
+    <content><![CDATA[<h1 id="反转链表II"><a href="#反转链表II" class="headerlink" title="反转链表II"></a>反转链表II</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你单链表的头指针 <code>head</code> 和两个整数 <code>left</code> 和 <code>right</code> ，其中 <code>left &lt;= right</code> 。请你反转从位置 <code>left</code> 到位置 <code>right</code> 的链表节点，返回 <strong>反转后的链表</strong> 。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/02/19/rev2ex2.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：head = [1,2,3,4,5], left = 2, right = 4</span><br><span class="line">输出：[1,4,3,2,5]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：head = [5], left = 1, right = 1</span><br><span class="line">输出：[5]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>链表中节点数目为 <code>n</code></li>
+<li><code>1 &lt;= n &lt;= 500</code></li>
+<li><code>-500 &lt;= Node.val &lt;= 500</code></li>
+<li><code>1 &lt;= left &lt;= right &lt;= n</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）穿针引线"><a href="#（1）穿针引线" class="headerlink" title="（1）穿针引线"></a>（1）穿针引线</h3><p><strong>思路及算法</strong></p>
+<p>我们以下图中黄色区域的链表反转为例。</p>
+<p><img src="https://pic.leetcode-cn.com/1615105129-iUPoGi-image.png" alt="image.png"></p>
+<p>反转 <code>left</code> 到 <code>right</code> 部分以后，再拼接起来。我们还需要记录 <code>left</code> 的前一个节点，和 <code>right</code> 的后一个节点。如图所示：</p>
+<p><img src="https://pic.leetcode-cn.com/1615105150-pfWiGq-image.png" alt="image.png"></p>
+<p>算法步骤：</p>
+<p>第 1 步：先将待反转的区域反转；<br>第 2 步：把 <code>pre</code> 的 <code>next</code> 指针指向反转以后的链表头节点，把反转以后的链表的尾节点的 <code>next</code> 指针指向 <code>succ</code>。</p>
+<p><img src="https://pic.leetcode-cn.com/1615105168-ZQRZew-image.png" alt="image.png"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">private:</span><br><span class="line">    void reverseLinkedList(ListNode *head) &#123;</span><br><span class="line">        // 也可以使用递归反转一个链表</span><br><span class="line">        ListNode *pre = nullptr;</span><br><span class="line">        ListNode *cur = head;</span><br><span class="line"></span><br><span class="line">        while (cur != nullptr) &#123;</span><br><span class="line">            ListNode *next = cur-&gt;next;</span><br><span class="line">            cur-&gt;next = pre;</span><br><span class="line">            pre = cur;</span><br><span class="line">            cur = next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    ListNode *reverseBetween(ListNode *head, int left, int right) &#123;</span><br><span class="line">        // 因为头节点有可能发生变化，使用虚拟头节点可以避免复杂的分类讨论</span><br><span class="line">        ListNode *dummyNode = new ListNode(-1);</span><br><span class="line">        dummyNode-&gt;next = head;</span><br><span class="line"></span><br><span class="line">        ListNode *pre = dummyNode;</span><br><span class="line">        // 第 1 步：从虚拟头节点走 left - 1 步，来到 left 节点的前一个节点</span><br><span class="line">        // 建议写在 for 循环里，语义清晰</span><br><span class="line">        for (int i = 0; i &lt; left - 1; i++) &#123;</span><br><span class="line">            pre = pre-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 第 2 步：从 pre 再走 right - left + 1 步，来到 right 节点</span><br><span class="line">        ListNode *rightNode = pre;</span><br><span class="line">        for (int i = 0; i &lt; right - left + 1; i++) &#123;</span><br><span class="line">            rightNode = rightNode-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 第 3 步：切断出一个子链表（截取链表）</span><br><span class="line">        ListNode *leftNode = pre-&gt;next;</span><br><span class="line">        ListNode *curr = rightNode-&gt;next;</span><br><span class="line"></span><br><span class="line">        // 注意：切断链接</span><br><span class="line">        pre-&gt;next = nullptr;</span><br><span class="line">        rightNode-&gt;next = nullptr;</span><br><span class="line"></span><br><span class="line">        // 第 4 步：同第 206 题，反转链表的子区间</span><br><span class="line">        reverseLinkedList(leftNode);</span><br><span class="line"></span><br><span class="line">        // 第 5 步：接回到原来的链表中</span><br><span class="line">        pre-&gt;next = rightNode;</span><br><span class="line">        leftNode-&gt;next = curr;</span><br><span class="line">        return dummyNode-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode reverseBetween(ListNode head, int left, int right) &#123;</span><br><span class="line">        // 因为头节点有可能发生变化，使用虚拟头节点可以避免复杂的分类讨论</span><br><span class="line">        ListNode dummyNode = new ListNode(-1);</span><br><span class="line">        dummyNode.next = head;</span><br><span class="line"></span><br><span class="line">        ListNode pre = dummyNode;</span><br><span class="line">        // 第 1 步：从虚拟头节点走 left - 1 步，来到 left 节点的前一个节点</span><br><span class="line">        // 建议写在 for 循环里，语义清晰</span><br><span class="line">        for (int i = 0; i &lt; left - 1; i++) &#123;</span><br><span class="line">            pre = pre.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 第 2 步：从 pre 再走 right - left + 1 步，来到 right 节点</span><br><span class="line">        ListNode rightNode = pre;</span><br><span class="line">        for (int i = 0; i &lt; right - left + 1; i++) &#123;</span><br><span class="line">            rightNode = rightNode.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 第 3 步：切断出一个子链表（截取链表）</span><br><span class="line">        ListNode leftNode = pre.next;</span><br><span class="line">        ListNode curr = rightNode.next;</span><br><span class="line"></span><br><span class="line">        // 注意：切断链接</span><br><span class="line">        pre.next = null;</span><br><span class="line">        rightNode.next = null;</span><br><span class="line"></span><br><span class="line">        // 第 4 步：同第 206 题，反转链表的子区间</span><br><span class="line">        reverseLinkedList(leftNode);</span><br><span class="line"></span><br><span class="line">        // 第 5 步：接回到原来的链表中</span><br><span class="line">        pre.next = rightNode;</span><br><span class="line">        leftNode.next = curr;</span><br><span class="line">        return dummyNode.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void reverseLinkedList(ListNode head) &#123;</span><br><span class="line">        // 也可以使用递归反转一个链表</span><br><span class="line">        ListNode pre = null;</span><br><span class="line">        ListNode cur = head;</span><br><span class="line"></span><br><span class="line">        while (cur != null) &#123;</span><br><span class="line">            ListNode next = cur.next;</span><br><span class="line">            cur.next = pre;</span><br><span class="line">            pre = cur;</span><br><span class="line">            cur = next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(N)，其中 N 是链表总节点数。最坏情况下，需要遍历整个链表。</p>
+</li>
+<li><p>空间复杂度：O(1)。只使用到常数个变量。</p>
+</li>
+</ul>
+<h3 id="（2）头插法"><a href="#（2）头插法" class="headerlink" title="（2）头插法"></a>（2）头插法</h3><p><strong>思路及算法</strong></p>
+<p>使用三个指针变量 <code>pre</code>、<code>curr</code>、<code>next</code> 来记录反转的过程中需要的变量，它们的意义如下：</p>
+<ul>
+<li><code>curr</code>：指向待反转区域的第一个节点 <code>left</code>；</li>
+<li><code>next</code>：永远指向 <code>curr</code> 的下一个节点，循环过程中，<code>curr</code> 变化以后<code> next</code> 会变化；</li>
+<li><code>pre</code>：永远指向待反转区域的第一个节点 <code>left</code> 的前一个节点，在循环过程中不变。</li>
+</ul>
+<p>第 1 步，我们使用 ①、②、③ 标注「穿针引线」的步骤。</p>
+<p><img src="https://pic.leetcode-cn.com/1615105296-bmiPxl-image.png" alt="image.png"></p>
+<p>操作步骤：</p>
+<ul>
+<li>先将 <code>curr</code> 的下一个节点记录为 <code>next</code>；</li>
+<li>执行操作 ①：把 <code>curr</code> 的下一个节点指向 <code>next</code> 的下一个节点；</li>
+<li>执行操作 ②：把 <code>next</code> 的下一个节点指向 <code>pre</code> 的下一个节点；</li>
+<li>执行操作 ③：把 <code>pre</code> 的下一个节点指向 <code>next</code>。</li>
+</ul>
+<p>第 1 步完成以后「拉直」的效果如下：</p>
+<p><img src="https://pic.leetcode-cn.com/1615105340-UBnTBZ-image.png" alt="image.png"></p>
+<p>第 2 步，同理。同样需要注意 <strong>「穿针引线」操作的先后顺序</strong>。</p>
+<p><img src="https://pic.leetcode-cn.com/1615105353-PsCmzb-image.png" alt="image.png"></p>
+<p>第 2 步完成以后「拉直」的效果如下：</p>
+<p><img src="https://pic.leetcode-cn.com/1615105364-aDIFqy-image.png" alt="image.png"></p>
+<p>第 3 步，同理。</p>
+<p><img src="https://pic.leetcode-cn.com/1615105376-jIyGwv-image.png" alt="image.png"></p>
+<p>第 3 步完成以后「拉直」的效果如下：</p>
+<p><img src="https://pic.leetcode-cn.com/1615105395-EJQnMe-image.png" alt="image.png"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode *reverseBetween(ListNode *head, int left, int right) &#123;</span><br><span class="line">        // 设置 dummyNode 是这一类问题的一般做法</span><br><span class="line">        ListNode *dummyNode = new ListNode(-1);</span><br><span class="line">        dummyNode-&gt;next = head;</span><br><span class="line">        ListNode *pre = dummyNode;</span><br><span class="line">        for (int i = 0; i &lt; left - 1; i++) &#123;</span><br><span class="line">            pre = pre-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode *cur = pre-&gt;next;</span><br><span class="line">        ListNode *next;</span><br><span class="line">        for (int i = 0; i &lt; right - left; i++) &#123;</span><br><span class="line">            next = cur-&gt;next;</span><br><span class="line">            cur-&gt;next = next-&gt;next;</span><br><span class="line">            next-&gt;next = pre-&gt;next;</span><br><span class="line">            pre-&gt;next = next;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummyNode-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode reverseBetween(ListNode head, int left, int right) &#123;</span><br><span class="line">        // 设置 dummyNode 是这一类问题的一般做法</span><br><span class="line">        ListNode dummyNode = new ListNode(-1);</span><br><span class="line">        dummyNode.next = head;</span><br><span class="line">        ListNode pre = dummyNode;</span><br><span class="line">        for (int i = 0; i &lt; left - 1; i++) &#123;</span><br><span class="line">            pre = pre.next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode cur = pre.next;</span><br><span class="line">        ListNode next;</span><br><span class="line">        for (int i = 0; i &lt; right - left; i++) &#123;</span><br><span class="line">            next = cur.next;</span><br><span class="line">            cur.next = next.next;</span><br><span class="line">            next.next = pre.next;</span><br><span class="line">            pre.next = next;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummyNode.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(N)，其中 N 是链表总节点数。最多只遍历了链表一次，就完成了反转。</p>
+</li>
+<li><p>空间复杂度：O(1)。只使用到常数个变量。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>删除排序链表中的重复元素II</title>
+    <url>/2024/04/14/%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0II/</url>
+    <content><![CDATA[<h1 id="删除排序链表中的重复元素II"><a href="#删除排序链表中的重复元素II" class="headerlink" title="删除排序链表中的重复元素II"></a>删除排序链表中的重复元素II</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个已排序的链表的头 <code>head</code> ， <em>删除原始链表中所有重复数字的节点，只留下不同的数字</em> 。返回 <em>已排序的链表</em> 。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/01/04/linkedlist1.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：head = [1,2,3,3,4,4,5]</span><br><span class="line">输出：[1,2,5]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/01/04/linkedlist2.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：head = [1,1,1,2,3]</span><br><span class="line">输出：[2,3]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>链表中节点数目在范围 <code>[0, 300]</code> 内</li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+<li>题目数据保证链表已经按升序 <strong>排列</strong></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="一次遍历"><a href="#一次遍历" class="headerlink" title="一次遍历"></a>一次遍历</h3><p><strong>思路及算法</strong></p>
+<p>由于给定的链表是排好序的，因此重复的元素在链表中出现的位置是连续的，因此我们只需要对链表进行一次遍历，就可以删除重复的元素。由于链表的头节点可能会被删除，因此我们需要额外使用一个哑节点（dummy node）指向链表的头节点。</p>
+<p>具体地，我们从指针 cur 指向链表的哑节点，随后开始对链表进行遍历。如果当前 cur.next 与 cur.next.next 对应的元素相同，那么我们就需要将 cur.next 以及所有后面拥有相同元素值的链表节点全部删除。我们记下这个元素值 x，随后不断将 cur.next 从链表中移除，直到 cur.next 为空节点或者其元素值不等于 x 为止。此时，我们将链表中所有元素值为 x 的节点全部删除。</p>
+<p>如果当前 cur.next 与 cur.next.next 对应的元素不相同，那么说明链表中只有一个元素值为 cur.next 的节点，那么我们就可以将 cur 指向 cur.next。</p>
+<p>当遍历完整个链表之后，我们返回链表的的哑节点的下一个节点 dummy.next即可。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* deleteDuplicates(ListNode* head) &#123;</span><br><span class="line">        if (!head) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        ListNode* dummy = new ListNode(0, head);</span><br><span class="line"></span><br><span class="line">        ListNode* cur = dummy;</span><br><span class="line">        while (cur-&gt;next &amp;&amp; cur-&gt;next-&gt;next) &#123;</span><br><span class="line">            if (cur-&gt;next-&gt;val == cur-&gt;next-&gt;next-&gt;val) &#123;</span><br><span class="line">                int x = cur-&gt;next-&gt;val;</span><br><span class="line">                while (cur-&gt;next &amp;&amp; cur-&gt;next-&gt;val == x) &#123;</span><br><span class="line">                    cur-&gt;next = cur-&gt;next-&gt;next;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else &#123;</span><br><span class="line">                cur = cur-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return dummy-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode deleteDuplicates(ListNode head) &#123;</span><br><span class="line">        if (head == null) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        ListNode dummy = new ListNode(0, head);</span><br><span class="line"></span><br><span class="line">        ListNode cur = dummy;</span><br><span class="line">        while (cur.next != null &amp;&amp; cur.next.next != null) &#123;</span><br><span class="line">            if (cur.next.val == cur.next.next.val) &#123;</span><br><span class="line">                int x = cur.next.val;</span><br><span class="line">                while (cur.next != null &amp;&amp; cur.next.val == x) &#123;</span><br><span class="line">                    cur.next = cur.next.next;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                cur = cur.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是链表的长度。</p>
+</li>
+<li><p>空间复杂度：O(1)。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>旋转链表</title>
+    <url>/2024/04/14/%E6%97%8B%E8%BD%AC%E9%93%BE%E8%A1%A8/</url>
+    <content><![CDATA[<h1 id="旋转链表"><a href="#旋转链表" class="headerlink" title="旋转链表"></a>旋转链表</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个链表的头节点 <code>head</code> ，旋转链表，将链表每个节点向右移动 <code>k</code> 个位置。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/11/13/rotate1.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：head = [1,2,3,4,5], k = 2</span><br><span class="line">输出：[4,5,1,2,3]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/11/13/roate2.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：head = [0,1,2], k = 4</span><br><span class="line">输出：[2,0,1]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>链表中节点的数目在范围 <code>[0, 500]</code> 内</li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+<li><code>0 &lt;= k &lt;= 2 * 109</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="闭合为环"><a href="#闭合为环" class="headerlink" title="闭合为环"></a>闭合为环</h3><p><strong>思路及算法</strong></p>
+<p>记给定链表的长度为 n，注意到当向右移动的次数 k≥n 时，我们仅需要向右移动 k mod n 次即可。因为每 n 次移动都会让链表变为原状。这样我们可以知道，新链表的最后一个节点为原链表的第 (n−1)−(k mod n) 个节点（从 0 开始计数）。</p>
+<p>这样，我们可以先将给定的链表连接成环，然后将指定位置断开。</p>
+<p>具体代码中，我们首先计算出链表的长度 n，并找到该链表的末尾节点，将其与头节点相连。这样就得到了闭合为环的链表。然后我们找到新链表的最后一个节点（即原链表的第 (n−1)−(k mod n) 个节点），将当前闭合为环的链表断开，即可得到我们所需要的结果。</p>
+<p>特别地，当链表长度不大于 1，或者 k 为 n 的倍数时，新链表将与原链表相同，我们无需进行任何处理。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* rotateRight(ListNode* head, int k) &#123;</span><br><span class="line">        if (k == 0 || head == nullptr || head-&gt;next == nullptr) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        int n = 1;</span><br><span class="line">        ListNode* iter = head;</span><br><span class="line">        while (iter-&gt;next != nullptr) &#123;</span><br><span class="line">            iter = iter-&gt;next;</span><br><span class="line">            n++;</span><br><span class="line">        &#125;</span><br><span class="line">        int add = n - k % n;</span><br><span class="line">        if (add == n) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        iter-&gt;next = head;</span><br><span class="line">        while (add--) &#123;</span><br><span class="line">            iter = iter-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode* ret = iter-&gt;next;</span><br><span class="line">        iter-&gt;next = nullptr;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode rotateRight(ListNode head, int k) &#123;</span><br><span class="line">        if (k == 0 || head == null || head.next == null) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        int n = 1;</span><br><span class="line">        ListNode iter = head;</span><br><span class="line">        while (iter.next != null) &#123;</span><br><span class="line">            iter = iter.next;</span><br><span class="line">            n++;</span><br><span class="line">        &#125;</span><br><span class="line">        int add = n - k % n;</span><br><span class="line">        if (add == n) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        iter.next = head;</span><br><span class="line">        while (add-- &gt; 0) &#123;</span><br><span class="line">            iter = iter.next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode ret = iter.next;</span><br><span class="line">        iter.next = null;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，最坏情况下，我们需要遍历该链表两次。</p>
+</li>
+<li><p>空间复杂度：O(1)，我们只需要常数的空间存储若干变量。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>分隔链表</title>
+    <url>/2024/04/14/%E5%88%86%E9%9A%94%E9%93%BE%E8%A1%A8/</url>
+    <content><![CDATA[<h1 id="分隔链表"><a href="#分隔链表" class="headerlink" title="分隔链表"></a>分隔链表</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个链表的头节点 <code>head</code> 和一个特定值 <code>x</code> ，请你对链表进行分隔，使得所有 <strong>小于</strong> <code>x</code> 的节点都出现在 <strong>大于或等于</strong> <code>x</code> 的节点之前。</p>
+<p>你应当 <strong>保留</strong> 两个分区中每个节点的初始相对位置。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/01/04/partition.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：head = [1,4,3,2,5,2], x = 3</span><br><span class="line">输出：[1,2,2,4,3,5]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：head = [2,1], x = 2</span><br><span class="line">输出：[1,2]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>链表中节点的数目在范围 <code>[0, 200]</code> 内</li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+<li><code>-200 &lt;= x &lt;= 200</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="模拟"><a href="#模拟" class="headerlink" title="模拟"></a>模拟</h3><p><strong>思路及算法</strong></p>
+<p>直观来说我们只需维护两个链表 small 和 large 即可，small 链表按顺序存储所有小于 x 的节点，large 链表按顺序存储所有大于等于 x 的节点。遍历完原链表后，我们只要将 small 链表尾节点指向 large 链表的头节点即能完成对链表的分隔。</p>
+<p>为了实现上述思路，我们设 smallHead 和 largeHead 分别为两个链表的哑节点，即它们的 next 指针指向链表的头节点，这样做的目的是为了更方便地处理头节点为空的边界条件。同时设 small 和 large 节点指向当前链表的末尾节点。开始时 smallHead&#x3D;small,largeHead&#x3D;large。随后，从前往后遍历链表，判断当前链表的节点值是否小于 x，如果小于就将 small 的 next 指针指向该节点，否则将 large 的 next 指针指向该节点。</p>
+<p>遍历结束后，我们将 large 的 next 指针置空，这是因为当前节点复用的是原链表的节点，而其 next 指针可能指向一个小于 x 的节点，我们需要切断这个引用。同时将 small 的 next 指针指向 largeHead 的 next 指针指向的节点，即真正意义上的 large链表的头节点。最后返回 smallHead的 next 指针即为我们要求的答案。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* partition(ListNode* head, int x) &#123;</span><br><span class="line">        ListNode* small = new ListNode(0);</span><br><span class="line">        ListNode* smallHead = small;</span><br><span class="line">        ListNode* large = new ListNode(0);</span><br><span class="line">        ListNode* largeHead = large;</span><br><span class="line">        while (head != nullptr) &#123;</span><br><span class="line">            if (head-&gt;val &lt; x) &#123;</span><br><span class="line">                small-&gt;next = head;</span><br><span class="line">                small = small-&gt;next;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                large-&gt;next = head;</span><br><span class="line">                large = large-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        large-&gt;next = nullptr;</span><br><span class="line">        small-&gt;next = largeHead-&gt;next;</span><br><span class="line">        return smallHead-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode partition(ListNode head, int x) &#123;</span><br><span class="line">        ListNode small = new ListNode(0);</span><br><span class="line">        ListNode smallHead = small;</span><br><span class="line">        ListNode large = new ListNode(0);</span><br><span class="line">        ListNode largeHead = large;</span><br><span class="line">        while (head != null) &#123;</span><br><span class="line">            if (head.val &lt; x) &#123;</span><br><span class="line">                small.next = head;</span><br><span class="line">                small = small.next;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                large.next = head;</span><br><span class="line">                large = large.next;</span><br><span class="line">            &#125;</span><br><span class="line">            head = head.next;</span><br><span class="line">        &#125;</span><br><span class="line">        large.next = null;</span><br><span class="line">        small.next = largeHead.next;</span><br><span class="line">        return smallHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度: O(n)，其中 n 是原链表的长度。我们对该链表进行了一次遍历。</li>
+<li>空间复杂度: O(1)。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
 </search>
