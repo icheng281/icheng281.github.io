@@ -4926,4 +4926,52 @@
         <tag>学习</tag>
       </tags>
   </entry>
+  <entry>
+    <title>最小栈</title>
+    <url>/2024/04/16/%E6%9C%80%E5%B0%8F%E6%A0%88/</url>
+    <content><![CDATA[<h1 id="最小栈"><a href="#最小栈" class="headerlink" title="最小栈"></a>最小栈</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>设计一个支持 <code>push</code> ，<code>pop</code> ，<code>top</code> 操作，并能在常数时间内检索到最小元素的栈。</p>
+<p>实现 <code>MinStack</code> 类:</p>
+<ul>
+<li><code>MinStack()</code> 初始化堆栈对象。</li>
+<li><code>void push(int val)</code> 将元素val推入堆栈。</li>
+<li><code>void pop()</code> 删除堆栈顶部的元素。</li>
+<li><code>int top()</code> 获取堆栈顶部的元素。</li>
+<li><code>int getMin()</code> 获取堆栈中的最小元素。</li>
+</ul>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：</span><br><span class="line">[&quot;MinStack&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;getMin&quot;,&quot;pop&quot;,&quot;top&quot;,&quot;getMin&quot;]</span><br><span class="line">[[],[-2],[0],[-3],[],[],[],[]]</span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line">[null,null,null,null,-3,null,0,-2]</span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">MinStack minStack = new MinStack();</span><br><span class="line">minStack.push(-2);</span><br><span class="line">minStack.push(0);</span><br><span class="line">minStack.push(-3);</span><br><span class="line">minStack.getMin();   --&gt; 返回 -3.</span><br><span class="line">minStack.pop();</span><br><span class="line">minStack.top();      --&gt; 返回 0.</span><br><span class="line">minStack.getMin();   --&gt; 返回 -2.</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>-231 &lt;= val &lt;= 231 - 1</code></li>
+<li><code>pop</code>、<code>top</code> 和 <code>getMin</code> 操作总是在 <strong>非空栈</strong> 上调用</li>
+<li><code>push</code>, <code>pop</code>, <code>top</code>, and <code>getMin</code>最多被调用 <code>3 * 104</code> 次</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="辅助栈"><a href="#辅助栈" class="headerlink" title="辅助栈"></a>辅助栈</h3><p><strong>思路及算法</strong></p>
+<p>要做出这道题目，首先要理解栈结构先进后出的性质。</p>
+<p>对于栈来说，如果一个元素 <code>a </code>在入栈时，栈里有其它的元素 <code>b, c, d</code>，那么无论这个栈在之后经历了什么操作，只要 <code>a</code> 在栈中，<code>b, c, d</code> 就一定在栈中，因为在 <code>a</code> 被弹出之前，<code>b, c, d</code> 不会被弹出。</p>
+<p>因此，在操作过程中的任意一个时刻，只要栈顶的元素是 <code>a</code>，那么我们就可以确定栈里面现在的元素一定是 <code>a, b, c, d</code>。</p>
+<p>那么，我们可以在每个元素 <code>a</code> 入栈时把当前栈的最小值 <code>m</code> 存储起来。在这之后无论何时，如果栈顶元素是 <code>a</code>，我们就可以直接返回存储的最小值 <code>m</code>。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/155/155_fig1.gif" alt="fig1"></p>
+<p>按照上面的思路，我们只需要设计一个数据结构，使得每个元素 <code>a</code> 与其相应的最小值 <code>m</code> 时刻保持一一对应。因此我们可以使用一个辅助栈，与元素栈同步插入与删除，用于存储与每个元素对应的最小值。</p>
+<ul>
+<li>当一个元素要入栈时，我们取当前辅助栈的栈顶存储的最小值，与当前元素比较得出最小值，将这个最小值插入辅助栈中；</li>
+<li>当一个元素要出栈时，我们把辅助栈的栈顶元素也一并弹出；</li>
+<li>在任意一个时刻，栈内元素的最小值就存储在辅助栈的栈顶元素中。</li>
+</ul>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class MinStack &#123;</span><br><span class="line">    stack&lt;int&gt; x_stack;</span><br><span class="line">    stack&lt;int&gt; min_stack;</span><br><span class="line">public:</span><br><span class="line">    MinStack() &#123;</span><br><span class="line">        min_stack.push(INT_MAX);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void push(int x) &#123;</span><br><span class="line">        x_stack.push(x);</span><br><span class="line">        min_stack.push(min(min_stack.top(), x));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void pop() &#123;</span><br><span class="line">        x_stack.pop();</span><br><span class="line">        min_stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int top() &#123;</span><br><span class="line">        return x_stack.top();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int getMin() &#123;</span><br><span class="line">        return min_stack.top();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class MinStack &#123;</span><br><span class="line">    Deque&lt;Integer&gt; xStack;</span><br><span class="line">    Deque&lt;Integer&gt; minStack;</span><br><span class="line"></span><br><span class="line">    public MinStack() &#123;</span><br><span class="line">        xStack = new LinkedList&lt;Integer&gt;();</span><br><span class="line">        minStack = new LinkedList&lt;Integer&gt;();</span><br><span class="line">        minStack.push(Integer.MAX_VALUE);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void push(int x) &#123;</span><br><span class="line">        xStack.push(x);</span><br><span class="line">        minStack.push(Math.min(minStack.peek(), x));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void pop() &#123;</span><br><span class="line">        xStack.pop();</span><br><span class="line">        minStack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public int top() &#123;</span><br><span class="line">        return xStack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public int getMin() &#123;</span><br><span class="line">        return minStack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：对于题目中的所有操作，时间复杂度均为 O(1)。因为栈的插入、删除与读取操作都是 O(1)，我们定义的每个操作最多调用栈操作两次。</li>
+<li>空间复杂度：O(n)，其中 n 为总操作数。最坏情况下，我们会连续插入 n 个元素，此时两个栈占用的空间为 O(n)。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
 </search>
