@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,6 +174,296 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/17/%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/17/%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/" class="post-title-link" itemprop="url">简化路径</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-17 10:04:31 / 修改时间：10:05:17" itemprop="dateCreated datePublished" datetime="2024-04-17T10:04:31+08:00">2024-04-17</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>912</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="简化路径"><a href="#简化路径" class="headerlink" title="简化路径"></a>简化路径</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个字符串 <code>path</code> ，表示指向某一文件或目录的 Unix 风格 <strong>绝对路径</strong> （以 <code>&#39;/&#39;</code> 开头），请你将其转化为更加简洁的规范路径。</p>
+<p>在 Unix 风格的文件系统中，一个点（<code>.</code>）表示当前目录本身；此外，两个点 （<code>..</code>） 表示将目录切换到上一级（指向父目录）；两者都可以是复杂相对路径的组成部分。任意多个连续的斜杠（即，<code>&#39;//&#39;</code>）都被视为单个斜杠 <code>&#39;/&#39;</code> 。 对于此问题，任何其他格式的点（例如，<code>&#39;...&#39;</code>）均被视为文件&#x2F;目录名称。</p>
+<p>请注意，返回的 <strong>规范路径</strong> 必须遵循下述格式：</p>
+<ul>
+<li>始终以斜杠 <code>&#39;/&#39;</code> 开头。</li>
+<li>两个目录名之间必须只有一个斜杠 <code>&#39;/&#39;</code> 。</li>
+<li>最后一个目录名（如果存在）<strong>不能</strong> 以 <code>&#39;/&#39;</code> 结尾。</li>
+<li>此外，路径仅包含从根目录到目标文件或目录的路径上的目录（即，不含 <code>&#39;.&#39;</code> 或 <code>&#39;..&#39;</code>）。</li>
+</ul>
+<p>返回简化后得到的 <strong>规范路径</strong> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：path = &quot;/home/&quot;</span><br><span class="line">输出：&quot;/home&quot;</span><br><span class="line">解释：注意，最后一个目录名后面没有斜杠。 </span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：path = &quot;/../&quot;</span><br><span class="line">输出：&quot;/&quot;</span><br><span class="line">解释：从根目录向上一级是不可行的，因为根目录是你可以到达的最高级。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：path = &quot;/home//foo/&quot;</span><br><span class="line">输出：&quot;/home/foo&quot;</span><br><span class="line">解释：在规范路径中，多个连续斜杠需要用一个斜杠替换。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 4：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：path = &quot;/a/./b/../../c/&quot;</span><br><span class="line">输出：&quot;/c&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= path.length &lt;= 3000</code></li>
+<li><code>path</code> 由英文字母，数字，<code>&#39;.&#39;</code>，<code>&#39;/&#39;</code> 或 <code>&#39;_&#39;</code> 组成。</li>
+<li><code>path</code> 是一个有效的 Unix 风格绝对路径。</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p><strong>思路及算法</strong></p>
+<p>我们首先将给定的字符串 <code>path</code> 根据 <code>/</code> 分割成一个由若干字符串组成的列表，记为 <code>names</code>。根据题目中规定的「规范路径的下述格式」，<code>names</code> 中包含的字符串只能为以下几种：</p>
+<ul>
+<li>空字符串。例如当出现多个连续的 <code>/</code>，就会分割出空字符串；</li>
+<li>一个点<code> .</code>；</li>
+<li>两个点 <code>..</code>；</li>
+<li>只包含英文字母、数字或<code>_</code>的目录名。</li>
+</ul>
+<p>对于「空字符串」以及「一个点」，我们实际上无需对它们进行处理，因为「空字符串」没有任何含义，而「一个点」表示当前目录本身，我们无需切换目录。</p>
+<p>对于「两个点」或者「目录名」，我们则可以用一个栈来维护路径中的每一个目录名。当我们遇到「两个点」时，需要将目录切换到上一级，因此只要栈不为空，我们就弹出栈顶的目录。当我们遇到「目录名」时，就把它放入栈。</p>
+<p>这样一来，我们只需要遍历 <code>names</code> 中的每个字符串并进行上述操作即可。在所有的操作完成后，我们将从栈底到栈顶的字符串用 <code>/</code> 进行连接，再在最前面加上 <code>/ </code>表示根目录，就可以得到简化后的规范路径。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    string simplifyPath(string path) &#123;</span><br><span class="line">        auto split = [](const string&amp; s, char delim) -&gt; vector&lt;string&gt; &#123;</span><br><span class="line">            vector&lt;string&gt; ans;</span><br><span class="line">            string cur;</span><br><span class="line">            for (char ch: s) &#123;</span><br><span class="line">                if (ch == delim) &#123;</span><br><span class="line">                    ans.push_back(move(cur));</span><br><span class="line">                    cur.clear();</span><br><span class="line">                &#125;</span><br><span class="line">                else &#123;</span><br><span class="line">                    cur += ch;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ans.push_back(move(cur));</span><br><span class="line">            return ans;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        vector&lt;string&gt; names = split(path, &#x27;/&#x27;);</span><br><span class="line">        vector&lt;string&gt; stack;</span><br><span class="line">        for (string&amp; name: names) &#123;</span><br><span class="line">            if (name == &quot;..&quot;) &#123;</span><br><span class="line">                if (!stack.empty()) &#123;</span><br><span class="line">                    stack.pop_back();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (!name.empty() &amp;&amp; name != &quot;.&quot;) &#123;</span><br><span class="line">                stack.push_back(move(name));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        string ans;</span><br><span class="line">        if (stack.empty()) &#123;</span><br><span class="line">            ans = &quot;/&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            for (string&amp; name: stack) &#123;</span><br><span class="line">                ans += &quot;/&quot; + move(name);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public String simplifyPath(String path) &#123;</span><br><span class="line">        String[] names = path.split(&quot;/&quot;);</span><br><span class="line">        Deque&lt;String&gt; stack = new ArrayDeque&lt;String&gt;();</span><br><span class="line">        for (String name : names) &#123;</span><br><span class="line">            if (&quot;..&quot;.equals(name)) &#123;</span><br><span class="line">                if (!stack.isEmpty()) &#123;</span><br><span class="line">                    stack.pollLast();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else if (name.length() &gt; 0 &amp;&amp; !&quot;.&quot;.equals(name)) &#123;</span><br><span class="line">                stack.offerLast(name);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuffer ans = new StringBuffer();</span><br><span class="line">        if (stack.isEmpty()) &#123;</span><br><span class="line">            ans.append(&#x27;/&#x27;);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            while (!stack.isEmpty()) &#123;</span><br><span class="line">                ans.append(&#x27;/&#x27;);</span><br><span class="line">                ans.append(stack.pollFirst());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，其中 <code>n</code> 是字符串<code> path</code> 的长度。</li>
+<li>空间复杂度：O(n)。我们需要 O(n) 的空间存储 <code>names</code> 中的所有字符串。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/17/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/17/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81/" class="post-title-link" itemprop="url">字符串解码</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-17 10:03:50 / 修改时间：10:05:02" itemprop="dateCreated datePublished" datetime="2024-04-17T10:03:50+08:00">2024-04-17</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>895</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="字符串解码"><a href="#字符串解码" class="headerlink" title="字符串解码"></a>字符串解码</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个经过编码的字符串，返回它解码后的字符串。</p>
+<p>编码规则为: <code>k[encoded_string]</code>，表示其中方括号内部的 <code>encoded_string</code> 正好重复 <code>k</code> 次。注意 <code>k</code> 保证为正整数。</p>
+<p>你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。</p>
+<p>此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 <code>k</code> ，例如不会出现像 <code>3a</code> 或 <code>2[4]</code> 的输入。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;3[a]2[bc]&quot;</span><br><span class="line">输出：&quot;aaabcbc&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;3[a2[c]]&quot;</span><br><span class="line">输出：&quot;accaccacc&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;2[abc]3[cd]ef&quot;</span><br><span class="line">输出：&quot;abcabccdcdcdef&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 4：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;abc3[cd]xyz&quot;</span><br><span class="line">输出：&quot;abccdcdcdxyz&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 30</code></li>
+<li><code>s</code> 由小写英文字母、数字和方括号 <code>&#39;[]&#39;</code> 组成</li>
+<li><code>s</code> 保证是一个 <strong>有效</strong> 的输入。</li>
+<li><code>s</code> 中所有整数的取值范围为 <code>[1, 300]</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）辅助栈法"><a href="#（1）辅助栈法" class="headerlink" title="（1）辅助栈法"></a>（1）辅助栈法</h3><p><strong>思路及算法</strong></p>
+<p>本题难点在于括号内嵌套括号，需要从内向外生成与拼接字符串，这与栈的先入后出特性对应。</p>
+<p>算法流程：</p>
+<ul>
+<li><p>构建辅助栈 <code>stack</code>， 遍历字符串 <code>s </code>中每个字符 <code>c</code>；</p>
+<ul>
+<li>当 <code>c</code> 为数字时，将数字字符转化为数字 <code>multi</code>，用于后续倍数计算；</li>
+<li>当 <code>c</code> 为字母时，在 <code>res</code> 尾部添加 <code>c</code>；</li>
+<li>当 <code>c </code>为 <code>[</code> 时，将当前<code> multi</code> 和 <code>res</code> 入栈，并分别置空置 <code>0</code>：<ul>
+<li>记录此 <code>[</code> 前的临时结果<code> res</code> 至栈，用于发现对应 <code>]</code> 后的拼接操作；</li>
+<li>记录此 <code>[</code> 前的倍数 <code>multi</code> 至栈，用于发现对应 <code>]</code> 后，获取 <code>multi × [...]</code> 字符串。</li>
+<li>进入到新 <code>[</code> 后，<code>res</code> 和 <code>multi</code> 重新记录。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ul>
+<li>当 <code>c</code> 为<code> ]</code> 时，<code>stack</code> 出栈，拼接字符串<code> res = last_res + cur_multi * res</code>，其中:<ul>
+<li><code>last_res</code>是上个 <code>[ </code>到当前 <code>[ </code>的字符串，例如<code> &quot;3[a2[c]]&quot;</code> 中的 <code>a</code>；</li>
+<li><code>cur_multi</code>是当前 <code>[ </code>到 <code>] </code>内字符串的重复倍数，例如 <code>&quot;3[a2[c]]&quot;</code> 中的 <code>2</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>返回字符串 <code>res</code>。</p>
+</li>
+</ul>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public String decodeString(String s) &#123;</span><br><span class="line">        StringBuilder res = new StringBuilder();</span><br><span class="line">        int multi = 0;</span><br><span class="line">        LinkedList&lt;Integer&gt; stack_multi = new LinkedList&lt;&gt;();</span><br><span class="line">        LinkedList&lt;String&gt; stack_res = new LinkedList&lt;&gt;();</span><br><span class="line">        for(Character c : s.toCharArray()) &#123;</span><br><span class="line">            if(c == &#x27;[&#x27;) &#123;</span><br><span class="line">                stack_multi.addLast(multi);</span><br><span class="line">                stack_res.addLast(res.toString());</span><br><span class="line">                multi = 0;</span><br><span class="line">                res = new StringBuilder();</span><br><span class="line">            &#125;</span><br><span class="line">            else if(c == &#x27;]&#x27;) &#123;</span><br><span class="line">                StringBuilder tmp = new StringBuilder();</span><br><span class="line">                int cur_multi = stack_multi.removeLast();</span><br><span class="line">                for(int i = 0; i &lt; cur_multi; i++) tmp.append(res);</span><br><span class="line">                res = new StringBuilder(stack_res.removeLast() + tmp);</span><br><span class="line">            &#125;</span><br><span class="line">            else if(c &gt;= &#x27;0&#x27; &amp;&amp; c &lt;= &#x27;9&#x27;) multi = multi * 10 + Integer.parseInt(c + &quot;&quot;);</span><br><span class="line">            else res.append(c);</span><br><span class="line">        &#125;</span><br><span class="line">        return res.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度 O(N)，一次遍历 <code>s</code>；</li>
+<li>空间复杂度 O(N)，辅助栈在极端情况下需要线性空间，例如 <code>2[2[2[a]]]</code>。</li>
+</ul>
+<h3 id="（2）递归"><a href="#（2）递归" class="headerlink" title="（2）递归"></a>（2）递归</h3><p><strong>思路及算法</strong></p>
+<p>总体思路与辅助栈法一致，不同点在于将 <code>[ </code>和 <code>]</code> 分别作为递归的开启与终止条件：</p>
+<ul>
+<li>当 <code>s[i] == &#39;]&#39; </code>时，返回当前括号内记录的 <code>res</code> 字符串与 <code>]</code> 的索引 <code>i </code>（更新上层递归指针位置）；</li>
+<li>当<code> s[i] == &#39;[&#39;</code> 时，开启新一层递归，记录此 <code>[...]</code> 内字符串 <code>tmp</code> 和递归后的最新索引<code> i</code>，并执行 <code>res + multi * tmp</code> 拼接字符串。</li>
+<li>遍历完毕后返回 <code>res</code>。</li>
+</ul>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public String decodeString(String s) &#123;</span><br><span class="line">        return dfs(s, 0)[0];</span><br><span class="line">    &#125;</span><br><span class="line">    private String[] dfs(String s, int i) &#123;</span><br><span class="line">        StringBuilder res = new StringBuilder();</span><br><span class="line">        int multi = 0;</span><br><span class="line">        while(i &lt; s.length()) &#123;</span><br><span class="line">            if(s.charAt(i) &gt;= &#x27;0&#x27; &amp;&amp; s.charAt(i) &lt;= &#x27;9&#x27;) </span><br><span class="line">                multi = multi * 10 + Integer.parseInt(String.valueOf(s.charAt(i))); </span><br><span class="line">            else if(s.charAt(i) == &#x27;[&#x27;) &#123;</span><br><span class="line">                String[] tmp = dfs(s, i + 1);</span><br><span class="line">                i = Integer.parseInt(tmp[0]);</span><br><span class="line">                while(multi &gt; 0) &#123;</span><br><span class="line">                    res.append(tmp[1]);</span><br><span class="line">                    multi--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else if(s.charAt(i) == &#x27;]&#x27;) </span><br><span class="line">                return new String[] &#123; String.valueOf(i), res.toString() &#125;;</span><br><span class="line">            else </span><br><span class="line">                res.append(String.valueOf(s.charAt(i)));</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        return new String[] &#123; res.toString() &#125;;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度 O(N)，递归会更新索引，因此实际上还是一次遍历<code> s</code>；</li>
+<li>空间复杂度 O(N)，极端情况下递归深度将会达到线性级别。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1191,306 +1481,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/12/%E9%9A%8F%E6%9C%BA%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/12/%E9%9A%8F%E6%9C%BA%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/" class="post-title-link" itemprop="url">随机链表的复制</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-04-12 09:49:12 / 修改时间：09:50:05" itemprop="dateCreated datePublished" datetime="2024-04-12T09:49:12+08:00">2024-04-12</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.5k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>6 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="随机链表的复制"><a href="#随机链表的复制" class="headerlink" title="随机链表的复制"></a>随机链表的复制</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个长度为 <code>n</code> 的链表，每个节点包含一个额外增加的随机指针 <code>random</code> ，该指针可以指向链表中的任何节点或空节点。</p>
-<p>构造这个链表的 深拷贝。 深拷贝应该正好由 <code>n</code> 个 <strong>全新</strong> 节点组成，其中每个新节点的值都设为其对应的原节点的值。新节点的 <code>next</code> 指针和 <code>random</code> 指针也都应指向复制链表中的新节点，并使原链表和复制链表中的这些指针能够表示相同的链表状态。<strong>复制链表中的指针都不应指向原链表中的节点</strong> 。</p>
-<p>例如，如果原链表中有 <code>X</code> 和 <code>Y</code> 两个节点，其中 <code>X.random --&gt; Y</code> 。那么在复制链表中对应的两个节点 <code>x</code> 和 <code>y</code> ，同样有 <code>x.random --&gt; y</code> 。</p>
-<p>返回复制链表的头节点。</p>
-<p>用一个由 <code>n</code> 个节点组成的链表来表示输入&#x2F;输出中的链表。每个节点用一个 <code>[val, random_index]</code> 表示：</p>
-<ul>
-<li><code>val</code>：一个表示 <code>Node.val</code> 的整数。</li>
-<li><code>random_index</code>：随机指针指向的节点索引（范围从 <code>0</code> 到 <code>n-1</code>）；如果不指向任何节点，则为 <code>null</code> 。</li>
-</ul>
-<p>你的代码 <strong>只</strong> 接受原链表的头节点 <code>head</code> 作为传入参数。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/01/09/e1.png" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [[7,null],[13,0],[11,4],[10,2],[1,0]]</span><br><span class="line">输出：[[7,null],[13,0],[11,4],[10,2],[1,0]]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/01/09/e2.png" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [[1,1],[2,1]]</span><br><span class="line">输出：[[1,1],[2,1]]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<p><strong><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/01/09/e3.png" alt="img"></strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [[3,null],[3,0],[3,null]]</span><br><span class="line">输出：[[3,null],[3,0],[3,null]]</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>0 &lt;= n &lt;= 1000</code></li>
-<li><code>-104 &lt;= Node.val &lt;= 104</code></li>
-<li><code>Node.random</code> 为 <code>null</code> 或指向链表中的节点。</li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）回溯-哈希表"><a href="#（1）回溯-哈希表" class="headerlink" title="（1）回溯+哈希表"></a>（1）回溯+哈希表</h3><p><strong>思路及算法</strong></p>
-<p>本题要求我们对一个特殊的链表进行深拷贝。如果是普通链表，我们可以直接按照遍历的顺序创建链表节点。而本题中因为随机指针的存在，当我们拷贝节点时，「当前节点的随机指针指向的节点」可能还没创建，因此我们需要变换思路。一个可行方案是，我们利用回溯的方式，让每个节点的拷贝操作相互独立。对于当前节点，我们首先要进行拷贝，然后我们进行「当前节点的后继节点」和「当前节点的随机指针指向的节点」拷贝，拷贝完成后将创建的新节点的指针返回，即可完成当前节点的两指针的赋值。</p>
-<p>具体地，我们用哈希表记录每一个节点对应新节点的创建情况。遍历该链表的过程中，我们检查「当前节点的后继节点」和「当前节点的随机指针指向的节点」的创建情况。如果这两个节点中的任何一个节点的新节点没有被创建，我们都立刻递归地进行创建。当我们拷贝完成，回溯到当前层时，我们即可完成当前节点的指针赋值。注意一个节点可能被多个其他节点指向，因此我们可能递归地多次尝试拷贝某个节点，为了防止重复拷贝，我们需要首先检查当前节点是否被拷贝过，如果已经拷贝过，我们可以直接从哈希表中取出拷贝后的节点的指针并返回即可。</p>
-<p>在实际代码中，我们需要特别判断给定节点为空节点的情况。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    unordered_map&lt;Node*, Node*&gt; cachedNode;</span><br><span class="line"></span><br><span class="line">    Node* copyRandomList(Node* head) &#123;</span><br><span class="line">        if (head == nullptr) &#123;</span><br><span class="line">            return nullptr;</span><br><span class="line">        &#125;</span><br><span class="line">        if (!cachedNode.count(head)) &#123;</span><br><span class="line">            Node* headNew = new Node(head-&gt;val);</span><br><span class="line">            cachedNode[head] = headNew;</span><br><span class="line">            headNew-&gt;next = copyRandomList(head-&gt;next);</span><br><span class="line">            headNew-&gt;random = copyRandomList(head-&gt;random);</span><br><span class="line">        &#125;</span><br><span class="line">        return cachedNode[head];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    Map&lt;Node, Node&gt; cachedNode = new HashMap&lt;Node, Node&gt;();</span><br><span class="line"></span><br><span class="line">    public Node copyRandomList(Node head) &#123;</span><br><span class="line">        if (head == null) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        if (!cachedNode.containsKey(head)) &#123;</span><br><span class="line">            Node headNew = new Node(head.val);</span><br><span class="line">            cachedNode.put(head, headNew);</span><br><span class="line">            headNew.next = copyRandomList(head.next);</span><br><span class="line">            headNew.random = copyRandomList(head.random);</span><br><span class="line">        &#125;</span><br><span class="line">        return cachedNode.get(head);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是链表的长度。对于每个节点，我们至多访问其「后继节点」和「随机指针指向的节点」各一次，均摊每个点至多被访问两次。</p>
-</li>
-<li><p>空间复杂度：O(n)，其中 n 是链表的长度。为哈希表的空间开销。</p>
-</li>
-</ul>
-<h3 id="（2）迭代-节点拆分"><a href="#（2）迭代-节点拆分" class="headerlink" title="（2）迭代+节点拆分"></a>（2）迭代+节点拆分</h3><p><strong>思路及算法</strong></p>
-<p>我们首先将该链表中每一个节点拆分为两个相连的节点，例如对于链表 A→B→C，我们可以将其拆分为 A→A′→B→B′→C→C′。对于任意一个原节点 S，其拷贝节点 S’  即为其后继节点。这样，我们可以直接找到每一个拷贝节点 S′ 的随机指针应当指向的节点，即为其原节点 S 的随机指针指向的节点 T 的后继节点 T′ 。需要注意原节点的随机指针可能为空，我们需要特别判断这种情况。</p>
-<p>当我们完成了拷贝节点的随机指针的赋值，我们只需要将这个链表按照原节点与拷贝节点的种类进行拆分即可，只需要遍历一次。同样需要注意最后一个拷贝节点的后继节点为空，我们需要特别判断这种情况。</p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/138/1.png" alt="img"></p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/138/2.png" alt="img"></p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/138/3.png" alt="img"></p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/138/4.png" alt="img"></p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    Node* copyRandomList(Node* head) &#123;</span><br><span class="line">        if (head == nullptr) &#123;</span><br><span class="line">            return nullptr;</span><br><span class="line">        &#125;</span><br><span class="line">        for (Node* node = head; node != nullptr; node = node-&gt;next-&gt;next) &#123;</span><br><span class="line">            Node* nodeNew = new Node(node-&gt;val);</span><br><span class="line">            nodeNew-&gt;next = node-&gt;next;</span><br><span class="line">            node-&gt;next = nodeNew;</span><br><span class="line">        &#125;</span><br><span class="line">        for (Node* node = head; node != nullptr; node = node-&gt;next-&gt;next) &#123;</span><br><span class="line">            Node* nodeNew = node-&gt;next;</span><br><span class="line">            nodeNew-&gt;random = (node-&gt;random != nullptr) ? node-&gt;random-&gt;next : nullptr;</span><br><span class="line">        &#125;</span><br><span class="line">        Node* headNew = head-&gt;next;</span><br><span class="line">        for (Node* node = head; node != nullptr; node = node-&gt;next) &#123;</span><br><span class="line">            Node* nodeNew = node-&gt;next;</span><br><span class="line">            node-&gt;next = node-&gt;next-&gt;next;</span><br><span class="line">            nodeNew-&gt;next = (nodeNew-&gt;next != nullptr) ? nodeNew-&gt;next-&gt;next : nullptr;</span><br><span class="line">        &#125;</span><br><span class="line">        return headNew;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public Node copyRandomList(Node head) &#123;</span><br><span class="line">        if (head == null) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        for (Node node = head; node != null; node = node.next.next) &#123;</span><br><span class="line">            Node nodeNew = new Node(node.val);</span><br><span class="line">            nodeNew.next = node.next;</span><br><span class="line">            node.next = nodeNew;</span><br><span class="line">        &#125;</span><br><span class="line">        for (Node node = head; node != null; node = node.next.next) &#123;</span><br><span class="line">            Node nodeNew = node.next;</span><br><span class="line">            nodeNew.random = (node.random != null) ? node.random.next : null;</span><br><span class="line">        &#125;</span><br><span class="line">        Node headNew = head.next;</span><br><span class="line">        for (Node node = head; node != null; node = node.next) &#123;</span><br><span class="line">            Node nodeNew = node.next;</span><br><span class="line">            node.next = node.next.next;</span><br><span class="line">            nodeNew.next = (nodeNew.next != null) ? nodeNew.next.next : null;</span><br><span class="line">        &#125;</span><br><span class="line">        return headNew;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(n)，其中 n 是链表的长度。我们只需要遍历该链表三次。</li>
-<li>空间复杂度：O(1)。注意返回值不计入空间复杂度。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/11/%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/11/%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">排序链表</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-04-11 09:44:19 / 修改时间：09:44:54" itemprop="dateCreated datePublished" datetime="2024-04-11T09:44:19+08:00">2024-04-11</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="排序链表"><a href="#排序链表" class="headerlink" title="排序链表"></a>排序链表</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你链表的头结点 <code>head</code> ，请将其按 <strong>升序</strong> 排列并返回 <strong>排序后的链表</strong> 。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2020/09/14/sort_list_1.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [4,2,1,3]</span><br><span class="line">输出：[1,2,3,4]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2020/09/14/sort_list_2.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [-1,5,3,4,0]</span><br><span class="line">输出：[-1,0,3,4,5]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = []</span><br><span class="line">输出：[]</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li>链表中节点的数目在范围 <code>[0, 5 * 104]</code> 内</li>
-<li><code>-105 &lt;= Node.val &lt;= 105</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）自顶向下的归并排序"><a href="#（1）自顶向下的归并排序" class="headerlink" title="（1）自顶向下的归并排序"></a>（1）自顶向下的归并排序</h3><p><strong>思路及算法</strong></p>
-<p>对链表自顶向下归并排序的过程如下。</p>
-<ol>
-<li><p>找到链表的中点，以中点为分界，将链表拆分成两个子链表。寻找链表的中点可以使用快慢指针的做法，快指针每次移动 2 步，慢指针每次移动 1 步，当快指针到达链表末尾时，慢指针指向的链表节点即为链表的中点。</p>
-</li>
-<li><p>对两个子链表分别排序。</p>
-</li>
-<li><p>将两个排序后的子链表合并，得到完整的排序后的链表。</p>
-</li>
-</ol>
-<p>上述过程可以通过递归实现。递归的终止条件是链表的节点个数小于或等于 1，即当链表为空或者链表只包含 1 个节点时，不需要对链表进行拆分和排序。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode sortList(ListNode head) &#123;</span><br><span class="line">        return sortList(head, null);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public ListNode sortList(ListNode head, ListNode tail) &#123;</span><br><span class="line">        if (head == null) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        if (head.next == tail) &#123;</span><br><span class="line">            head.next = null;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode slow = head, fast = head;</span><br><span class="line">        while (fast != tail) &#123;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            fast = fast.next;</span><br><span class="line">            if (fast != tail) &#123;</span><br><span class="line">                fast = fast.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode mid = slow;</span><br><span class="line">        ListNode list1 = sortList(head, mid);</span><br><span class="line">        ListNode list2 = sortList(mid, tail);</span><br><span class="line">        ListNode sorted = merge(list1, list2);</span><br><span class="line">        return sorted;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public ListNode merge(ListNode head1, ListNode head2) &#123;</span><br><span class="line">        ListNode dummyHead = new ListNode(0);</span><br><span class="line">        ListNode temp = dummyHead, temp1 = head1, temp2 = head2;</span><br><span class="line">        while (temp1 != null &amp;&amp; temp2 != null) &#123;</span><br><span class="line">            if (temp1.val &lt;= temp2.val) &#123;</span><br><span class="line">                temp.next = temp1;</span><br><span class="line">                temp1 = temp1.next;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                temp.next = temp2;</span><br><span class="line">                temp2 = temp2.next;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        if (temp1 != null) &#123;</span><br><span class="line">            temp.next = temp1;</span><br><span class="line">        &#125; else if (temp2 != null) &#123;</span><br><span class="line">            temp.next = temp2;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummyHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* sortList(ListNode* head) &#123;</span><br><span class="line">        return sortList(head, nullptr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ListNode* sortList(ListNode* head, ListNode* tail) &#123;</span><br><span class="line">        if (head == nullptr) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        if (head-&gt;next == tail) &#123;</span><br><span class="line">            head-&gt;next = nullptr;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode* slow = head, *fast = head;</span><br><span class="line">        while (fast != tail) &#123;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">            fast = fast-&gt;next;</span><br><span class="line">            if (fast != tail) &#123;</span><br><span class="line">                fast = fast-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode* mid = slow;</span><br><span class="line">        return merge(sortList(head, mid), sortList(mid, tail));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ListNode* merge(ListNode* head1, ListNode* head2) &#123;</span><br><span class="line">        ListNode* dummyHead = new ListNode(0);</span><br><span class="line">        ListNode* temp = dummyHead, *temp1 = head1, *temp2 = head2;</span><br><span class="line">        while (temp1 != nullptr &amp;&amp; temp2 != nullptr) &#123;</span><br><span class="line">            if (temp1-&gt;val &lt;= temp2-&gt;val) &#123;</span><br><span class="line">                temp-&gt;next = temp1;</span><br><span class="line">                temp1 = temp1-&gt;next;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                temp-&gt;next = temp2;</span><br><span class="line">                temp2 = temp2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        if (temp1 != nullptr) &#123;</span><br><span class="line">            temp-&gt;next = temp1;</span><br><span class="line">        &#125; else if (temp2 != nullptr) &#123;</span><br><span class="line">            temp-&gt;next = temp2;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummyHead-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(nlog⁡n)，其中 n 是链表的长度。</p>
-</li>
-<li><p>空间复杂度：O(log⁡n)，其中 n 是链表的长度。空间复杂度主要取决于递归调用的栈空间。</p>
-</li>
-</ul>
-<h3 id="（2）自底向上的归并排序"><a href="#（2）自底向上的归并排序" class="headerlink" title="（2）自底向上的归并排序"></a>（2）自底向上的归并排序</h3><p><strong>思路及算法</strong></p>
-<p>首先求得链表的长度 length，然后将链表拆分成子链表进行合并。</p>
-<p>具体做法如下。</p>
-<ol>
-<li><p>用 subLength 表示每次需要排序的子链表的长度，初始时 subLength&#x3D;1。</p>
-</li>
-<li><p>每次将链表拆分成若干个长度为 subLength 的子链表（最后一个子链表的长度可以小于 subLength），按照每两个子链表一组进行合并，合并后即可得到若干个长度为 subLength×2 的有序子链表（最后一个子链表的长度可以小于 subLength×2）。</p>
-</li>
-<li><p>将 subLength 的值加倍，重复第 2 步，对更长的有序子链表进行合并操作，直到有序子链表的长度大于或等于 length，整个链表排序完毕。</p>
-</li>
-</ol>
-<p>如何保证每次合并之后得到的子链表都是有序的呢？可以通过数学归纳法证明。</p>
-<ol>
-<li><p>初始时 subLength&#x3D;1，每个长度为 1 的子链表都是有序的。</p>
-</li>
-<li><p>如果每个长度为 subLength 的子链表已经有序，合并两个长度为 subLength 的有序子链表，得到长度为 subLength×2 的子链表，一定也是有序的。</p>
-</li>
-<li><p>当最后一个子链表的长度小于 subLength 时，该子链表也是有序的，合并两个有序子链表之后得到的子链表一定也是有序的。</p>
-</li>
-</ol>
-<p>因此可以保证最后得到的链表是有序的。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode sortList(ListNode head) &#123;</span><br><span class="line">        if (head == null) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        int length = 0;</span><br><span class="line">        ListNode node = head;</span><br><span class="line">        while (node != null) &#123;</span><br><span class="line">            length++;</span><br><span class="line">            node = node.next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode dummyHead = new ListNode(0, head);</span><br><span class="line">        for (int subLength = 1; subLength &lt; length; subLength &lt;&lt;= 1) &#123;</span><br><span class="line">            ListNode prev = dummyHead, curr = dummyHead.next;</span><br><span class="line">            while (curr != null) &#123;</span><br><span class="line">                ListNode head1 = curr;</span><br><span class="line">                for (int i = 1; i &lt; subLength &amp;&amp; curr.next != null; i++) &#123;</span><br><span class="line">                    curr = curr.next;</span><br><span class="line">                &#125;</span><br><span class="line">                ListNode head2 = curr.next;</span><br><span class="line">                curr.next = null;</span><br><span class="line">                curr = head2;</span><br><span class="line">                for (int i = 1; i &lt; subLength &amp;&amp; curr != null &amp;&amp; curr.next != null; i++) &#123;</span><br><span class="line">                    curr = curr.next;</span><br><span class="line">                &#125;</span><br><span class="line">                ListNode next = null;</span><br><span class="line">                if (curr != null) &#123;</span><br><span class="line">                    next = curr.next;</span><br><span class="line">                    curr.next = null;</span><br><span class="line">                &#125;</span><br><span class="line">                ListNode merged = merge(head1, head2);</span><br><span class="line">                prev.next = merged;</span><br><span class="line">                while (prev.next != null) &#123;</span><br><span class="line">                    prev = prev.next;</span><br><span class="line">                &#125;</span><br><span class="line">                curr = next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummyHead.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public ListNode merge(ListNode head1, ListNode head2) &#123;</span><br><span class="line">        ListNode dummyHead = new ListNode(0);</span><br><span class="line">        ListNode temp = dummyHead, temp1 = head1, temp2 = head2;</span><br><span class="line">        while (temp1 != null &amp;&amp; temp2 != null) &#123;</span><br><span class="line">            if (temp1.val &lt;= temp2.val) &#123;</span><br><span class="line">                temp.next = temp1;</span><br><span class="line">                temp1 = temp1.next;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                temp.next = temp2;</span><br><span class="line">                temp2 = temp2.next;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        if (temp1 != null) &#123;</span><br><span class="line">            temp.next = temp1;</span><br><span class="line">        &#125; else if (temp2 != null) &#123;</span><br><span class="line">            temp.next = temp2;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummyHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* sortList(ListNode* head) &#123;</span><br><span class="line">        if (head == nullptr) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        int length = 0;</span><br><span class="line">        ListNode* node = head;</span><br><span class="line">        while (node != nullptr) &#123;</span><br><span class="line">            length++;</span><br><span class="line">            node = node-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode* dummyHead = new ListNode(0, head);</span><br><span class="line">        for (int subLength = 1; subLength &lt; length; subLength &lt;&lt;= 1) &#123;</span><br><span class="line">            ListNode* prev = dummyHead, *curr = dummyHead-&gt;next;</span><br><span class="line">            while (curr != nullptr) &#123;</span><br><span class="line">                ListNode* head1 = curr;</span><br><span class="line">                for (int i = 1; i &lt; subLength &amp;&amp; curr-&gt;next != nullptr; i++) &#123;</span><br><span class="line">                    curr = curr-&gt;next;</span><br><span class="line">                &#125;</span><br><span class="line">                ListNode* head2 = curr-&gt;next;</span><br><span class="line">                curr-&gt;next = nullptr;</span><br><span class="line">                curr = head2;</span><br><span class="line">                for (int i = 1; i &lt; subLength &amp;&amp; curr != nullptr &amp;&amp; curr-&gt;next != nullptr; i++) &#123;</span><br><span class="line">                    curr = curr-&gt;next;</span><br><span class="line">                &#125;</span><br><span class="line">                ListNode* next = nullptr;</span><br><span class="line">                if (curr != nullptr) &#123;</span><br><span class="line">                    next = curr-&gt;next;</span><br><span class="line">                    curr-&gt;next = nullptr;</span><br><span class="line">                &#125;</span><br><span class="line">                ListNode* merged = merge(head1, head2);</span><br><span class="line">                prev-&gt;next = merged;</span><br><span class="line">                while (prev-&gt;next != nullptr) &#123;</span><br><span class="line">                    prev = prev-&gt;next;</span><br><span class="line">                &#125;</span><br><span class="line">                curr = next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummyHead-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ListNode* merge(ListNode* head1, ListNode* head2) &#123;</span><br><span class="line">        ListNode* dummyHead = new ListNode(0);</span><br><span class="line">        ListNode* temp = dummyHead, *temp1 = head1, *temp2 = head2;</span><br><span class="line">        while (temp1 != nullptr &amp;&amp; temp2 != nullptr) &#123;</span><br><span class="line">            if (temp1-&gt;val &lt;= temp2-&gt;val) &#123;</span><br><span class="line">                temp-&gt;next = temp1;</span><br><span class="line">                temp1 = temp1-&gt;next;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                temp-&gt;next = temp2;</span><br><span class="line">                temp2 = temp2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        if (temp1 != nullptr) &#123;</span><br><span class="line">            temp-&gt;next = temp1;</span><br><span class="line">        &#125; else if (temp2 != nullptr) &#123;</span><br><span class="line">            temp-&gt;next = temp2;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummyHead-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(nlog⁡n)，其中 n 是链表的长度。</li>
-<li>空间复杂度：O(1)。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1515,14 +1505,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">91k</span>
+    <span title="站点总字数">93k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">5:32</span>
+    <span title="站点阅读时长">5:38</span>
   </span>
 </div>
 <div class="busuanzi-count">

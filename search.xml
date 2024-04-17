@@ -4974,4 +4974,142 @@
         <tag>学习</tag>
       </tags>
   </entry>
+  <entry>
+    <title>字符串解码</title>
+    <url>/2024/04/17/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81/</url>
+    <content><![CDATA[<h1 id="字符串解码"><a href="#字符串解码" class="headerlink" title="字符串解码"></a>字符串解码</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个经过编码的字符串，返回它解码后的字符串。</p>
+<p>编码规则为: <code>k[encoded_string]</code>，表示其中方括号内部的 <code>encoded_string</code> 正好重复 <code>k</code> 次。注意 <code>k</code> 保证为正整数。</p>
+<p>你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。</p>
+<p>此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 <code>k</code> ，例如不会出现像 <code>3a</code> 或 <code>2[4]</code> 的输入。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;3[a]2[bc]&quot;</span><br><span class="line">输出：&quot;aaabcbc&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;3[a2[c]]&quot;</span><br><span class="line">输出：&quot;accaccacc&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;2[abc]3[cd]ef&quot;</span><br><span class="line">输出：&quot;abcabccdcdcdef&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 4：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：s = &quot;abc3[cd]xyz&quot;</span><br><span class="line">输出：&quot;abccdcdcdxyz&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 30</code></li>
+<li><code>s</code> 由小写英文字母、数字和方括号 <code>&#39;[]&#39;</code> 组成</li>
+<li><code>s</code> 保证是一个 <strong>有效</strong> 的输入。</li>
+<li><code>s</code> 中所有整数的取值范围为 <code>[1, 300]</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）辅助栈法"><a href="#（1）辅助栈法" class="headerlink" title="（1）辅助栈法"></a>（1）辅助栈法</h3><p><strong>思路及算法</strong></p>
+<p>本题难点在于括号内嵌套括号，需要从内向外生成与拼接字符串，这与栈的先入后出特性对应。</p>
+<p>算法流程：</p>
+<ul>
+<li><p>构建辅助栈 <code>stack</code>， 遍历字符串 <code>s </code>中每个字符 <code>c</code>；</p>
+<ul>
+<li>当 <code>c</code> 为数字时，将数字字符转化为数字 <code>multi</code>，用于后续倍数计算；</li>
+<li>当 <code>c</code> 为字母时，在 <code>res</code> 尾部添加 <code>c</code>；</li>
+<li>当 <code>c </code>为 <code>[</code> 时，将当前<code> multi</code> 和 <code>res</code> 入栈，并分别置空置 <code>0</code>：<ul>
+<li>记录此 <code>[</code> 前的临时结果<code> res</code> 至栈，用于发现对应 <code>]</code> 后的拼接操作；</li>
+<li>记录此 <code>[</code> 前的倍数 <code>multi</code> 至栈，用于发现对应 <code>]</code> 后，获取 <code>multi × [...]</code> 字符串。</li>
+<li>进入到新 <code>[</code> 后，<code>res</code> 和 <code>multi</code> 重新记录。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ul>
+<li>当 <code>c</code> 为<code> ]</code> 时，<code>stack</code> 出栈，拼接字符串<code> res = last_res + cur_multi * res</code>，其中:<ul>
+<li><code>last_res</code>是上个 <code>[ </code>到当前 <code>[ </code>的字符串，例如<code> &quot;3[a2[c]]&quot;</code> 中的 <code>a</code>；</li>
+<li><code>cur_multi</code>是当前 <code>[ </code>到 <code>] </code>内字符串的重复倍数，例如 <code>&quot;3[a2[c]]&quot;</code> 中的 <code>2</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>返回字符串 <code>res</code>。</p>
+</li>
+</ul>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public String decodeString(String s) &#123;</span><br><span class="line">        StringBuilder res = new StringBuilder();</span><br><span class="line">        int multi = 0;</span><br><span class="line">        LinkedList&lt;Integer&gt; stack_multi = new LinkedList&lt;&gt;();</span><br><span class="line">        LinkedList&lt;String&gt; stack_res = new LinkedList&lt;&gt;();</span><br><span class="line">        for(Character c : s.toCharArray()) &#123;</span><br><span class="line">            if(c == &#x27;[&#x27;) &#123;</span><br><span class="line">                stack_multi.addLast(multi);</span><br><span class="line">                stack_res.addLast(res.toString());</span><br><span class="line">                multi = 0;</span><br><span class="line">                res = new StringBuilder();</span><br><span class="line">            &#125;</span><br><span class="line">            else if(c == &#x27;]&#x27;) &#123;</span><br><span class="line">                StringBuilder tmp = new StringBuilder();</span><br><span class="line">                int cur_multi = stack_multi.removeLast();</span><br><span class="line">                for(int i = 0; i &lt; cur_multi; i++) tmp.append(res);</span><br><span class="line">                res = new StringBuilder(stack_res.removeLast() + tmp);</span><br><span class="line">            &#125;</span><br><span class="line">            else if(c &gt;= &#x27;0&#x27; &amp;&amp; c &lt;= &#x27;9&#x27;) multi = multi * 10 + Integer.parseInt(c + &quot;&quot;);</span><br><span class="line">            else res.append(c);</span><br><span class="line">        &#125;</span><br><span class="line">        return res.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度 O(N)，一次遍历 <code>s</code>；</li>
+<li>空间复杂度 O(N)，辅助栈在极端情况下需要线性空间，例如 <code>2[2[2[a]]]</code>。</li>
+</ul>
+<h3 id="（2）递归"><a href="#（2）递归" class="headerlink" title="（2）递归"></a>（2）递归</h3><p><strong>思路及算法</strong></p>
+<p>总体思路与辅助栈法一致，不同点在于将 <code>[ </code>和 <code>]</code> 分别作为递归的开启与终止条件：</p>
+<ul>
+<li>当 <code>s[i] == &#39;]&#39; </code>时，返回当前括号内记录的 <code>res</code> 字符串与 <code>]</code> 的索引 <code>i </code>（更新上层递归指针位置）；</li>
+<li>当<code> s[i] == &#39;[&#39;</code> 时，开启新一层递归，记录此 <code>[...]</code> 内字符串 <code>tmp</code> 和递归后的最新索引<code> i</code>，并执行 <code>res + multi * tmp</code> 拼接字符串。</li>
+<li>遍历完毕后返回 <code>res</code>。</li>
+</ul>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public String decodeString(String s) &#123;</span><br><span class="line">        return dfs(s, 0)[0];</span><br><span class="line">    &#125;</span><br><span class="line">    private String[] dfs(String s, int i) &#123;</span><br><span class="line">        StringBuilder res = new StringBuilder();</span><br><span class="line">        int multi = 0;</span><br><span class="line">        while(i &lt; s.length()) &#123;</span><br><span class="line">            if(s.charAt(i) &gt;= &#x27;0&#x27; &amp;&amp; s.charAt(i) &lt;= &#x27;9&#x27;) </span><br><span class="line">                multi = multi * 10 + Integer.parseInt(String.valueOf(s.charAt(i))); </span><br><span class="line">            else if(s.charAt(i) == &#x27;[&#x27;) &#123;</span><br><span class="line">                String[] tmp = dfs(s, i + 1);</span><br><span class="line">                i = Integer.parseInt(tmp[0]);</span><br><span class="line">                while(multi &gt; 0) &#123;</span><br><span class="line">                    res.append(tmp[1]);</span><br><span class="line">                    multi--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else if(s.charAt(i) == &#x27;]&#x27;) </span><br><span class="line">                return new String[] &#123; String.valueOf(i), res.toString() &#125;;</span><br><span class="line">            else </span><br><span class="line">                res.append(String.valueOf(s.charAt(i)));</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        return new String[] &#123; res.toString() &#125;;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度 O(N)，递归会更新索引，因此实际上还是一次遍历<code> s</code>；</li>
+<li>空间复杂度 O(N)，极端情况下递归深度将会达到线性级别。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>简化路径</title>
+    <url>/2024/04/17/%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/</url>
+    <content><![CDATA[<h1 id="简化路径"><a href="#简化路径" class="headerlink" title="简化路径"></a>简化路径</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个字符串 <code>path</code> ，表示指向某一文件或目录的 Unix 风格 <strong>绝对路径</strong> （以 <code>&#39;/&#39;</code> 开头），请你将其转化为更加简洁的规范路径。</p>
+<p>在 Unix 风格的文件系统中，一个点（<code>.</code>）表示当前目录本身；此外，两个点 （<code>..</code>） 表示将目录切换到上一级（指向父目录）；两者都可以是复杂相对路径的组成部分。任意多个连续的斜杠（即，<code>&#39;//&#39;</code>）都被视为单个斜杠 <code>&#39;/&#39;</code> 。 对于此问题，任何其他格式的点（例如，<code>&#39;...&#39;</code>）均被视为文件&#x2F;目录名称。</p>
+<p>请注意，返回的 <strong>规范路径</strong> 必须遵循下述格式：</p>
+<ul>
+<li>始终以斜杠 <code>&#39;/&#39;</code> 开头。</li>
+<li>两个目录名之间必须只有一个斜杠 <code>&#39;/&#39;</code> 。</li>
+<li>最后一个目录名（如果存在）<strong>不能</strong> 以 <code>&#39;/&#39;</code> 结尾。</li>
+<li>此外，路径仅包含从根目录到目标文件或目录的路径上的目录（即，不含 <code>&#39;.&#39;</code> 或 <code>&#39;..&#39;</code>）。</li>
+</ul>
+<p>返回简化后得到的 <strong>规范路径</strong> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：path = &quot;/home/&quot;</span><br><span class="line">输出：&quot;/home&quot;</span><br><span class="line">解释：注意，最后一个目录名后面没有斜杠。 </span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：path = &quot;/../&quot;</span><br><span class="line">输出：&quot;/&quot;</span><br><span class="line">解释：从根目录向上一级是不可行的，因为根目录是你可以到达的最高级。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：path = &quot;/home//foo/&quot;</span><br><span class="line">输出：&quot;/home/foo&quot;</span><br><span class="line">解释：在规范路径中，多个连续斜杠需要用一个斜杠替换。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 4：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：path = &quot;/a/./b/../../c/&quot;</span><br><span class="line">输出：&quot;/c&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= path.length &lt;= 3000</code></li>
+<li><code>path</code> 由英文字母，数字，<code>&#39;.&#39;</code>，<code>&#39;/&#39;</code> 或 <code>&#39;_&#39;</code> 组成。</li>
+<li><code>path</code> 是一个有效的 Unix 风格绝对路径。</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p><strong>思路及算法</strong></p>
+<p>我们首先将给定的字符串 <code>path</code> 根据 <code>/</code> 分割成一个由若干字符串组成的列表，记为 <code>names</code>。根据题目中规定的「规范路径的下述格式」，<code>names</code> 中包含的字符串只能为以下几种：</p>
+<ul>
+<li>空字符串。例如当出现多个连续的 <code>/</code>，就会分割出空字符串；</li>
+<li>一个点<code> .</code>；</li>
+<li>两个点 <code>..</code>；</li>
+<li>只包含英文字母、数字或<code>_</code>的目录名。</li>
+</ul>
+<p>对于「空字符串」以及「一个点」，我们实际上无需对它们进行处理，因为「空字符串」没有任何含义，而「一个点」表示当前目录本身，我们无需切换目录。</p>
+<p>对于「两个点」或者「目录名」，我们则可以用一个栈来维护路径中的每一个目录名。当我们遇到「两个点」时，需要将目录切换到上一级，因此只要栈不为空，我们就弹出栈顶的目录。当我们遇到「目录名」时，就把它放入栈。</p>
+<p>这样一来，我们只需要遍历 <code>names</code> 中的每个字符串并进行上述操作即可。在所有的操作完成后，我们将从栈底到栈顶的字符串用 <code>/</code> 进行连接，再在最前面加上 <code>/ </code>表示根目录，就可以得到简化后的规范路径。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    string simplifyPath(string path) &#123;</span><br><span class="line">        auto split = [](const string&amp; s, char delim) -&gt; vector&lt;string&gt; &#123;</span><br><span class="line">            vector&lt;string&gt; ans;</span><br><span class="line">            string cur;</span><br><span class="line">            for (char ch: s) &#123;</span><br><span class="line">                if (ch == delim) &#123;</span><br><span class="line">                    ans.push_back(move(cur));</span><br><span class="line">                    cur.clear();</span><br><span class="line">                &#125;</span><br><span class="line">                else &#123;</span><br><span class="line">                    cur += ch;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ans.push_back(move(cur));</span><br><span class="line">            return ans;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        vector&lt;string&gt; names = split(path, &#x27;/&#x27;);</span><br><span class="line">        vector&lt;string&gt; stack;</span><br><span class="line">        for (string&amp; name: names) &#123;</span><br><span class="line">            if (name == &quot;..&quot;) &#123;</span><br><span class="line">                if (!stack.empty()) &#123;</span><br><span class="line">                    stack.pop_back();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (!name.empty() &amp;&amp; name != &quot;.&quot;) &#123;</span><br><span class="line">                stack.push_back(move(name));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        string ans;</span><br><span class="line">        if (stack.empty()) &#123;</span><br><span class="line">            ans = &quot;/&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            for (string&amp; name: stack) &#123;</span><br><span class="line">                ans += &quot;/&quot; + move(name);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public String simplifyPath(String path) &#123;</span><br><span class="line">        String[] names = path.split(&quot;/&quot;);</span><br><span class="line">        Deque&lt;String&gt; stack = new ArrayDeque&lt;String&gt;();</span><br><span class="line">        for (String name : names) &#123;</span><br><span class="line">            if (&quot;..&quot;.equals(name)) &#123;</span><br><span class="line">                if (!stack.isEmpty()) &#123;</span><br><span class="line">                    stack.pollLast();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else if (name.length() &gt; 0 &amp;&amp; !&quot;.&quot;.equals(name)) &#123;</span><br><span class="line">                stack.offerLast(name);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuffer ans = new StringBuffer();</span><br><span class="line">        if (stack.isEmpty()) &#123;</span><br><span class="line">            ans.append(&#x27;/&#x27;);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            while (!stack.isEmpty()) &#123;</span><br><span class="line">                ans.append(&#x27;/&#x27;);</span><br><span class="line">                ans.append(stack.pollFirst());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，其中 <code>n</code> 是字符串<code> path</code> 的长度。</li>
+<li>空间复杂度：O(n)。我们需要 O(n) 的空间存储 <code>names</code> 中的所有字符串。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
 </search>
