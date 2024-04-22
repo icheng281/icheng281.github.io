@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">88</span>
+          <span class="site-state-item-count">90</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,6 +174,307 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/22/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/22/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6/" class="post-title-link" itemprop="url">二叉树的最大深度</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-22 10:39:32 / 修改时间：10:43:00" itemprop="dateCreated datePublished" datetime="2024-04-22T10:39:32+08:00">2024-04-22</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>865</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="二叉树的最大深度"><a href="#二叉树的最大深度" class="headerlink" title="二叉树的最大深度"></a>二叉树的最大深度</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个二叉树 <code>root</code> ，返回其最大深度。</p>
+<p>二叉树的 <strong>最大深度</strong> 是指从根节点到最远叶子节点的最长路径上的节点数。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/11/26/tmp-tree.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [3,9,20,null,null,15,7]</span><br><span class="line">输出：3</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [1,null,2]</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>树中节点的数量在 <code>[0, 104]</code> 区间内。</li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><p>树的遍历方式总体分为两类：深度优先搜索（DFS）、广度优先搜索（BFS）。</p>
+<ul>
+<li>常见 DFS ： 先序遍历、中序遍历、后序遍历。</li>
+<li>常见 BFS ： 层序遍历（即按层遍历）。</li>
+</ul>
+<p>求树的深度需要遍历树的所有节点，本文将介绍基于 后序遍历（DFS） 和 层序遍历（BFS） 的两种解法。</p>
+<h3 id="（1）后序遍历（DFS）"><a href="#（1）后序遍历（DFS）" class="headerlink" title="（1）后序遍历（DFS）"></a>（1）后序遍历（DFS）</h3><p><strong>思路及算法</strong></p>
+<p>树的后序遍历 &#x2F; 深度优先搜索往往利用 <strong>递归</strong> 或 <strong>栈</strong> 实现，这里使用递归实现。</p>
+<p>关键点： 此树的深度和其左（右）子树的深度之间的关系。显然，此树的深度等于左子树的深度与右子树的深度中的最大值 +1。</p>
+<p>算法解析：</p>
+<ol>
+<li>终止条件： 当 <code>root</code> 为空，说明已越过叶节点，因此返回 深度 0 。</li>
+<li>递推工作： 本质上是对树做后序遍历。<ul>
+<li>计算节点 <code>root</code> 的 左子树的深度 ，即调用<code> maxDepth(root.left)</code>。</li>
+<li>计算节点 <code>root</code> 的 右子树的深度 ，即调用 <code>maxDepth(root.right)</code>。</li>
+</ul>
+</li>
+<li>返回值： 返回 此树的深度 ，即<code> max(maxDepth(root.left), maxDepth(root.right)) + 1</code>。</li>
+</ol>
+<p><img src="https://pic.leetcode-cn.com/1603024336-bRXFKg-Picture2.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1603024336-xohQQM-Picture3.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1603024336-LXqphi-Picture4.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1603024336-kHinqB-Picture5.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1603024336-hltgwg-Picture6.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1603024336-tcizEe-Picture7.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1603024336-mbVGBM-Picture8.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1603024336-KGNMeX-Picture9.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1603024336-AlgMZC-Picture10.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1603024336-YjXKMf-Picture11.png" alt="img"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int maxDepth(TreeNode root) &#123;</span><br><span class="line">        if (root == null) return 0;</span><br><span class="line">        return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxDepth(TreeNode* root) &#123;</span><br><span class="line">        if (root == nullptr) return 0;</span><br><span class="line">        return max(maxDepth(root-&gt;left), maxDepth(root-&gt;right)) + 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度 O(N) ： N 为树的节点数量，计算树的深度需要遍历所有节点。</li>
+<li>空间复杂度 O(N)： 最差情况下（当树退化为链表时），递归深度可达到 N 。</li>
+</ul>
+<h3 id="（2）层序遍历（BFS）"><a href="#（2）层序遍历（BFS）" class="headerlink" title="（2）层序遍历（BFS）"></a>（2）层序遍历（BFS）</h3><p><strong>思路及算法</strong></p>
+<p>树的层序遍历 &#x2F; 广度优先搜索往往利用 <strong>队列</strong> 实现。</p>
+<p><strong>关键点：</strong> 每遍历一层，则计数器 +1 ，直到遍历完成，则可得到树的深度。</p>
+<p>算法解析：</p>
+<ol>
+<li>特例处理： 当 <code>root</code> 为空，直接返回 深度 0 。</li>
+<li>初始化： 队列 <code>queue</code> （加入根节点 <code>root</code> ），计数器 <code>res = 0</code>。</li>
+<li>循环遍历： 当 <code>queue </code>为空时跳出。<ul>
+<li>初始化一个空列表 <code>tmp</code> ，用于临时存储下一层节点。</li>
+<li>遍历队列： 遍历 <code>queue</code> 中的各节点 <code>node</code> ，并将其左子节点和右子节点加入<code> tmp</code>。</li>
+<li>更新队列： 执行 <code>queue = tmp</code> ，将下一层节点赋值给 <code>queue</code>。</li>
+<li>统计层数： 执行 <code>res += 1</code> ，代表层数加 1。</li>
+</ul>
+</li>
+<li>返回值： 返回 <code>res</code> 即可。</li>
+</ol>
+<p><img src="https://pic.leetcode-cn.com/1603024336-ZojeTj-Picture12.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1603024336-fMIPed-Picture13.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1603024336-ANiQQj-Picture14.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1603024336-EXcbJg-Picture15.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1603024336-dSOwtz-Picture16.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1603024336-byqvuK-Picture17.png" alt="img"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int maxDepth(TreeNode root) &#123;</span><br><span class="line">        if (root == null) return 0;</span><br><span class="line">        List&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;() &#123;&#123; add(root); &#125;&#125;, tmp;</span><br><span class="line">        int res = 0;</span><br><span class="line">        while (!queue.isEmpty()) &#123;</span><br><span class="line">            tmp = new LinkedList&lt;&gt;();</span><br><span class="line">            for(TreeNode node : queue) &#123;</span><br><span class="line">                if (node.left != null) tmp.add(node.left);</span><br><span class="line">                if (node.right != null) tmp.add(node.right);</span><br><span class="line">            &#125;</span><br><span class="line">            queue = tmp;</span><br><span class="line">            res++;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxDepth(TreeNode* root) &#123;</span><br><span class="line">        if (root == nullptr) return 0;</span><br><span class="line">        vector&lt;TreeNode*&gt; que;</span><br><span class="line">        que.push_back(root);</span><br><span class="line">        int res = 0;</span><br><span class="line">        while (!que.empty()) &#123;</span><br><span class="line">            vector&lt;TreeNode*&gt; tmp;</span><br><span class="line">            for(TreeNode* node : que) &#123;</span><br><span class="line">                if (node-&gt;left != nullptr) tmp.push_back(node-&gt;left);</span><br><span class="line">                if (node-&gt;right != nullptr) tmp.push_back(node-&gt;right);</span><br><span class="line">            &#125;</span><br><span class="line">            que = tmp;</span><br><span class="line">            res++;</span><br><span class="line">        &#125;</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度 O(N)： N 为树的节点数量，计算树的深度需要遍历所有节点。</li>
+<li>空间复杂度 O(N)： 最差情况下（当树平衡时），队列 <code>queue</code> 同时存储 N&#x2F;2 个节点。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/22/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/22/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86/" class="post-title-link" itemprop="url">二叉树的中序遍历</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-22 10:37:24 / 修改时间：10:42:42" itemprop="dateCreated datePublished" datetime="2024-04-22T10:37:24+08:00">2024-04-22</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>557</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="二叉树的中序遍历"><a href="#二叉树的中序遍历" class="headerlink" title="二叉树的中序遍历"></a>二叉树的中序遍历</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个二叉树的根节点 <code>root</code> ，返回 <em>它的 <strong>中序</strong> 遍历</em> 。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/09/15/inorder_1.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [1,null,2,3]</span><br><span class="line">输出：[1,3,2]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = []</span><br><span class="line">输出：[]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [1]</span><br><span class="line">输出：[1]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>树中节点数目在范围 <code>[0, 100]</code> 内</li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）递归"><a href="#（1）递归" class="headerlink" title="（1）递归"></a>（1）递归</h3><p><strong>思路及算法</strong></p>
+<p>递归遍历过程如下：</p>
+<ol>
+<li>前序遍历：打印 - 左 - 右</li>
+<li>中序遍历：左 - 打印 - 右</li>
+<li>后序遍历：左 - 右 - 打印</li>
+</ol>
+<p>题目要求的是中序遍历，那就按照 左-打印-右这种顺序遍历树就可以了，递归函数实现</p>
+<ul>
+<li>终止条件：当前节点为空时</li>
+<li>函数内：递归的调用左节点，打印当前节点，再递归调用右节点</li>
+</ul>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">	public List&lt;Integer&gt; inorderTraversal(TreeNode root) &#123;</span><br><span class="line">		List&lt;Integer&gt; res = new ArrayList&lt;Integer&gt;();</span><br><span class="line">		dfs(res,root);</span><br><span class="line">		return res;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	void dfs(List&lt;Integer&gt; res, TreeNode root) &#123;</span><br><span class="line">		if(root==null) &#123;</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		//按照 左-打印-右的方式遍历</span><br><span class="line">		dfs(res,root.left);</span><br><span class="line">		res.add(root.val);</span><br><span class="line">		dfs(res,root.right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)。</li>
+<li>空间复杂度：O(h)，h 是树的高度。</li>
+</ul>
+<h3 id="（2）迭代"><a href="#（2）迭代" class="headerlink" title="（2）迭代"></a>（2）迭代</h3><p><strong>思路及算法</strong></p>
+<p>递归实现时，是函数自己调用自己，一层层的嵌套下去，操作系统&#x2F;虚拟机自动帮我们用 <strong>栈</strong> 来保存了每个调用的函数，现在我们需要自己模拟这样的调用过程。</p>
+<p>递归的调用过程是不断往左边走，当左边走不下去了，就打印节点，并转向右边，然后右边继续这个过程。<br>我们在迭代实现时，就可以用栈来模拟上面的调用过程。</p>
+<p><img src="https://pic.leetcode-cn.com/47fff35dd3fd640ba60349c78b85242ae8f4b850f06a282cd7e92c91e6eff406-1.gif" alt="1.gif"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">	public List&lt;Integer&gt; inorderTraversal(TreeNode root) &#123;</span><br><span class="line">		List&lt;Integer&gt; res = new ArrayList&lt;Integer&gt;();</span><br><span class="line">		Stack&lt;TreeNode&gt; stack = new Stack&lt;TreeNode&gt;();</span><br><span class="line">		while(stack.size()&gt;0 || root!=null) &#123;</span><br><span class="line">			//不断往左子树方向走，每走一次就将当前节点保存到栈中</span><br><span class="line">			//这是模拟递归的调用</span><br><span class="line">			if(root!=null) &#123;</span><br><span class="line">				stack.add(root);</span><br><span class="line">				root = root.left;</span><br><span class="line">			//当前节点为空，说明左边走到头了，从栈中弹出节点并保存</span><br><span class="line">			//然后转向右边节点，继续上面整个过程</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				TreeNode tmp = stack.pop();</span><br><span class="line">				res.add(tmp.val);</span><br><span class="line">				root = tmp.right;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return res;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(h)，h 是树的高度</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1319,235 +1620,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/14/%E5%88%86%E9%9A%94%E9%93%BE%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/14/%E5%88%86%E9%9A%94%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">分隔链表</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-04-14 13:30:00 / 修改时间：13:36:17" itemprop="dateCreated datePublished" datetime="2024-04-14T13:30:00+08:00">2024-04-14</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>638</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="分隔链表"><a href="#分隔链表" class="headerlink" title="分隔链表"></a>分隔链表</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个链表的头节点 <code>head</code> 和一个特定值 <code>x</code> ，请你对链表进行分隔，使得所有 <strong>小于</strong> <code>x</code> 的节点都出现在 <strong>大于或等于</strong> <code>x</code> 的节点之前。</p>
-<p>你应当 <strong>保留</strong> 两个分区中每个节点的初始相对位置。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2021/01/04/partition.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [1,4,3,2,5,2], x = 3</span><br><span class="line">输出：[1,2,2,4,3,5]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [2,1], x = 2</span><br><span class="line">输出：[1,2]</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li>链表中节点的数目在范围 <code>[0, 200]</code> 内</li>
-<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
-<li><code>-200 &lt;= x &lt;= 200</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="模拟"><a href="#模拟" class="headerlink" title="模拟"></a>模拟</h3><p><strong>思路及算法</strong></p>
-<p>直观来说我们只需维护两个链表 small 和 large 即可，small 链表按顺序存储所有小于 x 的节点，large 链表按顺序存储所有大于等于 x 的节点。遍历完原链表后，我们只要将 small 链表尾节点指向 large 链表的头节点即能完成对链表的分隔。</p>
-<p>为了实现上述思路，我们设 smallHead 和 largeHead 分别为两个链表的哑节点，即它们的 next 指针指向链表的头节点，这样做的目的是为了更方便地处理头节点为空的边界条件。同时设 small 和 large 节点指向当前链表的末尾节点。开始时 smallHead&#x3D;small,largeHead&#x3D;large。随后，从前往后遍历链表，判断当前链表的节点值是否小于 x，如果小于就将 small 的 next 指针指向该节点，否则将 large 的 next 指针指向该节点。</p>
-<p>遍历结束后，我们将 large 的 next 指针置空，这是因为当前节点复用的是原链表的节点，而其 next 指针可能指向一个小于 x 的节点，我们需要切断这个引用。同时将 small 的 next 指针指向 largeHead 的 next 指针指向的节点，即真正意义上的 large链表的头节点。最后返回 smallHead的 next 指针即为我们要求的答案。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* partition(ListNode* head, int x) &#123;</span><br><span class="line">        ListNode* small = new ListNode(0);</span><br><span class="line">        ListNode* smallHead = small;</span><br><span class="line">        ListNode* large = new ListNode(0);</span><br><span class="line">        ListNode* largeHead = large;</span><br><span class="line">        while (head != nullptr) &#123;</span><br><span class="line">            if (head-&gt;val &lt; x) &#123;</span><br><span class="line">                small-&gt;next = head;</span><br><span class="line">                small = small-&gt;next;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                large-&gt;next = head;</span><br><span class="line">                large = large-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        large-&gt;next = nullptr;</span><br><span class="line">        small-&gt;next = largeHead-&gt;next;</span><br><span class="line">        return smallHead-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode partition(ListNode head, int x) &#123;</span><br><span class="line">        ListNode small = new ListNode(0);</span><br><span class="line">        ListNode smallHead = small;</span><br><span class="line">        ListNode large = new ListNode(0);</span><br><span class="line">        ListNode largeHead = large;</span><br><span class="line">        while (head != null) &#123;</span><br><span class="line">            if (head.val &lt; x) &#123;</span><br><span class="line">                small.next = head;</span><br><span class="line">                small = small.next;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                large.next = head;</span><br><span class="line">                large = large.next;</span><br><span class="line">            &#125;</span><br><span class="line">            head = head.next;</span><br><span class="line">        &#125;</span><br><span class="line">        large.next = null;</span><br><span class="line">        small.next = largeHead.next;</span><br><span class="line">        return smallHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度: O(n)，其中 n 是原链表的长度。我们对该链表进行了一次遍历。</li>
-<li>空间复杂度: O(1)。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/14/%E6%97%8B%E8%BD%AC%E9%93%BE%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/14/%E6%97%8B%E8%BD%AC%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">旋转链表</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-04-14 13:19:44 / 修改时间：13:26:43" itemprop="dateCreated datePublished" datetime="2024-04-14T13:19:44+08:00">2024-04-14</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>533</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="旋转链表"><a href="#旋转链表" class="headerlink" title="旋转链表"></a>旋转链表</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个链表的头节点 <code>head</code> ，旋转链表，将链表每个节点向右移动 <code>k</code> 个位置。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2020/11/13/rotate1.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [1,2,3,4,5], k = 2</span><br><span class="line">输出：[4,5,1,2,3]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2020/11/13/roate2.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [0,1,2], k = 4</span><br><span class="line">输出：[2,0,1]</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li>链表中节点的数目在范围 <code>[0, 500]</code> 内</li>
-<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
-<li><code>0 &lt;= k &lt;= 2 * 109</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="闭合为环"><a href="#闭合为环" class="headerlink" title="闭合为环"></a>闭合为环</h3><p><strong>思路及算法</strong></p>
-<p>记给定链表的长度为 n，注意到当向右移动的次数 k≥n 时，我们仅需要向右移动 k mod n 次即可。因为每 n 次移动都会让链表变为原状。这样我们可以知道，新链表的最后一个节点为原链表的第 (n−1)−(k mod n) 个节点（从 0 开始计数）。</p>
-<p>这样，我们可以先将给定的链表连接成环，然后将指定位置断开。</p>
-<p>具体代码中，我们首先计算出链表的长度 n，并找到该链表的末尾节点，将其与头节点相连。这样就得到了闭合为环的链表。然后我们找到新链表的最后一个节点（即原链表的第 (n−1)−(k mod n) 个节点），将当前闭合为环的链表断开，即可得到我们所需要的结果。</p>
-<p>特别地，当链表长度不大于 1，或者 k 为 n 的倍数时，新链表将与原链表相同，我们无需进行任何处理。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* rotateRight(ListNode* head, int k) &#123;</span><br><span class="line">        if (k == 0 || head == nullptr || head-&gt;next == nullptr) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        int n = 1;</span><br><span class="line">        ListNode* iter = head;</span><br><span class="line">        while (iter-&gt;next != nullptr) &#123;</span><br><span class="line">            iter = iter-&gt;next;</span><br><span class="line">            n++;</span><br><span class="line">        &#125;</span><br><span class="line">        int add = n - k % n;</span><br><span class="line">        if (add == n) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        iter-&gt;next = head;</span><br><span class="line">        while (add--) &#123;</span><br><span class="line">            iter = iter-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode* ret = iter-&gt;next;</span><br><span class="line">        iter-&gt;next = nullptr;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode rotateRight(ListNode head, int k) &#123;</span><br><span class="line">        if (k == 0 || head == null || head.next == null) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        int n = 1;</span><br><span class="line">        ListNode iter = head;</span><br><span class="line">        while (iter.next != null) &#123;</span><br><span class="line">            iter = iter.next;</span><br><span class="line">            n++;</span><br><span class="line">        &#125;</span><br><span class="line">        int add = n - k % n;</span><br><span class="line">        if (add == n) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        iter.next = head;</span><br><span class="line">        while (add-- &gt; 0) &#123;</span><br><span class="line">            iter = iter.next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode ret = iter.next;</span><br><span class="line">        iter.next = null;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，最坏情况下，我们需要遍历该链表两次。</p>
-</li>
-<li><p>空间复杂度：O(1)，我们只需要常数的空间存储若干变量。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1572,14 +1644,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">98k</span>
+    <span title="站点总字数">99k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">5:57</span>
+    <span title="站点阅读时长">6:02</span>
   </span>
 </div>
 <div class="busuanzi-count">
