@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">90</span>
+          <span class="site-state-item-count">93</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,6 +174,383 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/20/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/20/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/" class="post-title-link" itemprop="url">最小覆盖子串</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-20 11:19:16 / 修改时间：11:20:04" itemprop="dateCreated datePublished" datetime="2024-03-20T11:19:16+08:00">2024-03-20</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="最小覆盖子串"><a href="#最小覆盖子串" class="headerlink" title="最小覆盖子串"></a>最小覆盖子串</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个字符串 <code>s</code> 、一个字符串 <code>t</code> 。返回 <code>s</code> 中涵盖 <code>t</code> 所有字符的最小子串。如果 <code>s</code> 中不存在涵盖 <code>t</code> 所有字符的子串，则返回空字符串 <code>&quot;&quot;</code> 。</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>对于 <code>t</code> 中重复字符，我们寻找的子字符串中该字符数量必须不少于 <code>t</code> 中该字符数量。</li>
+<li>如果 <code>s</code> 中存在这样的子串，我们保证它是唯一的答案。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;ADOBECODEBANC&quot;, t = &quot;ABC&quot;</span><br><span class="line">输出：&quot;BANC&quot;</span><br><span class="line">解释：最小覆盖子串 &quot;BANC&quot; 包含来自字符串 t 的 &#x27;A&#x27;、&#x27;B&#x27; 和 &#x27;C&#x27;。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;a&quot;, t = &quot;a&quot;</span><br><span class="line">输出：&quot;a&quot;</span><br><span class="line">解释：整个字符串 s 是最小覆盖子串。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: s = &quot;a&quot;, t = &quot;aa&quot;</span><br><span class="line">输出: &quot;&quot;</span><br><span class="line">解释: t 中两个字符 &#x27;a&#x27; 均应包含在 s 的子串中，</span><br><span class="line">因此没有符合条件的子字符串，返回空字符串。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>m == s.length</code></li>
+<li><code>n == t.length</code></li>
+<li><code>1 &lt;= m, n &lt;= 105</code></li>
+<li><code>s</code> 和 <code>t</code> 由英文字母组成</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3><p><strong>思路及算法</strong></p>
+<p>本问题要求我们返回字符串 s 中包含字符串 t 的全部字符的最小窗口。我们称包含 t 的全部字母的窗口为「可行」窗口。</p>
+<p>我们可以用滑动窗口的思想解决这个问题。在滑动窗口类型的问题中都会有两个指针，一个用于「延伸」现有窗口的 r 指针，和一个用于「收缩」窗口的 l 指针。在任意时刻，只有一个指针运动，而另一个保持静止。我们在 s 上滑动窗口，通过移动 r 指针不断扩张窗口。当窗口包含 t 全部所需的字符后，如果能收缩，我们就收缩窗口直到得到最小窗口。</p>
+<p>如何判断当前的窗口包含所有 t 所需的字符呢？我们可以用一个哈希表表示 t 中所有的字符以及它们的个数，用一个哈希表动态维护窗口中所有的字符以及它们的个数，如果这个动态表中包含 t 的哈希表中的所有字符，并且对应的个数都不小于 t 的哈希表中各个字符的个数，那么当前的窗口是「可行」的。</p>
+<p><strong>注意：这里 t 中可能出现重复的字符，所以我们要记录字符的个数。</strong></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    unordered_map &lt;char, int&gt; ori, cnt;</span><br><span class="line"></span><br><span class="line">    bool check() &#123;</span><br><span class="line">        for (const auto &amp;p: ori) &#123;</span><br><span class="line">            if (cnt[p.first] &lt; p.second) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    string minWindow(string s, string t) &#123;</span><br><span class="line">        for (const auto &amp;c: t) &#123;</span><br><span class="line">            ++ori[c];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int l = 0, r = -1;</span><br><span class="line">        int len = INT_MAX, ansL = -1, ansR = -1;</span><br><span class="line"></span><br><span class="line">        while (r &lt; int(s.size())) &#123;</span><br><span class="line">            if (ori.find(s[++r]) != ori.end()) &#123;</span><br><span class="line">                ++cnt[s[r]];</span><br><span class="line">            &#125;</span><br><span class="line">            while (check() &amp;&amp; l &lt;= r) &#123;</span><br><span class="line">                if (r - l + 1 &lt; len) &#123;</span><br><span class="line">                    len = r - l + 1;</span><br><span class="line">                    ansL = l;</span><br><span class="line">                &#125;</span><br><span class="line">                if (ori.find(s[l]) != ori.end()) &#123;</span><br><span class="line">                    --cnt[s[l]];</span><br><span class="line">                &#125;</span><br><span class="line">                ++l;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return ansL == -1 ? string() : s.substr(ansL, len);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    Map&lt;Character, Integer&gt; ori = new HashMap&lt;Character, Integer&gt;();</span><br><span class="line">    Map&lt;Character, Integer&gt; cnt = new HashMap&lt;Character, Integer&gt;();</span><br><span class="line"></span><br><span class="line">    public String minWindow(String s, String t) &#123;</span><br><span class="line">        int tLen = t.length();</span><br><span class="line">        for (int i = 0; i &lt; tLen; i++) &#123;</span><br><span class="line">            char c = t.charAt(i);</span><br><span class="line">            ori.put(c, ori.getOrDefault(c, 0) + 1);</span><br><span class="line">        &#125;</span><br><span class="line">        int l = 0, r = -1;</span><br><span class="line">        int len = Integer.MAX_VALUE, ansL = -1, ansR = -1;</span><br><span class="line">        int sLen = s.length();</span><br><span class="line">        while (r &lt; sLen) &#123;</span><br><span class="line">            ++r;</span><br><span class="line">            if (r &lt; sLen &amp;&amp; ori.containsKey(s.charAt(r))) &#123;</span><br><span class="line">                cnt.put(s.charAt(r), cnt.getOrDefault(s.charAt(r), 0) + 1);</span><br><span class="line">            &#125;</span><br><span class="line">            while (check() &amp;&amp; l &lt;= r) &#123;</span><br><span class="line">                if (r - l + 1 &lt; len) &#123;</span><br><span class="line">                    len = r - l + 1;</span><br><span class="line">                    ansL = l;</span><br><span class="line">                    ansR = l + len;</span><br><span class="line">                &#125;</span><br><span class="line">                if (ori.containsKey(s.charAt(l))) &#123;</span><br><span class="line">                    cnt.put(s.charAt(l), cnt.getOrDefault(s.charAt(l), 0) - 1);</span><br><span class="line">                &#125;</span><br><span class="line">                ++l;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ansL == -1 ? &quot;&quot; : s.substring(ansL, ansR);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean check() &#123;</span><br><span class="line">        Iterator iter = ori.entrySet().iterator(); </span><br><span class="line">        while (iter.hasNext()) &#123; </span><br><span class="line">            Map.Entry entry = (Map.Entry) iter.next(); </span><br><span class="line">            Character key = (Character) entry.getKey(); </span><br><span class="line">            Integer val = (Integer) entry.getValue(); </span><br><span class="line">            if (cnt.getOrDefault(key, 0) &lt; val) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：最坏情况下左右指针对 s 的每个元素各遍历一遍，哈希表中对 s 中的每个元素各插入、删除一次，对 t 中的元素各插入一次。每次检查是否可行会遍历整个 t 的哈希表，哈希表的大小与字符集的大小有关，设字符集大小为 C，则渐进时间复杂度为 O(C⋅∣s∣+∣t∣)。</li>
+<li>空间复杂度：这里用了两张哈希表作为辅助空间，每张哈希表最多不会存放超过字符集大小的键值对，我们设字符集大小为 C，则渐进空间复杂度为 O(C)。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/19/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/19/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/" class="post-title-link" itemprop="url">长度最小的子数组</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-19 11:10:57 / 修改时间：11:13:42" itemprop="dateCreated datePublished" datetime="2024-03-19T11:10:57+08:00">2024-03-19</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="长度最小的子数组"><a href="#长度最小的子数组" class="headerlink" title="长度最小的子数组"></a>长度最小的子数组</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个含有 <code>n</code> 个正整数的数组和一个正整数 <code>target</code> <strong>。</strong></p>
+<p>找出该数组中满足其总和大于等于 <code>target</code> 的长度最小的 <strong>连续子数组</strong><code>[numsl, numsl+1, ..., numsr-1, numsr]</code> ，并返回其长度<strong>。</strong>如果不存在符合条件的子数组，返回 <code>0</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：target = 7, nums = [2,3,1,2,4,3]</span><br><span class="line">输出：2</span><br><span class="line">解释：子数组 [4,3] 是该条件下的长度最小的子数组。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：target = 4, nums = [1,4,4]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：target = 11, nums = [1,1,1,1,1,1,1,1]</span><br><span class="line">输出：0</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= target &lt;= 109</code></li>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 105</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）暴力法"><a href="#（1）暴力法" class="headerlink" title="（1）暴力法"></a>（1）暴力法</h3><p><strong>思路及算法</strong></p>
+<p>暴力法是最直观的方法。初始化子数组的最小长度为无穷大，枚举数组 nums 中的每个下标作为子数组的开始下标，对于每个开始下标 i，需要找到大于或等于 i 的最小下标 j，使得从 nums[i] 到 nums[j] 的元素和大于或等于 s，并更新子数组的最小长度（此时子数组的长度是 j−i+1）。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int minSubArrayLen(int s, vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int ans = INT_MAX;</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            int sum = 0;</span><br><span class="line">            for (int j = i; j &lt; n; j++) &#123;</span><br><span class="line">                sum += nums[j];</span><br><span class="line">                if (sum &gt;= s) &#123;</span><br><span class="line">                    ans = min(ans, j - i + 1);</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans == INT_MAX ? 0 : ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int minSubArrayLen(int s, int[] nums) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int ans = Integer.MAX_VALUE;</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            int sum = 0;</span><br><span class="line">            for (int j = i; j &lt; n; j++) &#123;</span><br><span class="line">                sum += nums[j];</span><br><span class="line">                if (sum &gt;= s) &#123;</span><br><span class="line">                    ans = Math.min(ans, j - i + 1);</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans == Integer.MAX_VALUE ? 0 : ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n^2^)，其中 n 是数组的长度。需要遍历每个下标作为子数组的开始下标，对于每个开始下标，需要遍历其后面的下标得到长度最小的子数组。</p>
+</li>
+<li><p>空间复杂度：O(1)。</p>
+</li>
+</ul>
+<h3 id="（2）前缀和-二分查找"><a href="#（2）前缀和-二分查找" class="headerlink" title="（2）前缀和+二分查找"></a>（2）前缀和+二分查找</h3><p><strong>思路及算法</strong></p>
+<p>为了使用二分查找，需要额外创建一个数组 sums 用于存储数组 nums 的前缀和，其中 sums[i] 表示从 nums[0] 到 nums[i−1] 的元素和。得到前缀和之后，对于每个开始下标 i，可通过二分查找得到大于或等于 i 的最小下标 bound，使得 sums[bound]−sums[i−1]≥s，并更新子数组的最小长度（此时子数组的长度是 bound−(i−1)）。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int minSubArrayLen(int s, vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int ans = INT_MAX;</span><br><span class="line">        vector&lt;int&gt; sums(n + 1, 0); </span><br><span class="line">        // 为了方便计算，令 size = n + 1 </span><br><span class="line">        // sums[0] = 0 意味着前 0 个元素的前缀和为 0</span><br><span class="line">        // sums[1] = A[0] 前 1 个元素的前缀和为 A[0]</span><br><span class="line">        // 以此类推</span><br><span class="line">        for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">            sums[i] = sums[i - 1] + nums[i - 1];</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">            int target = s + sums[i - 1];</span><br><span class="line">            auto bound = lower_bound(sums.begin(), sums.end(), target);</span><br><span class="line">            if (bound != sums.end()) &#123;</span><br><span class="line">                ans = min(ans, static_cast&lt;int&gt;((bound - sums.begin()) - (i - 1)));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans == INT_MAX ? 0 : ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int minSubArrayLen(int s, int[] nums) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int ans = Integer.MAX_VALUE;</span><br><span class="line">        int[] sums = new int[n + 1]; </span><br><span class="line">        // 为了方便计算，令 size = n + 1 </span><br><span class="line">        // sums[0] = 0 意味着前 0 个元素的前缀和为 0</span><br><span class="line">        // sums[1] = A[0] 前 1 个元素的前缀和为 A[0]</span><br><span class="line">        // 以此类推</span><br><span class="line">        for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">            sums[i] = sums[i - 1] + nums[i - 1];</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">            int target = s + sums[i - 1];</span><br><span class="line">            int bound = Arrays.binarySearch(sums, target);</span><br><span class="line">            if (bound &lt; 0) &#123;</span><br><span class="line">                bound = -bound - 1;</span><br><span class="line">            &#125;</span><br><span class="line">            if (bound &lt;= n) &#123;</span><br><span class="line">                ans = Math.min(ans, bound - (i - 1));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans == Integer.MAX_VALUE ? 0 : ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(nlog⁡n)，其中 n 是数组的长度。需要遍历每个下标作为子数组的开始下标，遍历的时间复杂度是 O(n)，对于每个开始下标，需要通过二分查找得到长度最小的子数组，二分查找得时间复杂度是 O(log⁡n)，因此总时间复杂度是 O(nlog⁡n)。</p>
+</li>
+<li><p>空间复杂度：O(n)，其中 n 是数组的长度。额外创建数组 sums 存储前缀和。</p>
+</li>
+</ul>
+<h3 id="（3）滑动窗口"><a href="#（3）滑动窗口" class="headerlink" title="（3）滑动窗口"></a>（3）滑动窗口</h3><p><strong>思路及算法</strong></p>
+<p>定义两个指针 start 和 end 分别表示子数组（滑动窗口窗口）的开始位置和结束位置，维护变量 sum 存储子数组中的元素和（即从 nums[start] 到 nums[end] 的元素和）。</p>
+<p>初始状态下，start 和 end 都指向下标 0，sum 的值为 0。</p>
+<p>每一轮迭代，将 nums[end] 加到 sum，如果 sum≥s，则更新子数组的最小长度（此时子数组的长度是 end−start+1），然后将 nums[start]从 sum 中减去并将 start 右移，直到 sum&lt;s，在此过程中同样更新子数组的最小长度。在每一轮迭代的最后，将 end 右移。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int minSubArrayLen(int s, vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int ans = INT_MAX;</span><br><span class="line">        int start = 0, end = 0;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        while (end &lt; n) &#123;</span><br><span class="line">            sum += nums[end];</span><br><span class="line">            while (sum &gt;= s) &#123;</span><br><span class="line">                ans = min(ans, end - start + 1);</span><br><span class="line">                sum -= nums[start];</span><br><span class="line">                start++;</span><br><span class="line">            &#125;</span><br><span class="line">            end++;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans == INT_MAX ? 0 : ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int minSubArrayLen(int s, int[] nums) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int ans = Integer.MAX_VALUE;</span><br><span class="line">        int start = 0, end = 0;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        while (end &lt; n) &#123;</span><br><span class="line">            sum += nums[end];</span><br><span class="line">            while (sum &gt;= s) &#123;</span><br><span class="line">                ans = Math.min(ans, end - start + 1);</span><br><span class="line">                sum -= nums[start];</span><br><span class="line">                start++;</span><br><span class="line">            &#125;</span><br><span class="line">            end++;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans == Integer.MAX_VALUE ? 0 : ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是数组的长度。指针 start 和 end 最多各移动 n 次。</p>
+</li>
+<li><p>空间复杂度：O(1)。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/18/%E6%89%BE%E5%88%B0%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/18/%E6%89%BE%E5%88%B0%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D/" class="post-title-link" itemprop="url">找到字符串中的所有字母异位词</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-18 11:01:23 / 修改时间：11:03:40" itemprop="dateCreated datePublished" datetime="2024-03-18T11:01:23+08:00">2024-03-18</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>830</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="找到字符串中的所有字母异位词"><a href="#找到字符串中的所有字母异位词" class="headerlink" title="找到字符串中的所有字母异位词"></a>找到字符串中的所有字母异位词</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定两个字符串 <code>s</code> 和 <code>p</code>，找到 <code>s</code> 中所有 <code>p</code> 的 <strong>异位词</strong> 的子串，返回这些子串的起始索引。不考虑答案输出的顺序。</p>
+<p><strong>异位词</strong> 指由相同字母重排列形成的字符串（包括相同的字符串）。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入: s = &quot;cbaebabacd&quot;, p = &quot;abc&quot;</span><br><span class="line">输出: [0,6]</span><br><span class="line">解释:</span><br><span class="line">起始索引等于 0 的子串是 &quot;cba&quot;, 它是 &quot;abc&quot; 的异位词。</span><br><span class="line">起始索引等于 6 的子串是 &quot;bac&quot;, 它是 &quot;abc&quot; 的异位词。</span><br></pre></td></tr></table></figure>
+
+<p> <strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入: s = &quot;abab&quot;, p = &quot;ab&quot;</span><br><span class="line">输出: [0,1,2]</span><br><span class="line">解释:</span><br><span class="line">起始索引等于 0 的子串是 &quot;ab&quot;, 它是 &quot;ab&quot; 的异位词。</span><br><span class="line">起始索引等于 1 的子串是 &quot;ba&quot;, 它是 &quot;ab&quot; 的异位词。</span><br><span class="line">起始索引等于 2 的子串是 &quot;ab&quot;, 它是 &quot;ab&quot; 的异位词。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示:</strong></p>
+<ul>
+<li><code>1 &lt;= s.length, p.length &lt;= 3 * 104</code></li>
+<li><code>s</code> 和 <code>p</code> 仅包含小写字母</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3><p><strong>思路及算法</strong></p>
+<p>根据题目要求，我们需要在字符串 s 寻找字符串 p 的异位词。因为字符串 p 的异位词的长度一定与字符串 p 的长度相同，所以我们可以在字符串 s 中构造一个长度为与字符串 p 的长度相同的滑动窗口，并在滑动中维护窗口中每种字母的数量；当窗口中每种字母的数量与字符串 p 中每种字母的数量相同时，则说明当前窗口为字符串 p 的异位词。在算法的实现中，我们可以使用数组来存储字符串 p 和滑动窗口中每种字母的数量。当字符串 s 的长度小于字符串 p 的长度时，字符串 s 中一定不存在字符串 p 的异位词。但是因为字符串 s 中无法构造长度与字符串 p 的长度相同的窗口，所以这种情况需要单独处理。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; findAnagrams(string s, string p) &#123;</span><br><span class="line">        int sLen = s.size(), pLen = p.size();</span><br><span class="line"></span><br><span class="line">        if (sLen &lt; pLen) &#123;</span><br><span class="line">            return vector&lt;int&gt;();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vector&lt;int&gt; ans;</span><br><span class="line">        vector&lt;int&gt; sCount(26);</span><br><span class="line">        vector&lt;int&gt; pCount(26);</span><br><span class="line">        for (int i = 0; i &lt; pLen; ++i) &#123;</span><br><span class="line">            ++sCount[s[i] - &#x27;a&#x27;];</span><br><span class="line">            ++pCount[p[i] - &#x27;a&#x27;];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (sCount == pCount) &#123;</span><br><span class="line">            ans.emplace_back(0);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i = 0; i &lt; sLen - pLen; ++i) &#123;</span><br><span class="line">            --sCount[s[i] - &#x27;a&#x27;];</span><br><span class="line">            ++sCount[s[i + pLen] - &#x27;a&#x27;];</span><br><span class="line"></span><br><span class="line">            if (sCount == pCount) &#123;</span><br><span class="line">                ans.emplace_back(i + 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;Integer&gt; findAnagrams(String s, String p) &#123;</span><br><span class="line">        int sLen = s.length(), pLen = p.length();</span><br><span class="line"></span><br><span class="line">        if (sLen &lt; pLen) &#123;</span><br><span class="line">            return new ArrayList&lt;Integer&gt;();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        List&lt;Integer&gt; ans = new ArrayList&lt;Integer&gt;();</span><br><span class="line">        int[] sCount = new int[26];</span><br><span class="line">        int[] pCount = new int[26];</span><br><span class="line">        for (int i = 0; i &lt; pLen; ++i) &#123;</span><br><span class="line">            ++sCount[s.charAt(i) - &#x27;a&#x27;];</span><br><span class="line">            ++pCount[p.charAt(i) - &#x27;a&#x27;];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (Arrays.equals(sCount, pCount)) &#123;</span><br><span class="line">            ans.add(0);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i = 0; i &lt; sLen - pLen; ++i) &#123;</span><br><span class="line">            --sCount[s.charAt(i) - &#x27;a&#x27;];</span><br><span class="line">            ++sCount[s.charAt(i + pLen) - &#x27;a&#x27;];</span><br><span class="line"></span><br><span class="line">            if (Arrays.equals(sCount, pCount)) &#123;</span><br><span class="line">                ans.add(i + 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(m+(n−m)×Σ)，其中 n 为字符串 s 的长度，m 为字符串 p 的长度，Σ 为所有可能的字符数。我们需要 O(m) 来统计字符串 p 中每种字母的数量；需要 O(m) 来初始化滑动窗口；需要判断 n−m+1 个滑动窗口中每种字母的数量是否与字符串 p 中每种字母的数量相同，每次判断需要 O(Σ) 。因为 s 和 p 仅包含小写字母，所以 Σ&#x3D;26。</p>
+</li>
+<li><p>空间复杂度：O(Σ)。用于存储字符串 p 和滑动窗口中每种字母的数量。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1053,404 +1430,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/10/%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/10/%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83/" class="post-title-link" itemprop="url">用最少数量的箭引爆气球</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-03-10 11:13:47 / 修改时间：11:19:24" itemprop="dateCreated datePublished" datetime="2024-03-10T11:13:47+08:00">2024-03-10</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.7k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>6 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="用最少数量的箭引爆气球"><a href="#用最少数量的箭引爆气球" class="headerlink" title="用最少数量的箭引爆气球"></a>用最少数量的箭引爆气球</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>有一些球形气球贴在一堵用 XY 平面表示的墙面上。墙面上的气球记录在整数数组 <code>points</code> ，其中<code>points[i] = [xstart, xend]</code> 表示水平直径在 <code>xstart</code> 和 <code>xend</code>之间的气球。你不知道气球的确切 y 坐标。</p>
-<p>一支弓箭可以沿着 x 轴从不同点 <strong>完全垂直</strong> 地射出。在坐标 <code>x</code> 处射出一支箭，若有一个气球的直径的开始和结束坐标为 <code>x``start</code>，<code>x``end</code>， 且满足  <code>xstart ≤ x ≤ x``end</code>，则该气球会被 <strong>引爆</strong> 。可以射出的弓箭的数量 <strong>没有限制</strong> 。 弓箭一旦被射出之后，可以无限地前进。</p>
-<p>给你一个数组 <code>points</code> ，<em>返回引爆所有气球所必须射出的 <strong>最小</strong> 弓箭数</em> 。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：points = [[10,16],[2,8],[1,6],[7,12]]</span><br><span class="line">输出：2</span><br><span class="line">解释：气球可以用2支箭来爆破:</span><br><span class="line">-在x = 6处射出箭，击破气球[2,8]和[1,6]。</span><br><span class="line">-在x = 11处发射箭，击破气球[10,16]和[7,12]。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：points = [[1,2],[3,4],[5,6],[7,8]]</span><br><span class="line">输出：4</span><br><span class="line">解释：每个气球需要射出一支箭，总共需要4支箭。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：points = [[1,2],[2,3],[3,4],[4,5]]</span><br><span class="line">输出：2</span><br><span class="line">解释：气球可以用2支箭来爆破:</span><br><span class="line">- 在x = 2处发射箭，击破气球[1,2]和[2,3]。</span><br><span class="line">- 在x = 4处射出箭，击破气球[3,4]和[4,5]。</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示:</strong></p>
-<ul>
-<li><code>1 &lt;= points.length &lt;= 105</code></li>
-<li><code>points[i].length == 2</code></li>
-<li><code>-231 &lt;= xstart &lt; xend &lt;= 231 - 1</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="排序加贪心"><a href="#排序加贪心" class="headerlink" title="排序加贪心"></a>排序加贪心</h3><p><strong>思路及算法</strong></p>
-<p>我们首先随机地射出一支箭，再看一看是否能够调整这支箭地射出位置，使得我们可以引爆更多数目的气球。</p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/452/1.png" alt="fig1"></p>
-<p>如图 1-1 所示，我们随机射出一支箭，引爆了除红色气球以外的所有气球。我们称所有引爆的气球为「原本引爆的气球」，其余的气球为「原本完好的气球」。可以发现，如果我们将这支箭的射出位置稍微往右移动一点，那么我们就有机会引爆红色气球，如图 1-2 所示。</p>
-<p>那么我们最远可以将这支箭往右移动多远呢？我们唯一的要求就是：原本引爆的气球只要仍然被引爆就行了。这样一来，我们找出原本引爆的气球中右边界位置最靠左的那一个，将这支箭的射出位置移动到这个右边界位置，这也是最远可以往右移动到的位置：如图 1-3 所示，只要我们再往右移动一点点，这个气球就无法被引爆了。</p>
-<p>为什么「原本引爆的气球仍然被引爆」是唯一的要求？别急，往下看就能看到其精妙所在。</p>
-<p>因此，我们可以断定：一定存在一种最优（射出的箭数最小）的方法，使得每一支箭的射出位置都恰好对应着某一个气球的右边界。</p>
-<p>这是为什么？我们考虑任意一种最优的方法，对于其中的任意一支箭，我们都通过上面描述的方法，将这支箭的位置移动到它对应的「原本引爆的气球中最靠左的右边界位置」，那么这些原本引爆的气球仍然被引爆。这样一来，所有的气球仍然都会被引爆，并且每一支箭的射出位置都恰好位于某一个气球的右边界了。</p>
-<p>有了这样一个有用的断定，我们就可以快速得到一种最优的方法了。考虑所有气球中右边界位置最靠左的那一个，那么一定有一支箭的射出位置就是它的右边界（否则就没有箭可以将其引爆了）。当我们确定了一支箭之后，我们就可以将这支箭引爆的所有气球移除，并从剩下未被引爆的气球中，再选择右边界位置最靠左的那一个，确定下一支箭，直到所有的气球都被引爆。</p>
-<p>我们可以写出如下的伪代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">let points := [[x(0), y(0)], [x(1), y(1)], ... [x(n-1), y(n-1)]]，表示 n 个气球</span><br><span class="line">let burst := [false] * n，表示每个气球是否被引爆</span><br><span class="line">let ans := 1，表示射出的箭数</span><br><span class="line"></span><br><span class="line">将 points 按照 y 值（右边界）进行升序排序</span><br><span class="line"></span><br><span class="line">while burst 中还有 false 值 do</span><br><span class="line">    let i := 最小的满足 burst[i] = false 的索引 i</span><br><span class="line">    for j := i to n-1 do</span><br><span class="line">        if x(j) &lt;= y(i) then</span><br><span class="line">            burst[j] := true</span><br><span class="line">        end if</span><br><span class="line">    end for</span><br><span class="line">end while</span><br><span class="line"></span><br><span class="line">return ans</span><br></pre></td></tr></table></figure>
-
-<p>这样的做法在最坏情况下时间复杂度是 O(n^2^)，即这 n 个气球对应的区间互不重叠，while 循环需要执行 n 次。那么我们如何继续进行优化呢？</p>
-<p>事实上，在内层的 j 循环中，当我们遇到第一个不满足 x(j)≤y(i) 的 j 值，就可以直接跳出循环，并且这个 y(j) 就是下一支箭的射出位置。为什么这样做是对的呢？我们考虑某一支箭的索引 it 以及它的下一支箭的索引 jt，对于索引在 jt 之后的任意一个可以被 it 引爆的气球，记索引为 j0，有：x(j0)≤y(it)。由于 y(it)≤y(jt) 显然成立，那么 x(j0)≤y(jt) 也成立，也就是说：当前这支箭在索引 jt（第一个无法引爆的气球）之后所有可以引爆的气球，下一支箭也都可以引爆。因此我们就证明了其正确性，也就可以写出如下的伪代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">let points := [[x(0), y(0)], [x(1), y(1)], ... [x(n-1), y(n-1)]]，表示 n 个气球</span><br><span class="line">let pos := y(0)，表示当前箭的射出位置</span><br><span class="line">let ans := 1，表示射出的箭数</span><br><span class="line"></span><br><span class="line">将 points 按照 y 值（右边界）进行升序排序</span><br><span class="line"></span><br><span class="line">for i := 1 to n-1 do</span><br><span class="line">    if x(i) &gt; pos then</span><br><span class="line">        ans := ans + 1</span><br><span class="line">        pos := y(i)</span><br><span class="line">    end if</span><br><span class="line">end for</span><br><span class="line"></span><br><span class="line">return ans</span><br></pre></td></tr></table></figure>
-
-<p>这样就可以将计算答案的时间从 O(n^2^) 降低至 O(n)。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int findMinArrowShots(vector&lt;vector&lt;int&gt;&gt;&amp; points) &#123;</span><br><span class="line">        if (points.empty()) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(points.begin(), points.end(), [](const vector&lt;int&gt;&amp; u, const vector&lt;int&gt;&amp; v) &#123;</span><br><span class="line">            return u[1] &lt; v[1];</span><br><span class="line">        &#125;);</span><br><span class="line">        int pos = points[0][1];</span><br><span class="line">        int ans = 1;</span><br><span class="line">        for (const vector&lt;int&gt;&amp; balloon: points) &#123;</span><br><span class="line">            if (balloon[0] &gt; pos) &#123;</span><br><span class="line">                pos = balloon[1];</span><br><span class="line">                ++ans;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int findMinArrowShots(int[][] points) &#123;</span><br><span class="line">        if (points.length == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(points, new Comparator&lt;int[]&gt;() &#123;</span><br><span class="line">            public int compare(int[] point1, int[] point2) &#123;</span><br><span class="line">                if (point1[1] &gt; point2[1]) &#123;</span><br><span class="line">                    return 1;</span><br><span class="line">                &#125; else if (point1[1] &lt; point2[1]) &#123;</span><br><span class="line">                    return -1;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    return 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        int pos = points[0][1];</span><br><span class="line">        int ans = 1;</span><br><span class="line">        for (int[] balloon: points) &#123;</span><br><span class="line">            if (balloon[0] &gt; pos) &#123;</span><br><span class="line">                pos = balloon[1];</span><br><span class="line">                ++ans;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(nlog⁡n)，其中 n 是数组 points 的长度。排序的时间复杂度为 O(nlog⁡n)，对所有气球进行遍历并计算答案的时间复杂度为 O(n)，其在渐进意义下小于前者，因此可以忽略。</p>
-</li>
-<li><p>空间复杂度：O(log⁡n)，即为排序需要使用的栈空间。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/10/%E6%8F%92%E5%85%A5%E5%8C%BA%E9%97%B4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/10/%E6%8F%92%E5%85%A5%E5%8C%BA%E9%97%B4/" class="post-title-link" itemprop="url">插入区间</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-03-10 11:13:15 / 修改时间：11:20:28" itemprop="dateCreated datePublished" datetime="2024-03-10T11:13:15+08:00">2024-03-10</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="插入区间"><a href="#插入区间" class="headerlink" title="插入区间"></a>插入区间</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个 <strong>无重叠的</strong> <em>，</em>按照区间起始端点排序的区间列表。</p>
-<p>在列表中插入一个新的区间，你需要确保列表中的区间仍然有序且不重叠（如果有必要的话，可以合并区间）。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：intervals = [[1,3],[6,9]], newInterval = [2,5]</span><br><span class="line">输出：[[1,5],[6,9]]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8]</span><br><span class="line">输出：[[1,2],[3,10],[12,16]]</span><br><span class="line">解释：这是因为新的区间 [4,8] 与 [3,5],[6,7],[8,10] 重叠。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：intervals = [], newInterval = [5,7]</span><br><span class="line">输出：[[5,7]]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 4：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：intervals = [[1,5]], newInterval = [2,3]</span><br><span class="line">输出：[[1,5]]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 5：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：intervals = [[1,5]], newInterval = [2,7]</span><br><span class="line">输出：[[1,7]]</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>0 &lt;= intervals.length &lt;= 104</code></li>
-<li><code>intervals[i].length == 2</code></li>
-<li><code>0 &lt;= intervals[i][0] &lt;= intervals[i][1] &lt;= 105</code></li>
-<li><code>intervals</code> 根据 <code>intervals[i][0]</code> 按 <strong>升序</strong> 排列</li>
-<li><code>newInterval.length == 2</code></li>
-<li><code>0 &lt;= newInterval[0] &lt;= newInterval[1] &lt;= 105</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="模拟法"><a href="#模拟法" class="headerlink" title="模拟法"></a>模拟法</h3><p><strong>思路与算法</strong></p>
-<p>在给定的区间集合 X 互不重叠的前提下，当我们需要插入一个新的区间 S&#x3D;[left,right] 时，我们只需要：</p>
-<ul>
-<li>找出所有与区间 SSS 重叠的区间集合 X’；</li>
-<li>将 X’中的所有区间连带上区间 SSS 合并成一个大区间；</li>
-<li>最终的答案即为不与 X‘ 重叠的区间以及合并后的大区间。</li>
-</ul>
-<p>这样做的正确性在于，给定的区间集合中任意两个区间都是没有交集的，因此所有需要合并的区间，就是所有与区间 S 重叠的区间。</p>
-<p>并且，在给定的区间集合已经<strong>按照左端点排序</strong>的前提下，所有与区间 S 重叠的区间在数组 intervals 中<strong>下标范围是连续的</strong>，因此我们可以对所有的区间进行一次遍历，就可以找到这个连续的下标范围。</p>
-<p>当我们遍历到区间 [li,ri]时：</p>
-<ul>
-<li><p>如果ri&lt;left，说明 [li,ri] 与 S 不重叠并且在其左侧，我们可以直接将[li,ri] 加入答案；</p>
-</li>
-<li><p>如果 li&gt;right，说明[li,ri] 与 S 不重叠并且在其右侧，我们可以直接将 [li,ri] 加入答案；</p>
-</li>
-<li><p>如果上面两种情况均不满足，说明 [li,ri] 与 S 重叠，我们无需将[li,ri] 加入答案。此时，我们需要将 S 与 [li,ri] 合并，即将 S 更新为其与[li,ri] 的并集。</p>
-</li>
-</ul>
-<p>那么我们应当在什么时候将区间 S 加入答案呢？由于我们需要保证答案也是按照左端点排序的，因此当我们遇到<strong>第一个</strong>满足 li&gt;right 的区间时，说明以后遍历到的区间不会与 S 重叠，并且它们左端点一定会大于 S 的左端点。此时我们就可以将 S 加入答案。特别地，如果不存在这样的区间，我们需要在遍历结束后，将 S 加入答案。</p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/57/1.png" alt="fig1"></p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; insert(vector&lt;vector&lt;int&gt;&gt;&amp; intervals, vector&lt;int&gt;&amp; newInterval) &#123;</span><br><span class="line">        int left = newInterval[0];</span><br><span class="line">        int right = newInterval[1];</span><br><span class="line">        bool placed = false;</span><br><span class="line">        vector&lt;vector&lt;int&gt;&gt; ans;</span><br><span class="line">        for (const auto&amp; interval: intervals) &#123;</span><br><span class="line">            if (interval[0] &gt; right) &#123;</span><br><span class="line">                // 在插入区间的右侧且无交集</span><br><span class="line">                if (!placed) &#123;</span><br><span class="line">                    ans.push_back(&#123;left, right&#125;);</span><br><span class="line">                    placed = true;                    </span><br><span class="line">                &#125;</span><br><span class="line">                ans.push_back(interval);</span><br><span class="line">            &#125;</span><br><span class="line">            else if (interval[1] &lt; left) &#123;</span><br><span class="line">                // 在插入区间的左侧且无交集</span><br><span class="line">                ans.push_back(interval);</span><br><span class="line">            &#125;</span><br><span class="line">            else &#123;</span><br><span class="line">                // 与插入区间有交集，计算它们的并集</span><br><span class="line">                left = min(left, interval[0]);</span><br><span class="line">                right = max(right, interval[1]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (!placed) &#123;</span><br><span class="line">            ans.push_back(&#123;left, right&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int[][] insert(int[][] intervals, int[] newInterval) &#123;</span><br><span class="line">        int left = newInterval[0];</span><br><span class="line">        int right = newInterval[1];</span><br><span class="line">        boolean placed = false;</span><br><span class="line">        List&lt;int[]&gt; ansList = new ArrayList&lt;int[]&gt;();</span><br><span class="line">        for (int[] interval : intervals) &#123;</span><br><span class="line">            if (interval[0] &gt; right) &#123;</span><br><span class="line">                // 在插入区间的右侧且无交集</span><br><span class="line">                if (!placed) &#123;</span><br><span class="line">                    ansList.add(new int[]&#123;left, right&#125;);</span><br><span class="line">                    placed = true;                    </span><br><span class="line">                &#125;</span><br><span class="line">                ansList.add(interval);</span><br><span class="line">            &#125; else if (interval[1] &lt; left) &#123;</span><br><span class="line">                // 在插入区间的左侧且无交集</span><br><span class="line">                ansList.add(interval);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                // 与插入区间有交集，计算它们的并集</span><br><span class="line">                left = Math.min(left, interval[0]);</span><br><span class="line">                right = Math.max(right, interval[1]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (!placed) &#123;</span><br><span class="line">            ansList.add(new int[]&#123;left, right&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        int[][] ans = new int[ansList.size()][2];</span><br><span class="line">        for (int i = 0; i &lt; ansList.size(); ++i) &#123;</span><br><span class="line">            ans[i] = ansList.get(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是数组 intervals 的长度，即给定的区间个数。</p>
-</li>
-<li><p>空间复杂度：O(1)。除了存储返回答案的空间以外，我们只需要额外的常数空间即可。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/10/%E6%B1%87%E6%80%BB%E5%8C%BA%E9%97%B4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/10/%E6%B1%87%E6%80%BB%E5%8C%BA%E9%97%B4/" class="post-title-link" itemprop="url">汇总区间</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-03-10 11:12:36 / 修改时间：11:21:04" itemprop="dateCreated datePublished" datetime="2024-03-10T11:12:36+08:00">2024-03-10</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>545</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="汇总区间"><a href="#汇总区间" class="headerlink" title="汇总区间"></a>汇总区间</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个  <strong>无重复元素</strong> 的 <strong>有序</strong> 整数数组 <code>nums</code> 。</p>
-<p>返回 <em><strong>恰好覆盖数组中所有数字</strong> 的 <strong>最小有序</strong> 区间范围列表</em> 。也就是说，<code>nums</code> 的每个元素都恰好被某个区间范围所覆盖，并且不存在属于某个范围但不属于 <code>nums</code> 的数字 <code>x</code> 。</p>
-<p>列表中的每个区间范围 <code>[a,b]</code> 应该按如下格式输出：</p>
-<ul>
-<li><code>&quot;a-&gt;b&quot;</code> ，如果 <code>a != b</code></li>
-<li><code>&quot;a&quot;</code> ，如果 <code>a == b</code></li>
-</ul>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [0,1,2,4,5,7]</span><br><span class="line">输出：[&quot;0-&gt;2&quot;,&quot;4-&gt;5&quot;,&quot;7&quot;]</span><br><span class="line">解释：区间范围是：</span><br><span class="line">[0,2] --&gt; &quot;0-&gt;2&quot;</span><br><span class="line">[4,5] --&gt; &quot;4-&gt;5&quot;</span><br><span class="line">[7,7] --&gt; &quot;7&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [0,2,3,4,6,8,9]</span><br><span class="line">输出：[&quot;0&quot;,&quot;2-&gt;4&quot;,&quot;6&quot;,&quot;8-&gt;9&quot;]</span><br><span class="line">解释：区间范围是：</span><br><span class="line">[0,0] --&gt; &quot;0&quot;</span><br><span class="line">[2,4] --&gt; &quot;2-&gt;4&quot;</span><br><span class="line">[6,6] --&gt; &quot;6&quot;</span><br><span class="line">[8,9] --&gt; &quot;8-&gt;9&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>0 &lt;= nums.length &lt;= 20</code></li>
-<li><code>-231 &lt;= nums[i] &lt;= 231 - 1</code></li>
-<li><code>nums</code> 中的所有值都 <strong>互不相同</strong></li>
-<li><code>nums</code> 按升序排列</li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="一次遍历"><a href="#一次遍历" class="headerlink" title="一次遍历"></a>一次遍历</h3><p><strong>思路及算法</strong></p>
-<p>我们从数组的位置 0 出发，向右遍历。每次遇到相邻元素之间的差值大于 1 时，我们就找到了一个区间。遍历完数组之后，就能得到一系列的区间的列表。</p>
-<p>在遍历过程中，维护下标 low 和 high 分别记录区间的起点和终点，对于任何区间都有 low≤high。当得到一个区间时，根据 low 和 high 的值生成区间的字符串表示。</p>
-<ul>
-<li><p>当 low&lt;high 时，区间的字符串表示为 ‘’low→high”；</p>
-</li>
-<li><p>当 low&#x3D;high 时，区间的字符串表示为 ‘‘low”。</p>
-</li>
-</ul>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;string&gt; summaryRanges(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        vector&lt;string&gt; ret;</span><br><span class="line">        int i = 0;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        while (i &lt; n) &#123;</span><br><span class="line">            int low = i;</span><br><span class="line">            i++;</span><br><span class="line">            while (i &lt; n &amp;&amp; nums[i] == nums[i - 1] + 1) &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            int high = i - 1;</span><br><span class="line">            string temp = to_string(nums[low]);</span><br><span class="line">            if (low &lt; high) &#123;</span><br><span class="line">                temp.append(&quot;-&gt;&quot;);</span><br><span class="line">                temp.append(to_string(nums[high]));</span><br><span class="line">            &#125;</span><br><span class="line">            ret.push_back(move(temp));</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;String&gt; summaryRanges(int[] nums) &#123;</span><br><span class="line">        List&lt;String&gt; ret = new ArrayList&lt;String&gt;();</span><br><span class="line">        int i = 0;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        while (i &lt; n) &#123;</span><br><span class="line">            int low = i;</span><br><span class="line">            i++;</span><br><span class="line">            while (i &lt; n &amp;&amp; nums[i] == nums[i - 1] + 1) &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            int high = i - 1;</span><br><span class="line">            StringBuffer temp = new StringBuffer(Integer.toString(nums[low]));</span><br><span class="line">            if (low &lt; high) &#123;</span><br><span class="line">                temp.append(&quot;-&gt;&quot;);</span><br><span class="line">                temp.append(Integer.toString(nums[high]));</span><br><span class="line">            &#125;</span><br><span class="line">            ret.add(temp.toString());</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(n)，其中 n 为数组的长度。</li>
-<li>空间复杂度：O(1)。除了用于输出的空间外，额外使用的空间为常数。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
@@ -1473,14 +1454,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">99k</span>
+    <span title="站点总字数">102k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">6:02</span>
+    <span title="站点阅读时长">6:11</span>
   </span>
 </div>
 <div class="busuanzi-count">

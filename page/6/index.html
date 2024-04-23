@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">90</span>
+          <span class="site-state-item-count">93</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,6 +174,402 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/10/%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/10/%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83/" class="post-title-link" itemprop="url">用最少数量的箭引爆气球</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-10 11:13:47 / 修改时间：11:19:24" itemprop="dateCreated datePublished" datetime="2024-03-10T11:13:47+08:00">2024-03-10</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="用最少数量的箭引爆气球"><a href="#用最少数量的箭引爆气球" class="headerlink" title="用最少数量的箭引爆气球"></a>用最少数量的箭引爆气球</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>有一些球形气球贴在一堵用 XY 平面表示的墙面上。墙面上的气球记录在整数数组 <code>points</code> ，其中<code>points[i] = [xstart, xend]</code> 表示水平直径在 <code>xstart</code> 和 <code>xend</code>之间的气球。你不知道气球的确切 y 坐标。</p>
+<p>一支弓箭可以沿着 x 轴从不同点 <strong>完全垂直</strong> 地射出。在坐标 <code>x</code> 处射出一支箭，若有一个气球的直径的开始和结束坐标为 <code>x``start</code>，<code>x``end</code>， 且满足  <code>xstart ≤ x ≤ x``end</code>，则该气球会被 <strong>引爆</strong> 。可以射出的弓箭的数量 <strong>没有限制</strong> 。 弓箭一旦被射出之后，可以无限地前进。</p>
+<p>给你一个数组 <code>points</code> ，<em>返回引爆所有气球所必须射出的 <strong>最小</strong> 弓箭数</em> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：points = [[10,16],[2,8],[1,6],[7,12]]</span><br><span class="line">输出：2</span><br><span class="line">解释：气球可以用2支箭来爆破:</span><br><span class="line">-在x = 6处射出箭，击破气球[2,8]和[1,6]。</span><br><span class="line">-在x = 11处发射箭，击破气球[10,16]和[7,12]。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：points = [[1,2],[3,4],[5,6],[7,8]]</span><br><span class="line">输出：4</span><br><span class="line">解释：每个气球需要射出一支箭，总共需要4支箭。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：points = [[1,2],[2,3],[3,4],[4,5]]</span><br><span class="line">输出：2</span><br><span class="line">解释：气球可以用2支箭来爆破:</span><br><span class="line">- 在x = 2处发射箭，击破气球[1,2]和[2,3]。</span><br><span class="line">- 在x = 4处射出箭，击破气球[3,4]和[4,5]。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示:</strong></p>
+<ul>
+<li><code>1 &lt;= points.length &lt;= 105</code></li>
+<li><code>points[i].length == 2</code></li>
+<li><code>-231 &lt;= xstart &lt; xend &lt;= 231 - 1</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="排序加贪心"><a href="#排序加贪心" class="headerlink" title="排序加贪心"></a>排序加贪心</h3><p><strong>思路及算法</strong></p>
+<p>我们首先随机地射出一支箭，再看一看是否能够调整这支箭地射出位置，使得我们可以引爆更多数目的气球。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/452/1.png" alt="fig1"></p>
+<p>如图 1-1 所示，我们随机射出一支箭，引爆了除红色气球以外的所有气球。我们称所有引爆的气球为「原本引爆的气球」，其余的气球为「原本完好的气球」。可以发现，如果我们将这支箭的射出位置稍微往右移动一点，那么我们就有机会引爆红色气球，如图 1-2 所示。</p>
+<p>那么我们最远可以将这支箭往右移动多远呢？我们唯一的要求就是：原本引爆的气球只要仍然被引爆就行了。这样一来，我们找出原本引爆的气球中右边界位置最靠左的那一个，将这支箭的射出位置移动到这个右边界位置，这也是最远可以往右移动到的位置：如图 1-3 所示，只要我们再往右移动一点点，这个气球就无法被引爆了。</p>
+<p>为什么「原本引爆的气球仍然被引爆」是唯一的要求？别急，往下看就能看到其精妙所在。</p>
+<p>因此，我们可以断定：一定存在一种最优（射出的箭数最小）的方法，使得每一支箭的射出位置都恰好对应着某一个气球的右边界。</p>
+<p>这是为什么？我们考虑任意一种最优的方法，对于其中的任意一支箭，我们都通过上面描述的方法，将这支箭的位置移动到它对应的「原本引爆的气球中最靠左的右边界位置」，那么这些原本引爆的气球仍然被引爆。这样一来，所有的气球仍然都会被引爆，并且每一支箭的射出位置都恰好位于某一个气球的右边界了。</p>
+<p>有了这样一个有用的断定，我们就可以快速得到一种最优的方法了。考虑所有气球中右边界位置最靠左的那一个，那么一定有一支箭的射出位置就是它的右边界（否则就没有箭可以将其引爆了）。当我们确定了一支箭之后，我们就可以将这支箭引爆的所有气球移除，并从剩下未被引爆的气球中，再选择右边界位置最靠左的那一个，确定下一支箭，直到所有的气球都被引爆。</p>
+<p>我们可以写出如下的伪代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">let points := [[x(0), y(0)], [x(1), y(1)], ... [x(n-1), y(n-1)]]，表示 n 个气球</span><br><span class="line">let burst := [false] * n，表示每个气球是否被引爆</span><br><span class="line">let ans := 1，表示射出的箭数</span><br><span class="line"></span><br><span class="line">将 points 按照 y 值（右边界）进行升序排序</span><br><span class="line"></span><br><span class="line">while burst 中还有 false 值 do</span><br><span class="line">    let i := 最小的满足 burst[i] = false 的索引 i</span><br><span class="line">    for j := i to n-1 do</span><br><span class="line">        if x(j) &lt;= y(i) then</span><br><span class="line">            burst[j] := true</span><br><span class="line">        end if</span><br><span class="line">    end for</span><br><span class="line">end while</span><br><span class="line"></span><br><span class="line">return ans</span><br></pre></td></tr></table></figure>
+
+<p>这样的做法在最坏情况下时间复杂度是 O(n^2^)，即这 n 个气球对应的区间互不重叠，while 循环需要执行 n 次。那么我们如何继续进行优化呢？</p>
+<p>事实上，在内层的 j 循环中，当我们遇到第一个不满足 x(j)≤y(i) 的 j 值，就可以直接跳出循环，并且这个 y(j) 就是下一支箭的射出位置。为什么这样做是对的呢？我们考虑某一支箭的索引 it 以及它的下一支箭的索引 jt，对于索引在 jt 之后的任意一个可以被 it 引爆的气球，记索引为 j0，有：x(j0)≤y(it)。由于 y(it)≤y(jt) 显然成立，那么 x(j0)≤y(jt) 也成立，也就是说：当前这支箭在索引 jt（第一个无法引爆的气球）之后所有可以引爆的气球，下一支箭也都可以引爆。因此我们就证明了其正确性，也就可以写出如下的伪代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">let points := [[x(0), y(0)], [x(1), y(1)], ... [x(n-1), y(n-1)]]，表示 n 个气球</span><br><span class="line">let pos := y(0)，表示当前箭的射出位置</span><br><span class="line">let ans := 1，表示射出的箭数</span><br><span class="line"></span><br><span class="line">将 points 按照 y 值（右边界）进行升序排序</span><br><span class="line"></span><br><span class="line">for i := 1 to n-1 do</span><br><span class="line">    if x(i) &gt; pos then</span><br><span class="line">        ans := ans + 1</span><br><span class="line">        pos := y(i)</span><br><span class="line">    end if</span><br><span class="line">end for</span><br><span class="line"></span><br><span class="line">return ans</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以将计算答案的时间从 O(n^2^) 降低至 O(n)。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int findMinArrowShots(vector&lt;vector&lt;int&gt;&gt;&amp; points) &#123;</span><br><span class="line">        if (points.empty()) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(points.begin(), points.end(), [](const vector&lt;int&gt;&amp; u, const vector&lt;int&gt;&amp; v) &#123;</span><br><span class="line">            return u[1] &lt; v[1];</span><br><span class="line">        &#125;);</span><br><span class="line">        int pos = points[0][1];</span><br><span class="line">        int ans = 1;</span><br><span class="line">        for (const vector&lt;int&gt;&amp; balloon: points) &#123;</span><br><span class="line">            if (balloon[0] &gt; pos) &#123;</span><br><span class="line">                pos = balloon[1];</span><br><span class="line">                ++ans;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int findMinArrowShots(int[][] points) &#123;</span><br><span class="line">        if (points.length == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(points, new Comparator&lt;int[]&gt;() &#123;</span><br><span class="line">            public int compare(int[] point1, int[] point2) &#123;</span><br><span class="line">                if (point1[1] &gt; point2[1]) &#123;</span><br><span class="line">                    return 1;</span><br><span class="line">                &#125; else if (point1[1] &lt; point2[1]) &#123;</span><br><span class="line">                    return -1;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    return 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        int pos = points[0][1];</span><br><span class="line">        int ans = 1;</span><br><span class="line">        for (int[] balloon: points) &#123;</span><br><span class="line">            if (balloon[0] &gt; pos) &#123;</span><br><span class="line">                pos = balloon[1];</span><br><span class="line">                ++ans;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(nlog⁡n)，其中 n 是数组 points 的长度。排序的时间复杂度为 O(nlog⁡n)，对所有气球进行遍历并计算答案的时间复杂度为 O(n)，其在渐进意义下小于前者，因此可以忽略。</p>
+</li>
+<li><p>空间复杂度：O(log⁡n)，即为排序需要使用的栈空间。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/10/%E6%8F%92%E5%85%A5%E5%8C%BA%E9%97%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/10/%E6%8F%92%E5%85%A5%E5%8C%BA%E9%97%B4/" class="post-title-link" itemprop="url">插入区间</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-10 11:13:15 / 修改时间：11:20:28" itemprop="dateCreated datePublished" datetime="2024-03-10T11:13:15+08:00">2024-03-10</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="插入区间"><a href="#插入区间" class="headerlink" title="插入区间"></a>插入区间</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个 <strong>无重叠的</strong> <em>，</em>按照区间起始端点排序的区间列表。</p>
+<p>在列表中插入一个新的区间，你需要确保列表中的区间仍然有序且不重叠（如果有必要的话，可以合并区间）。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：intervals = [[1,3],[6,9]], newInterval = [2,5]</span><br><span class="line">输出：[[1,5],[6,9]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8]</span><br><span class="line">输出：[[1,2],[3,10],[12,16]]</span><br><span class="line">解释：这是因为新的区间 [4,8] 与 [3,5],[6,7],[8,10] 重叠。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：intervals = [], newInterval = [5,7]</span><br><span class="line">输出：[[5,7]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 4：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：intervals = [[1,5]], newInterval = [2,3]</span><br><span class="line">输出：[[1,5]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 5：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：intervals = [[1,5]], newInterval = [2,7]</span><br><span class="line">输出：[[1,7]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>0 &lt;= intervals.length &lt;= 104</code></li>
+<li><code>intervals[i].length == 2</code></li>
+<li><code>0 &lt;= intervals[i][0] &lt;= intervals[i][1] &lt;= 105</code></li>
+<li><code>intervals</code> 根据 <code>intervals[i][0]</code> 按 <strong>升序</strong> 排列</li>
+<li><code>newInterval.length == 2</code></li>
+<li><code>0 &lt;= newInterval[0] &lt;= newInterval[1] &lt;= 105</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="模拟法"><a href="#模拟法" class="headerlink" title="模拟法"></a>模拟法</h3><p><strong>思路与算法</strong></p>
+<p>在给定的区间集合 X 互不重叠的前提下，当我们需要插入一个新的区间 S&#x3D;[left,right] 时，我们只需要：</p>
+<ul>
+<li>找出所有与区间 SSS 重叠的区间集合 X’；</li>
+<li>将 X’中的所有区间连带上区间 SSS 合并成一个大区间；</li>
+<li>最终的答案即为不与 X‘ 重叠的区间以及合并后的大区间。</li>
+</ul>
+<p>这样做的正确性在于，给定的区间集合中任意两个区间都是没有交集的，因此所有需要合并的区间，就是所有与区间 S 重叠的区间。</p>
+<p>并且，在给定的区间集合已经<strong>按照左端点排序</strong>的前提下，所有与区间 S 重叠的区间在数组 intervals 中<strong>下标范围是连续的</strong>，因此我们可以对所有的区间进行一次遍历，就可以找到这个连续的下标范围。</p>
+<p>当我们遍历到区间 [li,ri]时：</p>
+<ul>
+<li><p>如果ri&lt;left，说明 [li,ri] 与 S 不重叠并且在其左侧，我们可以直接将[li,ri] 加入答案；</p>
+</li>
+<li><p>如果 li&gt;right，说明[li,ri] 与 S 不重叠并且在其右侧，我们可以直接将 [li,ri] 加入答案；</p>
+</li>
+<li><p>如果上面两种情况均不满足，说明 [li,ri] 与 S 重叠，我们无需将[li,ri] 加入答案。此时，我们需要将 S 与 [li,ri] 合并，即将 S 更新为其与[li,ri] 的并集。</p>
+</li>
+</ul>
+<p>那么我们应当在什么时候将区间 S 加入答案呢？由于我们需要保证答案也是按照左端点排序的，因此当我们遇到<strong>第一个</strong>满足 li&gt;right 的区间时，说明以后遍历到的区间不会与 S 重叠，并且它们左端点一定会大于 S 的左端点。此时我们就可以将 S 加入答案。特别地，如果不存在这样的区间，我们需要在遍历结束后，将 S 加入答案。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/57/1.png" alt="fig1"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; insert(vector&lt;vector&lt;int&gt;&gt;&amp; intervals, vector&lt;int&gt;&amp; newInterval) &#123;</span><br><span class="line">        int left = newInterval[0];</span><br><span class="line">        int right = newInterval[1];</span><br><span class="line">        bool placed = false;</span><br><span class="line">        vector&lt;vector&lt;int&gt;&gt; ans;</span><br><span class="line">        for (const auto&amp; interval: intervals) &#123;</span><br><span class="line">            if (interval[0] &gt; right) &#123;</span><br><span class="line">                // 在插入区间的右侧且无交集</span><br><span class="line">                if (!placed) &#123;</span><br><span class="line">                    ans.push_back(&#123;left, right&#125;);</span><br><span class="line">                    placed = true;                    </span><br><span class="line">                &#125;</span><br><span class="line">                ans.push_back(interval);</span><br><span class="line">            &#125;</span><br><span class="line">            else if (interval[1] &lt; left) &#123;</span><br><span class="line">                // 在插入区间的左侧且无交集</span><br><span class="line">                ans.push_back(interval);</span><br><span class="line">            &#125;</span><br><span class="line">            else &#123;</span><br><span class="line">                // 与插入区间有交集，计算它们的并集</span><br><span class="line">                left = min(left, interval[0]);</span><br><span class="line">                right = max(right, interval[1]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (!placed) &#123;</span><br><span class="line">            ans.push_back(&#123;left, right&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int[][] insert(int[][] intervals, int[] newInterval) &#123;</span><br><span class="line">        int left = newInterval[0];</span><br><span class="line">        int right = newInterval[1];</span><br><span class="line">        boolean placed = false;</span><br><span class="line">        List&lt;int[]&gt; ansList = new ArrayList&lt;int[]&gt;();</span><br><span class="line">        for (int[] interval : intervals) &#123;</span><br><span class="line">            if (interval[0] &gt; right) &#123;</span><br><span class="line">                // 在插入区间的右侧且无交集</span><br><span class="line">                if (!placed) &#123;</span><br><span class="line">                    ansList.add(new int[]&#123;left, right&#125;);</span><br><span class="line">                    placed = true;                    </span><br><span class="line">                &#125;</span><br><span class="line">                ansList.add(interval);</span><br><span class="line">            &#125; else if (interval[1] &lt; left) &#123;</span><br><span class="line">                // 在插入区间的左侧且无交集</span><br><span class="line">                ansList.add(interval);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                // 与插入区间有交集，计算它们的并集</span><br><span class="line">                left = Math.min(left, interval[0]);</span><br><span class="line">                right = Math.max(right, interval[1]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (!placed) &#123;</span><br><span class="line">            ansList.add(new int[]&#123;left, right&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        int[][] ans = new int[ansList.size()][2];</span><br><span class="line">        for (int i = 0; i &lt; ansList.size(); ++i) &#123;</span><br><span class="line">            ans[i] = ansList.get(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是数组 intervals 的长度，即给定的区间个数。</p>
+</li>
+<li><p>空间复杂度：O(1)。除了存储返回答案的空间以外，我们只需要额外的常数空间即可。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/10/%E6%B1%87%E6%80%BB%E5%8C%BA%E9%97%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/10/%E6%B1%87%E6%80%BB%E5%8C%BA%E9%97%B4/" class="post-title-link" itemprop="url">汇总区间</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-10 11:12:36 / 修改时间：11:21:04" itemprop="dateCreated datePublished" datetime="2024-03-10T11:12:36+08:00">2024-03-10</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>545</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="汇总区间"><a href="#汇总区间" class="headerlink" title="汇总区间"></a>汇总区间</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个  <strong>无重复元素</strong> 的 <strong>有序</strong> 整数数组 <code>nums</code> 。</p>
+<p>返回 <em><strong>恰好覆盖数组中所有数字</strong> 的 <strong>最小有序</strong> 区间范围列表</em> 。也就是说，<code>nums</code> 的每个元素都恰好被某个区间范围所覆盖，并且不存在属于某个范围但不属于 <code>nums</code> 的数字 <code>x</code> 。</p>
+<p>列表中的每个区间范围 <code>[a,b]</code> 应该按如下格式输出：</p>
+<ul>
+<li><code>&quot;a-&gt;b&quot;</code> ，如果 <code>a != b</code></li>
+<li><code>&quot;a&quot;</code> ，如果 <code>a == b</code></li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [0,1,2,4,5,7]</span><br><span class="line">输出：[&quot;0-&gt;2&quot;,&quot;4-&gt;5&quot;,&quot;7&quot;]</span><br><span class="line">解释：区间范围是：</span><br><span class="line">[0,2] --&gt; &quot;0-&gt;2&quot;</span><br><span class="line">[4,5] --&gt; &quot;4-&gt;5&quot;</span><br><span class="line">[7,7] --&gt; &quot;7&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [0,2,3,4,6,8,9]</span><br><span class="line">输出：[&quot;0&quot;,&quot;2-&gt;4&quot;,&quot;6&quot;,&quot;8-&gt;9&quot;]</span><br><span class="line">解释：区间范围是：</span><br><span class="line">[0,0] --&gt; &quot;0&quot;</span><br><span class="line">[2,4] --&gt; &quot;2-&gt;4&quot;</span><br><span class="line">[6,6] --&gt; &quot;6&quot;</span><br><span class="line">[8,9] --&gt; &quot;8-&gt;9&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>0 &lt;= nums.length &lt;= 20</code></li>
+<li><code>-231 &lt;= nums[i] &lt;= 231 - 1</code></li>
+<li><code>nums</code> 中的所有值都 <strong>互不相同</strong></li>
+<li><code>nums</code> 按升序排列</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="一次遍历"><a href="#一次遍历" class="headerlink" title="一次遍历"></a>一次遍历</h3><p><strong>思路及算法</strong></p>
+<p>我们从数组的位置 0 出发，向右遍历。每次遇到相邻元素之间的差值大于 1 时，我们就找到了一个区间。遍历完数组之后，就能得到一系列的区间的列表。</p>
+<p>在遍历过程中，维护下标 low 和 high 分别记录区间的起点和终点，对于任何区间都有 low≤high。当得到一个区间时，根据 low 和 high 的值生成区间的字符串表示。</p>
+<ul>
+<li><p>当 low&lt;high 时，区间的字符串表示为 ‘’low→high”；</p>
+</li>
+<li><p>当 low&#x3D;high 时，区间的字符串表示为 ‘‘low”。</p>
+</li>
+</ul>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;string&gt; summaryRanges(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        vector&lt;string&gt; ret;</span><br><span class="line">        int i = 0;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        while (i &lt; n) &#123;</span><br><span class="line">            int low = i;</span><br><span class="line">            i++;</span><br><span class="line">            while (i &lt; n &amp;&amp; nums[i] == nums[i - 1] + 1) &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            int high = i - 1;</span><br><span class="line">            string temp = to_string(nums[low]);</span><br><span class="line">            if (low &lt; high) &#123;</span><br><span class="line">                temp.append(&quot;-&gt;&quot;);</span><br><span class="line">                temp.append(to_string(nums[high]));</span><br><span class="line">            &#125;</span><br><span class="line">            ret.push_back(move(temp));</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;String&gt; summaryRanges(int[] nums) &#123;</span><br><span class="line">        List&lt;String&gt; ret = new ArrayList&lt;String&gt;();</span><br><span class="line">        int i = 0;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        while (i &lt; n) &#123;</span><br><span class="line">            int low = i;</span><br><span class="line">            i++;</span><br><span class="line">            while (i &lt; n &amp;&amp; nums[i] == nums[i - 1] + 1) &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            int high = i - 1;</span><br><span class="line">            StringBuffer temp = new StringBuffer(Integer.toString(nums[low]));</span><br><span class="line">            if (low &lt; high) &#123;</span><br><span class="line">                temp.append(&quot;-&gt;&quot;);</span><br><span class="line">                temp.append(Integer.toString(nums[high]));</span><br><span class="line">            &#125;</span><br><span class="line">            ret.add(temp.toString());</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，其中 n 为数组的长度。</li>
+<li>空间复杂度：O(1)。除了用于输出的空间外，额外使用的空间为常数。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1176,451 +1572,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/06/%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/06/%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97/" class="post-title-link" itemprop="url">整数转罗马数字</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-03-06 10:54:52 / 修改时间：10:55:58" itemprop="dateCreated datePublished" datetime="2024-03-06T10:54:52+08:00">2024-03-06</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="整数转罗马数字"><a href="#整数转罗马数字" class="headerlink" title="整数转罗马数字"></a>整数转罗马数字</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>罗马数字包含以下七种字符： <code>I</code>， <code>V</code>， <code>X</code>， <code>L</code>，<code>C</code>，<code>D</code> 和 <code>M</code>。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">字符          数值</span><br><span class="line">I             1</span><br><span class="line">V             5</span><br><span class="line">X             10</span><br><span class="line">L             50</span><br><span class="line">C             100</span><br><span class="line">D             500</span><br><span class="line">M             1000</span><br></pre></td></tr></table></figure>
-
-<p>例如， 罗马数字 2 写做 <code>II</code> ，即为两个并列的 1。12 写做 <code>XII</code> ，即为 <code>X</code> + <code>II</code> 。 27 写做 <code>XXVII</code>, 即为 <code>XX</code> + <code>V</code> + <code>II</code> 。</p>
-<p>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 <code>IIII</code>，而是 <code>IV</code>。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 <code>IX</code>。这个特殊的规则只适用于以下六种情况：</p>
-<ul>
-<li><code>I</code> 可以放在 <code>V</code> (5) 和 <code>X</code> (10) 的左边，来表示 4 和 9。</li>
-<li><code>X</code> 可以放在 <code>L</code> (50) 和 <code>C</code> (100) 的左边，来表示 40 和 90。 </li>
-<li><code>C</code> 可以放在 <code>D</code> (500) 和 <code>M</code> (1000) 的左边，来表示 400 和 900。</li>
-</ul>
-<p>给你一个整数，将其转为罗马数字。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: num = 3</span><br><span class="line">输出: &quot;III&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: num = 4</span><br><span class="line">输出: &quot;IV&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: num = 9</span><br><span class="line">输出: &quot;IX&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 4:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: num = 58</span><br><span class="line">输出: &quot;LVIII&quot;</span><br><span class="line">解释: L = 50, V = 5, III = 3.</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 5:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: num = 1994</span><br><span class="line">输出: &quot;MCMXCIV&quot;</span><br><span class="line">解释: M = 1000, CM = 900, XC = 90, IV = 4.</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= num &lt;= 3999</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><p><strong>罗马数字符号</strong></p>
-<p>罗马数字由 7 个不同的单字母符号组成，每个符号对应一个具体的数值。此外，减法规则（如问题描述中所述）给出了额外的 6 个复合符号。这给了我们总共 13 个独特的符号（每个符号由 1 个或 2 个字母组成），如下图所示。</p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/12/1.png" alt="fig1"></p>
-<p><strong>罗马数字的唯一标识法</strong></p>
-<p>让我们从一个例子入手。考虑 140 的罗马数字表示，下面哪一个是正确的？</p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/12/2.png" alt="fig2"></p>
-<p>我们用来确定罗马数字的规则是：对于罗马数字从左到右的每一位，选择尽可能大的符号值。对于 140，最大可以选择的符号值为 C&#x3D;100。接下来，对于剩余的数字 40，最大可以选择的符号值为 XL&#x3D;40。因此，140140140 的对应的罗马数字为 C+XL&#x3D;CXL。</p>
-<h3 id="（1）模拟法"><a href="#（1）模拟法" class="headerlink" title="（1）模拟法"></a>（1）模拟法</h3><p><strong>思路及算法</strong></p>
-<p>根据罗马数字的唯一表示法，为了表示一个给定的整数 num，我们寻找不超过 num 的最大符号值，将 num 减去该符号值，然后继续寻找不超过 num 的最大符号值，将该符号拼接在上一个找到的符号之后，循环直至 num 为 0。最后得到的字符串即为 num 的罗马数字表示。</p>
-<p>编程时，可以建立一个数值-符号对的列表 valueSymbols，按数值从大到小排列。遍历 valueSymbols 中的每个数值-符号对，若当前数值 value 不超过 num，则从 num 中不断减去 value，直至 num 小于 value，然后遍历下一个数值-符号对。若遍历中 num 为 0 则跳出循环。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">const pair&lt;int, string&gt; valueSymbols[] = &#123;</span><br><span class="line">    &#123;1000, &quot;M&quot;&#125;,</span><br><span class="line">    &#123;900,  &quot;CM&quot;&#125;,</span><br><span class="line">    &#123;500,  &quot;D&quot;&#125;,</span><br><span class="line">    &#123;400,  &quot;CD&quot;&#125;,</span><br><span class="line">    &#123;100,  &quot;C&quot;&#125;,</span><br><span class="line">    &#123;90,   &quot;XC&quot;&#125;,</span><br><span class="line">    &#123;50,   &quot;L&quot;&#125;,</span><br><span class="line">    &#123;40,   &quot;XL&quot;&#125;,</span><br><span class="line">    &#123;10,   &quot;X&quot;&#125;,</span><br><span class="line">    &#123;9,    &quot;IX&quot;&#125;,</span><br><span class="line">    &#123;5,    &quot;V&quot;&#125;,</span><br><span class="line">    &#123;4,    &quot;IV&quot;&#125;,</span><br><span class="line">    &#123;1,    &quot;I&quot;&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    string intToRoman(int num) &#123;</span><br><span class="line">        string roman;</span><br><span class="line">        for (const auto &amp;[value, symbol] : valueSymbols) &#123;</span><br><span class="line">            while (num &gt;= value) &#123;</span><br><span class="line">                num -= value;</span><br><span class="line">                roman += symbol;</span><br><span class="line">            &#125;</span><br><span class="line">            if (num == 0) &#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return roman;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    int[] values = &#123;1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1&#125;;</span><br><span class="line">    String[] symbols = &#123;&quot;M&quot;, &quot;CM&quot;, &quot;D&quot;, &quot;CD&quot;, &quot;C&quot;, &quot;XC&quot;, &quot;L&quot;, &quot;XL&quot;, &quot;X&quot;, &quot;IX&quot;, &quot;V&quot;, &quot;IV&quot;, &quot;I&quot;&#125;;</span><br><span class="line"></span><br><span class="line">    public String intToRoman(int num) &#123;</span><br><span class="line">        StringBuffer roman = new StringBuffer();</span><br><span class="line">        for (int i = 0; i &lt; values.length; ++i) &#123;</span><br><span class="line">            int value = values[i];</span><br><span class="line">            String symbol = symbols[i];</span><br><span class="line">            while (num &gt;= value) &#123;</span><br><span class="line">                num -= value;</span><br><span class="line">                roman.append(symbol);</span><br><span class="line">            &#125;</span><br><span class="line">            if (num == 0) &#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return roman.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(1)。由于 valueSymbols 长度是固定的，且这 13 字符中的每个字符的出现次数均不会超过 3，因此循环次数有一个确定的上限。对于本题给出的数据范围，循环次数不会超过 15 次。</p>
-</li>
-<li><p>空间复杂度：O(1)。</p>
-</li>
-</ul>
-<h3 id="（2）硬编码数字"><a href="#（2）硬编码数字" class="headerlink" title="（2）硬编码数字"></a>（2）硬编码数字</h3><p><strong>思路及算法</strong></p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/12/1.png" alt="fig3"></p>
-<p>回顾前言中列出的这 13 个符号，可以发现：</p>
-<ul>
-<li>千位数字只能由 M 表示；</li>
-<li>百位数字只能由 C，CD，D 和 CM 表示；</li>
-<li>十位数字只能由 X，XL，L 和 XC 表示；</li>
-<li>个位数字只能由 I，IV，V 和 IX 表示。</li>
-</ul>
-<p>这恰好把这 13 个符号分为四组，且组与组之间没有公共的符号。因此，整数 num 的十进制表示中的每一个数字都是可以单独处理的。</p>
-<p>进一步地，我们可以计算出每个数字在每个位上的表示形式，整理成一张硬编码表。如下图所示，其中 000 对应的是空字符串。</p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/12/3.png" alt="fig4"></p>
-<p>利用模运算和除法运算，我们可以得到 num 每个位上的数字：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">thousands_digit = num / 1000</span><br><span class="line">hundreds_digit = (num % 1000) / 100</span><br><span class="line">tens_digit = (num % 100) / 10</span><br><span class="line">ones_digit = num % 10</span><br></pre></td></tr></table></figure>
-
-<p>最后，根据 num 每个位上的数字，在硬编码表中查找对应的罗马字符，并将结果拼接在一起，即为 num 对应的罗马数字。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">const string thousands[] = &#123;&quot;&quot;, &quot;M&quot;, &quot;MM&quot;, &quot;MMM&quot;&#125;;</span><br><span class="line">const string hundreds[]  = &#123;&quot;&quot;, &quot;C&quot;, &quot;CC&quot;, &quot;CCC&quot;, &quot;CD&quot;, &quot;D&quot;, &quot;DC&quot;, &quot;DCC&quot;, &quot;DCCC&quot;, &quot;CM&quot;&#125;;</span><br><span class="line">const string tens[]      = &#123;&quot;&quot;, &quot;X&quot;, &quot;XX&quot;, &quot;XXX&quot;, &quot;XL&quot;, &quot;L&quot;, &quot;LX&quot;, &quot;LXX&quot;, &quot;LXXX&quot;, &quot;XC&quot;&#125;;</span><br><span class="line">const string ones[]      = &#123;&quot;&quot;, &quot;I&quot;, &quot;II&quot;, &quot;III&quot;, &quot;IV&quot;, &quot;V&quot;, &quot;VI&quot;, &quot;VII&quot;, &quot;VIII&quot;, &quot;IX&quot;&#125;;</span><br><span class="line"></span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    string intToRoman(int num) &#123;</span><br><span class="line">        return thousands[num / 1000] + hundreds[num % 1000 / 100] + tens[num % 100 / 10] + ones[num % 10];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    String[] thousands = &#123;&quot;&quot;, &quot;M&quot;, &quot;MM&quot;, &quot;MMM&quot;&#125;;</span><br><span class="line">    String[] hundreds  = &#123;&quot;&quot;, &quot;C&quot;, &quot;CC&quot;, &quot;CCC&quot;, &quot;CD&quot;, &quot;D&quot;, &quot;DC&quot;, &quot;DCC&quot;, &quot;DCCC&quot;, &quot;CM&quot;&#125;;</span><br><span class="line">    String[] tens      = &#123;&quot;&quot;, &quot;X&quot;, &quot;XX&quot;, &quot;XXX&quot;, &quot;XL&quot;, &quot;L&quot;, &quot;LX&quot;, &quot;LXX&quot;, &quot;LXXX&quot;, &quot;XC&quot;&#125;;</span><br><span class="line">    String[] ones      = &#123;&quot;&quot;, &quot;I&quot;, &quot;II&quot;, &quot;III&quot;, &quot;IV&quot;, &quot;V&quot;, &quot;VI&quot;, &quot;VII&quot;, &quot;VIII&quot;, &quot;IX&quot;&#125;;</span><br><span class="line"></span><br><span class="line">    public String intToRoman(int num) &#123;</span><br><span class="line">        StringBuffer roman = new StringBuffer();</span><br><span class="line">        roman.append(thousands[num / 1000]);</span><br><span class="line">        roman.append(hundreds[num % 1000 / 100]);</span><br><span class="line">        roman.append(tens[num % 100 / 10]);</span><br><span class="line">        roman.append(ones[num % 10]);</span><br><span class="line">        return roman.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(1)。计算量与输入数字的大小无关。</li>
-<li>空间复杂度：O(1)。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/05/%E7%BB%B4%E4%BF%AE%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%89%E6%84%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/05/%E7%BB%B4%E4%BF%AE%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%89%E6%84%9F/" class="post-title-link" itemprop="url">维修数据库有感</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-03-05 20:24:25 / 修改时间：21:20:05" itemprop="dateCreated datePublished" datetime="2024-03-05T20:24:25+08:00">2024-03-05</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>570</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="维修数据库有感"><a href="#维修数据库有感" class="headerlink" title="维修数据库有感"></a>维修数据库有感</h1><h2 id="MySQL报错：2002-Can‘t-connect-to-server-on-‘localhost‘-10061"><a href="#MySQL报错：2002-Can‘t-connect-to-server-on-‘localhost‘-10061" class="headerlink" title="MySQL报错：2002 - Can‘t connect to server on ‘localhost‘(10061)"></a>MySQL报错：2002 - Can‘t connect to server on ‘localhost‘(10061)</h2><p>今天上午，我在Navicat连接数据库的时候发现报错<strong>“2002 - Can‘t connect to server on ‘localhost‘(10061)”</strong>，一开始我照CSDN的方法在计算机管理的服务中找到MYSQL并点击启动，结果还是运行不了。同时我也发现即使我输入了正确的数据库登陆密码也会报错<strong>“Can‘t connect to server on ‘localhost‘(10061)”</strong>，所以就需要下面的方法来解决这个问题。</p>
-<h3 id="维修方法"><a href="#维修方法" class="headerlink" title="维修方法"></a>维修方法</h3><ol>
-<li><p>以管理员身份运行<code>cmd</code>,并用<code>cd</code>命令切换到mysql的bin目录下；</p>
-</li>
-<li><p>输入命令<code>mysql -u root -p</code>,登录mysql,输入密码，会返回<code>ERROR 2003 (HY000):Can&#39;t connect to MySQL server on localhost (10061)</code>;</p>
-</li>
-<li><p>将mysql加入到Windows的服务中。切换到mysql安装目录下的bin文件夹，命令行运行<code>mysqld --install</code>;</p>
-</li>
-<li><p>初始化mysql数据库，输入<code>mysqld --initialize --user=root --console</code>。<strong>最后面的 root@localhost后的文字为初始化后的root 密码，一定要记住</strong>;</p>
-</li>
-<li><p>此时使用<code>net start mysql</code>成功启动mysql;</p>
-</li>
-<li><p>用生成的密码登录mysql,这样的话就可以成功重新登陆数据库了。</p>
-</li>
-</ol>
-<p>但是这样的话，又会遇到一个问题：生成的密码是无序且复杂的，所以需要我们自己手动更改mysql的密码，由于本人的mysql是8.0以上的版本，因此mysql5.0版本的<code>set password=password(&#39;新密码&#39;)</code>不能使用，接下来就讲一下mysql8.0是怎么更改密码的。</p>
-<h3 id="更改数据库密码"><a href="#更改数据库密码" class="headerlink" title="更改数据库密码"></a>更改数据库密码</h3><ol>
-<li>以管理员身份运行<code>cmd</code>,并用<code>cd</code>命令切换到mysql的bin目录下；</li>
-<li>输入<code>mysql -u root -p</code>,并输入原先的密码,登录mysql;</li>
-<li>输入<code>use mysql</code> 连接数据库;</li>
-<li>输入 <code>ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;新的密码&#39;; FLUSH PRIVILEGES;</code><strong>注意最后的“；”不能去掉</strong>;</li>
-<li>输入<code>flush privileges</code>; 刷新权限，<strong>这里也要注意最后的“；”不能去掉</strong> ;</li>
-<li>输入<code>quit</code>停止；</li>
-<li>输入<code>net start mysql</code>启动我的数据库；</li>
-<li>输入<code>mysqladmin -u root -p shutdown</code>,这里的密码是新设置的密码；</li>
-<li>输入 <code>net start mysql</code> 启动mysql，输入<code>mysql -u root -p</code>，回车后输入新设置的密码，这样就可以成功修改密码了。</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/05/%E6%8E%A5%E9%9B%A8%E6%B0%B4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/05/%E6%8E%A5%E9%9B%A8%E6%B0%B4/" class="post-title-link" itemprop="url">接雨水</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-03-05 14:27:47" itemprop="dateCreated datePublished" datetime="2024-03-05T14:27:47+08:00">2024-03-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-03-07 20:42:41" itemprop="dateModified" datetime="2024-03-07T20:42:41+08:00">2024-03-07</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.9k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>7 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="接雨水"><a href="#接雨水" class="headerlink" title="接雨水"></a>接雨水</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定 <code>n</code> 个非负整数表示每个宽度为 <code>1</code> 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/22/rainwatertrap.png" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：height = [0,1,0,2,1,0,1,3,2,1,2,1]</span><br><span class="line">输出：6</span><br><span class="line">解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。 </span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：height = [4,2,0,3,2,5]</span><br><span class="line">输出：9</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>n == height.length</code></li>
-<li><code>1 &lt;= n &lt;= 2 * 104</code></li>
-<li><code>0 &lt;= height[i] &lt;= 105</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）动态规划"><a href="#（1）动态规划" class="headerlink" title="（1）动态规划"></a>（1）动态规划</h3><p><strong>思路及算法</strong></p>
-<p>对于下标 i，下雨后水能到达的最大高度等于下标 i 两边的最大高度的最小值，下标 iii 处能接的雨水量等于下标 i 处的水能到达的最大高度减去 height[i]。</p>
-<p>朴素的做法是对于数组 height 中的每个元素，分别向左和向右扫描并记录左边和右边的最大高度，然后计算每个下标位置能接的雨水量。假设数组 height 的长度为 n，该做法需要对每个下标位置使用 O(n) 的时间向两边扫描并得到最大高度，因此总时间复杂度是 O(n^2^)。</p>
-<p>上述做法的时间复杂度较高是因为需要对每个下标位置都向两边扫描。如果已经知道每个位置两边的最大高度，则可以在 O(n) 的时间内得到能接的雨水总量。使用动态规划的方法，可以在 O(n) 的时间内预处理得到每个位置两边的最大高度。</p>
-<p>创建两个长度为 n 的数组 leftMax 和 rightMax。对于 0≤i&lt;n，leftMax[i] 表示下标 iii 及其左边的位置中，height 的最大高度，rightMax[i] 表示下标 i 及其右边的位置中，height 的最大高度。</p>
-<p>显然，leftMax[0]&#x3D;height[0]，rightMax[n−1]&#x3D;height[n−1]。两个数组的其余元素的计算如下：</p>
-<ul>
-<li><p>当 1≤i≤n−1 时，leftMax[i]&#x3D;max⁡(leftMax[i−1],height[i])；</p>
-</li>
-<li><p>当 0≤i≤n−2 时，rightMax[i]&#x3D;max⁡(rightMax[i+1],height[i])。</p>
-</li>
-</ul>
-<p>因此可以正向遍历数组 height 得到数组 leftMax 的每个元素值，反向遍历数组 height 得到数组 rightMax 的每个元素值。</p>
-<p>在得到数组 leftMax 和 rightMax 的每个元素值之后，对于 0≤i&lt;n，下标 i 处能接的雨水量等于 min⁡(leftMax[i],rightMax[i])−height[i]。遍历每个下标位置即可得到能接的雨水总量。</p>
-<p>动态规划做法可以由下图体现。<img src="https://assets.leetcode-cn.com/solution-static/42/1.png" alt="fig1"></p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int n = height.size();</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;int&gt; leftMax(n);</span><br><span class="line">        leftMax[0] = height[0];</span><br><span class="line">        for (int i = 1; i &lt; n; ++i) &#123;</span><br><span class="line">            leftMax[i] = max(leftMax[i - 1], height[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vector&lt;int&gt; rightMax(n);</span><br><span class="line">        rightMax[n - 1] = height[n - 1];</span><br><span class="line">        for (int i = n - 2; i &gt;= 0; --i) &#123;</span><br><span class="line">            rightMax[i] = max(rightMax[i + 1], height[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int ans = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            ans += min(leftMax[i], rightMax[i]) - height[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int trap(int[] height) &#123;</span><br><span class="line">        int n = height.length;</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int[] leftMax = new int[n];</span><br><span class="line">        leftMax[0] = height[0];</span><br><span class="line">        for (int i = 1; i &lt; n; ++i) &#123;</span><br><span class="line">            leftMax[i] = Math.max(leftMax[i - 1], height[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int[] rightMax = new int[n];</span><br><span class="line">        rightMax[n - 1] = height[n - 1];</span><br><span class="line">        for (int i = n - 2; i &gt;= 0; --i) &#123;</span><br><span class="line">            rightMax[i] = Math.max(rightMax[i + 1], height[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int ans = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            ans += Math.min(leftMax[i], rightMax[i]) - height[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是数组 height 的长度。计算数组 leftMax 和 rightMax 的元素值各需要遍历数组 height 一次，计算能接的雨水总量还需要遍历一次。</p>
-</li>
-<li><p>空间复杂度：O(n)，其中 n 是数组 height 的长度。需要创建两个长度为 n 的数组 leftMax 和 rightMax。</p>
-</li>
-</ul>
-<h3 id="（2）单调栈"><a href="#（2）单调栈" class="headerlink" title="（2）单调栈"></a>（2）单调栈</h3><p><strong>思路及算法</strong></p>
-<p>除了计算并存储每个位置两边的最大高度以外，也可以用单调栈计算能接的雨水总量。</p>
-<p>维护一个单调栈，单调栈存储的是下标，满足从栈底到栈顶的下标对应的数组 height 中的元素递减。</p>
-<p>从左到右遍历数组，遍历到下标 i 时，如果栈内至少有两个元素，记栈顶元素为 top，top 的下面一个元素是 left，则一定有 height[left]≥height[top]。如果 height[i]&gt;height[top]，则得到一个可以接雨水的区域，该区域的宽度是 i−left−1，高度是 min⁡(height[left],height[i])−height[top]，根据宽度和高度即可计算得到该区域能接的雨水量。</p>
-<p>为了得到 left，需要将 top 出栈。在对 top 计算能接的雨水量之后，left 变成新的 top，重复上述操作，直到栈变为空，或者栈顶下标对应的 height 中的元素大于或等于 height[i]。</p>
-<p>在对下标 i 处计算能接的雨水量之后，将 iii 入栈，继续遍历后面的下标，计算能接的雨水量。遍历结束之后即可得到能接的雨水总量。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        stack&lt;int&gt; stk;</span><br><span class="line">        int n = height.size();</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            while (!stk.empty() &amp;&amp; height[i] &gt; height[stk.top()]) &#123;</span><br><span class="line">                int top = stk.top();</span><br><span class="line">                stk.pop();</span><br><span class="line">                if (stk.empty()) &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                int left = stk.top();</span><br><span class="line">                int currWidth = i - left - 1;</span><br><span class="line">                int currHeight = min(height[left], height[i]) - height[top];</span><br><span class="line">                ans += currWidth * currHeight;</span><br><span class="line">            &#125;</span><br><span class="line">            stk.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int trap(int[] height) &#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        Deque&lt;Integer&gt; stack = new LinkedList&lt;Integer&gt;();</span><br><span class="line">        int n = height.length;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            while (!stack.isEmpty() &amp;&amp; height[i] &gt; height[stack.peek()]) &#123;</span><br><span class="line">                int top = stack.pop();</span><br><span class="line">                if (stack.isEmpty()) &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                int left = stack.peek();</span><br><span class="line">                int currWidth = i - left - 1;</span><br><span class="line">                int currHeight = Math.min(height[left], height[i]) - height[top];</span><br><span class="line">                ans += currWidth * currHeight;</span><br><span class="line">            &#125;</span><br><span class="line">            stack.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是数组 height 的长度。从 0 到 n−1 的每个下标最多只会入栈和出栈各一次。</p>
-</li>
-<li><p>空间复杂度：O(n)，其中 n 是数组 height 的长度。空间复杂度主要取决于栈空间，栈的大小不会超过 n。</p>
-</li>
-</ul>
-<h3 id="（3）双指针"><a href="#（3）双指针" class="headerlink" title="（3）双指针"></a>（3）双指针</h3><p><strong>思路及算法</strong></p>
-<p>动态规划的做法中，需要维护两个数组 leftMax 和 rightMax，因此空间复杂度是 O(n)。是否可以将空间复杂度降到 O(1)？</p>
-<p>注意到下标 iii 处能接的雨水量由 leftMax[i] 和 rightMax[i] 中的最小值决定。由于数组 leftMax 是从左往右计算，数组 rightMax 是从右往左计算，因此可以使用双指针和两个变量代替两个数组。</p>
-<p>维护两个指针 left 和 right，以及两个变量 leftMax 和 rightMax，初始时 left&#x3D;0,right&#x3D;n−1,leftMax&#x3D;0,rightMax&#x3D;0。指针 left 只会向右移动，指针 right 只会向左移动，在移动指针的过程中维护两个变量 leftMax 和 rightMax 的值。</p>
-<p>当两个指针没有相遇时，进行如下操作：</p>
-<p>使用 height[left] 和 height[right] 的值更新 leftMax 和 rightMax 的值；</p>
-<p>如果 height[left]&lt;height[right]，则必有 leftMax&lt;rightMax，下标 left 处能接的雨水量等于 leftMax−height[left]，将下标 left 处能接的雨水量加到能接的雨水总量，然后将 left 加 1（即向右移动一位）；</p>
-<p>如果 height[left]≥height[right]，则必有 leftMax≥rightMax，下标 right 处能接的雨水量等于 rightMax−height[right]，将下标 right 处能接的雨水量加到能接的雨水总量，然后将 right 减 1（即向左移动一位）。</p>
-<p>当两个指针相遇时，即可得到能接的雨水总量。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        int left = 0, right = height.size() - 1;</span><br><span class="line">        int leftMax = 0, rightMax = 0;</span><br><span class="line">        while (left &lt; right) &#123;</span><br><span class="line">            leftMax = max(leftMax, height[left]);</span><br><span class="line">            rightMax = max(rightMax, height[right]);</span><br><span class="line">            if (height[left] &lt; height[right]) &#123;</span><br><span class="line">                ans += leftMax - height[left];</span><br><span class="line">                ++left;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                ans += rightMax - height[right];</span><br><span class="line">                --right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int trap(int[] height) &#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        int left = 0, right = height.length - 1;</span><br><span class="line">        int leftMax = 0, rightMax = 0;</span><br><span class="line">        while (left &lt; right) &#123;</span><br><span class="line">            leftMax = Math.max(leftMax, height[left]);</span><br><span class="line">            rightMax = Math.max(rightMax, height[right]);</span><br><span class="line">            if (height[left] &lt; height[right]) &#123;</span><br><span class="line">                ans += leftMax - height[left];</span><br><span class="line">                ++left;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                ans += rightMax - height[right];</span><br><span class="line">                --right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是数组 height 的长度。两个指针的移动总次数不超过 n。</p>
-</li>
-<li><p>空间复杂度：O(1)。只需要使用常数的额外空间。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
@@ -1643,14 +1596,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">99k</span>
+    <span title="站点总字数">102k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">6:02</span>
+    <span title="站点阅读时长">6:11</span>
   </span>
 </div>
 <div class="busuanzi-count">
