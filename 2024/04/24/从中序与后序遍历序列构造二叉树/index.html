@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"icheng281.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="从中序与后序遍历序列构造二叉树1.题目内容给定两个整数数组 inorder 和 postorder ，其中 inorder 是二叉树的中序遍历， postorder 是同一棵树的后序遍历，请你构造并返回这颗 二叉树 。 示例 1:  12输入：inorder &#x3D; [9,3,15,20,7], postorder &#x3D; [9,15,7,20,3]输出：[3,9,20,null,null,15,7]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从中序与后序遍历序列构造二叉树">
+<meta property="og:url" content="https://icheng281.github.io/2024/04/24/%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/index.html">
+<meta property="og:site_name" content="勇者抽刃向强者的博客">
+<meta property="og:description" content="从中序与后序遍历序列构造二叉树1.题目内容给定两个整数数组 inorder 和 postorder ，其中 inorder 是二叉树的中序遍历， postorder 是同一棵树的后序遍历，请你构造并返回这颗 二叉树 。 示例 1:  12输入：inorder &#x3D; [9,3,15,20,7], postorder &#x3D; [9,15,7,20,3]输出：[3,9,20,null,null,15,7]">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2021/02/19/tree.jpg">
+<meta property="og:image" content="https://assets.leetcode-cn.com/solution-static/106/6.png">
+<meta property="article:published_time" content="2024-04-24T03:01:42.000Z">
+<meta property="article:modified_time" content="2024-04-24T03:03:44.312Z">
+<meta property="article:author" content="icheng281">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2021/02/19/tree.jpg">
+
+
+<link rel="canonical" href="https://icheng281.github.io/2024/04/24/%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://icheng281.github.io/2024/04/24/%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/","path":"2024/04/24/从中序与后序遍历序列构造二叉树/","title":"从中序与后序遍历序列构造二叉树"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>从中序与后序遍历序列构造二叉树 | 勇者抽刃向强者的博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="勇者抽刃向强者的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">勇者抽刃向强者的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">梦是现实的延续，现实是梦的终结</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">1.</span> <span class="nav-text">从中序与后序遍历序列构造二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E9%A2%98%E7%9B%AE%E5%86%85%E5%AE%B9"><span class="nav-number">1.1.</span> <span class="nav-text">1.题目内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%A7%A3%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">2.解法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E9%80%92%E5%BD%92"><span class="nav-number">1.2.1.</span> <span class="nav-text">（1）递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E8%BF%AD%E4%BB%A3"><span class="nav-number">1.2.2.</span> <span class="nav-text">（2）迭代</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="icheng281"
+      src="/images/touxiang.png">
+  <p class="site-author-name" itemprop="name">icheng281</p>
+  <div class="site-description" itemprop="description">计算机小白一枚</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">95</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/24/%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="从中序与后序遍历序列构造二叉树 | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          从中序与后序遍历序列构造二叉树
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-24 11:01:42 / 修改时间：11:03:44" itemprop="dateCreated datePublished" datetime="2024-04-24T11:01:42+08:00">2024-04-24</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="从中序与后序遍历序列构造二叉树"><a href="#从中序与后序遍历序列构造二叉树" class="headerlink" title="从中序与后序遍历序列构造二叉树"></a>从中序与后序遍历序列构造二叉树</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定两个整数数组 <code>inorder</code> 和 <code>postorder</code> ，其中 <code>inorder</code> 是二叉树的中序遍历， <code>postorder</code> 是同一棵树的后序遍历，请你构造并返回这颗 <em>二叉树</em> 。</p>
+<p><strong>示例 1:</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/02/19/tree.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：inorder = [9,3,15,20,7], postorder = [9,15,7,20,3]</span><br><span class="line">输出：[3,9,20,null,null,15,7]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：inorder = [-1], postorder = [-1]</span><br><span class="line">输出：[-1]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示:</strong></p>
+<ul>
+<li><code>1 &lt;= inorder.length &lt;= 3000</code></li>
+<li><code>postorder.length == inorder.length</code></li>
+<li><code>-3000 &lt;= inorder[i], postorder[i] &lt;= 3000</code></li>
+<li><code>inorder</code> 和 <code>postorder</code> 都由 <strong>不同</strong> 的值组成</li>
+<li><code>postorder</code> 中每一个值都在 <code>inorder</code> 中</li>
+<li><code>inorder</code> <strong>保证</strong>是树的中序遍历</li>
+<li><code>postorder</code> <strong>保证</strong>是树的后序遍历</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）递归"><a href="#（1）递归" class="headerlink" title="（1）递归"></a>（1）递归</h3><p><strong>思路及算法</strong></p>
+<p>首先解决这道题我们需要明确给定一棵二叉树，我们是如何对其进行中序遍历与后序遍历的：</p>
+<ul>
+<li>中序遍历的顺序是每次遍历左孩子，再遍历根节点，最后遍历右孩子。</li>
+<li>后序遍历的顺序是每次遍历左孩子，再遍历右孩子，最后遍历根节点。</li>
+</ul>
+<p>因此根据上文所述，我们可以发现后序遍历的数组最后一个元素代表的即为根节点。知道这个性质后，我们可以利用已知的根节点信息在中序遍历的数组中找到根节点所在的下标，然后根据其将中序遍历的数组分成左右两部分，左边部分即左子树，右边部分为右子树，针对每个部分可以用同样的方法继续递归下去构造。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/106/6.png" alt="fig1"></p>
+<p>算法过程如下：</p>
+<ul>
+<li><p>为了高效查找根节点元素在中序遍历数组中的下标，我们选择创建哈希表来存储中序序列，即建立一个（元素，下标）键值对的哈希表。</p>
+</li>
+<li><p>定义递归函数 helper(in_left, in_right) 表示当前递归到中序序列中当前子树的左右边界，递归入口为helper(0, n - 1) ：</p>
+<ul>
+<li>如果 in_left &gt; in_right，说明子树为空，返回空节点。</li>
+<li>选择后序遍历的最后一个节点作为根节点。</li>
+<li>利用哈希表 O(1) 查询当根节点在中序遍历中下标为 index。从 in_left 到 index - 1 属于左子树，从 index + 1 到 in_right 属于右子树。</li>
+<li>根据后序遍历逻辑，递归创建右子树 helper(index + 1, in_right) 和左子树 helper(in_left, index - 1)。注意这里有需要先创建右子树，再创建左子树的依赖关系。可以理解为在后序遍历的数组中整个数组是先存储左子树的节点，再存储右子树的节点，最后存储根节点，如果按每次选择「后序遍历的最后一个节点」为根节点，则先被构造出来的应该为右子树。</li>
+<li>返回根节点 root。</li>
+</ul>
+</li>
+</ul>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    int post_idx;</span><br><span class="line">    int[] postorder;</span><br><span class="line">    int[] inorder;</span><br><span class="line">    Map&lt;Integer, Integer&gt; idx_map = new HashMap&lt;Integer, Integer&gt;();</span><br><span class="line"></span><br><span class="line">    public TreeNode helper(int in_left, int in_right) &#123;</span><br><span class="line">        // 如果这里没有节点构造二叉树了，就结束</span><br><span class="line">        if (in_left &gt; in_right) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 选择 post_idx 位置的元素作为当前子树根节点</span><br><span class="line">        int root_val = postorder[post_idx];</span><br><span class="line">        TreeNode root = new TreeNode(root_val);</span><br><span class="line"></span><br><span class="line">        // 根据 root 所在位置分成左右两棵子树</span><br><span class="line">        int index = idx_map.get(root_val);</span><br><span class="line"></span><br><span class="line">        // 下标减一</span><br><span class="line">        post_idx--;</span><br><span class="line">        // 构造右子树</span><br><span class="line">        root.right = helper(index + 1, in_right);</span><br><span class="line">        // 构造左子树</span><br><span class="line">        root.left = helper(in_left, index - 1);</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public TreeNode buildTree(int[] inorder, int[] postorder) &#123;</span><br><span class="line">        this.postorder = postorder;</span><br><span class="line">        this.inorder = inorder;</span><br><span class="line">        // 从后序遍历的最后一个元素开始</span><br><span class="line">        post_idx = postorder.length - 1;</span><br><span class="line"></span><br><span class="line">        // 建立（元素，下标）键值对的哈希表</span><br><span class="line">        int idx = 0;</span><br><span class="line">        for (Integer val : inorder) &#123;</span><br><span class="line">            idx_map.put(val, idx++);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        return helper(0, inorder.length - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">    int post_idx;</span><br><span class="line">    unordered_map&lt;int, int&gt; idx_map;</span><br><span class="line">public:</span><br><span class="line">    TreeNode* helper(int in_left, int in_right, vector&lt;int&gt;&amp; inorder, vector&lt;int&gt;&amp; postorder)&#123;</span><br><span class="line">        // 如果这里没有节点构造二叉树了，就结束</span><br><span class="line">        if (in_left &gt; in_right) &#123;</span><br><span class="line">            return nullptr;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 选择 post_idx 位置的元素作为当前子树根节点</span><br><span class="line">        int root_val = postorder[post_idx];</span><br><span class="line">        TreeNode* root = new TreeNode(root_val);</span><br><span class="line"></span><br><span class="line">        // 根据 root 所在位置分成左右两棵子树</span><br><span class="line">        int index = idx_map[root_val];</span><br><span class="line"></span><br><span class="line">        // 下标减一</span><br><span class="line">        post_idx--;</span><br><span class="line">        // 构造右子树</span><br><span class="line">        root-&gt;right = helper(index + 1, in_right, inorder, postorder);</span><br><span class="line">        // 构造左子树</span><br><span class="line">        root-&gt;left = helper(in_left, index - 1, inorder, postorder);</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">    TreeNode* buildTree(vector&lt;int&gt;&amp; inorder, vector&lt;int&gt;&amp; postorder) &#123;</span><br><span class="line">        // 从后序遍历的最后一个元素开始</span><br><span class="line">        post_idx = (int)postorder.size() - 1;</span><br><span class="line"></span><br><span class="line">        // 建立（元素，下标）键值对的哈希表</span><br><span class="line">        int idx = 0;</span><br><span class="line">        for (auto&amp; val : inorder) &#123;</span><br><span class="line">            idx_map[val] = idx++;</span><br><span class="line">        &#125;</span><br><span class="line">        return helper(0, (int)inorder.size() - 1, inorder, postorder);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是树中的节点个数。</p>
+</li>
+<li><p>空间复杂度：O(n)。我们需要使用 O(n) 的空间存储哈希表，以及 O(h)（其中 h 是树的高度）的空间表示递归时栈空间。这里 h&lt;n，所以总空间复杂度为 O(n)。</p>
+</li>
+</ul>
+<h3 id="（2）迭代"><a href="#（2）迭代" class="headerlink" title="（2）迭代"></a>（2）迭代</h3><p><strong>思路及算法</strong></p>
+<p>迭代法是一种非常巧妙的实现方法。迭代法的实现基于以下两点发现。</p>
+<ul>
+<li>如果将中序遍历反序，则得到反向的中序遍历，即每次遍历右孩子，再遍历根节点，最后遍历左孩子。</li>
+<li>如果将后序遍历反序，则得到反向的前序遍历，即每次遍历根节点，再遍历右孩子，最后遍历左孩子。</li>
+<li>「反向」的意思是交换遍历左孩子和右孩子的顺序，即反向的遍历中，右孩子在左孩子之前被遍历。</li>
+</ul>
+<p>对于后序遍历中的任意两个连续节点 u 和 v（在后序遍历中，u 在 v 的前面），根据后序遍历的流程，我们可以知道 u 和 v 只有两种可能的关系：</p>
+<ul>
+<li>u 是 v 的右儿子。这是因为在遍历到 u 之后，下一个遍历的节点就是 u 的双亲节点，即 v；</li>
+<li>v 没有右儿子，并且 u 是 v 的某个祖先节点（或者 v 本身）的左儿子。如果 v 没有右儿子，那么上一个遍历的节点就是 v 的左儿子。如果 v 没有左儿子，则从 v 开始向上遍历 v 的祖先节点，直到遇到一个有左儿子（且 v 不在它的左儿子的子树中）的节点 va，那么 u 就是 va 的左儿子。</li>
+</ul>
+<p>算法流程：</p>
+<ul>
+<li>我们用一个栈和一个指针辅助进行二叉树的构造。初始时栈中存放了根节点（后序遍历的最后一个节点），指针指向中序遍历的最后一个节点；</li>
+<li>我们依次枚举后序遍历中除了第一个节点以外的每个节点。如果 index 恰好指向栈顶节点，那么我们不断地弹出栈顶节点并向左移动 index，并将当前节点作为最后一个弹出的节点的左儿子；如果 index 和栈顶节点不同，我们将当前节点作为栈顶节点的右儿子；</li>
+<li>无论是哪一种情况，我们最后都将当前的节点入栈。</li>
+</ul>
+<p>最后得到的二叉树即为答案。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public TreeNode buildTree(int[] inorder, int[] postorder) &#123;</span><br><span class="line">        if (postorder == null || postorder.length == 0) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode root = new TreeNode(postorder[postorder.length - 1]);</span><br><span class="line">        Deque&lt;TreeNode&gt; stack = new LinkedList&lt;TreeNode&gt;();</span><br><span class="line">        stack.push(root);</span><br><span class="line">        int inorderIndex = inorder.length - 1;</span><br><span class="line">        for (int i = postorder.length - 2; i &gt;= 0; i--) &#123;</span><br><span class="line">            int postorderVal = postorder[i];</span><br><span class="line">            TreeNode node = stack.peek();</span><br><span class="line">            if (node.val != inorder[inorderIndex]) &#123;</span><br><span class="line">                node.right = new TreeNode(postorderVal);</span><br><span class="line">                stack.push(node.right);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                while (!stack.isEmpty() &amp;&amp; stack.peek().val == inorder[inorderIndex]) &#123;</span><br><span class="line">                    node = stack.pop();</span><br><span class="line">                    inorderIndex--;</span><br><span class="line">                &#125;</span><br><span class="line">                node.left = new TreeNode(postorderVal);</span><br><span class="line">                stack.push(node.left);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    TreeNode* buildTree(vector&lt;int&gt;&amp; inorder, vector&lt;int&gt;&amp; postorder) &#123;</span><br><span class="line">        if (postorder.size() == 0) &#123;</span><br><span class="line">            return nullptr;</span><br><span class="line">        &#125;</span><br><span class="line">        auto root = new TreeNode(postorder[postorder.size() - 1]);</span><br><span class="line">        auto s = stack&lt;TreeNode*&gt;();</span><br><span class="line">        s.push(root);</span><br><span class="line">        int inorderIndex = inorder.size() - 1;</span><br><span class="line">        for (int i = int(postorder.size()) - 2; i &gt;= 0; i--) &#123;</span><br><span class="line">            int postorderVal = postorder[i];</span><br><span class="line">            auto node = s.top();</span><br><span class="line">            if (node-&gt;val != inorder[inorderIndex]) &#123;</span><br><span class="line">                node-&gt;right = new TreeNode(postorderVal);</span><br><span class="line">                s.push(node-&gt;right);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                while (!s.empty() &amp;&amp; s.top()-&gt;val == inorder[inorderIndex]) &#123;</span><br><span class="line">                    node = s.top();</span><br><span class="line">                    s.pop();</span><br><span class="line">                    inorderIndex--;</span><br><span class="line">                &#125;</span><br><span class="line">                node-&gt;left = new TreeNode(postorderVal);</span><br><span class="line">                s.push(node-&gt;left);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是树中的节点个数。</p>
+</li>
+<li><p>空间复杂度：O(n)，我们需要使用 O(h)（其中 h 是树的高度）的空间存储栈。这里 h&lt;n，所以（在最坏情况下）总空间复杂度为 O(n)。</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag"># 学习</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/04/23/%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="prev" title="翻转二叉树">
+                  <i class="fa fa-angle-left"></i> 翻转二叉树
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/04/24/%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="next" title="从前序与中序遍历序列构造二叉树">
+                  从前序与中序遍历序列构造二叉树 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">icheng281</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">106k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:25</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
