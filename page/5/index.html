@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,6 +174,586 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/26/%E7%94%9F%E5%91%BD%E6%B8%B8%E6%88%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/26/%E7%94%9F%E5%91%BD%E6%B8%B8%E6%88%8F/" class="post-title-link" itemprop="url">生命游戏</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-26 11:14:09 / 修改时间：11:14:38" itemprop="dateCreated datePublished" datetime="2024-03-26T11:14:09+08:00">2024-03-26</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>8 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="生命游戏"><a href="#生命游戏" class="headerlink" title="生命游戏"></a>生命游戏</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个包含 <code>m × n</code> 个格子的面板，每一个格子都可以看成是一个细胞。每个细胞都具有一个初始状态： <code>1</code> 即为 <strong>活细胞</strong> （live），或 <code>0</code> 即为 <strong>死细胞</strong> （dead）。每个细胞与其八个相邻位置（水平，垂直，对角线）的细胞都遵循以下四条生存定律：</p>
+<ol>
+<li>如果活细胞周围八个位置的活细胞数少于两个，则该位置活细胞死亡；</li>
+<li>如果活细胞周围八个位置有两个或三个活细胞，则该位置活细胞仍然存活；</li>
+<li>如果活细胞周围八个位置有超过三个活细胞，则该位置活细胞死亡；</li>
+<li>如果死细胞周围正好有三个活细胞，则该位置死细胞复活；</li>
+</ol>
+<p>下一个状态是通过将上述规则同时应用于当前状态下的每个细胞所形成的，其中细胞的出生和死亡是同时发生的。</p>
+<p>给你 <code>m x n</code> 网格面板 <code>board</code> 的当前状态，返回下一个状态。</p>
+<p> <strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/12/26/grid1.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：board = [[0,1,0],[0,0,1],[1,1,1],[0,0,0]]</span><br><span class="line">输出：[[0,0,0],[1,0,1],[0,1,1],[0,1,0]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/12/26/grid2.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：board = [[1,1],[1,0]]</span><br><span class="line">输出：[[1,1],[1,1]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>m == board.length</code></li>
+<li><code>n == board[i].length</code></li>
+<li><code>1 &lt;= m, n &lt;= 25</code></li>
+<li><code>board[i][j]</code> 为 <code>0</code> 或 <code>1</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><p><strong>分析</strong></p>
+<p>在讲具体解法之前，请先根据下面的图片理解题目中描述的细胞遵循的生存定律，这有助于我们后面的讲解。</p>
+<p><img src="https://pic.leetcode-cn.com/Figures/289/Game_of_life_1.png" alt="fig"></p>
+<p><img src="https://pic.leetcode-cn.com/Figures/289/Game_of_life_2.png" alt="fig"></p>
+<h3 id="（1）复制原数组进行模拟"><a href="#（1）复制原数组进行模拟" class="headerlink" title="（1）复制原数组进行模拟"></a>（1）复制原数组进行模拟</h3><p><strong>思路及算法</strong></p>
+<p>这个问题看起来很简单，但有一个陷阱，如果你直接根据规则更新原始数组，那么就做不到题目中说的同步更新。假设你直接将更新后的细胞状态填入原始数组，那么当前轮次其他细胞状态的更新就会引用到当前轮已更新细胞的状态，但实际上每一轮更新需要依赖上一轮细胞的状态，是不能用这一轮的细胞状态来更新的。</p>
+<p><img src="https://pic.leetcode-cn.com/Figures/289/Game_of_life_3.png" alt="fig"></p>
+<p>如上图所示，已更新细胞的状态会影响到周围其他还未更新细胞状态的计算。一个最简单的解决方法就是复制一份原始数组，复制的那一份永远不修改，只作为更新规则的引用。这样原始数组的细胞值就不会被污染了。</p>
+<p><img src="https://pic.leetcode-cn.com/Figures/289/Game_of_life_4.png" alt="fig"></p>
+<p><strong>代码</strong></p>
+<ul>
+<li>复制一份原始数组；</li>
+<li>根据复制数组中邻居细胞的状态来更新 <code>board</code> 中的细胞状态。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void gameOfLife(vector&lt;vector&lt;int&gt;&gt;&amp; board) &#123;</span><br><span class="line">        int neighbors[3] = &#123;0, 1, -1&#125;;</span><br><span class="line"></span><br><span class="line">        int rows = board.size();</span><br><span class="line">        int cols = board[0].size();</span><br><span class="line"></span><br><span class="line">        // 创建复制数组 copyBoard</span><br><span class="line">        vector&lt;vector&lt;int&gt; &gt;copyBoard(rows, vector&lt;int&gt;(cols, 0));</span><br><span class="line"></span><br><span class="line">        // 从原数组复制一份到 copyBoard 中</span><br><span class="line">        for (int row = 0; row &lt; rows; row++) &#123;</span><br><span class="line">            for (int col = 0; col &lt; cols; col++) &#123;</span><br><span class="line">                copyBoard[row][col] = board[row][col];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 遍历面板每一个格子里的细胞</span><br><span class="line">        for (int row = 0; row &lt; rows; row++) &#123;</span><br><span class="line">            for (int col = 0; col &lt; cols; col++) &#123;</span><br><span class="line"></span><br><span class="line">                // 对于每一个细胞统计其八个相邻位置里的活细胞数量</span><br><span class="line">                int liveNeighbors = 0;</span><br><span class="line"></span><br><span class="line">                for (int i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">                    for (int j = 0; j &lt; 3; j++) &#123;</span><br><span class="line"></span><br><span class="line">                        if (!(neighbors[i] == 0 &amp;&amp; neighbors[j] == 0)) &#123;</span><br><span class="line">                            int r = (row + neighbors[i]);</span><br><span class="line">                            int c = (col + neighbors[j]);</span><br><span class="line"></span><br><span class="line">                            // 查看相邻的细胞是否是活细胞</span><br><span class="line">                            if ((r &lt; rows &amp;&amp; r &gt;= 0) &amp;&amp; (c &lt; cols &amp;&amp; c &gt;= 0) &amp;&amp; (copyBoard[r][c] == 1)) &#123;</span><br><span class="line">                                liveNeighbors += 1;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                // 规则 1 或规则 3      </span><br><span class="line">                if ((copyBoard[row][col] == 1) &amp;&amp; (liveNeighbors &lt; 2 || liveNeighbors &gt; 3)) &#123;</span><br><span class="line">                    board[row][col] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">                // 规则 4</span><br><span class="line">                if (copyBoard[row][col] == 0 &amp;&amp; liveNeighbors == 3) &#123;</span><br><span class="line">                    board[row][col] = 1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public void gameOfLife(int[][] board) &#123;</span><br><span class="line">        int[] neighbors = &#123;0, 1, -1&#125;;</span><br><span class="line"></span><br><span class="line">        int rows = board.length;</span><br><span class="line">        int cols = board[0].length;</span><br><span class="line"></span><br><span class="line">        // 创建复制数组 copyBoard</span><br><span class="line">        int[][] copyBoard = new int[rows][cols];</span><br><span class="line"></span><br><span class="line">        // 从原数组复制一份到 copyBoard 中</span><br><span class="line">        for (int row = 0; row &lt; rows; row++) &#123;</span><br><span class="line">            for (int col = 0; col &lt; cols; col++) &#123;</span><br><span class="line">                copyBoard[row][col] = board[row][col];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 遍历面板每一个格子里的细胞</span><br><span class="line">        for (int row = 0; row &lt; rows; row++) &#123;</span><br><span class="line">            for (int col = 0; col &lt; cols; col++) &#123;</span><br><span class="line"></span><br><span class="line">                // 对于每一个细胞统计其八个相邻位置里的活细胞数量</span><br><span class="line">                int liveNeighbors = 0;</span><br><span class="line"></span><br><span class="line">                for (int i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">                    for (int j = 0; j &lt; 3; j++) &#123;</span><br><span class="line"></span><br><span class="line">                        if (!(neighbors[i] == 0 &amp;&amp; neighbors[j] == 0)) &#123;</span><br><span class="line">                            int r = (row + neighbors[i]);</span><br><span class="line">                            int c = (col + neighbors[j]);</span><br><span class="line"></span><br><span class="line">                            // 查看相邻的细胞是否是活细胞</span><br><span class="line">                            if ((r &lt; rows &amp;&amp; r &gt;= 0) &amp;&amp; (c &lt; cols &amp;&amp; c &gt;= 0) &amp;&amp; (copyBoard[r][c] == 1)) &#123;</span><br><span class="line">                                liveNeighbors += 1;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                // 规则 1 或规则 3      </span><br><span class="line">                if ((copyBoard[row][col] == 1) &amp;&amp; (liveNeighbors &lt; 2 || liveNeighbors &gt; 3)) &#123;</span><br><span class="line">                    board[row][col] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">                // 规则 4</span><br><span class="line">                if (copyBoard[row][col] == 0 &amp;&amp; liveNeighbors == 3) &#123;</span><br><span class="line">                    board[row][col] = 1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(mn)，其中 m 和 n 分别为 <code>board</code> 的行数和列数。</p>
+</li>
+<li><p>空间复杂度：O(mn)，为复制数组占用的空间。</p>
+</li>
+</ul>
+<h3 id="（2）使用额外的状态"><a href="#（2）使用额外的状态" class="headerlink" title="（2）使用额外的状态"></a>（2）使用额外的状态</h3><p><strong>思路及算法</strong><br>方法一中 O(mn) 的空间复杂度在数组很大的时候内存消耗是非常昂贵的。题目中每个细胞只有两种状态 <code>live(1)</code> 或 <code>dead(0)</code>，但我们可以拓展一些复合状态使其包含之前的状态。举个例子，如果细胞之前的状态是 <code>0</code>，但是在更新之后变成了 <code>1</code>，我们就可以给它定义一个复合状态 <code>2</code>。这样我们看到 <code>2</code>，既能知道目前这个细胞是活的，还能知道它之前是死的。</p>
+<p><img src="https://pic.leetcode-cn.com/Figures/289/Game_of_life_5.png" alt="fig"></p>
+<p><strong>代码</strong></p>
+<ul>
+<li><p>遍历 <code>board </code>中的细胞。</p>
+</li>
+<li><p>根据数组的细胞状态计算新一轮的细胞状态，这里会用到能同时代表过去状态和现在状态的复合状态。</p>
+</li>
+<li><p>具体的计算规则如下所示：</p>
+<ul>
+<li>规则 1：如果活细胞周围八个位置的活细胞数少于两个，则该位置活细胞死亡。这时候，将细胞值改为 <code>-1</code>，代表这个细胞过去是活的现在死了； </li>
+<li>规则 2：如果活细胞周围八个位置有两个或三个活细胞，则该位置活细胞仍然存活。这时候不改变细胞的值，仍为 <code>1</code>；</li>
+<li>规则 3：如果活细胞周围八个位置有超过三个活细胞，则该位置活细胞死亡。这时候，将细胞的值改为 <code>-1</code>，代表这个细胞过去是活的现在死了。可以看到，因为规则 1 和规则 3 下细胞的起始终止状态是一致的，因此它们的复合状态也一致；</li>
+<li>规则 4：如果死细胞周围正好有三个活细胞，则该位置死细胞复活。这时候，将细胞的值改为 <code>2</code>，代表这个细胞过去是死的现在活了。</li>
+</ul>
+</li>
+<li><p>根据新的规则更新数组；</p>
+</li>
+<li><p>现在复合状态隐含了过去细胞的状态，所以我们可以在不复制数组的情况下完成原地更新；</p>
+</li>
+<li><p>对于最终的输出，需要将<code>board</code> 转成 <code>0</code>，<code>1</code> 的形式。因此这时候需要再遍历一次数组，将复合状态为 <code>2</code> 的细胞的值改为<code> 1</code>，复合状态为 <code>-1</code> 的细胞的值改为 <code>0</code>。</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void gameOfLife(vector&lt;vector&lt;int&gt;&gt;&amp; board) &#123;</span><br><span class="line">        int neighbors[3] = &#123;0, 1, -1&#125;;</span><br><span class="line"></span><br><span class="line">        int rows = board.size();</span><br><span class="line">        int cols = board[0].size();</span><br><span class="line"></span><br><span class="line">        // 遍历面板每一个格子里的细胞</span><br><span class="line">        for (int row = 0; row &lt; rows; row++) &#123;</span><br><span class="line">            for (int col = 0; col &lt; cols; col++) &#123;</span><br><span class="line"></span><br><span class="line">                // 对于每一个细胞统计其八个相邻位置里的活细胞数量</span><br><span class="line">                int liveNeighbors = 0;</span><br><span class="line"></span><br><span class="line">                for (int i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">                    for (int j = 0; j &lt; 3; j++) &#123;</span><br><span class="line"></span><br><span class="line">                        if (!(neighbors[i] == 0 &amp;&amp; neighbors[j] == 0)) &#123;</span><br><span class="line">                            // 相邻位置的坐标</span><br><span class="line">                            int r = (row + neighbors[i]);</span><br><span class="line">                            int c = (col + neighbors[j]);</span><br><span class="line"></span><br><span class="line">                            // 查看相邻的细胞是否是活细胞</span><br><span class="line">                            if ((r &lt; rows &amp;&amp; r &gt;= 0) &amp;&amp; (c &lt; cols &amp;&amp; c &gt;= 0) &amp;&amp; (abs(board[r][c]) == 1)) &#123;</span><br><span class="line">                                liveNeighbors += 1;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                // 规则 1 或规则 3 </span><br><span class="line">                if ((board[row][col] == 1) &amp;&amp; (liveNeighbors &lt; 2 || liveNeighbors &gt; 3)) &#123;</span><br><span class="line">                    // -1 代表这个细胞过去是活的现在死了</span><br><span class="line">                    board[row][col] = -1;</span><br><span class="line">                &#125;</span><br><span class="line">                // 规则 4</span><br><span class="line">                if (board[row][col] == 0 &amp;&amp; liveNeighbors == 3) &#123;</span><br><span class="line">                    // 2 代表这个细胞过去是死的现在活了</span><br><span class="line">                    board[row][col] = 2;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 遍历 board 得到一次更新后的状态</span><br><span class="line">        for (int row = 0; row &lt; rows; row++) &#123;</span><br><span class="line">            for (int col = 0; col &lt; cols; col++) &#123;</span><br><span class="line">                if (board[row][col] &gt; 0) &#123;</span><br><span class="line">                    board[row][col] = 1;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    board[row][col] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public void gameOfLife(int[][] board) &#123;</span><br><span class="line">        int[] neighbors = &#123;0, 1, -1&#125;;</span><br><span class="line"></span><br><span class="line">        int rows = board.length;</span><br><span class="line">        int cols = board[0].length;</span><br><span class="line"></span><br><span class="line">        // 遍历面板每一个格子里的细胞</span><br><span class="line">        for (int row = 0; row &lt; rows; row++) &#123;</span><br><span class="line">            for (int col = 0; col &lt; cols; col++) &#123;</span><br><span class="line"></span><br><span class="line">                // 对于每一个细胞统计其八个相邻位置里的活细胞数量</span><br><span class="line">                int liveNeighbors = 0;</span><br><span class="line"></span><br><span class="line">                for (int i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">                    for (int j = 0; j &lt; 3; j++) &#123;</span><br><span class="line"></span><br><span class="line">                        if (!(neighbors[i] == 0 &amp;&amp; neighbors[j] == 0)) &#123;</span><br><span class="line">                            // 相邻位置的坐标</span><br><span class="line">                            int r = (row + neighbors[i]);</span><br><span class="line">                            int c = (col + neighbors[j]);</span><br><span class="line"></span><br><span class="line">                            // 查看相邻的细胞是否是活细胞</span><br><span class="line">                            if ((r &lt; rows &amp;&amp; r &gt;= 0) &amp;&amp; (c &lt; cols &amp;&amp; c &gt;= 0) &amp;&amp; (Math.abs(board[r][c]) == 1)) &#123;</span><br><span class="line">                                liveNeighbors += 1;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                // 规则 1 或规则 3 </span><br><span class="line">                if ((board[row][col] == 1) &amp;&amp; (liveNeighbors &lt; 2 || liveNeighbors &gt; 3)) &#123;</span><br><span class="line">                    // -1 代表这个细胞过去是活的现在死了</span><br><span class="line">                    board[row][col] = -1;</span><br><span class="line">                &#125;</span><br><span class="line">                // 规则 4</span><br><span class="line">                if (board[row][col] == 0 &amp;&amp; liveNeighbors == 3) &#123;</span><br><span class="line">                    // 2 代表这个细胞过去是死的现在活了</span><br><span class="line">                    board[row][col] = 2;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 遍历 board 得到一次更新后的状态</span><br><span class="line">        for (int row = 0; row &lt; rows; row++) &#123;</span><br><span class="line">            for (int col = 0; col &lt; cols; col++) &#123;</span><br><span class="line">                if (board[row][col] &gt; 0) &#123;</span><br><span class="line">                    board[row][col] = 1;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    board[row][col] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(mn)，其中 m，n 分别为<code>board</code>的行数和列数。</p>
+</li>
+<li><p>空间复杂度：O(1)，除原数组外只需要常数的空间存放若干变量。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/26/%E6%9C%89%E6%95%88%E7%9A%84%E6%95%B0%E7%8B%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/26/%E6%9C%89%E6%95%88%E7%9A%84%E6%95%B0%E7%8B%AC/" class="post-title-link" itemprop="url">有效的数独</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-26 11:11:42 / 修改时间：11:15:01" itemprop="dateCreated datePublished" datetime="2024-03-26T11:11:42+08:00">2024-03-26</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="有效的数独"><a href="#有效的数独" class="headerlink" title="有效的数独"></a>有效的数独</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>请你判断一个 <code>9 x 9</code> 的数独是否有效。只需要 <strong>根据以下规则</strong> ，验证已经填入的数字是否有效即可。</p>
+<ol>
+<li>数字 <code>1-9</code> 在每一行只能出现一次。</li>
+<li>数字 <code>1-9</code> 在每一列只能出现一次。</li>
+<li>数字 <code>1-9</code> 在每一个以粗实线分隔的 <code>3x3</code> 宫内只能出现一次。（请参考示例图）</li>
+</ol>
+<p><strong>注意：</strong></p>
+<ul>
+<li>一个有效的数独（部分已被填充）不一定是可解的。</li>
+<li>只需要根据以上规则，验证已经填入的数字是否有效即可。</li>
+<li>空白格用 <code>&#39;.&#39;</code> 表示。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2021/04/12/250px-sudoku-by-l2g-20050714svg.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">输入：board = </span><br><span class="line">[[&quot;5&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]</span><br><span class="line">,[&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]</span><br><span class="line">,[&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;]</span><br><span class="line">,[&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;]</span><br><span class="line">,[&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;]</span><br><span class="line">,[&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;]</span><br><span class="line">,[&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;]</span><br><span class="line">,[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;]</span><br><span class="line">,[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]]</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">输入：board = </span><br><span class="line">[[&quot;8&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]</span><br><span class="line">,[&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;]</span><br><span class="line">,[&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;]</span><br><span class="line">,[&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;]</span><br><span class="line">,[&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;]</span><br><span class="line">,[&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;]</span><br><span class="line">,[&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;]</span><br><span class="line">,[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;]</span><br><span class="line">,[&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]]</span><br><span class="line">输出：false</span><br><span class="line">解释：除了第一行的第一个数字从 5 改为 8 以外，空格内其他数字均与 示例1 相同。 但由于位于左上角的 3x3 宫内有两个 8 存在, 因此这个数独是无效的。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>board.length == 9</code></li>
+<li><code>board[i].length == 9</code></li>
+<li><code>board[i][j]</code> 是一位数字（<code>1-9</code>）或者 <code>&#39;.&#39;</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="一次遍历"><a href="#一次遍历" class="headerlink" title="一次遍历"></a>一次遍历</h3><p><strong>思路及算法</strong></p>
+<p>有效的数独满足以下三个条件：</p>
+<ul>
+<li><p>同一个数字在每一行只能出现一次；</p>
+</li>
+<li><p>同一个数字在每一列只能出现一次；</p>
+</li>
+<li><p>同一个数字在每一个小九宫格只能出现一次。</p>
+</li>
+</ul>
+<p>可以使用哈希表记录每一行、每一列和每一个小九宫格中，每个数字出现的次数。只需要遍历数独一次，在遍历的过程中更新哈希表中的计数，并判断是否满足有效的数独的条件即可。</p>
+<p>对于数独的第 i 行第 j 列的单元格，其中 0≤i,j&lt;9该单元格所在的行下标和列下标分别为 i 和 j，该单元格所在的小九宫格的行数和列数分别为 ⌊i&#x2F;3⌋ 和 ⌊j&#x2F;3⌋，其中 0≤⌊i&#x2F;3⌋,⌊j&#x2F;3⌋&lt;3。</p>
+<p>由于数独中的数字范围是 1 到 9，因此可以使用数组代替哈希表进行计数。</p>
+<p>具体做法是，创建二维数组 rows 和 columns 分别记录数独的每一行和每一列中的每个数字的出现次数，创建三维数组 subboxes 记录数独的每一个小九宫格中的每个数字的出现次数，其中 rows[i] [index]、columns[j] [index] 和 subboxes[⌊i&#x2F;3⌋] [⌊j&#x2F;3⌋] [index] 分别表示数独的第 i 行第 j 列的单元格所在的行、列和小九宫格中，数字 index+1 出现的次数，其中 0≤index&lt;9，对应的数字 index+1 满足 1≤index+1≤9。</p>
+<p>如果 board[i] [j] 填入了数字 n，则将 rows[i] [n−1]、columns[j] [n−1] 和 subboxes[⌊i&#x2F;3⌋] [⌊j3⌋] [n−1] 各加 1。如果更新后的计数大于 1，则不符合有效的数独的条件，返回 false。</p>
+<p>如果遍历结束之后没有出现计数大于 1 的情况，则符合有效的数独的条件，返回 true。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public boolean isValidSudoku(char[][] board) &#123;</span><br><span class="line">        int[][] rows = new int[9][9];</span><br><span class="line">        int[][] columns = new int[9][9];</span><br><span class="line">        int[][][] subboxes = new int[3][3][9];</span><br><span class="line">        for (int i = 0; i &lt; 9; i++) &#123;</span><br><span class="line">            for (int j = 0; j &lt; 9; j++) &#123;</span><br><span class="line">                char c = board[i][j];</span><br><span class="line">                if (c != &#x27;.&#x27;) &#123;</span><br><span class="line">                    int index = c - &#x27;0&#x27; - 1;</span><br><span class="line">                    rows[i][index]++;</span><br><span class="line">                    columns[j][index]++;</span><br><span class="line">                    subboxes[i / 3][j / 3][index]++;</span><br><span class="line">                    if (rows[i][index] &gt; 1 || columns[j][index] &gt; 1 || subboxes[i / 3][j / 3][index] &gt; 1) &#123;</span><br><span class="line">                        return false;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isValidSudoku(vector&lt;vector&lt;char&gt;&gt;&amp; board) &#123;</span><br><span class="line">        int rows[9][9];</span><br><span class="line">        int columns[9][9];</span><br><span class="line">        int subboxes[3][3][9];</span><br><span class="line">        </span><br><span class="line">        memset(rows,0,sizeof(rows));</span><br><span class="line">        memset(columns,0,sizeof(columns));</span><br><span class="line">        memset(subboxes,0,sizeof(subboxes));</span><br><span class="line">        for (int i = 0; i &lt; 9; i++) &#123;</span><br><span class="line">            for (int j = 0; j &lt; 9; j++) &#123;</span><br><span class="line">                char c = board[i][j];</span><br><span class="line">                if (c != &#x27;.&#x27;) &#123;</span><br><span class="line">                    int index = c - &#x27;0&#x27; - 1;</span><br><span class="line">                    rows[i][index]++;</span><br><span class="line">                    columns[j][index]++;</span><br><span class="line">                    subboxes[i / 3][j / 3][index]++;</span><br><span class="line">                    if (rows[i][index] &gt; 1 || columns[j][index] &gt; 1 || subboxes[i / 3][j / 3][index] &gt; 1) &#123;</span><br><span class="line">                        return false;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(1)。数独共有 81 个单元格，只需要对每个单元格遍历一次即可。</p>
+</li>
+<li><p>空间复杂度：O(1)。由于数独的大小固定，因此哈希表的空间也是固定的。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/25/%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/25/%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5II/" class="post-title-link" itemprop="url">搜索二维矩阵II</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-25 10:17:08 / 修改时间：10:17:38" itemprop="dateCreated datePublished" datetime="2024-03-25T10:17:08+08:00">2024-03-25</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>483</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="搜索二维矩阵II"><a href="#搜索二维矩阵II" class="headerlink" title="搜索二维矩阵II"></a>搜索二维矩阵II</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>编写一个高效的算法来搜索 <code>*m* x *n*</code> 矩阵 <code>matrix</code> 中的一个目标值 <code>target</code> 。该矩阵具有以下特性：</p>
+<ul>
+<li>每行的元素从左到右升序排列。</li>
+<li>每列的元素从上到下升序排列。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/11/25/searchgrid2.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 5</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/11/25/searchgrid.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 20</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>m == matrix.length</code></li>
+<li><code>n == matrix[i].length</code></li>
+<li><code>1 &lt;= n, m &lt;= 300</code></li>
+<li><code>-109 &lt;= matrix[i][j] &lt;= 109</code></li>
+<li>每行的所有元素从左到右升序排列</li>
+<li>每列的所有元素从上到下升序排列</li>
+<li><code>-109 &lt;= target &lt;= 109</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）直接查找"><a href="#（1）直接查找" class="headerlink" title="（1）直接查找"></a>（1）直接查找</h3><p><strong>思路及算法</strong></p>
+<p>我们直接遍历整个矩阵 matrix，判断 target 是否出现即可。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool searchMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target) &#123;</span><br><span class="line">        for (const auto&amp; row: matrix) &#123;</span><br><span class="line">            for (int element: row) &#123;</span><br><span class="line">                if (element == target) &#123;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public boolean searchMatrix(int[][] matrix, int target) &#123;</span><br><span class="line">        for (int[] row : matrix) &#123;</span><br><span class="line">            for (int element : row) &#123;</span><br><span class="line">                if (element == target) &#123;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(mn)。</li>
+<li>空间复杂度：O(1)。</li>
+</ul>
+<h3 id="（2）二分查找"><a href="#（2）二分查找" class="headerlink" title="（2）二分查找"></a>（2）二分查找</h3><p><strong>思路与算法</strong></p>
+<p>由于矩阵 matrix 中每一行的元素都是升序排列的，因此我们可以对每一行都使用一次二分查找，判断 target 是否在该行中，从而判断 target 是否出现。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool searchMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target) &#123;</span><br><span class="line">        for (const auto&amp; row: matrix) &#123;</span><br><span class="line">            auto it = lower_bound(row.begin(), row.end(), target);</span><br><span class="line">            if (it != row.end() &amp;&amp; *it == target) &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public boolean searchMatrix(int[][] matrix, int target) &#123;</span><br><span class="line">        for (int[] row : matrix) &#123;</span><br><span class="line">            int index = search(row, target);</span><br><span class="line">            if (index &gt;= 0) &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int search(int[] nums, int target) &#123;</span><br><span class="line">        int low = 0, high = nums.length - 1;</span><br><span class="line">        while (low &lt;= high) &#123;</span><br><span class="line">            int mid = (high - low) / 2 + low;</span><br><span class="line">            int num = nums[mid];</span><br><span class="line">            if (num == target) &#123;</span><br><span class="line">                return mid;</span><br><span class="line">            &#125; else if (num &gt; target) &#123;</span><br><span class="line">                high = mid - 1;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                low = mid + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(mlog⁡n)。对一行使用二分查找的时间复杂度为 O(log⁡n)，最多需要进行 m 次二分查找。</p>
+</li>
+<li><p>空间复杂度：O(1)。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/24/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/24/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5/" class="post-title-link" itemprop="url">旋转矩阵</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-24 11:06:10 / 修改时间：11:10:55" itemprop="dateCreated datePublished" datetime="2024-03-24T11:06:10+08:00">2024-03-24</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="旋转矩阵"><a href="#旋转矩阵" class="headerlink" title="旋转矩阵"></a>旋转矩阵</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个 <em>n</em> × <em>n</em> 的二维矩阵 <code>matrix</code> 表示一个图像。请你将图像顺时针旋转 90 度。</p>
+<p>你必须在原地旋转图像，这意味着你需要直接修改输入的二维矩阵。<strong>请不要</strong> 使用另一个矩阵来旋转图像。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/08/28/mat1.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]</span><br><span class="line">输出：[[7,4,1],[8,5,2],[9,6,3]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/08/28/mat2.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：matrix = [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]</span><br><span class="line">输出：[[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）辅助矩阵"><a href="#（1）辅助矩阵" class="headerlink" title="（1）辅助矩阵"></a>（1）辅助矩阵</h3><p><strong>思路及算法</strong></p>
+<p>如下图所示，矩阵顺时针旋转 90º 后，可找到以下规律：</p>
+<ul>
+<li><p>「第 i 行」元素旋转到「第 n−1−i 列」元素；</p>
+</li>
+<li><p>「第 j 列」元素旋转到「第 j 行」元素；</p>
+<p>因此，对于矩阵任意第 i 行、第 j 列元素 matrix[i] [j]，矩阵旋转 90º 后「元素位置旋转公式」为：</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">matrix[i] [j]→matrix[j] [n−1−i]</span><br><span class="line">原索引位置→旋转后索引位置</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic.leetcode-cn.com/1638557961-AVzCQb-ccw-01-07.001.png" alt="ccw-01-07.001.png"></p>
+<p>根据以上「元素旋转公式」，考虑遍历矩阵，将各元素依次写入到旋转后的索引位置。但仍存在问题：在写入一个元素 matrix[i] [j]→matrix[j] [n−1−i]后，原矩阵元素 matrix[j] [n−1−i] 就会被覆盖（即丢失），而此丢失的元素就无法被写入到旋转后的索引位置了。</p>
+<p>为解决此问题，考虑借助一个「辅助矩阵」暂存原矩阵，通过遍历辅助矩阵所有元素，将各元素填入「原矩阵」旋转后的新索引位置即可。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public void rotate(int[][] matrix) &#123;</span><br><span class="line">        int n = matrix.length;</span><br><span class="line">        // 深拷贝 matrix -&gt; tmp</span><br><span class="line">        int[][] tmp = new int[n][];</span><br><span class="line">        for (int i = 0; i &lt; n; i++)</span><br><span class="line">            tmp[i] = matrix[i].clone();</span><br><span class="line">        // 根据元素旋转公式，遍历修改原矩阵 matrix 的各元素</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            for (int j = 0; j &lt; n; j++) &#123;</span><br><span class="line">                matrix[j][n - 1 - i] = tmp[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void rotate(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) &#123;</span><br><span class="line">        int n = matrix.size();</span><br><span class="line">        // 深拷贝 matrix -&gt; tmp</span><br><span class="line">        vector&lt;vector&lt;int&gt;&gt; tmp = matrix;</span><br><span class="line">        // 根据元素旋转公式，遍历修改原矩阵 matrix 的各元素</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            for (int j = 0; j &lt; n; j++) &#123;</span><br><span class="line">                matrix[j][n - 1 - i] = tmp[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(N^2^)，其中 N 是 matrix 的边长。</p>
+</li>
+<li><p>空间复杂度：O(N^2^)。我们需要使用一个和 matrix 大小相同的辅助数组。</p>
+</li>
+</ul>
+<h3 id="（2）原地修改"><a href="#（2）原地修改" class="headerlink" title="（2）原地修改"></a>（2）原地修改</h3><p><strong>思路及算法</strong></p>
+<p>考虑不借助辅助矩阵，通过在原矩阵中直接「原地修改」，实现空间复杂度 O(1) 的解法。</p>
+<p>以位于矩阵四个角点的元素为例，设矩阵左上角元素 A 、右上角元素 B 、右下角元素 C 、左下角元素 D 。矩阵旋转 90º 后，相当于依次先后执行 D→A , C→D , B→C , A→B 修改元素，即如下「首尾相接」的元素旋转操作：A←D←C←B←A</p>
+<p><img src="https://pic.leetcode-cn.com/1638557961-BSxFQQ-ccw-01-07.002.png" alt="ccw-01-07.002.png"></p>
+<p>如上图所示，由于第 1 步 D→A 已经将 A 覆盖（导致 A 丢失），此丢失导致最后第 4 步 A→B 无法赋值。为解决此问题，考虑借助一个「辅助变量 tmp 」预先存储 A ，此时的旋转操作变为：</p>
+<p>暂存tmp&#x3D;A</p>
+<p>A←D←C←B←tmp</p>
+<p><img src="https://pic.leetcode-cn.com/1638557961-hYpOoH-ccw-01-07.003.png" alt="ccw-01-07.003.png"></p>
+<p>如上图所示，一轮可以完成矩阵 4 个元素的旋转。因而，只要分别以矩阵左上角 1&#x2F;41&#x2F;41&#x2F;4 的各元素为起始点执行以上旋转操作，即可完整实现矩阵旋转。</p>
+<p>具体来看，当矩阵大小 n 为偶数时，取前 n&#x2F;2 行、前 n&#x2F;2 列的元素为起始点；当矩阵大小 n 为奇数时，取前 n&#x2F;2\ 行、前 (n+1)&#x2F;2 列的元素为起始点。</p>
+<p>令 matrix[i] [j]&#x3D;A，根据文章开头的元素旋转公式，可推导得适用于任意起始点的元素旋转操作：</p>
+<p>暂存tmp&#x3D;matrix[i] [j]</p>
+<p>matrix[i][j]←matrix[n−1−j] [i]←matrix[n−1−i] [n−1−j]←matrix[j] [n−1−i]←tmp</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public void rotate(int[][] matrix) &#123;</span><br><span class="line">        // 设矩阵行列数为 n</span><br><span class="line">        int n = matrix.length;</span><br><span class="line">        // 起始点范围为 0 &lt;= i &lt; n / 2 , 0 &lt;= j &lt; (n + 1) / 2</span><br><span class="line">        // 其中 &#x27;/&#x27; 为整数除法</span><br><span class="line">        for (int i = 0; i &lt; n / 2; i++) &#123;</span><br><span class="line">            for (int j = 0; j &lt; (n + 1) / 2; j++) &#123;</span><br><span class="line">                // 暂存 A 至 tmp</span><br><span class="line">                int tmp = matrix[i][j];</span><br><span class="line">                // 元素旋转操作 A &lt;- D &lt;- C &lt;- B &lt;- tmp</span><br><span class="line">                matrix[i][j] = matrix[n - 1 - j][i];</span><br><span class="line">                matrix[n - 1 - j][i] = matrix[n - 1 - i][n - 1 - j];</span><br><span class="line">                matrix[n - 1 - i][n - 1 - j] = matrix[j][n - 1 - i];</span><br><span class="line">                matrix[j][n - 1 - i] = tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void rotate(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) &#123;</span><br><span class="line">        // 设矩阵行列数为 n</span><br><span class="line">        int n = matrix.size();</span><br><span class="line">        // 起始点范围为 0 &lt;= i &lt; n / 2 , 0 &lt;= j &lt; (n + 1) / 2</span><br><span class="line">        // 其中 &#x27;/&#x27; 为整数除法</span><br><span class="line">        for (int i = 0; i &lt; n / 2; i++) &#123;</span><br><span class="line">            for (int j = 0; j &lt; (n + 1) / 2; j++) &#123;</span><br><span class="line">                // 暂存 A 至 tmp</span><br><span class="line">                int tmp = matrix[i][j];</span><br><span class="line">                // 元素旋转操作 A &lt;- D &lt;- C &lt;- B &lt;- tmp</span><br><span class="line">                matrix[i][j] = matrix[n - 1 - j][i];</span><br><span class="line">                matrix[n - 1 - j][i] = matrix[n - 1 - i][n - 1 - j];</span><br><span class="line">                matrix[n - 1 - i][n - 1 - j] = matrix[j][n - 1 - i];</span><br><span class="line">                matrix[j][n - 1 - i] = tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度 O(N^2^) ： 其中 N 为输入矩阵的行（列）数。需要将矩阵中每个元素旋转到新的位置，即对矩阵所有元素操作一次，使用 O(N^2^) 时间。</li>
+<li>空间复杂度 O(1) ： 临时变量 tmp 使用常数大小的额外空间。值得注意，当循环中进入下轮迭代，上轮迭代初始化的 tmp 占用的内存就会被自动释放，因此无累计使用空间。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -979,501 +1559,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/19/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/19/%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/" class="post-title-link" itemprop="url">长度最小的子数组</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-03-19 11:10:57 / 修改时间：11:13:42" itemprop="dateCreated datePublished" datetime="2024-03-19T11:10:57+08:00">2024-03-19</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.3k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="长度最小的子数组"><a href="#长度最小的子数组" class="headerlink" title="长度最小的子数组"></a>长度最小的子数组</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个含有 <code>n</code> 个正整数的数组和一个正整数 <code>target</code> <strong>。</strong></p>
-<p>找出该数组中满足其总和大于等于 <code>target</code> 的长度最小的 <strong>连续子数组</strong><code>[numsl, numsl+1, ..., numsr-1, numsr]</code> ，并返回其长度<strong>。</strong>如果不存在符合条件的子数组，返回 <code>0</code> 。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：target = 7, nums = [2,3,1,2,4,3]</span><br><span class="line">输出：2</span><br><span class="line">解释：子数组 [4,3] 是该条件下的长度最小的子数组。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：target = 4, nums = [1,4,4]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：target = 11, nums = [1,1,1,1,1,1,1,1]</span><br><span class="line">输出：0</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= target &lt;= 109</code></li>
-<li><code>1 &lt;= nums.length &lt;= 105</code></li>
-<li><code>1 &lt;= nums[i] &lt;= 105</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）暴力法"><a href="#（1）暴力法" class="headerlink" title="（1）暴力法"></a>（1）暴力法</h3><p><strong>思路及算法</strong></p>
-<p>暴力法是最直观的方法。初始化子数组的最小长度为无穷大，枚举数组 nums 中的每个下标作为子数组的开始下标，对于每个开始下标 i，需要找到大于或等于 i 的最小下标 j，使得从 nums[i] 到 nums[j] 的元素和大于或等于 s，并更新子数组的最小长度（此时子数组的长度是 j−i+1）。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int minSubArrayLen(int s, vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int ans = INT_MAX;</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            int sum = 0;</span><br><span class="line">            for (int j = i; j &lt; n; j++) &#123;</span><br><span class="line">                sum += nums[j];</span><br><span class="line">                if (sum &gt;= s) &#123;</span><br><span class="line">                    ans = min(ans, j - i + 1);</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans == INT_MAX ? 0 : ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int minSubArrayLen(int s, int[] nums) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int ans = Integer.MAX_VALUE;</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            int sum = 0;</span><br><span class="line">            for (int j = i; j &lt; n; j++) &#123;</span><br><span class="line">                sum += nums[j];</span><br><span class="line">                if (sum &gt;= s) &#123;</span><br><span class="line">                    ans = Math.min(ans, j - i + 1);</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans == Integer.MAX_VALUE ? 0 : ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n^2^)，其中 n 是数组的长度。需要遍历每个下标作为子数组的开始下标，对于每个开始下标，需要遍历其后面的下标得到长度最小的子数组。</p>
-</li>
-<li><p>空间复杂度：O(1)。</p>
-</li>
-</ul>
-<h3 id="（2）前缀和-二分查找"><a href="#（2）前缀和-二分查找" class="headerlink" title="（2）前缀和+二分查找"></a>（2）前缀和+二分查找</h3><p><strong>思路及算法</strong></p>
-<p>为了使用二分查找，需要额外创建一个数组 sums 用于存储数组 nums 的前缀和，其中 sums[i] 表示从 nums[0] 到 nums[i−1] 的元素和。得到前缀和之后，对于每个开始下标 i，可通过二分查找得到大于或等于 i 的最小下标 bound，使得 sums[bound]−sums[i−1]≥s，并更新子数组的最小长度（此时子数组的长度是 bound−(i−1)）。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int minSubArrayLen(int s, vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int ans = INT_MAX;</span><br><span class="line">        vector&lt;int&gt; sums(n + 1, 0); </span><br><span class="line">        // 为了方便计算，令 size = n + 1 </span><br><span class="line">        // sums[0] = 0 意味着前 0 个元素的前缀和为 0</span><br><span class="line">        // sums[1] = A[0] 前 1 个元素的前缀和为 A[0]</span><br><span class="line">        // 以此类推</span><br><span class="line">        for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">            sums[i] = sums[i - 1] + nums[i - 1];</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">            int target = s + sums[i - 1];</span><br><span class="line">            auto bound = lower_bound(sums.begin(), sums.end(), target);</span><br><span class="line">            if (bound != sums.end()) &#123;</span><br><span class="line">                ans = min(ans, static_cast&lt;int&gt;((bound - sums.begin()) - (i - 1)));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans == INT_MAX ? 0 : ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int minSubArrayLen(int s, int[] nums) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int ans = Integer.MAX_VALUE;</span><br><span class="line">        int[] sums = new int[n + 1]; </span><br><span class="line">        // 为了方便计算，令 size = n + 1 </span><br><span class="line">        // sums[0] = 0 意味着前 0 个元素的前缀和为 0</span><br><span class="line">        // sums[1] = A[0] 前 1 个元素的前缀和为 A[0]</span><br><span class="line">        // 以此类推</span><br><span class="line">        for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">            sums[i] = sums[i - 1] + nums[i - 1];</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 1; i &lt;= n; i++) &#123;</span><br><span class="line">            int target = s + sums[i - 1];</span><br><span class="line">            int bound = Arrays.binarySearch(sums, target);</span><br><span class="line">            if (bound &lt; 0) &#123;</span><br><span class="line">                bound = -bound - 1;</span><br><span class="line">            &#125;</span><br><span class="line">            if (bound &lt;= n) &#123;</span><br><span class="line">                ans = Math.min(ans, bound - (i - 1));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans == Integer.MAX_VALUE ? 0 : ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(nlog⁡n)，其中 n 是数组的长度。需要遍历每个下标作为子数组的开始下标，遍历的时间复杂度是 O(n)，对于每个开始下标，需要通过二分查找得到长度最小的子数组，二分查找得时间复杂度是 O(log⁡n)，因此总时间复杂度是 O(nlog⁡n)。</p>
-</li>
-<li><p>空间复杂度：O(n)，其中 n 是数组的长度。额外创建数组 sums 存储前缀和。</p>
-</li>
-</ul>
-<h3 id="（3）滑动窗口"><a href="#（3）滑动窗口" class="headerlink" title="（3）滑动窗口"></a>（3）滑动窗口</h3><p><strong>思路及算法</strong></p>
-<p>定义两个指针 start 和 end 分别表示子数组（滑动窗口窗口）的开始位置和结束位置，维护变量 sum 存储子数组中的元素和（即从 nums[start] 到 nums[end] 的元素和）。</p>
-<p>初始状态下，start 和 end 都指向下标 0，sum 的值为 0。</p>
-<p>每一轮迭代，将 nums[end] 加到 sum，如果 sum≥s，则更新子数组的最小长度（此时子数组的长度是 end−start+1），然后将 nums[start]从 sum 中减去并将 start 右移，直到 sum&lt;s，在此过程中同样更新子数组的最小长度。在每一轮迭代的最后，将 end 右移。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int minSubArrayLen(int s, vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int ans = INT_MAX;</span><br><span class="line">        int start = 0, end = 0;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        while (end &lt; n) &#123;</span><br><span class="line">            sum += nums[end];</span><br><span class="line">            while (sum &gt;= s) &#123;</span><br><span class="line">                ans = min(ans, end - start + 1);</span><br><span class="line">                sum -= nums[start];</span><br><span class="line">                start++;</span><br><span class="line">            &#125;</span><br><span class="line">            end++;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans == INT_MAX ? 0 : ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int minSubArrayLen(int s, int[] nums) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int ans = Integer.MAX_VALUE;</span><br><span class="line">        int start = 0, end = 0;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        while (end &lt; n) &#123;</span><br><span class="line">            sum += nums[end];</span><br><span class="line">            while (sum &gt;= s) &#123;</span><br><span class="line">                ans = Math.min(ans, end - start + 1);</span><br><span class="line">                sum -= nums[start];</span><br><span class="line">                start++;</span><br><span class="line">            &#125;</span><br><span class="line">            end++;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans == Integer.MAX_VALUE ? 0 : ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是数组的长度。指针 start 和 end 最多各移动 n 次。</p>
-</li>
-<li><p>空间复杂度：O(1)。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/18/%E6%89%BE%E5%88%B0%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/18/%E6%89%BE%E5%88%B0%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D/" class="post-title-link" itemprop="url">找到字符串中的所有字母异位词</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-03-18 11:01:23 / 修改时间：11:03:40" itemprop="dateCreated datePublished" datetime="2024-03-18T11:01:23+08:00">2024-03-18</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>830</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="找到字符串中的所有字母异位词"><a href="#找到字符串中的所有字母异位词" class="headerlink" title="找到字符串中的所有字母异位词"></a>找到字符串中的所有字母异位词</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定两个字符串 <code>s</code> 和 <code>p</code>，找到 <code>s</code> 中所有 <code>p</code> 的 <strong>异位词</strong> 的子串，返回这些子串的起始索引。不考虑答案输出的顺序。</p>
-<p><strong>异位词</strong> 指由相同字母重排列形成的字符串（包括相同的字符串）。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入: s = &quot;cbaebabacd&quot;, p = &quot;abc&quot;</span><br><span class="line">输出: [0,6]</span><br><span class="line">解释:</span><br><span class="line">起始索引等于 0 的子串是 &quot;cba&quot;, 它是 &quot;abc&quot; 的异位词。</span><br><span class="line">起始索引等于 6 的子串是 &quot;bac&quot;, 它是 &quot;abc&quot; 的异位词。</span><br></pre></td></tr></table></figure>
-
-<p> <strong>示例 2:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入: s = &quot;abab&quot;, p = &quot;ab&quot;</span><br><span class="line">输出: [0,1,2]</span><br><span class="line">解释:</span><br><span class="line">起始索引等于 0 的子串是 &quot;ab&quot;, 它是 &quot;ab&quot; 的异位词。</span><br><span class="line">起始索引等于 1 的子串是 &quot;ba&quot;, 它是 &quot;ab&quot; 的异位词。</span><br><span class="line">起始索引等于 2 的子串是 &quot;ab&quot;, 它是 &quot;ab&quot; 的异位词。</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示:</strong></p>
-<ul>
-<li><code>1 &lt;= s.length, p.length &lt;= 3 * 104</code></li>
-<li><code>s</code> 和 <code>p</code> 仅包含小写字母</li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3><p><strong>思路及算法</strong></p>
-<p>根据题目要求，我们需要在字符串 s 寻找字符串 p 的异位词。因为字符串 p 的异位词的长度一定与字符串 p 的长度相同，所以我们可以在字符串 s 中构造一个长度为与字符串 p 的长度相同的滑动窗口，并在滑动中维护窗口中每种字母的数量；当窗口中每种字母的数量与字符串 p 中每种字母的数量相同时，则说明当前窗口为字符串 p 的异位词。在算法的实现中，我们可以使用数组来存储字符串 p 和滑动窗口中每种字母的数量。当字符串 s 的长度小于字符串 p 的长度时，字符串 s 中一定不存在字符串 p 的异位词。但是因为字符串 s 中无法构造长度与字符串 p 的长度相同的窗口，所以这种情况需要单独处理。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; findAnagrams(string s, string p) &#123;</span><br><span class="line">        int sLen = s.size(), pLen = p.size();</span><br><span class="line"></span><br><span class="line">        if (sLen &lt; pLen) &#123;</span><br><span class="line">            return vector&lt;int&gt;();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vector&lt;int&gt; ans;</span><br><span class="line">        vector&lt;int&gt; sCount(26);</span><br><span class="line">        vector&lt;int&gt; pCount(26);</span><br><span class="line">        for (int i = 0; i &lt; pLen; ++i) &#123;</span><br><span class="line">            ++sCount[s[i] - &#x27;a&#x27;];</span><br><span class="line">            ++pCount[p[i] - &#x27;a&#x27;];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (sCount == pCount) &#123;</span><br><span class="line">            ans.emplace_back(0);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i = 0; i &lt; sLen - pLen; ++i) &#123;</span><br><span class="line">            --sCount[s[i] - &#x27;a&#x27;];</span><br><span class="line">            ++sCount[s[i + pLen] - &#x27;a&#x27;];</span><br><span class="line"></span><br><span class="line">            if (sCount == pCount) &#123;</span><br><span class="line">                ans.emplace_back(i + 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;Integer&gt; findAnagrams(String s, String p) &#123;</span><br><span class="line">        int sLen = s.length(), pLen = p.length();</span><br><span class="line"></span><br><span class="line">        if (sLen &lt; pLen) &#123;</span><br><span class="line">            return new ArrayList&lt;Integer&gt;();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        List&lt;Integer&gt; ans = new ArrayList&lt;Integer&gt;();</span><br><span class="line">        int[] sCount = new int[26];</span><br><span class="line">        int[] pCount = new int[26];</span><br><span class="line">        for (int i = 0; i &lt; pLen; ++i) &#123;</span><br><span class="line">            ++sCount[s.charAt(i) - &#x27;a&#x27;];</span><br><span class="line">            ++pCount[p.charAt(i) - &#x27;a&#x27;];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (Arrays.equals(sCount, pCount)) &#123;</span><br><span class="line">            ans.add(0);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for (int i = 0; i &lt; sLen - pLen; ++i) &#123;</span><br><span class="line">            --sCount[s.charAt(i) - &#x27;a&#x27;];</span><br><span class="line">            ++sCount[s.charAt(i + pLen) - &#x27;a&#x27;];</span><br><span class="line"></span><br><span class="line">            if (Arrays.equals(sCount, pCount)) &#123;</span><br><span class="line">                ans.add(i + 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(m+(n−m)×Σ)，其中 n 为字符串 s 的长度，m 为字符串 p 的长度，Σ 为所有可能的字符数。我们需要 O(m) 来统计字符串 p 中每种字母的数量；需要 O(m) 来初始化滑动窗口；需要判断 n−m+1 个滑动窗口中每种字母的数量是否与字符串 p 中每种字母的数量相同，每次判断需要 O(Σ) 。因为 s 和 p 仅包含小写字母，所以 Σ&#x3D;26。</p>
-</li>
-<li><p>空间复杂度：O(Σ)。用于存储字符串 p 和滑动窗口中每种字母的数量。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/18/%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%97%E4%B8%B2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/18/%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%97%E4%B8%B2/" class="post-title-link" itemprop="url">无重复字符的最长字串</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-03-18 10:59:23 / 修改时间：11:03:00" itemprop="dateCreated datePublished" datetime="2024-03-18T10:59:23+08:00">2024-03-18</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="无重复字符的最长字串"><a href="#无重复字符的最长字串" class="headerlink" title="无重复字符的最长字串"></a>无重复字符的最长字串</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个字符串 <code>s</code> ，请你找出其中不含有重复字符的 <strong>最长子串</strong>的长度。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: s = &quot;abcabcbb&quot;</span><br><span class="line">输出: 3 </span><br><span class="line">解释: 因为无重复字符的最长子串是 &quot;abc&quot;，所以其长度为 3。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: s = &quot;bbbbb&quot;</span><br><span class="line">输出: 1</span><br><span class="line">解释: 因为无重复字符的最长子串是 &quot;b&quot;，所以其长度为 1。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: s = &quot;pwwkew&quot;</span><br><span class="line">输出: 3</span><br><span class="line">解释: 因为无重复字符的最长子串是 &quot;wke&quot;，所以其长度为 3。</span><br><span class="line">     请注意，你的答案必须是 子串 的长度，&quot;pwke&quot; 是一个子序列，不是子串。 </span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>0 &lt;= s.length &lt;= 5 * 104</code></li>
-<li><code>s</code> 由英文字母、数字、符号和空格组成</li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h3><p><strong>思路及算法</strong></p>
-<p>我们先用一个例子考虑如何在较优的时间复杂度内通过本题。</p>
-<p>我们不妨以示例一中的字符串 abcabcbb 为例，找出从每一个字符开始的，不包含重复字符的最长子串，那么其中最长的那个字符串即为答案。对于示例一中的字符串，我们列举出这些结果，其中括号中表示选中的字符以及最长的字符串：</p>
-<p>以 (a)bcabcbb 开始的最长字符串为 (abc)abcbb；<br>以 a(b)cabcbb 开始的最长字符串为 a(bca)bcbb；<br>以 ab(c)abcbb 开始的最长字符串为 ab(cab)cbb；<br>以 abc(a)bcbb 开始的最长字符串为 abc(abc)bb；<br>以 abca(b)cbb 开始的最长字符串为 abca(bc)bb；<br>以 abcab(c)bb 开始的最长字符串为 abcab(cb)b；<br>以 abcabc(b)b 开始的最长字符串为 abcabc(b)b；<br>以 abcabcb(b) 开始的最长字符串为 abcabcb(b)。<br>发现了什么？如果我们依次递增地枚举子串的起始位置，那么子串的结束位置也是递增的！这里的原因在于，假设我们选择字符串中的第 k 个字符作为起始位置，并且得到了不包含重复字符的最长子串的结束位置为 r<del>k</del>。那么当我们选择第 k+1 个字符作为起始位置时，首先从 k+1 到 r<del>k</del> 的字符显然是不重复的，并且由于少了原本的第 k 个字符，我们可以尝试继续增大 r<del>k</del>，直到右侧出现了重复字符为止。</p>
-<p>这样一来，我们就可以使用「滑动窗口」来解决这个问题了：</p>
-<p>我们使用两个指针表示字符串中的某个子串（或窗口）的左右边界，其中左指针代表着上文中「枚举子串的起始位置」，而右指针即为上文中的 r<del>k</del>；</p>
-<p>在每一步的操作中，我们会将左指针向右移动一格，表示 我们开始枚举下一个字符作为起始位置，然后我们可以不断地向右移动右指针，但需要保证这两个指针对应的子串中没有重复的字符。在移动结束后，这个子串就对应着 以左指针开始的，不包含重复字符的最长子串。我们记录下这个子串的长度；</p>
-<p>在枚举结束后，我们找到的最长的子串的长度即为答案。</p>
-<p><strong>判断重复字符</strong></p>
-<p>在上面的流程中，我们还需要使用一种数据结构来判断 是否有重复的字符，常用的数据结构为哈希集合（即 C++ 中的 std::unordered_set，Java 中的 HashSet，Python 中的 set, JavaScript 中的 Set）。在左指针向右移动的时候，我们从哈希集合中移除一个字符，在右指针向右移动的时候，我们往哈希集合中添加一个字符。</p>
-<p>至此，我们就完美解决了本题。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int lengthOfLongestSubstring(string s) &#123;</span><br><span class="line">        // 哈希集合，记录每个字符是否出现过</span><br><span class="line">        unordered_set&lt;char&gt; occ;</span><br><span class="line">        int n = s.size();</span><br><span class="line">        // 右指针，初始值为 -1，相当于我们在字符串的左边界的左侧，还没有开始移动</span><br><span class="line">        int rk = -1, ans = 0;</span><br><span class="line">        // 枚举左指针的位置，初始值隐性地表示为 -1</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            if (i != 0) &#123;</span><br><span class="line">                // 左指针向右移动一格，移除一个字符</span><br><span class="line">                occ.erase(s[i - 1]);</span><br><span class="line">            &#125;</span><br><span class="line">            while (rk + 1 &lt; n &amp;&amp; !occ.count(s[rk + 1])) &#123;</span><br><span class="line">                // 不断地移动右指针</span><br><span class="line">                occ.insert(s[rk + 1]);</span><br><span class="line">                ++rk;</span><br><span class="line">            &#125;</span><br><span class="line">            // 第 i 到 rk 个字符是一个极长的无重复字符子串</span><br><span class="line">            ans = max(ans, rk - i + 1);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int lengthOfLongestSubstring(String s) &#123;</span><br><span class="line">        // 哈希集合，记录每个字符是否出现过</span><br><span class="line">        Set&lt;Character&gt; occ = new HashSet&lt;Character&gt;();</span><br><span class="line">        int n = s.length();</span><br><span class="line">        // 右指针，初始值为 -1，相当于我们在字符串的左边界的左侧，还没有开始移动</span><br><span class="line">        int rk = -1, ans = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            if (i != 0) &#123;</span><br><span class="line">                // 左指针向右移动一格，移除一个字符</span><br><span class="line">                occ.remove(s.charAt(i - 1));</span><br><span class="line">            &#125;</span><br><span class="line">            while (rk + 1 &lt; n &amp;&amp; !occ.contains(s.charAt(rk + 1))) &#123;</span><br><span class="line">                // 不断地移动右指针</span><br><span class="line">                occ.add(s.charAt(rk + 1));</span><br><span class="line">                ++rk;</span><br><span class="line">            &#125;</span><br><span class="line">            // 第 i 到 rk 个字符是一个极长的无重复字符子串</span><br><span class="line">            ans = Math.max(ans, rk - i + 1);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(N)，其中 N 是字符串的长度。左指针和右指针分别会遍历整个字符串一次。</p>
-</li>
-<li><p>空间复杂度：O(∣Σ∣)，其中 Σ 表示字符集（即字符串中可以出现的字符），∣Σ∣ 表示字符集的大小。在本题中没有明确说明字符集，因此可以默认为所有 ASCII 码在 [0,128) 内的字符，即 ∣Σ∣&#x3D;128。我们需要用到哈希集合来存储出现过的字符，而字符最多有 ∣Σ∣，因此空间复杂度为 O(∣Σ∣)。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/15/%E5%88%A4%E6%96%AD%E5%AD%90%E5%BA%8F%E5%88%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/15/%E5%88%A4%E6%96%AD%E5%AD%90%E5%BA%8F%E5%88%97/" class="post-title-link" itemprop="url">判断子序列</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-03-15 11:01:41 / 修改时间：11:05:58" itemprop="dateCreated datePublished" datetime="2024-03-15T11:01:41+08:00">2024-03-15</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>548</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="判断子序列"><a href="#判断子序列" class="headerlink" title="判断子序列"></a>判断子序列</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定字符串 <strong>s</strong> 和 <strong>t</strong> ，判断 <strong>s</strong> 是否为 <strong>t</strong> 的子序列。</p>
-<p>字符串的一个子序列是原始字符串删除一些（也可以不删除）字符而不改变剩余字符相对位置形成的新字符串。（例如，<code>&quot;ace&quot;</code>是<code>&quot;abcde&quot;</code>的一个子序列，而<code>&quot;aec&quot;</code>不是）。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;abc&quot;, t = &quot;ahbgdc&quot;</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;axc&quot;, t = &quot;ahbgdc&quot;</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>0 &lt;= s.length &lt;= 100</code></li>
-<li><code>0 &lt;= t.length &lt;= 10^4</code></li>
-<li>两个字符串都只由小写字符组成。</li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="双指针"><a href="#双指针" class="headerlink" title="双指针"></a>双指针</h3><p><strong>思路及算法</strong></p>
-<p>本题询问的是，s 是否是 t 的子序列，因此只要能找到任意一种 s在 t 中出现的方式，即可认为 s 是 t 的子序列。而当我们从前往后匹配，可以发现每次贪心地匹配靠前的字符是最优决策。</p>
-<p>假定当前需要匹配字符 c，而字符 c 在 t 中的位置 x1  和 x2 出现（x1&lt;x2），那么贪心取 x1 是最优解，因为 x2 后面能取到的字符，x1 也都能取到，并且通过 x1 与 x2 之间的可选字符，更有希望能匹配成功。</p>
-<p>这样，我们初始化两个指针 i 和 j，分别指向 s 和 t 的初始位置。每次贪心地匹配，匹配成功则 i 和 j 同时右移，匹配 s 的下一个位置，匹配失败则 j 右移，i 不变，尝试用 t 的下一个字符匹配 s。</p>
-<p>最终如果 i 移动到 s 的末尾，就说明 s 是 t 的子序列。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isSubsequence(string s, string t) &#123;</span><br><span class="line">        int n = s.length(), m = t.length();</span><br><span class="line">        int i = 0, j = 0;</span><br><span class="line">        while (i &lt; n &amp;&amp; j &lt; m) &#123;</span><br><span class="line">            if (s[i] == t[j]) &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        return i == n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public boolean isSubsequence(String s, String t) &#123;</span><br><span class="line">        int n = s.length(), m = t.length();</span><br><span class="line">        int i = 0, j = 0;</span><br><span class="line">        while (i &lt; n &amp;&amp; j &lt; m) &#123;</span><br><span class="line">            if (s.charAt(i) == t.charAt(j)) &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        return i == n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n+m)，其中 n 为 s 的长度，m 为 t 的长度。每次无论是匹配成功还是失败，都有至少一个指针发生右移，两指针能够位移的总距离为 n+m。</p>
-</li>
-<li><p>空间复杂度：O(1)。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
@@ -1496,14 +1583,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">108k</span>
+    <span title="站点总字数">112k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">6:34</span>
+    <span title="站点阅读时长">6:46</span>
   </span>
 </div>
 <div class="busuanzi-count">

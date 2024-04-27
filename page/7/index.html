@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">98</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,6 +174,551 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/10/%E6%8F%92%E5%85%A5%E5%8C%BA%E9%97%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/10/%E6%8F%92%E5%85%A5%E5%8C%BA%E9%97%B4/" class="post-title-link" itemprop="url">插入区间</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-10 11:13:15 / 修改时间：11:20:28" itemprop="dateCreated datePublished" datetime="2024-03-10T11:13:15+08:00">2024-03-10</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="插入区间"><a href="#插入区间" class="headerlink" title="插入区间"></a>插入区间</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个 <strong>无重叠的</strong> <em>，</em>按照区间起始端点排序的区间列表。</p>
+<p>在列表中插入一个新的区间，你需要确保列表中的区间仍然有序且不重叠（如果有必要的话，可以合并区间）。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：intervals = [[1,3],[6,9]], newInterval = [2,5]</span><br><span class="line">输出：[[1,5],[6,9]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8]</span><br><span class="line">输出：[[1,2],[3,10],[12,16]]</span><br><span class="line">解释：这是因为新的区间 [4,8] 与 [3,5],[6,7],[8,10] 重叠。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：intervals = [], newInterval = [5,7]</span><br><span class="line">输出：[[5,7]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 4：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：intervals = [[1,5]], newInterval = [2,3]</span><br><span class="line">输出：[[1,5]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 5：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：intervals = [[1,5]], newInterval = [2,7]</span><br><span class="line">输出：[[1,7]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>0 &lt;= intervals.length &lt;= 104</code></li>
+<li><code>intervals[i].length == 2</code></li>
+<li><code>0 &lt;= intervals[i][0] &lt;= intervals[i][1] &lt;= 105</code></li>
+<li><code>intervals</code> 根据 <code>intervals[i][0]</code> 按 <strong>升序</strong> 排列</li>
+<li><code>newInterval.length == 2</code></li>
+<li><code>0 &lt;= newInterval[0] &lt;= newInterval[1] &lt;= 105</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="模拟法"><a href="#模拟法" class="headerlink" title="模拟法"></a>模拟法</h3><p><strong>思路与算法</strong></p>
+<p>在给定的区间集合 X 互不重叠的前提下，当我们需要插入一个新的区间 S&#x3D;[left,right] 时，我们只需要：</p>
+<ul>
+<li>找出所有与区间 SSS 重叠的区间集合 X’；</li>
+<li>将 X’中的所有区间连带上区间 SSS 合并成一个大区间；</li>
+<li>最终的答案即为不与 X‘ 重叠的区间以及合并后的大区间。</li>
+</ul>
+<p>这样做的正确性在于，给定的区间集合中任意两个区间都是没有交集的，因此所有需要合并的区间，就是所有与区间 S 重叠的区间。</p>
+<p>并且，在给定的区间集合已经<strong>按照左端点排序</strong>的前提下，所有与区间 S 重叠的区间在数组 intervals 中<strong>下标范围是连续的</strong>，因此我们可以对所有的区间进行一次遍历，就可以找到这个连续的下标范围。</p>
+<p>当我们遍历到区间 [li,ri]时：</p>
+<ul>
+<li><p>如果ri&lt;left，说明 [li,ri] 与 S 不重叠并且在其左侧，我们可以直接将[li,ri] 加入答案；</p>
+</li>
+<li><p>如果 li&gt;right，说明[li,ri] 与 S 不重叠并且在其右侧，我们可以直接将 [li,ri] 加入答案；</p>
+</li>
+<li><p>如果上面两种情况均不满足，说明 [li,ri] 与 S 重叠，我们无需将[li,ri] 加入答案。此时，我们需要将 S 与 [li,ri] 合并，即将 S 更新为其与[li,ri] 的并集。</p>
+</li>
+</ul>
+<p>那么我们应当在什么时候将区间 S 加入答案呢？由于我们需要保证答案也是按照左端点排序的，因此当我们遇到<strong>第一个</strong>满足 li&gt;right 的区间时，说明以后遍历到的区间不会与 S 重叠，并且它们左端点一定会大于 S 的左端点。此时我们就可以将 S 加入答案。特别地，如果不存在这样的区间，我们需要在遍历结束后，将 S 加入答案。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/57/1.png" alt="fig1"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; insert(vector&lt;vector&lt;int&gt;&gt;&amp; intervals, vector&lt;int&gt;&amp; newInterval) &#123;</span><br><span class="line">        int left = newInterval[0];</span><br><span class="line">        int right = newInterval[1];</span><br><span class="line">        bool placed = false;</span><br><span class="line">        vector&lt;vector&lt;int&gt;&gt; ans;</span><br><span class="line">        for (const auto&amp; interval: intervals) &#123;</span><br><span class="line">            if (interval[0] &gt; right) &#123;</span><br><span class="line">                // 在插入区间的右侧且无交集</span><br><span class="line">                if (!placed) &#123;</span><br><span class="line">                    ans.push_back(&#123;left, right&#125;);</span><br><span class="line">                    placed = true;                    </span><br><span class="line">                &#125;</span><br><span class="line">                ans.push_back(interval);</span><br><span class="line">            &#125;</span><br><span class="line">            else if (interval[1] &lt; left) &#123;</span><br><span class="line">                // 在插入区间的左侧且无交集</span><br><span class="line">                ans.push_back(interval);</span><br><span class="line">            &#125;</span><br><span class="line">            else &#123;</span><br><span class="line">                // 与插入区间有交集，计算它们的并集</span><br><span class="line">                left = min(left, interval[0]);</span><br><span class="line">                right = max(right, interval[1]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (!placed) &#123;</span><br><span class="line">            ans.push_back(&#123;left, right&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int[][] insert(int[][] intervals, int[] newInterval) &#123;</span><br><span class="line">        int left = newInterval[0];</span><br><span class="line">        int right = newInterval[1];</span><br><span class="line">        boolean placed = false;</span><br><span class="line">        List&lt;int[]&gt; ansList = new ArrayList&lt;int[]&gt;();</span><br><span class="line">        for (int[] interval : intervals) &#123;</span><br><span class="line">            if (interval[0] &gt; right) &#123;</span><br><span class="line">                // 在插入区间的右侧且无交集</span><br><span class="line">                if (!placed) &#123;</span><br><span class="line">                    ansList.add(new int[]&#123;left, right&#125;);</span><br><span class="line">                    placed = true;                    </span><br><span class="line">                &#125;</span><br><span class="line">                ansList.add(interval);</span><br><span class="line">            &#125; else if (interval[1] &lt; left) &#123;</span><br><span class="line">                // 在插入区间的左侧且无交集</span><br><span class="line">                ansList.add(interval);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                // 与插入区间有交集，计算它们的并集</span><br><span class="line">                left = Math.min(left, interval[0]);</span><br><span class="line">                right = Math.max(right, interval[1]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (!placed) &#123;</span><br><span class="line">            ansList.add(new int[]&#123;left, right&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        int[][] ans = new int[ansList.size()][2];</span><br><span class="line">        for (int i = 0; i &lt; ansList.size(); ++i) &#123;</span><br><span class="line">            ans[i] = ansList.get(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是数组 intervals 的长度，即给定的区间个数。</p>
+</li>
+<li><p>空间复杂度：O(1)。除了存储返回答案的空间以外，我们只需要额外的常数空间即可。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/10/%E6%B1%87%E6%80%BB%E5%8C%BA%E9%97%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/10/%E6%B1%87%E6%80%BB%E5%8C%BA%E9%97%B4/" class="post-title-link" itemprop="url">汇总区间</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-10 11:12:36 / 修改时间：11:21:04" itemprop="dateCreated datePublished" datetime="2024-03-10T11:12:36+08:00">2024-03-10</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>545</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="汇总区间"><a href="#汇总区间" class="headerlink" title="汇总区间"></a>汇总区间</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个  <strong>无重复元素</strong> 的 <strong>有序</strong> 整数数组 <code>nums</code> 。</p>
+<p>返回 <em><strong>恰好覆盖数组中所有数字</strong> 的 <strong>最小有序</strong> 区间范围列表</em> 。也就是说，<code>nums</code> 的每个元素都恰好被某个区间范围所覆盖，并且不存在属于某个范围但不属于 <code>nums</code> 的数字 <code>x</code> 。</p>
+<p>列表中的每个区间范围 <code>[a,b]</code> 应该按如下格式输出：</p>
+<ul>
+<li><code>&quot;a-&gt;b&quot;</code> ，如果 <code>a != b</code></li>
+<li><code>&quot;a&quot;</code> ，如果 <code>a == b</code></li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [0,1,2,4,5,7]</span><br><span class="line">输出：[&quot;0-&gt;2&quot;,&quot;4-&gt;5&quot;,&quot;7&quot;]</span><br><span class="line">解释：区间范围是：</span><br><span class="line">[0,2] --&gt; &quot;0-&gt;2&quot;</span><br><span class="line">[4,5] --&gt; &quot;4-&gt;5&quot;</span><br><span class="line">[7,7] --&gt; &quot;7&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [0,2,3,4,6,8,9]</span><br><span class="line">输出：[&quot;0&quot;,&quot;2-&gt;4&quot;,&quot;6&quot;,&quot;8-&gt;9&quot;]</span><br><span class="line">解释：区间范围是：</span><br><span class="line">[0,0] --&gt; &quot;0&quot;</span><br><span class="line">[2,4] --&gt; &quot;2-&gt;4&quot;</span><br><span class="line">[6,6] --&gt; &quot;6&quot;</span><br><span class="line">[8,9] --&gt; &quot;8-&gt;9&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>0 &lt;= nums.length &lt;= 20</code></li>
+<li><code>-231 &lt;= nums[i] &lt;= 231 - 1</code></li>
+<li><code>nums</code> 中的所有值都 <strong>互不相同</strong></li>
+<li><code>nums</code> 按升序排列</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="一次遍历"><a href="#一次遍历" class="headerlink" title="一次遍历"></a>一次遍历</h3><p><strong>思路及算法</strong></p>
+<p>我们从数组的位置 0 出发，向右遍历。每次遇到相邻元素之间的差值大于 1 时，我们就找到了一个区间。遍历完数组之后，就能得到一系列的区间的列表。</p>
+<p>在遍历过程中，维护下标 low 和 high 分别记录区间的起点和终点，对于任何区间都有 low≤high。当得到一个区间时，根据 low 和 high 的值生成区间的字符串表示。</p>
+<ul>
+<li><p>当 low&lt;high 时，区间的字符串表示为 ‘’low→high”；</p>
+</li>
+<li><p>当 low&#x3D;high 时，区间的字符串表示为 ‘‘low”。</p>
+</li>
+</ul>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;string&gt; summaryRanges(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        vector&lt;string&gt; ret;</span><br><span class="line">        int i = 0;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        while (i &lt; n) &#123;</span><br><span class="line">            int low = i;</span><br><span class="line">            i++;</span><br><span class="line">            while (i &lt; n &amp;&amp; nums[i] == nums[i - 1] + 1) &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            int high = i - 1;</span><br><span class="line">            string temp = to_string(nums[low]);</span><br><span class="line">            if (low &lt; high) &#123;</span><br><span class="line">                temp.append(&quot;-&gt;&quot;);</span><br><span class="line">                temp.append(to_string(nums[high]));</span><br><span class="line">            &#125;</span><br><span class="line">            ret.push_back(move(temp));</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;String&gt; summaryRanges(int[] nums) &#123;</span><br><span class="line">        List&lt;String&gt; ret = new ArrayList&lt;String&gt;();</span><br><span class="line">        int i = 0;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        while (i &lt; n) &#123;</span><br><span class="line">            int low = i;</span><br><span class="line">            i++;</span><br><span class="line">            while (i &lt; n &amp;&amp; nums[i] == nums[i - 1] + 1) &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            int high = i - 1;</span><br><span class="line">            StringBuffer temp = new StringBuffer(Integer.toString(nums[low]));</span><br><span class="line">            if (low &lt; high) &#123;</span><br><span class="line">                temp.append(&quot;-&gt;&quot;);</span><br><span class="line">                temp.append(Integer.toString(nums[high]));</span><br><span class="line">            &#125;</span><br><span class="line">            ret.add(temp.toString());</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，其中 n 为数组的长度。</li>
+<li>空间复杂度：O(1)。除了用于输出的空间外，额外使用的空间为常数。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/09/%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E5%8D%95%E8%AF%8D%E7%9A%84%E9%95%BF%E5%BA%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/09/%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E5%8D%95%E8%AF%8D%E7%9A%84%E9%95%BF%E5%BA%A6/" class="post-title-link" itemprop="url">最后一个单词的长度</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-09 14:28:37 / 修改时间：14:29:54" itemprop="dateCreated datePublished" datetime="2024-03-09T14:28:37+08:00">2024-03-09</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>480</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="最后一个单词的长度"><a href="#最后一个单词的长度" class="headerlink" title="最后一个单词的长度"></a>最后一个单词的长度</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个字符串 <code>s</code>，由若干单词组成，单词前后用一些空格字符隔开。返回字符串中 <strong>最后一个</strong> 单词的长度。</p>
+<p><strong>单词</strong> 是指仅由字母组成、不包含任何空格字符的最大子字符串。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;Hello World&quot;</span><br><span class="line">输出：5</span><br><span class="line">解释：最后一个单词是“World”，长度为5。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;   fly me   to   the moon  &quot;</span><br><span class="line">输出：4</span><br><span class="line">解释：最后一个单词是“moon”，长度为4。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;luffy is still joyboy&quot;</span><br><span class="line">输出：6</span><br><span class="line">解释：最后一个单词是长度为6的“joyboy”。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 104</code></li>
+<li><code>s</code> 仅有英文字母和空格 <code>&#39; &#39;</code> 组成</li>
+<li><code>s</code> 中至少存在一个单词</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="反向遍历"><a href="#反向遍历" class="headerlink" title="反向遍历"></a>反向遍历</h3><p><strong>思路及算法</strong></p>
+<p>题目要求得到字符串中最后一个单词的长度，可以反向遍历字符串，寻找最后一个单词并计算其长度。</p>
+<p>由于字符串中至少存在一个单词，因此字符串中一定有字母。首先找到字符串中的最后一个字母，该字母即为最后一个单词的最后一个字母。</p>
+<p>从最后一个字母开始继续反向遍历字符串，直到遇到空格或者到达字符串的起始位置。遍历到的每个字母都是最后一个单词中的字母，因此遍历到的字母数量即为最后一个单词的长度。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int lengthOfLastWord(string s) &#123;</span><br><span class="line">        int index = s.size() - 1;</span><br><span class="line"></span><br><span class="line">        while (s[index] == &#x27; &#x27;) &#123;</span><br><span class="line">            index--;</span><br><span class="line">        &#125;</span><br><span class="line">        int wordLength = 0;</span><br><span class="line">        while (index &gt;= 0 &amp;&amp; s[index] != &#x27; &#x27;) &#123;</span><br><span class="line">            wordLength++;</span><br><span class="line">            index--;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return wordLength;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int lengthOfLastWord(String s) &#123;</span><br><span class="line">        int index = s.length() - 1;</span><br><span class="line">        while (s.charAt(index) == &#x27; &#x27;) &#123;</span><br><span class="line">            index--;</span><br><span class="line">        &#125;</span><br><span class="line">        int wordLength = 0;</span><br><span class="line">        while (index &gt;= 0 &amp;&amp; s.charAt(index) != &#x27; &#x27;) &#123;</span><br><span class="line">            wordLength++;</span><br><span class="line">            index--;</span><br><span class="line">        &#125;</span><br><span class="line">        return wordLength;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，其中 n 是字符串的长度。最多需要反向遍历字符串一次。</li>
+<li>空间复杂度：O(1)。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/09/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E7%BC%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/03/09/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E7%BC%80/" class="post-title-link" itemprop="url">最长公共前缀</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-03-09 14:27:56 / 修改时间：14:30:44" itemprop="dateCreated datePublished" datetime="2024-03-09T14:27:56+08:00">2024-03-09</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="最长公共前缀"><a href="#最长公共前缀" class="headerlink" title="最长公共前缀"></a>最长公共前缀</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>编写一个函数来查找字符串数组中的最长公共前缀。</p>
+<p>如果不存在公共前缀，返回空字符串 <code>&quot;&quot;</code>。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：strs = [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]</span><br><span class="line">输出：&quot;fl&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：strs = [&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]</span><br><span class="line">输出：&quot;&quot;</span><br><span class="line">解释：输入不存在公共前缀。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= strs.length &lt;= 200</code></li>
+<li><code>0 &lt;= strs[i].length &lt;= 200</code></li>
+<li><code>strs[i]</code> 仅由小写英文字母组成</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）横向扫描"><a href="#（1）横向扫描" class="headerlink" title="（1）横向扫描"></a>（1）横向扫描</h3><p><strong>思路及算法</strong></p>
+<p>用 LCP(S1…Sn)表示字符串 S1…Sn 的最长公共前缀。</p>
+<p>可以得到以下结论：</p>
+<p>LCP(S1…Sn)&#x3D;LCP(LCP(LCP(S1,S2),S3),…Sn)</p>
+<p>基于该结论，可以得到一种查找字符串数组中的最长公共前缀的简单方法。依次遍历字符串数组中的每个字符串，对于每个遍历到的字符串，更新最长公共前缀，当遍历完所有的字符串以后，即可得到字符串数组中的最长公共前缀。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/14/14_fig1.png" alt="fig1"></p>
+<p>如果在尚未遍历完所有的字符串时，最长公共前缀已经是空串，则最长公共前缀一定是空串，因此不需要继续遍历剩下的字符串，直接返回空串即可。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    string longestCommonPrefix(vector&lt;string&gt;&amp; strs) &#123;</span><br><span class="line">        if (!strs.size()) &#123;</span><br><span class="line">            return &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        string prefix = strs[0];</span><br><span class="line">        int count = strs.size();</span><br><span class="line">        for (int i = 1; i &lt; count; ++i) &#123;</span><br><span class="line">            prefix = longestCommonPrefix(prefix, strs[i]);</span><br><span class="line">            if (!prefix.size()) &#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return prefix;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    string longestCommonPrefix(const string&amp; str1, const string&amp; str2) &#123;</span><br><span class="line">        int length = min(str1.size(), str2.size());</span><br><span class="line">        int index = 0;</span><br><span class="line">        while (index &lt; length &amp;&amp; str1[index] == str2[index]) &#123;</span><br><span class="line">            ++index;</span><br><span class="line">        &#125;</span><br><span class="line">        return str1.substr(0, index);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public String longestCommonPrefix(String[] strs) &#123;</span><br><span class="line">        if (strs == null || strs.length == 0) &#123;</span><br><span class="line">            return &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        String prefix = strs[0];</span><br><span class="line">        int count = strs.length;</span><br><span class="line">        for (int i = 1; i &lt; count; i++) &#123;</span><br><span class="line">            prefix = longestCommonPrefix(prefix, strs[i]);</span><br><span class="line">            if (prefix.length() == 0) &#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return prefix;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String longestCommonPrefix(String str1, String str2) &#123;</span><br><span class="line">        int length = Math.min(str1.length(), str2.length());</span><br><span class="line">        int index = 0;</span><br><span class="line">        while (index &lt; length &amp;&amp; str1.charAt(index) == str2.charAt(index)) &#123;</span><br><span class="line">            index++;</span><br><span class="line">        &#125;</span><br><span class="line">        return str1.substring(0, index);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(mn)，其中 m 是字符串数组中的字符串的平均长度，n 是字符串的数量。最坏情况下，字符串数组中的每个字符串的每个字符都会被比较一次。</p>
+</li>
+<li><p>空间复杂度：O(1)。使用的额外空间复杂度为常数。</p>
+</li>
+</ul>
+<h3 id="（2）纵向扫描"><a href="#（2）纵向扫描" class="headerlink" title="（2）纵向扫描"></a>（2）纵向扫描</h3><p><strong>思路及算法</strong></p>
+<p>纵向扫描时，从前往后遍历所有字符串的每一列，比较相同列上的字符是否相同，如果相同则继续对下一列进行比较，如果不相同则当前列不再属于公共前缀，当前列之前的部分为最长公共前缀。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/14/14_fig2.png" alt="fig2"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public String longestCommonPrefix(String[] strs) &#123;</span><br><span class="line">        if (strs == null || strs.length == 0) &#123;</span><br><span class="line">            return &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        int length = strs[0].length();</span><br><span class="line">        int count = strs.length;</span><br><span class="line">        for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">            char c = strs[0].charAt(i);</span><br><span class="line">            for (int j = 1; j &lt; count; j++) &#123;</span><br><span class="line">                if (i == strs[j].length() || strs[j].charAt(i) != c) &#123;</span><br><span class="line">                    return strs[0].substring(0, i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return strs[0];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    string longestCommonPrefix(vector&lt;string&gt;&amp; strs) &#123;</span><br><span class="line">        if (!strs.size()) &#123;</span><br><span class="line">            return &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        int length = strs[0].size();</span><br><span class="line">        int count = strs.size();</span><br><span class="line">        for (int i = 0; i &lt; length; ++i) &#123;</span><br><span class="line">            char c = strs[0][i];</span><br><span class="line">            for (int j = 1; j &lt; count; ++j) &#123;</span><br><span class="line">                if (i == strs[j].size() || strs[j][i] != c) &#123;</span><br><span class="line">                    return strs[0].substr(0, i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return strs[0];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(mn)，其中 m 是字符串数组中的字符串的平均长度，n 是字符串的数量。最坏情况下，字符串数组中的每个字符串的每个字符都会被比较一次。</p>
+</li>
+<li><p>空间复杂度：O(1)。使用的额外空间复杂度为常数。</p>
+</li>
+</ul>
+<h3 id="（3）分治"><a href="#（3）分治" class="headerlink" title="（3）分治"></a>（3）分治</h3><p><strong>思路及算法</strong></p>
+<p>注意到 LCP的计算满足结合律，有以下结论：</p>
+<p>LCP(S1…Sn)&#x3D;LCP(LCP(S1…Sk),LCP(Sk+1…Sn))<br>其中 LCP(S1…Sn)是字符串 S1…Sn 的最长公共前缀，1&lt;k&lt;n。</p>
+<p>基于上述结论，可以使用分治法得到字符串数组中的最长公共前缀。对于问题 LCP(Si⋯Sj)，可以分解成两个子问题 LCP(Si…Smid) 与 LCP(Smid+1…Sj)，其中 </p>
+<p>mid&#x3D;$\frac{i+j}{2}$。对两个子问题分别求解，然后对两个子问题的解计算最长公共前缀，即为原问题的解。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/14/14_fig3.png" alt="fig3"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    string longestCommonPrefix(vector&lt;string&gt;&amp; strs) &#123;</span><br><span class="line">        if (!strs.size()) &#123;</span><br><span class="line">            return &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            return longestCommonPrefix(strs, 0, strs.size() - 1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    string longestCommonPrefix(const vector&lt;string&gt;&amp; strs, int start, int end) &#123;</span><br><span class="line">        if (start == end) &#123;</span><br><span class="line">            return strs[start];</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            int mid = (start + end) / 2;</span><br><span class="line">            string lcpLeft = longestCommonPrefix(strs, start, mid);</span><br><span class="line">            string lcpRight = longestCommonPrefix(strs, mid + 1, end);</span><br><span class="line">            return commonPrefix(lcpLeft, lcpRight);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    string commonPrefix(const string&amp; lcpLeft, const string&amp; lcpRight) &#123;</span><br><span class="line">        int minLength = min(lcpLeft.size(), lcpRight.size());</span><br><span class="line">        for (int i = 0; i &lt; minLength; ++i) &#123;</span><br><span class="line">            if (lcpLeft[i] != lcpRight[i]) &#123;</span><br><span class="line">                return lcpLeft.substr(0, i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return lcpLeft.substr(0, minLength);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public String longestCommonPrefix(String[] strs) &#123;</span><br><span class="line">        if (strs == null || strs.length == 0) &#123;</span><br><span class="line">            return &quot;&quot;;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return longestCommonPrefix(strs, 0, strs.length - 1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String longestCommonPrefix(String[] strs, int start, int end) &#123;</span><br><span class="line">        if (start == end) &#123;</span><br><span class="line">            return strs[start];</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            int mid = (end - start) / 2 + start;</span><br><span class="line">            String lcpLeft = longestCommonPrefix(strs, start, mid);</span><br><span class="line">            String lcpRight = longestCommonPrefix(strs, mid + 1, end);</span><br><span class="line">            return commonPrefix(lcpLeft, lcpRight);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String commonPrefix(String lcpLeft, String lcpRight) &#123;</span><br><span class="line">        int minLength = Math.min(lcpLeft.length(), lcpRight.length());       </span><br><span class="line">        for (int i = 0; i &lt; minLength; i++) &#123;</span><br><span class="line">            if (lcpLeft.charAt(i) != lcpRight.charAt(i)) &#123;</span><br><span class="line">                return lcpLeft.substring(0, i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return lcpLeft.substring(0, minLength);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(mn)，其中 m 是字符串数组中的字符串的平均长度，n 是字符串的数量。时间复杂度的递推式是 T(n)&#x3D;2T(n&#x2F;2)+O(m)，通过计算可得 T(n)&#x3D;O(mn)。</p>
+</li>
+<li><p>空间复杂度：O(mlog⁡n)，其中 m 是字符串数组中的字符串的平均长度，n 是字符串的数量。空间复杂度主要取决于递归调用的层数，层数最大为 log⁡n，每层需要 m 的空间存储返回结果。</p>
+</li>
+</ul>
+<h3 id="（4）二分查找"><a href="#（4）二分查找" class="headerlink" title="（4）二分查找"></a>（4）二分查找</h3><p><strong>思路及算法</strong></p>
+<p>显然，最长公共前缀的长度不会超过字符串数组中的最短字符串的长度。用 minLength 表示字符串数组中的最短字符串的长度，则可以在 [0,minLength] 的范围内通过二分查找得到最长公共前缀的长度。每次取查找范围的中间值 mid，判断每个字符串的长度为 mid 的前缀是否相同，如果相同则最长公共前缀的长度一定大于或等于 mid，如果不相同则最长公共前缀的长度一定小于 mid，通过上述方式将查找范围缩小一半，直到得到最长公共前缀的长度。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/14/14_fig4.png" alt="fig4"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    string longestCommonPrefix(vector&lt;string&gt;&amp; strs) &#123;</span><br><span class="line">        if (!strs.size()) &#123;</span><br><span class="line">            return &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        int minLength = min_element(strs.begin(), strs.end(), [](const string&amp; s, const string&amp; t) &#123;return s.size() &lt; t.size();&#125;)-&gt;size();</span><br><span class="line">        int low = 0, high = minLength;</span><br><span class="line">        while (low &lt; high) &#123;</span><br><span class="line">            int mid = (high - low + 1) / 2 + low;</span><br><span class="line">            if (isCommonPrefix(strs, mid)) &#123;</span><br><span class="line">                low = mid;</span><br><span class="line">            &#125;</span><br><span class="line">            else &#123;</span><br><span class="line">                high = mid - 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return strs[0].substr(0, low);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    bool isCommonPrefix(const vector&lt;string&gt;&amp; strs, int length) &#123;</span><br><span class="line">        string str0 = strs[0].substr(0, length);</span><br><span class="line">        int count = strs.size();</span><br><span class="line">        for (int i = 1; i &lt; count; ++i) &#123;</span><br><span class="line">            string str = strs[i];</span><br><span class="line">            for (int j = 0; j &lt; length; ++j) &#123;</span><br><span class="line">                if (str0[j] != str[j]) &#123;</span><br><span class="line">                    return false;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public String longestCommonPrefix(String[] strs) &#123;</span><br><span class="line">        if (strs == null || strs.length == 0) &#123;</span><br><span class="line">            return &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        int minLength = Integer.MAX_VALUE;</span><br><span class="line">        for (String str : strs) &#123;</span><br><span class="line">            minLength = Math.min(minLength, str.length());</span><br><span class="line">        &#125;</span><br><span class="line">        int low = 0, high = minLength;</span><br><span class="line">        while (low &lt; high) &#123;</span><br><span class="line">            int mid = (high - low + 1) / 2 + low;</span><br><span class="line">            if (isCommonPrefix(strs, mid)) &#123;</span><br><span class="line">                low = mid;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                high = mid - 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return strs[0].substring(0, low);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean isCommonPrefix(String[] strs, int length) &#123;</span><br><span class="line">        String str0 = strs[0].substring(0, length);</span><br><span class="line">        int count = strs.length;</span><br><span class="line">        for (int i = 1; i &lt; count; i++) &#123;</span><br><span class="line">            String str = strs[i];</span><br><span class="line">            for (int j = 0; j &lt; length; j++) &#123;</span><br><span class="line">                if (str0.charAt(j) != str.charAt(j)) &#123;</span><br><span class="line">                    return false;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(mnlog⁡m)，其中 m 是字符串数组中的字符串的最小长度，n 是字符串的数量。二分查找的迭代执行次数是 O(log⁡m)，每次迭代最多需要比较 mn 个字符，因此总时间复杂度是 O(mnlog⁡m)。</p>
+</li>
+<li><p>空间复杂度：O(1)。使用的额外空间复杂度为常数。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1058,595 +1603,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/05/%E7%BB%B4%E4%BF%AE%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%89%E6%84%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/05/%E7%BB%B4%E4%BF%AE%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%89%E6%84%9F/" class="post-title-link" itemprop="url">维修数据库有感</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-03-05 20:24:25 / 修改时间：21:20:05" itemprop="dateCreated datePublished" datetime="2024-03-05T20:24:25+08:00">2024-03-05</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>570</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="维修数据库有感"><a href="#维修数据库有感" class="headerlink" title="维修数据库有感"></a>维修数据库有感</h1><h2 id="MySQL报错：2002-Can‘t-connect-to-server-on-‘localhost‘-10061"><a href="#MySQL报错：2002-Can‘t-connect-to-server-on-‘localhost‘-10061" class="headerlink" title="MySQL报错：2002 - Can‘t connect to server on ‘localhost‘(10061)"></a>MySQL报错：2002 - Can‘t connect to server on ‘localhost‘(10061)</h2><p>今天上午，我在Navicat连接数据库的时候发现报错<strong>“2002 - Can‘t connect to server on ‘localhost‘(10061)”</strong>，一开始我照CSDN的方法在计算机管理的服务中找到MYSQL并点击启动，结果还是运行不了。同时我也发现即使我输入了正确的数据库登陆密码也会报错<strong>“Can‘t connect to server on ‘localhost‘(10061)”</strong>，所以就需要下面的方法来解决这个问题。</p>
-<h3 id="维修方法"><a href="#维修方法" class="headerlink" title="维修方法"></a>维修方法</h3><ol>
-<li><p>以管理员身份运行<code>cmd</code>,并用<code>cd</code>命令切换到mysql的bin目录下；</p>
-</li>
-<li><p>输入命令<code>mysql -u root -p</code>,登录mysql,输入密码，会返回<code>ERROR 2003 (HY000):Can&#39;t connect to MySQL server on localhost (10061)</code>;</p>
-</li>
-<li><p>将mysql加入到Windows的服务中。切换到mysql安装目录下的bin文件夹，命令行运行<code>mysqld --install</code>;</p>
-</li>
-<li><p>初始化mysql数据库，输入<code>mysqld --initialize --user=root --console</code>。<strong>最后面的 root@localhost后的文字为初始化后的root 密码，一定要记住</strong>;</p>
-</li>
-<li><p>此时使用<code>net start mysql</code>成功启动mysql;</p>
-</li>
-<li><p>用生成的密码登录mysql,这样的话就可以成功重新登陆数据库了。</p>
-</li>
-</ol>
-<p>但是这样的话，又会遇到一个问题：生成的密码是无序且复杂的，所以需要我们自己手动更改mysql的密码，由于本人的mysql是8.0以上的版本，因此mysql5.0版本的<code>set password=password(&#39;新密码&#39;)</code>不能使用，接下来就讲一下mysql8.0是怎么更改密码的。</p>
-<h3 id="更改数据库密码"><a href="#更改数据库密码" class="headerlink" title="更改数据库密码"></a>更改数据库密码</h3><ol>
-<li>以管理员身份运行<code>cmd</code>,并用<code>cd</code>命令切换到mysql的bin目录下；</li>
-<li>输入<code>mysql -u root -p</code>,并输入原先的密码,登录mysql;</li>
-<li>输入<code>use mysql</code> 连接数据库;</li>
-<li>输入 <code>ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;新的密码&#39;; FLUSH PRIVILEGES;</code><strong>注意最后的“；”不能去掉</strong>;</li>
-<li>输入<code>flush privileges</code>; 刷新权限，<strong>这里也要注意最后的“；”不能去掉</strong> ;</li>
-<li>输入<code>quit</code>停止；</li>
-<li>输入<code>net start mysql</code>启动我的数据库；</li>
-<li>输入<code>mysqladmin -u root -p shutdown</code>,这里的密码是新设置的密码；</li>
-<li>输入 <code>net start mysql</code> 启动mysql，输入<code>mysql -u root -p</code>，回车后输入新设置的密码，这样就可以成功修改密码了。</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/05/%E6%8E%A5%E9%9B%A8%E6%B0%B4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/05/%E6%8E%A5%E9%9B%A8%E6%B0%B4/" class="post-title-link" itemprop="url">接雨水</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-03-05 14:27:47" itemprop="dateCreated datePublished" datetime="2024-03-05T14:27:47+08:00">2024-03-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-03-07 20:42:41" itemprop="dateModified" datetime="2024-03-07T20:42:41+08:00">2024-03-07</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.9k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>7 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="接雨水"><a href="#接雨水" class="headerlink" title="接雨水"></a>接雨水</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定 <code>n</code> 个非负整数表示每个宽度为 <code>1</code> 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/22/rainwatertrap.png" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：height = [0,1,0,2,1,0,1,3,2,1,2,1]</span><br><span class="line">输出：6</span><br><span class="line">解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。 </span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：height = [4,2,0,3,2,5]</span><br><span class="line">输出：9</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>n == height.length</code></li>
-<li><code>1 &lt;= n &lt;= 2 * 104</code></li>
-<li><code>0 &lt;= height[i] &lt;= 105</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）动态规划"><a href="#（1）动态规划" class="headerlink" title="（1）动态规划"></a>（1）动态规划</h3><p><strong>思路及算法</strong></p>
-<p>对于下标 i，下雨后水能到达的最大高度等于下标 i 两边的最大高度的最小值，下标 iii 处能接的雨水量等于下标 i 处的水能到达的最大高度减去 height[i]。</p>
-<p>朴素的做法是对于数组 height 中的每个元素，分别向左和向右扫描并记录左边和右边的最大高度，然后计算每个下标位置能接的雨水量。假设数组 height 的长度为 n，该做法需要对每个下标位置使用 O(n) 的时间向两边扫描并得到最大高度，因此总时间复杂度是 O(n^2^)。</p>
-<p>上述做法的时间复杂度较高是因为需要对每个下标位置都向两边扫描。如果已经知道每个位置两边的最大高度，则可以在 O(n) 的时间内得到能接的雨水总量。使用动态规划的方法，可以在 O(n) 的时间内预处理得到每个位置两边的最大高度。</p>
-<p>创建两个长度为 n 的数组 leftMax 和 rightMax。对于 0≤i&lt;n，leftMax[i] 表示下标 iii 及其左边的位置中，height 的最大高度，rightMax[i] 表示下标 i 及其右边的位置中，height 的最大高度。</p>
-<p>显然，leftMax[0]&#x3D;height[0]，rightMax[n−1]&#x3D;height[n−1]。两个数组的其余元素的计算如下：</p>
-<ul>
-<li><p>当 1≤i≤n−1 时，leftMax[i]&#x3D;max⁡(leftMax[i−1],height[i])；</p>
-</li>
-<li><p>当 0≤i≤n−2 时，rightMax[i]&#x3D;max⁡(rightMax[i+1],height[i])。</p>
-</li>
-</ul>
-<p>因此可以正向遍历数组 height 得到数组 leftMax 的每个元素值，反向遍历数组 height 得到数组 rightMax 的每个元素值。</p>
-<p>在得到数组 leftMax 和 rightMax 的每个元素值之后，对于 0≤i&lt;n，下标 i 处能接的雨水量等于 min⁡(leftMax[i],rightMax[i])−height[i]。遍历每个下标位置即可得到能接的雨水总量。</p>
-<p>动态规划做法可以由下图体现。<img src="https://assets.leetcode-cn.com/solution-static/42/1.png" alt="fig1"></p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int n = height.size();</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;int&gt; leftMax(n);</span><br><span class="line">        leftMax[0] = height[0];</span><br><span class="line">        for (int i = 1; i &lt; n; ++i) &#123;</span><br><span class="line">            leftMax[i] = max(leftMax[i - 1], height[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vector&lt;int&gt; rightMax(n);</span><br><span class="line">        rightMax[n - 1] = height[n - 1];</span><br><span class="line">        for (int i = n - 2; i &gt;= 0; --i) &#123;</span><br><span class="line">            rightMax[i] = max(rightMax[i + 1], height[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int ans = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            ans += min(leftMax[i], rightMax[i]) - height[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int trap(int[] height) &#123;</span><br><span class="line">        int n = height.length;</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int[] leftMax = new int[n];</span><br><span class="line">        leftMax[0] = height[0];</span><br><span class="line">        for (int i = 1; i &lt; n; ++i) &#123;</span><br><span class="line">            leftMax[i] = Math.max(leftMax[i - 1], height[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int[] rightMax = new int[n];</span><br><span class="line">        rightMax[n - 1] = height[n - 1];</span><br><span class="line">        for (int i = n - 2; i &gt;= 0; --i) &#123;</span><br><span class="line">            rightMax[i] = Math.max(rightMax[i + 1], height[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int ans = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            ans += Math.min(leftMax[i], rightMax[i]) - height[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是数组 height 的长度。计算数组 leftMax 和 rightMax 的元素值各需要遍历数组 height 一次，计算能接的雨水总量还需要遍历一次。</p>
-</li>
-<li><p>空间复杂度：O(n)，其中 n 是数组 height 的长度。需要创建两个长度为 n 的数组 leftMax 和 rightMax。</p>
-</li>
-</ul>
-<h3 id="（2）单调栈"><a href="#（2）单调栈" class="headerlink" title="（2）单调栈"></a>（2）单调栈</h3><p><strong>思路及算法</strong></p>
-<p>除了计算并存储每个位置两边的最大高度以外，也可以用单调栈计算能接的雨水总量。</p>
-<p>维护一个单调栈，单调栈存储的是下标，满足从栈底到栈顶的下标对应的数组 height 中的元素递减。</p>
-<p>从左到右遍历数组，遍历到下标 i 时，如果栈内至少有两个元素，记栈顶元素为 top，top 的下面一个元素是 left，则一定有 height[left]≥height[top]。如果 height[i]&gt;height[top]，则得到一个可以接雨水的区域，该区域的宽度是 i−left−1，高度是 min⁡(height[left],height[i])−height[top]，根据宽度和高度即可计算得到该区域能接的雨水量。</p>
-<p>为了得到 left，需要将 top 出栈。在对 top 计算能接的雨水量之后，left 变成新的 top，重复上述操作，直到栈变为空，或者栈顶下标对应的 height 中的元素大于或等于 height[i]。</p>
-<p>在对下标 i 处计算能接的雨水量之后，将 iii 入栈，继续遍历后面的下标，计算能接的雨水量。遍历结束之后即可得到能接的雨水总量。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        stack&lt;int&gt; stk;</span><br><span class="line">        int n = height.size();</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            while (!stk.empty() &amp;&amp; height[i] &gt; height[stk.top()]) &#123;</span><br><span class="line">                int top = stk.top();</span><br><span class="line">                stk.pop();</span><br><span class="line">                if (stk.empty()) &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                int left = stk.top();</span><br><span class="line">                int currWidth = i - left - 1;</span><br><span class="line">                int currHeight = min(height[left], height[i]) - height[top];</span><br><span class="line">                ans += currWidth * currHeight;</span><br><span class="line">            &#125;</span><br><span class="line">            stk.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int trap(int[] height) &#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        Deque&lt;Integer&gt; stack = new LinkedList&lt;Integer&gt;();</span><br><span class="line">        int n = height.length;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            while (!stack.isEmpty() &amp;&amp; height[i] &gt; height[stack.peek()]) &#123;</span><br><span class="line">                int top = stack.pop();</span><br><span class="line">                if (stack.isEmpty()) &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">                int left = stack.peek();</span><br><span class="line">                int currWidth = i - left - 1;</span><br><span class="line">                int currHeight = Math.min(height[left], height[i]) - height[top];</span><br><span class="line">                ans += currWidth * currHeight;</span><br><span class="line">            &#125;</span><br><span class="line">            stack.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是数组 height 的长度。从 0 到 n−1 的每个下标最多只会入栈和出栈各一次。</p>
-</li>
-<li><p>空间复杂度：O(n)，其中 n 是数组 height 的长度。空间复杂度主要取决于栈空间，栈的大小不会超过 n。</p>
-</li>
-</ul>
-<h3 id="（3）双指针"><a href="#（3）双指针" class="headerlink" title="（3）双指针"></a>（3）双指针</h3><p><strong>思路及算法</strong></p>
-<p>动态规划的做法中，需要维护两个数组 leftMax 和 rightMax，因此空间复杂度是 O(n)。是否可以将空间复杂度降到 O(1)？</p>
-<p>注意到下标 iii 处能接的雨水量由 leftMax[i] 和 rightMax[i] 中的最小值决定。由于数组 leftMax 是从左往右计算，数组 rightMax 是从右往左计算，因此可以使用双指针和两个变量代替两个数组。</p>
-<p>维护两个指针 left 和 right，以及两个变量 leftMax 和 rightMax，初始时 left&#x3D;0,right&#x3D;n−1,leftMax&#x3D;0,rightMax&#x3D;0。指针 left 只会向右移动，指针 right 只会向左移动，在移动指针的过程中维护两个变量 leftMax 和 rightMax 的值。</p>
-<p>当两个指针没有相遇时，进行如下操作：</p>
-<p>使用 height[left] 和 height[right] 的值更新 leftMax 和 rightMax 的值；</p>
-<p>如果 height[left]&lt;height[right]，则必有 leftMax&lt;rightMax，下标 left 处能接的雨水量等于 leftMax−height[left]，将下标 left 处能接的雨水量加到能接的雨水总量，然后将 left 加 1（即向右移动一位）；</p>
-<p>如果 height[left]≥height[right]，则必有 leftMax≥rightMax，下标 right 处能接的雨水量等于 rightMax−height[right]，将下标 right 处能接的雨水量加到能接的雨水总量，然后将 right 减 1（即向左移动一位）。</p>
-<p>当两个指针相遇时，即可得到能接的雨水总量。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int trap(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        int left = 0, right = height.size() - 1;</span><br><span class="line">        int leftMax = 0, rightMax = 0;</span><br><span class="line">        while (left &lt; right) &#123;</span><br><span class="line">            leftMax = max(leftMax, height[left]);</span><br><span class="line">            rightMax = max(rightMax, height[right]);</span><br><span class="line">            if (height[left] &lt; height[right]) &#123;</span><br><span class="line">                ans += leftMax - height[left];</span><br><span class="line">                ++left;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                ans += rightMax - height[right];</span><br><span class="line">                --right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int trap(int[] height) &#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        int left = 0, right = height.length - 1;</span><br><span class="line">        int leftMax = 0, rightMax = 0;</span><br><span class="line">        while (left &lt; right) &#123;</span><br><span class="line">            leftMax = Math.max(leftMax, height[left]);</span><br><span class="line">            rightMax = Math.max(rightMax, height[right]);</span><br><span class="line">            if (height[left] &lt; height[right]) &#123;</span><br><span class="line">                ans += leftMax - height[left];</span><br><span class="line">                ++left;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                ans += rightMax - height[right];</span><br><span class="line">                --right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是数组 height 的长度。两个指针的移动总次数不超过 n。</p>
-</li>
-<li><p>空间复杂度：O(1)。只需要使用常数的额外空间。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/04/%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/04/%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C/" class="post-title-link" itemprop="url">分发糖果</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-03-04 09:57:44" itemprop="dateCreated datePublished" datetime="2024-03-04T09:57:44+08:00">2024-03-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-03-07 20:44:56" itemprop="dateModified" datetime="2024-03-07T20:44:56+08:00">2024-03-07</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.5k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="分发糖果"><a href="#分发糖果" class="headerlink" title="分发糖果"></a>分发糖果</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p><code>n</code> 个孩子站成一排。给你一个整数数组 <code>ratings</code> 表示每个孩子的评分。</p>
-<p>你需要按照以下要求，给这些孩子分发糖果：</p>
-<ul>
-<li>每个孩子至少分配到 <code>1</code> 个糖果。</li>
-<li>相邻两个孩子评分更高的孩子会获得更多的糖果。</li>
-</ul>
-<p>请你给每个孩子分发糖果，计算并返回需要准备的 <strong>最少糖果数目</strong> 。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：ratings = [1,0,2]</span><br><span class="line">输出：5</span><br><span class="line">解释：你可以分别给第一个、第二个、第三个孩子分发 2、1、2 颗糖果。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：ratings = [1,2,2]</span><br><span class="line">输出：4</span><br><span class="line">解释：你可以分别给第一个、第二个、第三个孩子分发 1、2、1 颗糖果。</span><br><span class="line">     第三个孩子只得到 1 颗糖果，这满足题面中的两个条件。</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>n == ratings.length</code></li>
-<li><code>1 &lt;= n &lt;= 2 * 104</code></li>
-<li><code>0 &lt;= ratings[i] &lt;= 2 * 104</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）两次遍历"><a href="#（1）两次遍历" class="headerlink" title="（1）两次遍历"></a>（1）两次遍历</h3><p><strong>思路及算法</strong></p>
-<p>我们可以将「相邻的孩子中，评分高的孩子必须获得更多的糖果」这句话拆分为两个规则，分别处理。</p>
-<ul>
-<li><p>左规则：当 ratings[i−1]&lt;ratings[i] 时，iii 号学生的糖果数量将比 i−1 号孩子的糖果数量多。</p>
-</li>
-<li><p>右规则：当 ratings[i]&gt;ratings[i+1] 时，iii 号学生的糖果数量将比 i+1 号孩子的糖果数量多。</p>
-</li>
-</ul>
-<p>我们遍历该数组两次，处理出每一个学生分别满足左规则或右规则时，最少需要被分得的糖果数量。每个人最终分得的糖果数量即为这两个数量的最大值。</p>
-<p>具体地，以左规则为例：我们从左到右遍历该数组，假设当前遍历到位置 i，如果有 ratings[i−1]&lt;ratings[i] 那么 iii 号学生的糖果数量将比 i−1 号孩子的糖果数量多，我们令 left[i]&#x3D;left[i−1]+1 即可，否则我们令 left[i]&#x3D;1。</p>
-<p>在实际代码中，我们先计算出左规则 left 数组，在计算右规则的时候只需要用单个变量记录当前位置的右规则，同时计算答案即可。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int candy(vector&lt;int&gt;&amp; ratings) &#123;</span><br><span class="line">        int n = ratings.size();</span><br><span class="line">        vector&lt;int&gt; left(n);</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            if (i &gt; 0 &amp;&amp; ratings[i] &gt; ratings[i - 1]) &#123;</span><br><span class="line">                left[i] = left[i - 1] + 1;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                left[i] = 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int right = 0, ret = 0;</span><br><span class="line">        for (int i = n - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">            if (i &lt; n - 1 &amp;&amp; ratings[i] &gt; ratings[i + 1]) &#123;</span><br><span class="line">                right++;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                right = 1;</span><br><span class="line">            &#125;</span><br><span class="line">            ret += max(left[i], right);</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int candy(int[] ratings) &#123;</span><br><span class="line">        int n = ratings.length;</span><br><span class="line">        int[] left = new int[n];</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            if (i &gt; 0 &amp;&amp; ratings[i] &gt; ratings[i - 1]) &#123;</span><br><span class="line">                left[i] = left[i - 1] + 1;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                left[i] = 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int right = 0, ret = 0;</span><br><span class="line">        for (int i = n - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">            if (i &lt; n - 1 &amp;&amp; ratings[i] &gt; ratings[i + 1]) &#123;</span><br><span class="line">                right++;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                right = 1;</span><br><span class="line">            &#125;</span><br><span class="line">            ret += Math.max(left[i], right);</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是孩子的数量。我们需要遍历两次数组以分别计算满足左规则或右规则的最少糖果数量。</p>
-</li>
-<li><p>空间复杂度：O(n)，其中 n 是孩子的数量。我们需要保存所有的左规则对应的糖果数量。</p>
-</li>
-</ul>
-<h3 id="（2）常数空间遍历"><a href="#（2）常数空间遍历" class="headerlink" title="（2）常数空间遍历"></a>（2）常数空间遍历</h3><p><strong>思路及算法</strong></p>
-<p>注意到糖果总是尽量少给，且从 1 开始累计，每次要么比相邻的同学多给一个，要么重新置为 1。依据此规则，我们可以画出下图：</p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/135/1.png" alt="fig1"></p>
-<p>其中相同颜色的柱状图的高度总恰好为 1,2,3…。</p>
-<p>而高度也不一定一定是升序，也可能是 …3,2,1 的降序：</p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/135/2.png" alt="fig2"></p>
-<p>注意到在上图中，对于第三个同学，他既可以被认为是属于绿色的升序部分，也可以被认为是属于蓝色的降序部分。因为他同时比两边的同学评分更高。我们对序列稍作修改：</p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/135/3.png" alt="fig3"></p>
-<p>注意到右边的升序部分变长了，使得第三个同学不得不被分配 4 个糖果。</p>
-<p>依据前面总结的规律，我们可以提出本题的解法。我们从左到右枚举每一个同学，记前一个同学分得的糖果数量为 pre：</p>
-<ul>
-<li><p>如果当前同学比上一个同学评分高，说明我们就在最近的递增序列中，直接分配给该同学 pre+1 个糖果即可。</p>
-</li>
-<li><p>否则我们就在一个递减序列中，我们直接分配给当前同学一个糖果，并把该同学所在的递减序列中所有的同学都再多分配一个糖果，以保证糖果数量还是满足条件。</p>
-<ul>
-<li>我们无需显式地额外分配糖果，只需要记录当前的递减序列长度，即可知道需要额外分配的糖果数量。</li>
-<li>同时注意当当前的递减序列长度和上一个递增序列等长时，需要把最近的递增序列的最后一个同学也并进递减序列中。</li>
-</ul>
-</li>
-</ul>
-<p>这样，我们只要记录当前递减序列的长度 dec，最近的递增序列的长度 inc 和前一个同学分得的糖果数量 pre即可。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int candy(vector&lt;int&gt;&amp; ratings) &#123;</span><br><span class="line">        int n = ratings.size();</span><br><span class="line">        int ret = 1;</span><br><span class="line">        int inc = 1, dec = 0, pre = 1;</span><br><span class="line">        for (int i = 1; i &lt; n; i++) &#123;</span><br><span class="line">            if (ratings[i] &gt;= ratings[i - 1]) &#123;</span><br><span class="line">                dec = 0;</span><br><span class="line">                pre = ratings[i] == ratings[i - 1] ? 1 : pre + 1;</span><br><span class="line">                ret += pre;</span><br><span class="line">                inc = pre;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                dec++;</span><br><span class="line">                if (dec == inc) &#123;</span><br><span class="line">                    dec++;</span><br><span class="line">                &#125;</span><br><span class="line">                ret += dec;</span><br><span class="line">                pre = 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int candy(int[] ratings) &#123;</span><br><span class="line">        int n = ratings.length;</span><br><span class="line">        int ret = 1;</span><br><span class="line">        int inc = 1, dec = 0, pre = 1;</span><br><span class="line">        for (int i = 1; i &lt; n; i++) &#123;</span><br><span class="line">            if (ratings[i] &gt;= ratings[i - 1]) &#123;</span><br><span class="line">                dec = 0;</span><br><span class="line">                pre = ratings[i] == ratings[i - 1] ? 1 : pre + 1;</span><br><span class="line">                ret += pre;</span><br><span class="line">                inc = pre;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                dec++;</span><br><span class="line">                if (dec == inc) &#123;</span><br><span class="line">                    dec++;</span><br><span class="line">                &#125;</span><br><span class="line">                ret += dec;</span><br><span class="line">                pre = 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是孩子的数量。我们需要遍历两次数组以分别计算满足左规则或右规则的最少糖果数量。</p>
-</li>
-<li><p>空间复杂度：O(1)。我们只需要常数的空间保存若干变量。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/03/N%E7%9A%87%E5%90%8E/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/03/N%E7%9A%87%E5%90%8E/" class="post-title-link" itemprop="url">N皇后</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-03-03 13:38:43" itemprop="dateCreated datePublished" datetime="2024-03-03T13:38:43+08:00">2024-03-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-03-08 13:36:25" itemprop="dateModified" datetime="2024-03-08T13:36:25+08:00">2024-03-08</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2.1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>8 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="N皇后问题"><a href="#N皇后问题" class="headerlink" title="N皇后问题"></a>N皇后问题</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>按照国际象棋的规则，皇后可以攻击与之处在同一行或同一列或同一斜线上的棋子。</p>
-<p><strong>n 皇后问题</strong> 研究的是如何将 <code>n</code> 个皇后放置在 <code>n×n</code> 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
-<p>给你一个整数 <code>n</code> ，返回所有不同的 <strong>n 皇后问题</strong> 的解决方案。</p>
-<p>每一种解法包含一个不同的 <strong>n 皇后问题</strong> 的棋子放置方案，该方案中 <code>&#39;Q&#39;</code> 和 <code>&#39;.&#39;</code> 分别代表了皇后和空位。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2020/11/13/queens.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 4</span><br><span class="line">输出：[[&quot;.Q..&quot;,&quot;...Q&quot;,&quot;Q...&quot;,&quot;..Q.&quot;],[&quot;..Q.&quot;,&quot;Q...&quot;,&quot;...Q&quot;,&quot;.Q..&quot;]]</span><br><span class="line">解释：如上图所示，4 皇后问题存在两个不同的解法。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 1</span><br><span class="line">输出：[[&quot;Q&quot;]]</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= n &lt;= 9</code></li>
-</ul>
-<h2 id="2-题解"><a href="#2-题解" class="headerlink" title="2.题解"></a>2.题解</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>「N 皇后问题」研究的是如何将 N 个皇后放置在 N×N 的棋盘上，并且使皇后彼此之间不能相互攻击。</p>
-<p>皇后的走法是：可以横直斜走，格数不限。因此要求皇后彼此之间不能相互攻击，等价于要求任何两个皇后都不能在同一行、同一列以及同一条斜线上。</p>
-<p>直观的做法是暴力枚举将 N 个皇后放置在 N×N  的棋盘上的所有可能的情况，并对每一种情况判断是否满足皇后彼此之间不相互攻击。暴力枚举的时间复杂度是非常高的，因此必须利用限制条件加以优化。</p>
-<p>显然，每个皇后必须位于不同行和不同列，因此将 N 个皇后放置在 N×N 的棋盘上，一定是每一行有且仅有一个皇后，每一列有且仅有一个皇后，且任何两个皇后都不能在同一条斜线上。基于上述发现，可以通过回溯的方式寻找可能的解。</p>
-<p>回溯的具体做法是：使用一个数组记录每行放置的皇后的列下标，依次在每一行放置一个皇后。每次新放置的皇后都不能和已经放置的皇后之间有攻击：即新放置的皇后不能和任何一个已经放置的皇后在同一列以及同一条斜线上，并更新数组中的当前行的皇后列下标。当 N 个皇后都放置完毕，则找到一个可能的解。当找到一个可能的解之后，将数组转换成表示棋盘状态的列表，并将该棋盘状态的列表加入返回列表。</p>
-<p>由于每个皇后必须位于不同列，因此已经放置的皇后所在的列不能放置别的皇后。第一个皇后有 N 列可以选择，第二个皇后最多有 N−1 列可以选择，第三个皇后最多有 N−2 列可以选择（如果考虑到不能在同一条斜线上，可能的选择数量更少），因此所有可能的情况不会超过 N! 种，遍历这些情况的时间复杂度是 O(N!)。</p>
-<p>为了降低总时间复杂度，每次放置皇后时需要快速判断每个位置是否可以放置皇后，显然，最理想的情况是在 O(1) 的时间内判断该位置所在的列和两条斜线上是否已经有皇后。</p>
-<p>以下两种方法分别使用集合和位运算对皇后的放置位置进行判断，都可以在 O(1) 的时间内判断一个位置是否可以放置皇后，算法的总时间复杂度都是 O(N!)。</p>
-<h3 id="基于集合的回溯"><a href="#基于集合的回溯" class="headerlink" title="基于集合的回溯"></a>基于集合的回溯</h3><p><strong>思路及算法</strong></p>
-<p>为了判断一个位置所在的列和两条斜线上是否已经有皇后，使用三个集合 columns、diagonals1和 diagonals2 分别记录每一列以及两个方向的每条斜线上是否有皇后。</p>
-<p>列的表示法很直观，一共有 N 列，每一列的下标范围从 0 到 N−1，使用列的下标即可明确表示每一列。</p>
-<p>如何表示两个方向的斜线呢？对于每个方向的斜线，需要找到斜线上的每个位置的行下标与列下标之间的关系。</p>
-<p>方向一的斜线为从左上到右下方向，同一条斜线上的每个位置满足行下标与列下标之差相等，例如 (0,0) 和 (3,3) 在同一条方向一的斜线上。因此使用行下标与列下标之差即可明确表示每一条方向一的斜线。</p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/51/1.png" alt="fig1"></p>
-<p>方向二的斜线为从右上到左下方向，同一条斜线上的每个位置满足行下标与列下标之和相等，例如 (3,0) 和 (1,2) 在同一条方向二的斜线上。因此使用行下标与列下标之和即可明确表示每一条方向二的斜线。</p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/51/2.png" alt="fig2"></p>
-<p>每次放置皇后时，对于每个位置判断其是否在三个集合中，如果三个集合都不包含当前位置，则当前位置是可以放置皇后的位置。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; solveNQueens(int n) &#123;</span><br><span class="line">        auto solutions = vector&lt;vector&lt;string&gt;&gt;();</span><br><span class="line">        auto queens = vector&lt;int&gt;(n, -1);</span><br><span class="line">        auto columns = unordered_set&lt;int&gt;();</span><br><span class="line">        auto diagonals1 = unordered_set&lt;int&gt;();</span><br><span class="line">        auto diagonals2 = unordered_set&lt;int&gt;();</span><br><span class="line">        backtrack(solutions, queens, n, 0, columns, diagonals1, diagonals2);</span><br><span class="line">        return solutions;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void backtrack(vector&lt;vector&lt;string&gt;&gt; &amp;solutions, vector&lt;int&gt; &amp;queens, int n, int row, unordered_set&lt;int&gt; &amp;columns, unordered_set&lt;int&gt; &amp;diagonals1, unordered_set&lt;int&gt; &amp;diagonals2) &#123;</span><br><span class="line">        if (row == n) &#123;</span><br><span class="line">            vector&lt;string&gt; board = generateBoard(queens, n);</span><br><span class="line">            solutions.push_back(board);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">                if (columns.find(i) != columns.end()) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                int diagonal1 = row - i;</span><br><span class="line">                if (diagonals1.find(diagonal1) != diagonals1.end()) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                int diagonal2 = row + i;</span><br><span class="line">                if (diagonals2.find(diagonal2) != diagonals2.end()) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                queens[row] = i;</span><br><span class="line">                columns.insert(i);</span><br><span class="line">                diagonals1.insert(diagonal1);</span><br><span class="line">                diagonals2.insert(diagonal2);</span><br><span class="line">                backtrack(solutions, queens, n, row + 1, columns, diagonals1, diagonals2);</span><br><span class="line">                queens[row] = -1;</span><br><span class="line">                columns.erase(i);</span><br><span class="line">                diagonals1.erase(diagonal1);</span><br><span class="line">                diagonals2.erase(diagonal2);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    vector&lt;string&gt; generateBoard(vector&lt;int&gt; &amp;queens, int n) &#123;</span><br><span class="line">        auto board = vector&lt;string&gt;();</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            string row = string(n, &#x27;.&#x27;);</span><br><span class="line">            row[queens[i]] = &#x27;Q&#x27;;</span><br><span class="line">            board.push_back(row);</span><br><span class="line">        &#125;</span><br><span class="line">        return board;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;String&gt;&gt; solveNQueens(int n) &#123;</span><br><span class="line">        List&lt;List&lt;String&gt;&gt; solutions = new ArrayList&lt;List&lt;String&gt;&gt;();</span><br><span class="line">        int[] queens = new int[n];</span><br><span class="line">        Arrays.fill(queens, -1);</span><br><span class="line">        Set&lt;Integer&gt; columns = new HashSet&lt;Integer&gt;();</span><br><span class="line">        Set&lt;Integer&gt; diagonals1 = new HashSet&lt;Integer&gt;();</span><br><span class="line">        Set&lt;Integer&gt; diagonals2 = new HashSet&lt;Integer&gt;();</span><br><span class="line">        backtrack(solutions, queens, n, 0, columns, diagonals1, diagonals2);</span><br><span class="line">        return solutions;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void backtrack(List&lt;List&lt;String&gt;&gt; solutions, int[] queens, int n, int row, Set&lt;Integer&gt; columns, Set&lt;Integer&gt; diagonals1, Set&lt;Integer&gt; diagonals2) &#123;</span><br><span class="line">        if (row == n) &#123;</span><br><span class="line">            List&lt;String&gt; board = generateBoard(queens, n);</span><br><span class="line">            solutions.add(board);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">                if (columns.contains(i)) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                int diagonal1 = row - i;</span><br><span class="line">                if (diagonals1.contains(diagonal1)) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                int diagonal2 = row + i;</span><br><span class="line">                if (diagonals2.contains(diagonal2)) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                queens[row] = i;</span><br><span class="line">                columns.add(i);</span><br><span class="line">                diagonals1.add(diagonal1);</span><br><span class="line">                diagonals2.add(diagonal2);</span><br><span class="line">                backtrack(solutions, queens, n, row + 1, columns, diagonals1, diagonals2);</span><br><span class="line">                queens[row] = -1;</span><br><span class="line">                columns.remove(i);</span><br><span class="line">                diagonals1.remove(diagonal1);</span><br><span class="line">                diagonals2.remove(diagonal2);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public List&lt;String&gt; generateBoard(int[] queens, int n) &#123;</span><br><span class="line">        List&lt;String&gt; board = new ArrayList&lt;String&gt;();</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            char[] row = new char[n];</span><br><span class="line">            Arrays.fill(row, &#x27;.&#x27;);</span><br><span class="line">            row[queens[i]] = &#x27;Q&#x27;;</span><br><span class="line">            board.add(new String(row));</span><br><span class="line">        &#125;</span><br><span class="line">        return board;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(N!)，其中 N 是皇后数量。</p>
-</li>
-<li><p>空间复杂度：O(N)，其中 N 是皇后数量。空间复杂度主要取决于递归调用层数、记录每行放置的皇后的列下标的数组以及三个集合，递归调用层数不会超过 N，数组的长度为 N，每个集合的元素个数都不会超过 N。</p>
-</li>
-</ul>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>回顾这道题，拿到这道题的时候，其实我们很容易看出需要使用枚举的方法来求解这个问题，当我们不知道用什么办法来枚举是最优的时候，可以从下面三个方向考虑：</p>
-<ul>
-<li>子集枚举：可以把问题转化成「从 n^2^ 个格子中选一个子集，使得子集中恰好有 n 个格子，且任意选出两个都不在同行、同列或者同对角线」，这里枚举的规模是 2的 n^2^ 次方；</li>
-<li>组合枚举：可以把问题转化成「从 n^2^ 个格子中选择 n 个，且任意选出两个都不在同行、同列或者同对角线」，这里的枚举规模是 $$<br>\begin{pmatrix}<br>n^2&amp;\<br>&amp;n\<br>\end{pmatrix}<br>$$；</li>
-<li>排列枚举：因为这里每行只能放置一个皇后，而所有行中皇后的列号正好构成一个 1 到 n 的排列，所以我们可以把问题转化为一个排列枚举，规模是 n!。</li>
-</ul>
-<p>带入一些 n 进这三种方法验证，就可以知道哪种方法的枚举规模是最小的，这里我们发现第三种方法的枚举规模最小。这道题给出的两个方法其实和排列枚举的本质是类似的。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
@@ -1669,14 +1627,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">108k</span>
+    <span title="站点总字数">112k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">6:34</span>
+    <span title="站点阅读时长">6:46</span>
   </span>
 </div>
 <div class="busuanzi-count">
