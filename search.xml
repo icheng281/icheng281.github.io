@@ -6347,4 +6347,117 @@
         <tag>学习</tag>
       </tags>
   </entry>
+  <entry>
+    <title>二叉树展开为链表</title>
+    <url>/2024/04/29/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B1%95%E5%BC%80%E4%B8%BA%E9%93%BE%E8%A1%A8/</url>
+    <content><![CDATA[<h1 id="二叉树展开为链表"><a href="#二叉树展开为链表" class="headerlink" title="二叉树展开为链表"></a>二叉树展开为链表</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你二叉树的根结点 <code>root</code> ，请你将它展开为一个单链表：</p>
+<ul>
+<li>展开后的单链表应该同样使用 <code>TreeNode</code> ，其中 <code>right</code> 子指针指向链表中下一个结点，而左子指针始终为 <code>null</code> 。</li>
+<li>展开后的单链表应该与二叉树<strong>先序遍历</strong>顺序相同。</li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/01/14/flaten.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：root = [1,2,5,3,4,null,6]</span><br><span class="line">输出：[1,null,2,null,3,null,4,null,5,null,6]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：root = []</span><br><span class="line">输出：[]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：root = [0]</span><br><span class="line">输出：[0]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>树中结点数在范围 <code>[0, 2000]</code> 内</li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）前序遍历"><a href="#（1）前序遍历" class="headerlink" title="（1）前序遍历"></a>（1）前序遍历</h3><p><strong>思路及算法</strong></p>
+<p>将二叉树展开为单链表之后，单链表中的节点顺序即为二叉树的前序遍历访问各节点的顺序。因此，可以对二叉树进行前序遍历，获得各节点被访问到的顺序。由于将二叉树展开为链表之后会破坏二叉树的结构，因此在前序遍历结束之后更新每个节点的左右子节点的信息，将二叉树展开为单链表。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public void flatten(TreeNode root) &#123;</span><br><span class="line">        List&lt;TreeNode&gt; list = new ArrayList&lt;TreeNode&gt;();</span><br><span class="line">        preorderTraversal(root, list);</span><br><span class="line">        int size = list.size();</span><br><span class="line">        for (int i = 1; i &lt; size; i++) &#123;</span><br><span class="line">            TreeNode prev = list.get(i - 1), curr = list.get(i);</span><br><span class="line">            prev.left = null;</span><br><span class="line">            prev.right = curr;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void preorderTraversal(TreeNode root, List&lt;TreeNode&gt; list) &#123;</span><br><span class="line">        if (root != null) &#123;</span><br><span class="line">            list.add(root);</span><br><span class="line">            preorderTraversal(root.left, list);</span><br><span class="line">            preorderTraversal(root.right, list);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void flatten(TreeNode* root) &#123;</span><br><span class="line">        vector&lt;TreeNode*&gt; l;</span><br><span class="line">        preorderTraversal(root, l);</span><br><span class="line">        int n = l.size();</span><br><span class="line">        for (int i = 1; i &lt; n; i++) &#123;</span><br><span class="line">            TreeNode *prev = l.at(i - 1), *curr = l.at(i);</span><br><span class="line">            prev-&gt;left = nullptr;</span><br><span class="line">            prev-&gt;right = curr;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void preorderTraversal(TreeNode* root, vector&lt;TreeNode*&gt; &amp;l) &#123;</span><br><span class="line">        if (root != NULL) &#123;</span><br><span class="line">            l.push_back(root);</span><br><span class="line">            preorderTraversal(root-&gt;left, l);</span><br><span class="line">            preorderTraversal(root-&gt;right, l);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是二叉树的节点数。前序遍历的时间复杂度是 O(n)，前序遍历之后，需要对每个节点更新左右子节点的信息，时间复杂度也是 O(n)。</p>
+</li>
+<li><p>空间复杂度：O(n)，其中 n 是二叉树的节点数。空间复杂度取决于栈（递归调用栈或者迭代中显性使用的栈）和存储前序遍历结果的列表的大小，栈内的元素个数不会超过 n，前序遍历列表中的元素个数是 n。</p>
+</li>
+</ul>
+<h3 id="（2）前序遍历和展开同步进行"><a href="#（2）前序遍历和展开同步进行" class="headerlink" title="（2）前序遍历和展开同步进行"></a>（2）前序遍历和展开同步进行</h3><p><strong>思路及算法</strong></p>
+<p>由于将节点展开之后会破坏二叉树的结构而丢失子节点的信息，因此前序遍历和展开为单链表分成了两步。能不能在不丢失子节点的信息的情况下，将前序遍历和展开为单链表同时进行？</p>
+<p>之所以会在破坏二叉树的结构之后丢失子节点的信息，是因为在对左子树进行遍历时，没有存储右子节点的信息，在遍历完左子树之后才获得右子节点的信息。只要对前序遍历进行修改，在遍历左子树之前就获得左右子节点的信息，并存入栈内，子节点的信息就不会丢失，就可以将前序遍历和展开为单链表同时进行。</p>
+<p>该做法不适用于递归实现的前序遍历，只适用于迭代实现的前序遍历。修改后的前序遍历的具体做法是，每次从栈内弹出一个节点作为当前访问的节点，获得该节点的子节点，如果子节点不为空，则依次将右子节点和左子节点压入栈内（注意入栈顺序）。</p>
+<p>展开为单链表的做法是，维护上一个访问的节点 prev，每次访问一个节点时，令当前访问的节点为 curr，将 prev 的左子节点设为 null 以及将 prev 的右子节点设为 curr，然后将 curr 赋值给 prev，进入下一个节点的访问，直到遍历结束。需要注意的是，初始时 prev 为 null，只有在 prev 不为 null 时才能对 prev 的左右子节点进行更新。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public void flatten(TreeNode root) &#123;</span><br><span class="line">        if (root == null) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        Deque&lt;TreeNode&gt; stack = new LinkedList&lt;TreeNode&gt;();</span><br><span class="line">        stack.push(root);</span><br><span class="line">        TreeNode prev = null;</span><br><span class="line">        while (!stack.isEmpty()) &#123;</span><br><span class="line">            TreeNode curr = stack.pop();</span><br><span class="line">            if (prev != null) &#123;</span><br><span class="line">                prev.left = null;</span><br><span class="line">                prev.right = curr;</span><br><span class="line">            &#125;</span><br><span class="line">            TreeNode left = curr.left, right = curr.right;</span><br><span class="line">            if (right != null) &#123;</span><br><span class="line">                stack.push(right);</span><br><span class="line">            &#125;</span><br><span class="line">            if (left != null) &#123;</span><br><span class="line">                stack.push(left);</span><br><span class="line">            &#125;</span><br><span class="line">            prev = curr;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void flatten(TreeNode* root) &#123;</span><br><span class="line">        if (root == nullptr) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        auto stk = stack&lt;TreeNode*&gt;();</span><br><span class="line">        stk.push(root);</span><br><span class="line">        TreeNode *prev = nullptr;</span><br><span class="line">        while (!stk.empty()) &#123;</span><br><span class="line">            TreeNode *curr = stk.top(); stk.pop();</span><br><span class="line">            if (prev != nullptr) &#123;</span><br><span class="line">                prev-&gt;left = nullptr;</span><br><span class="line">                prev-&gt;right = curr;</span><br><span class="line">            &#125;</span><br><span class="line">            TreeNode *left = curr-&gt;left, *right = curr-&gt;right;</span><br><span class="line">            if (right != nullptr) &#123;</span><br><span class="line">                stk.push(right);</span><br><span class="line">            &#125;</span><br><span class="line">            if (left != nullptr) &#123;</span><br><span class="line">                stk.push(left);</span><br><span class="line">            &#125;</span><br><span class="line">            prev = curr;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是二叉树的节点数。前序遍历的时间复杂度是 O(n)，前序遍历的同时对每个节点更新左右子节点的信息，更新子节点信息的时间复杂度是 O(1)，因此总时间复杂度是 O(n)。</p>
+</li>
+<li><p>空间复杂度：O(n)，其中 n 是二叉树的节点数。空间复杂度取决于栈的大小，栈内的元素个数不会超过 n。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>二叉树的右视图</title>
+    <url>/2024/04/29/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%8F%B3%E8%A7%86%E5%9B%BE/</url>
+    <content><![CDATA[<h1 id="二叉树的右视图"><a href="#二叉树的右视图" class="headerlink" title="二叉树的右视图"></a>二叉树的右视图</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个二叉树的 <strong>根节点</strong> <code>root</code>，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。</p>
+<p><strong>示例 1:</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/02/14/tree.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: [1,2,3,null,5,null,4]</span><br><span class="line">输出: [1,3,4]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: [1,null,3]</span><br><span class="line">输出: [1,3]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入: []</span><br><span class="line">输出: []</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示:</strong></p>
+<ul>
+<li>二叉树的节点个数的范围是 <code>[0,100]</code></li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）深度优先搜索"><a href="#（1）深度优先搜索" class="headerlink" title="（1）深度优先搜索"></a>（1）深度优先搜索</h3><p><strong>思路及算法</strong></p>
+<p>我们对树进行深度优先搜索，在搜索过程中，我们总是先访问右子树。那么对于每一层来说，我们在这层见到的第一个结点一定是最右边的结点。这样一来，我们可以存储在每个深度访问的第一个结点，一旦我们知道了树的层数，就可以得到最终的结果数组。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/199/fig1.png" alt="fig1"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;Integer&gt; rightSideView(TreeNode root) &#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; rightmostValueAtDepth = new HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        int max_depth = -1;</span><br><span class="line"></span><br><span class="line">        Deque&lt;TreeNode&gt; nodeStack = new LinkedList&lt;TreeNode&gt;();</span><br><span class="line">        Deque&lt;Integer&gt; depthStack = new LinkedList&lt;Integer&gt;();</span><br><span class="line">        nodeStack.push(root);</span><br><span class="line">        depthStack.push(0);</span><br><span class="line"></span><br><span class="line">        while (!nodeStack.isEmpty()) &#123;</span><br><span class="line">            TreeNode node = nodeStack.pop();</span><br><span class="line">            int depth = depthStack.pop();</span><br><span class="line"></span><br><span class="line">            if (node != null) &#123;</span><br><span class="line">            	// 维护二叉树的最大深度</span><br><span class="line">                max_depth = Math.max(max_depth, depth);</span><br><span class="line"></span><br><span class="line">                // 如果不存在对应深度的节点我们才插入</span><br><span class="line">                if (!rightmostValueAtDepth.containsKey(depth)) &#123;</span><br><span class="line">                    rightmostValueAtDepth.put(depth, node.val);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                nodeStack.push(node.left);</span><br><span class="line">                nodeStack.push(node.right);</span><br><span class="line">                depthStack.push(depth + 1);</span><br><span class="line">                depthStack.push(depth + 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        List&lt;Integer&gt; rightView = new ArrayList&lt;Integer&gt;();</span><br><span class="line">        for (int depth = 0; depth &lt;= max_depth; depth++) &#123;</span><br><span class="line">            rightView.add(rightmostValueAtDepth.get(depth));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return rightView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; rightSideView(TreeNode* root) &#123;</span><br><span class="line">        unordered_map&lt;int, int&gt; rightmostValueAtDepth;</span><br><span class="line">        int max_depth = -1;</span><br><span class="line"></span><br><span class="line">        stack&lt;TreeNode*&gt; nodeStack;</span><br><span class="line">        stack&lt;int&gt; depthStack;</span><br><span class="line">        nodeStack.push(root);</span><br><span class="line">        depthStack.push(0);</span><br><span class="line"></span><br><span class="line">        while (!nodeStack.empty()) &#123;</span><br><span class="line">            TreeNode* node = nodeStack.top();nodeStack.pop();</span><br><span class="line">            int depth = depthStack.top();depthStack.pop();</span><br><span class="line"></span><br><span class="line">            if (node != NULL) &#123;</span><br><span class="line">            	// 维护二叉树的最大深度</span><br><span class="line">                max_depth = max(max_depth, depth);</span><br><span class="line"></span><br><span class="line">                // 如果不存在对应深度的节点我们才插入</span><br><span class="line">                if (rightmostValueAtDepth.find(depth) == rightmostValueAtDepth.end()) &#123;</span><br><span class="line">                    rightmostValueAtDepth[depth] =  node -&gt; val;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                nodeStack.push(node -&gt; left);</span><br><span class="line">                nodeStack.push(node -&gt; right);</span><br><span class="line">                depthStack.push(depth + 1);</span><br><span class="line">                depthStack.push(depth + 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vector&lt;int&gt; rightView;</span><br><span class="line">        for (int depth = 0; depth &lt;= max_depth; ++depth) &#123;</span><br><span class="line">            rightView.push_back(rightmostValueAtDepth[depth]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return rightView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度 : O(n)。深度优先搜索最多访问每个结点一次，因此是线性复杂度。</p>
+</li>
+<li><p>空间复杂度 : O(n)。最坏情况下，栈内会包含接近树高度的结点数量，占用 O(n) 的空间。</p>
+</li>
+</ul>
+<h3 id="（2）广度优先搜索"><a href="#（2）广度优先搜索" class="headerlink" title="（2）广度优先搜索"></a>（2）广度优先搜索</h3><p><strong>思路及算法</strong></p>
+<p>我们可以对二叉树进行层次遍历，那么对于每层来说，最右边的结点一定是最后被遍历到的。二叉树的层次遍历可以用广度优先搜索实现。执行广度优先搜索，左结点排在右结点之前，这样，我们对每一层都从左到右访问。因此，只保留每个深度最后访问的结点，我们就可以在遍历完整棵树后得到每个深度最右的结点。除了将栈改成队列，并去除了 rightmost_value_at_depth 之前的检查外，算法没有别的改动。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/199/fig2.png" alt="fig2"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;Integer&gt; rightSideView(TreeNode root) &#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; rightmostValueAtDepth = new HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        int max_depth = -1;</span><br><span class="line"></span><br><span class="line">        Queue&lt;TreeNode&gt; nodeQueue = new LinkedList&lt;TreeNode&gt;();</span><br><span class="line">        Queue&lt;Integer&gt; depthQueue = new LinkedList&lt;Integer&gt;();</span><br><span class="line">        nodeQueue.add(root);</span><br><span class="line">        depthQueue.add(0);</span><br><span class="line"></span><br><span class="line">        while (!nodeQueue.isEmpty()) &#123;</span><br><span class="line">            TreeNode node = nodeQueue.remove();</span><br><span class="line">            int depth = depthQueue.remove();</span><br><span class="line"></span><br><span class="line">            if (node != null) &#123;</span><br><span class="line">            	// 维护二叉树的最大深度</span><br><span class="line">                max_depth = Math.max(max_depth, depth);</span><br><span class="line"></span><br><span class="line">                // 由于每一层最后一个访问到的节点才是我们要的答案，因此不断更新对应深度的信息即可</span><br><span class="line">                rightmostValueAtDepth.put(depth, node.val);</span><br><span class="line"></span><br><span class="line">                nodeQueue.add(node.left);</span><br><span class="line">                nodeQueue.add(node.right);</span><br><span class="line">                depthQueue.add(depth + 1);</span><br><span class="line">                depthQueue.add(depth + 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        List&lt;Integer&gt; rightView = new ArrayList&lt;Integer&gt;();</span><br><span class="line">        for (int depth = 0; depth &lt;= max_depth; depth++) &#123;</span><br><span class="line">            rightView.add(rightmostValueAtDepth.get(depth));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return rightView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; rightSideView(TreeNode* root) &#123;</span><br><span class="line">        unordered_map&lt;int, int&gt; rightmostValueAtDepth;</span><br><span class="line">        int max_depth = -1;</span><br><span class="line"></span><br><span class="line">        queue&lt;TreeNode*&gt; nodeQueue;</span><br><span class="line">        queue&lt;int&gt; depthQueue;</span><br><span class="line">        nodeQueue.push(root);</span><br><span class="line">        depthQueue.push(0);</span><br><span class="line"></span><br><span class="line">        while (!nodeQueue.empty()) &#123;</span><br><span class="line">            TreeNode* node = nodeQueue.front();nodeQueue.pop();</span><br><span class="line">            int depth = depthQueue.front();depthQueue.pop();</span><br><span class="line"></span><br><span class="line">            if (node != NULL) &#123;</span><br><span class="line">            	// 维护二叉树的最大深度</span><br><span class="line">                max_depth = max(max_depth, depth);</span><br><span class="line"></span><br><span class="line">                // 由于每一层最后一个访问到的节点才是我们要的答案，因此不断更新对应深度的信息即可</span><br><span class="line">                rightmostValueAtDepth[depth] =  node -&gt; val;</span><br><span class="line"></span><br><span class="line">                nodeQueue.push(node -&gt; left);</span><br><span class="line">                nodeQueue.push(node -&gt; right);</span><br><span class="line">                depthQueue.push(depth + 1);</span><br><span class="line">                depthQueue.push(depth + 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vector&lt;int&gt; rightView;</span><br><span class="line">        for (int depth = 0; depth &lt;= max_depth; ++depth) &#123;</span><br><span class="line">            rightView.push_back(rightmostValueAtDepth[depth]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return rightView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度 : O(n)。 每个节点最多进队列一次，出队列一次，因此广度优先搜索的复杂度为线性。</p>
+</li>
+<li><p>空间复杂度 : O(n)。每个节点最多进队列一次，所以队列长度最大不不超过 n，所以这里的空间代价为 O(n)。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习</tag>
+      </tags>
+  </entry>
 </search>
