@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">115</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,6 +174,702 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/24/%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/24/%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" class="post-title-link" itemprop="url">从前序与中序遍历序列构造二叉树</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-24 11:02:13 / 修改时间：11:03:22" itemprop="dateCreated datePublished" datetime="2024-04-24T11:02:13+08:00">2024-04-24</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>8 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="从前序与中序遍历序列构造二叉树"><a href="#从前序与中序遍历序列构造二叉树" class="headerlink" title="从前序与中序遍历序列构造二叉树"></a>从前序与中序遍历序列构造二叉树</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定两个整数数组 <code>preorder</code> 和 <code>inorder</code> ，其中 <code>preorder</code> 是二叉树的<strong>先序遍历</strong>， <code>inorder</code> 是同一棵树的<strong>中序遍历</strong>，请构造二叉树并返回其根节点。</p>
+<p><strong>示例 1:</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/02/19/tree.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]</span><br><span class="line">输出: [3,9,20,null,null,15,7]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: preorder = [-1], inorder = [-1]</span><br><span class="line">输出: [-1]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示:</strong></p>
+<ul>
+<li><code>1 &lt;= preorder.length &lt;= 3000</code></li>
+<li><code>inorder.length == preorder.length</code></li>
+<li><code>-3000 &lt;= preorder[i], inorder[i] &lt;= 3000</code></li>
+<li><code>preorder</code> 和 <code>inorder</code> 均 <strong>无重复</strong> 元素</li>
+<li><code>inorder</code> 均出现在 <code>preorder</code></li>
+<li><code>preorder</code> <strong>保证</strong> 为二叉树的前序遍历序列</li>
+<li><code>inorder</code> <strong>保证</strong> 为二叉树的中序遍历序列</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）递归"><a href="#（1）递归" class="headerlink" title="（1）递归"></a>（1）递归</h3><p><strong>思路及算法</strong></p>
+<p>对于任意一颗树而言，前序遍历的形式总是</p>
+<p>[ 根节点, [左子树的前序遍历结果], [右子树的前序遍历结果] ]<br>即根节点总是前序遍历中的第一个节点。而中序遍历的形式总是</p>
+<p>[ [左子树的中序遍历结果], 根节点, [右子树的中序遍历结果] ]<br>只要我们在中序遍历中定位到根节点，那么我们就可以分别知道左子树和右子树中的节点数目。由于同一颗子树的前序遍历和中序遍历的长度显然是相同的，因此我们就可以对应到前序遍历的结果中，对上述形式中的所有左右括号进行定位。</p>
+<p>这样以来，我们就知道了左子树的前序遍历和中序遍历结果，以及右子树的前序遍历和中序遍历结果，我们就可以递归地对构造出左子树和右子树，再将这两颗子树接到根节点的左右位置。</p>
+<p>在中序遍历中对根节点进行定位时，一种简单的方法是直接扫描整个中序遍历的结果并找出根节点，但这样做的时间复杂度较高。我们可以考虑使用哈希表来帮助我们快速地定位根节点。对于哈希映射中的每个键值对，键表示一个元素（节点的值），值表示其在中序遍历中的出现位置。在构造二叉树的过程之前，我们可以对中序遍历的列表进行一遍扫描，就可以构造出这个哈希映射。在此后构造二叉树的过程中，我们就只需要 O(1) 的时间对根节点进行定位了。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">private:</span><br><span class="line">    unordered_map&lt;int, int&gt; index;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    TreeNode* myBuildTree(const vector&lt;int&gt;&amp; preorder, const vector&lt;int&gt;&amp; inorder, int preorder_left, int preorder_right, int inorder_left, int inorder_right) &#123;</span><br><span class="line">        if (preorder_left &gt; preorder_right) &#123;</span><br><span class="line">            return nullptr;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        // 前序遍历中的第一个节点就是根节点</span><br><span class="line">        int preorder_root = preorder_left;</span><br><span class="line">        // 在中序遍历中定位根节点</span><br><span class="line">        int inorder_root = index[preorder[preorder_root]];</span><br><span class="line">        </span><br><span class="line">        // 先把根节点建立出来</span><br><span class="line">        TreeNode* root = new TreeNode(preorder[preorder_root]);</span><br><span class="line">        // 得到左子树中的节点数目</span><br><span class="line">        int size_left_subtree = inorder_root - inorder_left;</span><br><span class="line">        // 递归地构造左子树，并连接到根节点</span><br><span class="line">        // 先序遍历中「从 左边界+1 开始的 size_left_subtree」个元素就对应了中序遍历中「从 左边界 开始到 根节点定位-1」的元素</span><br><span class="line">        root-&gt;left = myBuildTree(preorder, inorder, preorder_left + 1, preorder_left + size_left_subtree, inorder_left, inorder_root - 1);</span><br><span class="line">        // 递归地构造右子树，并连接到根节点</span><br><span class="line">        // 先序遍历中「从 左边界+1+左子树节点数目 开始到 右边界」的元素就对应了中序遍历中「从 根节点定位+1 到 右边界」的元素</span><br><span class="line">        root-&gt;right = myBuildTree(preorder, inorder, preorder_left + size_left_subtree + 1, preorder_right, inorder_root + 1, inorder_right);</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    TreeNode* buildTree(vector&lt;int&gt;&amp; preorder, vector&lt;int&gt;&amp; inorder) &#123;</span><br><span class="line">        int n = preorder.size();</span><br><span class="line">        // 构造哈希映射，帮助我们快速定位根节点</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            index[inorder[i]] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        return myBuildTree(preorder, inorder, 0, n - 1, 0, n - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    private Map&lt;Integer, Integer&gt; indexMap;</span><br><span class="line"></span><br><span class="line">    public TreeNode myBuildTree(int[] preorder, int[] inorder, int preorder_left, int preorder_right, int inorder_left, int inorder_right) &#123;</span><br><span class="line">        if (preorder_left &gt; preorder_right) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 前序遍历中的第一个节点就是根节点</span><br><span class="line">        int preorder_root = preorder_left;</span><br><span class="line">        // 在中序遍历中定位根节点</span><br><span class="line">        int inorder_root = indexMap.get(preorder[preorder_root]);</span><br><span class="line">        </span><br><span class="line">        // 先把根节点建立出来</span><br><span class="line">        TreeNode root = new TreeNode(preorder[preorder_root]);</span><br><span class="line">        // 得到左子树中的节点数目</span><br><span class="line">        int size_left_subtree = inorder_root - inorder_left;</span><br><span class="line">        // 递归地构造左子树，并连接到根节点</span><br><span class="line">        // 先序遍历中「从 左边界+1 开始的 size_left_subtree」个元素就对应了中序遍历中「从 左边界 开始到 根节点定位-1」的元素</span><br><span class="line">        root.left = myBuildTree(preorder, inorder, preorder_left + 1, preorder_left + size_left_subtree, inorder_left, inorder_root - 1);</span><br><span class="line">        // 递归地构造右子树，并连接到根节点</span><br><span class="line">        // 先序遍历中「从 左边界+1+左子树节点数目 开始到 右边界」的元素就对应了中序遍历中「从 根节点定位+1 到 右边界」的元素</span><br><span class="line">        root.right = myBuildTree(preorder, inorder, preorder_left + size_left_subtree + 1, preorder_right, inorder_root + 1, inorder_right);</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public TreeNode buildTree(int[] preorder, int[] inorder) &#123;</span><br><span class="line">        int n = preorder.length;</span><br><span class="line">        // 构造哈希映射，帮助我们快速定位根节点</span><br><span class="line">        indexMap = new HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            indexMap.put(inorder[i], i);</span><br><span class="line">        &#125;</span><br><span class="line">        return myBuildTree(preorder, inorder, 0, n - 1, 0, n - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，其中 n 是树中的节点个数。</li>
+<li>空间复杂度：O(n)，除去返回的答案需要的 O(n) 空间之外，我们还需要使用 O(n) 的空间存储哈希映射，以及 O(h)（其中 h 是树的高度）的空间表示递归时栈空间。这里 h&lt;n，所以总空间复杂度为 O(n)。</li>
+</ul>
+<h3 id="（2）迭代"><a href="#（2）迭代" class="headerlink" title="（2）迭代"></a>（2）迭代</h3><p><strong>思路及算法</strong></p>
+<p>迭代法是一种非常巧妙的实现方法。迭代法的实现基于以下两点发现。</p>
+<ul>
+<li>如果将中序遍历反序，则得到反向的中序遍历，即每次遍历右孩子，再遍历根节点，最后遍历左孩子。</li>
+<li>如果将后序遍历反序，则得到反向的前序遍历，即每次遍历根节点，再遍历右孩子，最后遍历左孩子。</li>
+<li>「反向」的意思是交换遍历左孩子和右孩子的顺序，即反向的遍历中，右孩子在左孩子之前被遍历。</li>
+</ul>
+<p>对于后序遍历中的任意两个连续节点 u 和 v（在后序遍历中，u 在 v 的前面），根据后序遍历的流程，我们可以知道 u 和 v 只有两种可能的关系：</p>
+<ul>
+<li>u 是 v 的右儿子。这是因为在遍历到 u 之后，下一个遍历的节点就是 u 的双亲节点，即 v；</li>
+<li>v 没有右儿子，并且 u 是 v 的某个祖先节点（或者 v 本身）的左儿子。如果 v 没有右儿子，那么上一个遍历的节点就是 v 的左儿子。如果 v 没有左儿子，则从 v 开始向上遍历 v 的祖先节点，直到遇到一个有左儿子（且 v 不在它的左儿子的子树中）的节点 va，那么 u 就是 va 的左儿子。</li>
+</ul>
+<p>算法流程：</p>
+<ul>
+<li>我们用一个栈和一个指针辅助进行二叉树的构造。初始时栈中存放了根节点（后序遍历的最后一个节点），指针指向中序遍历的最后一个节点；</li>
+<li>我们依次枚举后序遍历中除了第一个节点以外的每个节点。如果 index 恰好指向栈顶节点，那么我们不断地弹出栈顶节点并向左移动 index，并将当前节点作为最后一个弹出的节点的左儿子；如果 index 和栈顶节点不同，我们将当前节点作为栈顶节点的右儿子；</li>
+<li>无论是哪一种情况，我们最后都将当前的节点入栈。</li>
+</ul>
+<p>最后得到的二叉树即为答案。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    TreeNode* buildTree(vector&lt;int&gt;&amp; preorder, vector&lt;int&gt;&amp; inorder) &#123;</span><br><span class="line">        if (!preorder.size()) &#123;</span><br><span class="line">            return nullptr;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode* root = new TreeNode(preorder[0]);</span><br><span class="line">        stack&lt;TreeNode*&gt; stk;</span><br><span class="line">        stk.push(root);</span><br><span class="line">        int inorderIndex = 0;</span><br><span class="line">        for (int i = 1; i &lt; preorder.size(); ++i) &#123;</span><br><span class="line">            int preorderVal = preorder[i];</span><br><span class="line">            TreeNode* node = stk.top();</span><br><span class="line">            if (node-&gt;val != inorder[inorderIndex]) &#123;</span><br><span class="line">                node-&gt;left = new TreeNode(preorderVal);</span><br><span class="line">                stk.push(node-&gt;left);</span><br><span class="line">            &#125;</span><br><span class="line">            else &#123;</span><br><span class="line">                while (!stk.empty() &amp;&amp; stk.top()-&gt;val == inorder[inorderIndex]) &#123;</span><br><span class="line">                    node = stk.top();</span><br><span class="line">                    stk.pop();</span><br><span class="line">                    ++inorderIndex;</span><br><span class="line">                &#125;</span><br><span class="line">                node-&gt;right = new TreeNode(preorderVal);</span><br><span class="line">                stk.push(node-&gt;right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public TreeNode buildTree(int[] preorder, int[] inorder) &#123;</span><br><span class="line">        if (preorder == null || preorder.length == 0) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode root = new TreeNode(preorder[0]);</span><br><span class="line">        Deque&lt;TreeNode&gt; stack = new LinkedList&lt;TreeNode&gt;();</span><br><span class="line">        stack.push(root);</span><br><span class="line">        int inorderIndex = 0;</span><br><span class="line">        for (int i = 1; i &lt; preorder.length; i++) &#123;</span><br><span class="line">            int preorderVal = preorder[i];</span><br><span class="line">            TreeNode node = stack.peek();</span><br><span class="line">            if (node.val != inorder[inorderIndex]) &#123;</span><br><span class="line">                node.left = new TreeNode(preorderVal);</span><br><span class="line">                stack.push(node.left);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                while (!stack.isEmpty() &amp;&amp; stack.peek().val == inorder[inorderIndex]) &#123;</span><br><span class="line">                    node = stack.pop();</span><br><span class="line">                    inorderIndex++;</span><br><span class="line">                &#125;</span><br><span class="line">                node.right = new TreeNode(preorderVal);</span><br><span class="line">                stack.push(node.right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)，其中 n 是树中的节点个数。</li>
+<li>空间复杂度：O(n)，除去返回的答案需要的 O(n) 空间之外，我们还需要使用 O(h)（其中 hhh 是树的高度）的空间存储栈。这里 h&lt;n，所以（在最坏情况下）总空间复杂度为 O(n)。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/24/%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/24/%E4%BB%8E%E4%B8%AD%E5%BA%8F%E4%B8%8E%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" class="post-title-link" itemprop="url">从中序与后序遍历序列构造二叉树</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-24 11:01:42 / 修改时间：11:03:44" itemprop="dateCreated datePublished" datetime="2024-04-24T11:01:42+08:00">2024-04-24</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="从中序与后序遍历序列构造二叉树"><a href="#从中序与后序遍历序列构造二叉树" class="headerlink" title="从中序与后序遍历序列构造二叉树"></a>从中序与后序遍历序列构造二叉树</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定两个整数数组 <code>inorder</code> 和 <code>postorder</code> ，其中 <code>inorder</code> 是二叉树的中序遍历， <code>postorder</code> 是同一棵树的后序遍历，请你构造并返回这颗 <em>二叉树</em> 。</p>
+<p><strong>示例 1:</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/02/19/tree.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：inorder = [9,3,15,20,7], postorder = [9,15,7,20,3]</span><br><span class="line">输出：[3,9,20,null,null,15,7]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：inorder = [-1], postorder = [-1]</span><br><span class="line">输出：[-1]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示:</strong></p>
+<ul>
+<li><code>1 &lt;= inorder.length &lt;= 3000</code></li>
+<li><code>postorder.length == inorder.length</code></li>
+<li><code>-3000 &lt;= inorder[i], postorder[i] &lt;= 3000</code></li>
+<li><code>inorder</code> 和 <code>postorder</code> 都由 <strong>不同</strong> 的值组成</li>
+<li><code>postorder</code> 中每一个值都在 <code>inorder</code> 中</li>
+<li><code>inorder</code> <strong>保证</strong>是树的中序遍历</li>
+<li><code>postorder</code> <strong>保证</strong>是树的后序遍历</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）递归"><a href="#（1）递归" class="headerlink" title="（1）递归"></a>（1）递归</h3><p><strong>思路及算法</strong></p>
+<p>首先解决这道题我们需要明确给定一棵二叉树，我们是如何对其进行中序遍历与后序遍历的：</p>
+<ul>
+<li>中序遍历的顺序是每次遍历左孩子，再遍历根节点，最后遍历右孩子。</li>
+<li>后序遍历的顺序是每次遍历左孩子，再遍历右孩子，最后遍历根节点。</li>
+</ul>
+<p>因此根据上文所述，我们可以发现后序遍历的数组最后一个元素代表的即为根节点。知道这个性质后，我们可以利用已知的根节点信息在中序遍历的数组中找到根节点所在的下标，然后根据其将中序遍历的数组分成左右两部分，左边部分即左子树，右边部分为右子树，针对每个部分可以用同样的方法继续递归下去构造。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/106/6.png" alt="fig1"></p>
+<p>算法过程如下：</p>
+<ul>
+<li><p>为了高效查找根节点元素在中序遍历数组中的下标，我们选择创建哈希表来存储中序序列，即建立一个（元素，下标）键值对的哈希表。</p>
+</li>
+<li><p>定义递归函数 helper(in_left, in_right) 表示当前递归到中序序列中当前子树的左右边界，递归入口为helper(0, n - 1) ：</p>
+<ul>
+<li>如果 in_left &gt; in_right，说明子树为空，返回空节点。</li>
+<li>选择后序遍历的最后一个节点作为根节点。</li>
+<li>利用哈希表 O(1) 查询当根节点在中序遍历中下标为 index。从 in_left 到 index - 1 属于左子树，从 index + 1 到 in_right 属于右子树。</li>
+<li>根据后序遍历逻辑，递归创建右子树 helper(index + 1, in_right) 和左子树 helper(in_left, index - 1)。注意这里有需要先创建右子树，再创建左子树的依赖关系。可以理解为在后序遍历的数组中整个数组是先存储左子树的节点，再存储右子树的节点，最后存储根节点，如果按每次选择「后序遍历的最后一个节点」为根节点，则先被构造出来的应该为右子树。</li>
+<li>返回根节点 root。</li>
+</ul>
+</li>
+</ul>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    int post_idx;</span><br><span class="line">    int[] postorder;</span><br><span class="line">    int[] inorder;</span><br><span class="line">    Map&lt;Integer, Integer&gt; idx_map = new HashMap&lt;Integer, Integer&gt;();</span><br><span class="line"></span><br><span class="line">    public TreeNode helper(int in_left, int in_right) &#123;</span><br><span class="line">        // 如果这里没有节点构造二叉树了，就结束</span><br><span class="line">        if (in_left &gt; in_right) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 选择 post_idx 位置的元素作为当前子树根节点</span><br><span class="line">        int root_val = postorder[post_idx];</span><br><span class="line">        TreeNode root = new TreeNode(root_val);</span><br><span class="line"></span><br><span class="line">        // 根据 root 所在位置分成左右两棵子树</span><br><span class="line">        int index = idx_map.get(root_val);</span><br><span class="line"></span><br><span class="line">        // 下标减一</span><br><span class="line">        post_idx--;</span><br><span class="line">        // 构造右子树</span><br><span class="line">        root.right = helper(index + 1, in_right);</span><br><span class="line">        // 构造左子树</span><br><span class="line">        root.left = helper(in_left, index - 1);</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public TreeNode buildTree(int[] inorder, int[] postorder) &#123;</span><br><span class="line">        this.postorder = postorder;</span><br><span class="line">        this.inorder = inorder;</span><br><span class="line">        // 从后序遍历的最后一个元素开始</span><br><span class="line">        post_idx = postorder.length - 1;</span><br><span class="line"></span><br><span class="line">        // 建立（元素，下标）键值对的哈希表</span><br><span class="line">        int idx = 0;</span><br><span class="line">        for (Integer val : inorder) &#123;</span><br><span class="line">            idx_map.put(val, idx++);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        return helper(0, inorder.length - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">    int post_idx;</span><br><span class="line">    unordered_map&lt;int, int&gt; idx_map;</span><br><span class="line">public:</span><br><span class="line">    TreeNode* helper(int in_left, int in_right, vector&lt;int&gt;&amp; inorder, vector&lt;int&gt;&amp; postorder)&#123;</span><br><span class="line">        // 如果这里没有节点构造二叉树了，就结束</span><br><span class="line">        if (in_left &gt; in_right) &#123;</span><br><span class="line">            return nullptr;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 选择 post_idx 位置的元素作为当前子树根节点</span><br><span class="line">        int root_val = postorder[post_idx];</span><br><span class="line">        TreeNode* root = new TreeNode(root_val);</span><br><span class="line"></span><br><span class="line">        // 根据 root 所在位置分成左右两棵子树</span><br><span class="line">        int index = idx_map[root_val];</span><br><span class="line"></span><br><span class="line">        // 下标减一</span><br><span class="line">        post_idx--;</span><br><span class="line">        // 构造右子树</span><br><span class="line">        root-&gt;right = helper(index + 1, in_right, inorder, postorder);</span><br><span class="line">        // 构造左子树</span><br><span class="line">        root-&gt;left = helper(in_left, index - 1, inorder, postorder);</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">    TreeNode* buildTree(vector&lt;int&gt;&amp; inorder, vector&lt;int&gt;&amp; postorder) &#123;</span><br><span class="line">        // 从后序遍历的最后一个元素开始</span><br><span class="line">        post_idx = (int)postorder.size() - 1;</span><br><span class="line"></span><br><span class="line">        // 建立（元素，下标）键值对的哈希表</span><br><span class="line">        int idx = 0;</span><br><span class="line">        for (auto&amp; val : inorder) &#123;</span><br><span class="line">            idx_map[val] = idx++;</span><br><span class="line">        &#125;</span><br><span class="line">        return helper(0, (int)inorder.size() - 1, inorder, postorder);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是树中的节点个数。</p>
+</li>
+<li><p>空间复杂度：O(n)。我们需要使用 O(n) 的空间存储哈希表，以及 O(h)（其中 h 是树的高度）的空间表示递归时栈空间。这里 h&lt;n，所以总空间复杂度为 O(n)。</p>
+</li>
+</ul>
+<h3 id="（2）迭代"><a href="#（2）迭代" class="headerlink" title="（2）迭代"></a>（2）迭代</h3><p><strong>思路及算法</strong></p>
+<p>迭代法是一种非常巧妙的实现方法。迭代法的实现基于以下两点发现。</p>
+<ul>
+<li>如果将中序遍历反序，则得到反向的中序遍历，即每次遍历右孩子，再遍历根节点，最后遍历左孩子。</li>
+<li>如果将后序遍历反序，则得到反向的前序遍历，即每次遍历根节点，再遍历右孩子，最后遍历左孩子。</li>
+<li>「反向」的意思是交换遍历左孩子和右孩子的顺序，即反向的遍历中，右孩子在左孩子之前被遍历。</li>
+</ul>
+<p>对于后序遍历中的任意两个连续节点 u 和 v（在后序遍历中，u 在 v 的前面），根据后序遍历的流程，我们可以知道 u 和 v 只有两种可能的关系：</p>
+<ul>
+<li>u 是 v 的右儿子。这是因为在遍历到 u 之后，下一个遍历的节点就是 u 的双亲节点，即 v；</li>
+<li>v 没有右儿子，并且 u 是 v 的某个祖先节点（或者 v 本身）的左儿子。如果 v 没有右儿子，那么上一个遍历的节点就是 v 的左儿子。如果 v 没有左儿子，则从 v 开始向上遍历 v 的祖先节点，直到遇到一个有左儿子（且 v 不在它的左儿子的子树中）的节点 va，那么 u 就是 va 的左儿子。</li>
+</ul>
+<p>算法流程：</p>
+<ul>
+<li>我们用一个栈和一个指针辅助进行二叉树的构造。初始时栈中存放了根节点（后序遍历的最后一个节点），指针指向中序遍历的最后一个节点；</li>
+<li>我们依次枚举后序遍历中除了第一个节点以外的每个节点。如果 index 恰好指向栈顶节点，那么我们不断地弹出栈顶节点并向左移动 index，并将当前节点作为最后一个弹出的节点的左儿子；如果 index 和栈顶节点不同，我们将当前节点作为栈顶节点的右儿子；</li>
+<li>无论是哪一种情况，我们最后都将当前的节点入栈。</li>
+</ul>
+<p>最后得到的二叉树即为答案。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public TreeNode buildTree(int[] inorder, int[] postorder) &#123;</span><br><span class="line">        if (postorder == null || postorder.length == 0) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode root = new TreeNode(postorder[postorder.length - 1]);</span><br><span class="line">        Deque&lt;TreeNode&gt; stack = new LinkedList&lt;TreeNode&gt;();</span><br><span class="line">        stack.push(root);</span><br><span class="line">        int inorderIndex = inorder.length - 1;</span><br><span class="line">        for (int i = postorder.length - 2; i &gt;= 0; i--) &#123;</span><br><span class="line">            int postorderVal = postorder[i];</span><br><span class="line">            TreeNode node = stack.peek();</span><br><span class="line">            if (node.val != inorder[inorderIndex]) &#123;</span><br><span class="line">                node.right = new TreeNode(postorderVal);</span><br><span class="line">                stack.push(node.right);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                while (!stack.isEmpty() &amp;&amp; stack.peek().val == inorder[inorderIndex]) &#123;</span><br><span class="line">                    node = stack.pop();</span><br><span class="line">                    inorderIndex--;</span><br><span class="line">                &#125;</span><br><span class="line">                node.left = new TreeNode(postorderVal);</span><br><span class="line">                stack.push(node.left);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    TreeNode* buildTree(vector&lt;int&gt;&amp; inorder, vector&lt;int&gt;&amp; postorder) &#123;</span><br><span class="line">        if (postorder.size() == 0) &#123;</span><br><span class="line">            return nullptr;</span><br><span class="line">        &#125;</span><br><span class="line">        auto root = new TreeNode(postorder[postorder.size() - 1]);</span><br><span class="line">        auto s = stack&lt;TreeNode*&gt;();</span><br><span class="line">        s.push(root);</span><br><span class="line">        int inorderIndex = inorder.size() - 1;</span><br><span class="line">        for (int i = int(postorder.size()) - 2; i &gt;= 0; i--) &#123;</span><br><span class="line">            int postorderVal = postorder[i];</span><br><span class="line">            auto node = s.top();</span><br><span class="line">            if (node-&gt;val != inorder[inorderIndex]) &#123;</span><br><span class="line">                node-&gt;right = new TreeNode(postorderVal);</span><br><span class="line">                s.push(node-&gt;right);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                while (!s.empty() &amp;&amp; s.top()-&gt;val == inorder[inorderIndex]) &#123;</span><br><span class="line">                    node = s.top();</span><br><span class="line">                    s.pop();</span><br><span class="line">                    inorderIndex--;</span><br><span class="line">                &#125;</span><br><span class="line">                node-&gt;left = new TreeNode(postorderVal);</span><br><span class="line">                s.push(node-&gt;left);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是树中的节点个数。</p>
+</li>
+<li><p>空间复杂度：O(n)，我们需要使用 O(h)（其中 h 是树的高度）的空间存储栈。这里 h&lt;n，所以（在最坏情况下）总空间复杂度为 O(n)。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/23/%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/23/%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91/" class="post-title-link" itemprop="url">翻转二叉树</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-23 12:23:57 / 修改时间：12:24:49" itemprop="dateCreated datePublished" datetime="2024-04-23T12:23:57+08:00">2024-04-23</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>395</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="翻转二叉树"><a href="#翻转二叉树" class="headerlink" title="翻转二叉树"></a>翻转二叉树</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一棵二叉树的根节点 <code>root</code> ，翻转这棵二叉树，并返回其根节点。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/03/14/invert1-tree.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [4,2,7,1,3,6,9]</span><br><span class="line">输出：[4,7,2,9,6,3,1]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/03/14/invert2-tree.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [2,1,3]</span><br><span class="line">输出：[2,3,1]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = []</span><br><span class="line">输出：[]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>树中节点数目范围在 <code>[0, 100]</code> 内</li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p><strong>思路及算法</strong></p>
+<p>这是一道很经典的二叉树问题。显然，我们从根节点开始，递归地对树进行遍历，并从叶子节点先开始翻转。如果当前遍历到的节点 root 的左右两棵子树都已经翻转，那么我们只需要交换两棵子树的位置，即可完成以 root 为根节点的整棵子树的翻转。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    TreeNode* invertTree(TreeNode* root) &#123;</span><br><span class="line">        if (root == nullptr) &#123;</span><br><span class="line">            return nullptr;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode* left = invertTree(root-&gt;left);</span><br><span class="line">        TreeNode* right = invertTree(root-&gt;right);</span><br><span class="line">        root-&gt;left = right;</span><br><span class="line">        root-&gt;right = left;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public TreeNode invertTree(TreeNode root) &#123;</span><br><span class="line">        if (root == null) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode left = invertTree(root.left);</span><br><span class="line">        TreeNode right = invertTree(root.right);</span><br><span class="line">        root.left = right;</span><br><span class="line">        root.right = left;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(N)，其中 N 为二叉树节点的数目。我们会遍历二叉树中的每一个节点，对每个节点而言，我们在常数时间内交换其两棵子树。</li>
+<li>空间复杂度：O(N)。使用的空间由递归栈的深度决定，它等于当前节点在二叉树中的高度。在平均情况下，二叉树的高度与节点个数为对数关系，即 O(log⁡N)。而在最坏情况下，树形成链状，空间复杂度为 O(N)。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/23/%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/23/%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91/" class="post-title-link" itemprop="url">对称二叉树</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-23 12:23:38 / 修改时间：12:25:06" itemprop="dateCreated datePublished" datetime="2024-04-23T12:23:38+08:00">2024-04-23</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>805</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="对称二叉树"><a href="#对称二叉树" class="headerlink" title="对称二叉树"></a>对称二叉树</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个二叉树的根节点 <code>root</code> ， 检查它是否轴对称。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://pic.leetcode.cn/1698026966-JDYPDU-image.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [1,2,2,3,4,4,3]</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://pic.leetcode.cn/1698027008-nPFLbM-image.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [1,2,2,null,3,null,3]</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>树中节点数目在范围 <code>[1, 1000]</code> 内</li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）递归"><a href="#（1）递归" class="headerlink" title="（1）递归"></a>（1）递归</h3><p><strong>思路及算法</strong></p>
+<p>如果一个树的左子树与右子树镜像对称，那么这个树是对称的。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/101/101_fig1.PNG" alt="fig1"></p>
+<p>因此，该问题可以转化为：两个树在什么情况下互为镜像？</p>
+<p>如果同时满足下面的条件，两个树互为镜像：</p>
+<ul>
+<li>它们的两个根结点具有相同的值</li>
+<li>每个树的右子树都与另一个树的左子树镜像对称</li>
+</ul>
+<p><img src="https://assets.leetcode-cn.com/solution-static/101/101_fig2.PNG" alt="fig2"></p>
+<p>我们可以实现这样一个递归函数，通过「同步移动」两个指针的方法来遍历这棵树，p 指针和 q 指针一开始都指向这棵树的根，随后 p 右移时，q 左移，p 左移时，q 右移。每次检查当前 p 和 q 节点的值是否相等，如果相等再判断左右子树是否对称。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public boolean isSymmetric(TreeNode root) &#123;</span><br><span class="line">        return check(root, root);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean check(TreeNode p, TreeNode q) &#123;</span><br><span class="line">        if (p == null &amp;&amp; q == null) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        if (p == null || q == null) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return p.val == q.val &amp;&amp; check(p.left, q.right) &amp;&amp; check(p.right, q.left);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool check(TreeNode *p, TreeNode *q) &#123;</span><br><span class="line">        if (!p &amp;&amp; !q) return true;</span><br><span class="line">        if (!p || !q) return false;</span><br><span class="line">        return p-&gt;val == q-&gt;val &amp;&amp; check(p-&gt;left, q-&gt;right) &amp;&amp; check(p-&gt;right, q-&gt;left);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    bool isSymmetric(TreeNode* root) &#123;</span><br><span class="line">        return check(root, root);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<p>假设树上一共 n 个节点。</p>
+<ul>
+<li>时间复杂度：这里遍历了这棵树，渐进时间复杂度为 O(n)。</li>
+<li>空间复杂度：这里的空间复杂度和递归使用的栈空间有关，这里递归层数不超过 n，故渐进空间复杂度为 O(n)。</li>
+</ul>
+<h3 id="（2）迭代"><a href="#（2）迭代" class="headerlink" title="（2）迭代"></a>（2）迭代</h3><p><strong>思路及算法</strong></p>
+<p>首先我们引入一个队列，这是把递归程序改写成迭代程序的常用方法。初始化时我们把根节点入队两次。每次提取两个结点并比较它们的值（队列中每两个连续的结点应该是相等的，而且它们的子树互为镜像），然后将两个结点的左右子结点按相反的顺序插入队列中。当队列为空时，或者我们检测到树不对称（即从队列中取出两个不相等的连续结点）时，该算法结束。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public boolean isSymmetric(TreeNode root) &#123;</span><br><span class="line">        return check(root, root);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean check(TreeNode u, TreeNode v) &#123;</span><br><span class="line">        Queue&lt;TreeNode&gt; q = new LinkedList&lt;TreeNode&gt;();</span><br><span class="line">        q.offer(u);</span><br><span class="line">        q.offer(v);</span><br><span class="line">        while (!q.isEmpty()) &#123;</span><br><span class="line">            u = q.poll();</span><br><span class="line">            v = q.poll();</span><br><span class="line">            if (u == null &amp;&amp; v == null) &#123;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            if ((u == null || v == null) || (u.val != v.val)) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            q.offer(u.left);</span><br><span class="line">            q.offer(v.right);</span><br><span class="line"></span><br><span class="line">            q.offer(u.right);</span><br><span class="line">            q.offer(v.left);</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool check(TreeNode *u, TreeNode *v) &#123;</span><br><span class="line">        queue &lt;TreeNode*&gt; q;</span><br><span class="line">        q.push(u); q.push(v);</span><br><span class="line">        while (!q.empty()) &#123;</span><br><span class="line">            u = q.front(); q.pop();</span><br><span class="line">            v = q.front(); q.pop();</span><br><span class="line">            if (!u &amp;&amp; !v) continue;</span><br><span class="line">            if ((!u || !v) || (u-&gt;val != v-&gt;val)) return false;</span><br><span class="line"></span><br><span class="line">            q.push(u-&gt;left); </span><br><span class="line">            q.push(v-&gt;right);</span><br><span class="line"></span><br><span class="line">            q.push(u-&gt;right); </span><br><span class="line">            q.push(v-&gt;left);</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    bool isSymmetric(TreeNode* root) &#123;</span><br><span class="line">        return check(root, root);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)。</li>
+<li>空间复杂度：这里需要用一个队列来维护节点，每个节点最多进队一次，出队一次，队列中最多不会超过 n 个点，故渐进空间复杂度为 O(n)。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/23/%E7%9B%B8%E5%90%8C%E7%9A%84%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/23/%E7%9B%B8%E5%90%8C%E7%9A%84%E6%A0%91/" class="post-title-link" itemprop="url">相同的树</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-23 12:23:18 / 修改时间：12:24:30" itemprop="dateCreated datePublished" datetime="2024-04-23T12:23:18+08:00">2024-04-23</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="相同的树"><a href="#相同的树" class="headerlink" title="相同的树"></a>相同的树</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你两棵二叉树的根节点 <code>p</code> 和 <code>q</code> ，编写一个函数来检验这两棵树是否相同。</p>
+<p>如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/12/20/ex1.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：p = [1,2,3], q = [1,2,3]</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/12/20/ex2.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：p = [1,2], q = [1,null,2]</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/12/20/ex3.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：p = [1,2,1], q = [1,1,2]</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>两棵树上的节点数目都在范围 <code>[0, 100]</code> 内</li>
+<li><code>-104 &lt;= Node.val &lt;= 104</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）深度优先搜索"><a href="#（1）深度优先搜索" class="headerlink" title="（1）深度优先搜索"></a>（1）深度优先搜索</h3><p><strong>思路及算法</strong></p>
+<p>如果两个二叉树都为空，则两个二叉树相同。如果两个二叉树中有且只有一个为空，则两个二叉树一定不相同。</p>
+<p>如果两个二叉树都不为空，那么首先判断它们的根节点的值是否相同，若不相同则两个二叉树一定不同，若相同，再分别判断两个二叉树的左子树是否相同以及右子树是否相同。这是一个递归的过程，因此可以使用深度优先搜索，递归地判断两个二叉树是否相同。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public boolean isSameTree(TreeNode p, TreeNode q) &#123;</span><br><span class="line">        if (p == null &amp;&amp; q == null) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125; else if (p == null || q == null) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125; else if (p.val != q.val) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return isSameTree(p.left, q.left) &amp;&amp; isSameTree(p.right, q.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool isSameTree(TreeNode* p, TreeNode* q) &#123;</span><br><span class="line">        if (p == nullptr &amp;&amp; q == nullptr) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125; else if (p == nullptr || q == nullptr) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125; else if (p-&gt;val != q-&gt;val) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return isSameTree(p-&gt;left, q-&gt;left) &amp;&amp; isSameTree(p-&gt;right, q-&gt;right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(min⁡(m,n))，其中 m 和 n 分别是两个二叉树的节点数。对两个二叉树同时进行深度优先搜索，只有当两个二叉树中的对应节点都不为空时才会访问到该节点，因此被访问到的节点数不会超过较小的二叉树的节点数。</p>
+</li>
+<li><p>空间复杂度：O(min⁡(m,n))，其中 m 和 n 分别是两个二叉树的节点数。空间复杂度取决于递归调用的层数，递归调用的层数不会超过较小的二叉树的最大高度，最坏情况下，二叉树的高度等于节点数。</p>
+</li>
+</ul>
+<h3 id="（2）广度优先搜索"><a href="#（2）广度优先搜索" class="headerlink" title="（2）广度优先搜索"></a>（2）广度优先搜索</h3><p><strong>思路及算法</strong></p>
+<p>也可以通过广度优先搜索判断两个二叉树是否相同。同样首先判断两个二叉树是否为空，如果两个二叉树都不为空，则从两个二叉树的根节点开始广度优先搜索。</p>
+<p>使用两个队列分别存储两个二叉树的节点。初始时将两个二叉树的根节点分别加入两个队列。每次从两个队列各取出一个节点，进行如下比较操作。</p>
+<ol>
+<li>比较两个节点的值，如果两个节点的值不相同则两个二叉树一定不同；</li>
+<li>如果两个节点的值相同，则判断两个节点的子节点是否为空，如果只有一个节点的左子节点为空，或者只有一个节点的右子节点为空，则两个二叉树的结构不同，因此两个二叉树一定不同；</li>
+<li>如果两个节点的子节点的结构相同，则将两个节点的非空子节点分别加入两个队列，子节点加入队列时需要注意顺序，如果左右子节点都不为空，则先加入左子节点，后加入右子节点。</li>
+</ol>
+<p>如果搜索结束时两个队列同时为空，则两个二叉树相同。如果只有一个队列为空，则两个二叉树的结构不同，因此两个二叉树不同。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public boolean isSameTree(TreeNode p, TreeNode q) &#123;</span><br><span class="line">        if (p == null &amp;&amp; q == null) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125; else if (p == null || q == null) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        Queue&lt;TreeNode&gt; queue1 = new LinkedList&lt;TreeNode&gt;();</span><br><span class="line">        Queue&lt;TreeNode&gt; queue2 = new LinkedList&lt;TreeNode&gt;();</span><br><span class="line">        queue1.offer(p);</span><br><span class="line">        queue2.offer(q);</span><br><span class="line">        while (!queue1.isEmpty() &amp;&amp; !queue2.isEmpty()) &#123;</span><br><span class="line">            TreeNode node1 = queue1.poll();</span><br><span class="line">            TreeNode node2 = queue2.poll();</span><br><span class="line">            if (node1.val != node2.val) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            TreeNode left1 = node1.left, right1 = node1.right, left2 = node2.left, right2 = node2.right;</span><br><span class="line">            if (left1 == null ^ left2 == null) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            if (right1 == null ^ right2 == null) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            if (left1 != null) &#123;</span><br><span class="line">                queue1.offer(left1);</span><br><span class="line">            &#125;</span><br><span class="line">            if (right1 != null) &#123;</span><br><span class="line">                queue1.offer(right1);</span><br><span class="line">            &#125;</span><br><span class="line">            if (left2 != null) &#123;</span><br><span class="line">                queue2.offer(left2);</span><br><span class="line">            &#125;</span><br><span class="line">            if (right2 != null) &#123;</span><br><span class="line">                queue2.offer(right2);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return queue1.isEmpty() &amp;&amp; queue2.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(min⁡(m,n))，其中 m 和 n 分别是两个二叉树的节点数。对两个二叉树同时进行广度优先搜索，只有当两个二叉树中的对应节点都不为空时才会访问到该节点，因此被访问到的节点数不会超过较小的二叉树的节点数。</p>
+</li>
+<li><p>空间复杂度：O(min⁡(m,n))，其中 m 和 n 分别是两个二叉树的节点数。空间复杂度取决于队列中的元素个数，队列中的元素个数不会超过较小的二叉树的节点数。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -895,733 +1591,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/18/%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/18/%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6/" class="post-title-link" itemprop="url">每日温度</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-04-18 10:08:43 / 修改时间：10:10:15" itemprop="dateCreated datePublished" datetime="2024-04-18T10:08:43+08:00">2024-04-18</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="每日温度"><a href="#每日温度" class="headerlink" title="每日温度"></a>每日温度</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个整数数组 <code>temperatures</code> ，表示每天的温度，返回一个数组 <code>answer</code> ，其中 <code>answer[i]</code> 是指对于第 <code>i</code> 天，下一个更高温度出现在几天后。如果气温在这之后都不会升高，请在该位置用 <code>0</code> 来代替。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: temperatures = [73,74,75,71,69,72,76,73]</span><br><span class="line">输出: [1,1,4,2,1,1,0,0]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: temperatures = [30,40,50,60]</span><br><span class="line">输出: [1,1,1,0]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: temperatures = [30,60,90]</span><br><span class="line">输出: [1,1,0]</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= temperatures.length &lt;= 105</code></li>
-<li><code>30 &lt;= temperatures[i] &lt;= 100</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h3><p><strong>思路及算法</strong></p>
-<p>可以维护一个存储下标的单调栈，从栈底到栈顶的下标对应的温度列表中的温度依次递减。如果一个下标在单调栈里，则表示尚未找到下一次温度更高的下标。</p>
-<p>正向遍历温度列表。对于温度列表中的每个元素<code> temperatures[i]</code>，如果栈为空，则直接将<code> i</code> 进栈，如果栈不为空，则比较栈顶元素 <code>prevIndex</code> 对应的温度 <code>temperatures[prevIndex]</code> 和当前温度 <code>temperatures[i]</code>，如果 <code>temperatures[i] &gt; temperatures[prevIndex]</code>，则将 <code>prevIndex</code> 移除，并将 <code>prevIndex</code> 对应的等待天数赋为<code> i - prevIndex</code>，重复上述操作直到栈为空或者栈顶元素对应的温度小于等于当前温度，然后将 <code>i </code>进栈。</p>
-<p>为什么可以在弹栈的时候更新 <code>ans[prevIndex] </code>呢？因为在这种情况下，即将进栈的 <code>i </code>对应的 <code>temperatures[i] </code>一定是 <code>temperatures[prevIndex]</code> 右边第一个比它大的元素，试想如果 <code>prevIndex</code> 和 <code>i </code>有比它大的元素，假设下标为 <code>j</code>，那么 <code>prevIndex</code> 一定会在下标<code>j</code>的那一轮被弹掉。</p>
-<p>由于单调栈满足从栈底到栈顶元素对应的温度递减，因此每次有元素进栈时，会将温度更低的元素全部移除，并更新出栈元素对应的等待天数，这样可以确保等待天数一定是最小的。</p>
-<p>以下用一个具体的例子帮助读者理解单调栈。对于温度列表 [73,74,75,71,69,72,76,73]，单调栈 <code>stack</code> 的初始状态为空，答案 <code>ans</code> 的初始状态[0,0,0,0,0,0,0,0]，按照以下步骤更新单调栈和答案，其中单调栈内的元素都是下标，括号内的数字表示下标在温度列表中对应的温度。</p>
-<ul>
-<li><p>当 i&#x3D;0 时，单调栈为空，因此将 0 进栈。</p>
-<ul>
-<li>stack&#x3D;[0(73)]</li>
-<li>ans&#x3D;[0,0,0,0,0,0,0,0]</li>
-</ul>
-</li>
-<li><p>当 i&#x3D;1 时，由于 74 大于 73，因此移除栈顶元素 0，赋值 ans[0]:&#x3D;1−0，将 1 进栈。</p>
-<ul>
-<li>stack&#x3D;[1(74)]</li>
-<li>ans&#x3D;[1,0,0,0,0,0,0,0]</li>
-</ul>
-</li>
-<li><p>当 i&#x3D;2 时，由于 75 大于 74，因此移除栈顶元素 1，赋值 ans[1]:&#x3D;2−1，将 2 进栈。</p>
-<ul>
-<li>stack&#x3D;[2(75)]</li>
-<li>ans&#x3D;[1,1,0,0,0,0,0,0]</li>
-</ul>
-</li>
-<li><p>当 i&#x3D;3 时，由于 71 小于 75，因此将 3 进栈。</p>
-<ul>
-<li>stack&#x3D;[2(75),3(71)]</li>
-<li>ans&#x3D;[1,1,0,0,0,0,0,0]</li>
-</ul>
-</li>
-<li><p>当 i&#x3D;4 时，由于 69 小于 71，因此将 4 进栈。</p>
-<ul>
-<li>stack&#x3D;[2(75),3(71),4(69)]</li>
-<li>ans&#x3D;[1,1,0,0,0,0,0,0]</li>
-</ul>
-</li>
-<li><p>当 i&#x3D;5 时，由于 72 大于 69 和 71，因此依次移除栈顶元素 4 和 3，赋值 ans[4]:&#x3D;5−4 和 ans[3]:&#x3D;5−3，将 5 进栈。</p>
-<ul>
-<li>stack&#x3D;[2(75),5(72)]</li>
-<li>ans&#x3D;[1,1,0,2,1,0,0,0]</li>
-</ul>
-</li>
-<li><p>当 i&#x3D;6 时，由于 76 大于 72 和 75，因此依次移除栈顶元素 5 和 2，赋值 ans[5]:&#x3D;6−5 和 ans[2]:&#x3D;6−2，将 6 进栈。</p>
-<ul>
-<li>stack&#x3D;[6(76)]</li>
-<li>ans&#x3D;[1,1,4,2,1,1,0,0]</li>
-</ul>
-</li>
-<li><p>当 i&#x3D;7 时，由于 73 小于 76，因此将 7 进栈。</p>
-<ul>
-<li>stack&#x3D;[6(76),7(73)]</li>
-<li>ans&#x3D;[1,1,4,2,1,1,0,0]</li>
-</ul>
-</li>
-</ul>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int[] dailyTemperatures(int[] temperatures) &#123;</span><br><span class="line">        int length = temperatures.length;</span><br><span class="line">        int[] ans = new int[length];</span><br><span class="line">        Deque&lt;Integer&gt; stack = new LinkedList&lt;Integer&gt;();</span><br><span class="line">        for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">            int temperature = temperatures[i];</span><br><span class="line">            while (!stack.isEmpty() &amp;&amp; temperature &gt; temperatures[stack.peek()]) &#123;</span><br><span class="line">                int prevIndex = stack.pop();</span><br><span class="line">                ans[prevIndex] = i - prevIndex;</span><br><span class="line">            &#125;</span><br><span class="line">            stack.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; dailyTemperatures(vector&lt;int&gt;&amp; temperatures) &#123;</span><br><span class="line">        int n = temperatures.size();</span><br><span class="line">        vector&lt;int&gt; ans(n);</span><br><span class="line">        stack&lt;int&gt; s;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            while (!s.empty() &amp;&amp; temperatures[i] &gt; temperatures[s.top()]) &#123;</span><br><span class="line">                int previousIndex = s.top();</span><br><span class="line">                ans[previousIndex] = i - previousIndex;</span><br><span class="line">                s.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            s.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是温度列表的长度。正向遍历温度列表一遍，对于温度列表中的每个下标，最多有一次进栈和出栈的操作。</p>
-</li>
-<li><p>空间复杂度：O(n)，其中 n 是温度列表的长度。需要维护一个单调栈存储温度列表中的下标。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/17/%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/17/%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84/" class="post-title-link" itemprop="url">简化路径</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-04-17 10:04:31 / 修改时间：10:05:17" itemprop="dateCreated datePublished" datetime="2024-04-17T10:04:31+08:00">2024-04-17</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>912</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="简化路径"><a href="#简化路径" class="headerlink" title="简化路径"></a>简化路径</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个字符串 <code>path</code> ，表示指向某一文件或目录的 Unix 风格 <strong>绝对路径</strong> （以 <code>&#39;/&#39;</code> 开头），请你将其转化为更加简洁的规范路径。</p>
-<p>在 Unix 风格的文件系统中，一个点（<code>.</code>）表示当前目录本身；此外，两个点 （<code>..</code>） 表示将目录切换到上一级（指向父目录）；两者都可以是复杂相对路径的组成部分。任意多个连续的斜杠（即，<code>&#39;//&#39;</code>）都被视为单个斜杠 <code>&#39;/&#39;</code> 。 对于此问题，任何其他格式的点（例如，<code>&#39;...&#39;</code>）均被视为文件&#x2F;目录名称。</p>
-<p>请注意，返回的 <strong>规范路径</strong> 必须遵循下述格式：</p>
-<ul>
-<li>始终以斜杠 <code>&#39;/&#39;</code> 开头。</li>
-<li>两个目录名之间必须只有一个斜杠 <code>&#39;/&#39;</code> 。</li>
-<li>最后一个目录名（如果存在）<strong>不能</strong> 以 <code>&#39;/&#39;</code> 结尾。</li>
-<li>此外，路径仅包含从根目录到目标文件或目录的路径上的目录（即，不含 <code>&#39;.&#39;</code> 或 <code>&#39;..&#39;</code>）。</li>
-</ul>
-<p>返回简化后得到的 <strong>规范路径</strong> 。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：path = &quot;/home/&quot;</span><br><span class="line">输出：&quot;/home&quot;</span><br><span class="line">解释：注意，最后一个目录名后面没有斜杠。 </span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：path = &quot;/../&quot;</span><br><span class="line">输出：&quot;/&quot;</span><br><span class="line">解释：从根目录向上一级是不可行的，因为根目录是你可以到达的最高级。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：path = &quot;/home//foo/&quot;</span><br><span class="line">输出：&quot;/home/foo&quot;</span><br><span class="line">解释：在规范路径中，多个连续斜杠需要用一个斜杠替换。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 4：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：path = &quot;/a/./b/../../c/&quot;</span><br><span class="line">输出：&quot;/c&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= path.length &lt;= 3000</code></li>
-<li><code>path</code> 由英文字母，数字，<code>&#39;.&#39;</code>，<code>&#39;/&#39;</code> 或 <code>&#39;_&#39;</code> 组成。</li>
-<li><code>path</code> 是一个有效的 Unix 风格绝对路径。</li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p><strong>思路及算法</strong></p>
-<p>我们首先将给定的字符串 <code>path</code> 根据 <code>/</code> 分割成一个由若干字符串组成的列表，记为 <code>names</code>。根据题目中规定的「规范路径的下述格式」，<code>names</code> 中包含的字符串只能为以下几种：</p>
-<ul>
-<li>空字符串。例如当出现多个连续的 <code>/</code>，就会分割出空字符串；</li>
-<li>一个点<code> .</code>；</li>
-<li>两个点 <code>..</code>；</li>
-<li>只包含英文字母、数字或<code>_</code>的目录名。</li>
-</ul>
-<p>对于「空字符串」以及「一个点」，我们实际上无需对它们进行处理，因为「空字符串」没有任何含义，而「一个点」表示当前目录本身，我们无需切换目录。</p>
-<p>对于「两个点」或者「目录名」，我们则可以用一个栈来维护路径中的每一个目录名。当我们遇到「两个点」时，需要将目录切换到上一级，因此只要栈不为空，我们就弹出栈顶的目录。当我们遇到「目录名」时，就把它放入栈。</p>
-<p>这样一来，我们只需要遍历 <code>names</code> 中的每个字符串并进行上述操作即可。在所有的操作完成后，我们将从栈底到栈顶的字符串用 <code>/</code> 进行连接，再在最前面加上 <code>/ </code>表示根目录，就可以得到简化后的规范路径。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    string simplifyPath(string path) &#123;</span><br><span class="line">        auto split = [](const string&amp; s, char delim) -&gt; vector&lt;string&gt; &#123;</span><br><span class="line">            vector&lt;string&gt; ans;</span><br><span class="line">            string cur;</span><br><span class="line">            for (char ch: s) &#123;</span><br><span class="line">                if (ch == delim) &#123;</span><br><span class="line">                    ans.push_back(move(cur));</span><br><span class="line">                    cur.clear();</span><br><span class="line">                &#125;</span><br><span class="line">                else &#123;</span><br><span class="line">                    cur += ch;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ans.push_back(move(cur));</span><br><span class="line">            return ans;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        vector&lt;string&gt; names = split(path, &#x27;/&#x27;);</span><br><span class="line">        vector&lt;string&gt; stack;</span><br><span class="line">        for (string&amp; name: names) &#123;</span><br><span class="line">            if (name == &quot;..&quot;) &#123;</span><br><span class="line">                if (!stack.empty()) &#123;</span><br><span class="line">                    stack.pop_back();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else if (!name.empty() &amp;&amp; name != &quot;.&quot;) &#123;</span><br><span class="line">                stack.push_back(move(name));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        string ans;</span><br><span class="line">        if (stack.empty()) &#123;</span><br><span class="line">            ans = &quot;/&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            for (string&amp; name: stack) &#123;</span><br><span class="line">                ans += &quot;/&quot; + move(name);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public String simplifyPath(String path) &#123;</span><br><span class="line">        String[] names = path.split(&quot;/&quot;);</span><br><span class="line">        Deque&lt;String&gt; stack = new ArrayDeque&lt;String&gt;();</span><br><span class="line">        for (String name : names) &#123;</span><br><span class="line">            if (&quot;..&quot;.equals(name)) &#123;</span><br><span class="line">                if (!stack.isEmpty()) &#123;</span><br><span class="line">                    stack.pollLast();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else if (name.length() &gt; 0 &amp;&amp; !&quot;.&quot;.equals(name)) &#123;</span><br><span class="line">                stack.offerLast(name);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuffer ans = new StringBuffer();</span><br><span class="line">        if (stack.isEmpty()) &#123;</span><br><span class="line">            ans.append(&#x27;/&#x27;);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            while (!stack.isEmpty()) &#123;</span><br><span class="line">                ans.append(&#x27;/&#x27;);</span><br><span class="line">                ans.append(stack.pollFirst());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(n)，其中 <code>n</code> 是字符串<code> path</code> 的长度。</li>
-<li>空间复杂度：O(n)。我们需要 O(n) 的空间存储 <code>names</code> 中的所有字符串。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/17/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/17/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81/" class="post-title-link" itemprop="url">字符串解码</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-04-17 10:03:50 / 修改时间：10:05:02" itemprop="dateCreated datePublished" datetime="2024-04-17T10:03:50+08:00">2024-04-17</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>895</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="字符串解码"><a href="#字符串解码" class="headerlink" title="字符串解码"></a>字符串解码</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个经过编码的字符串，返回它解码后的字符串。</p>
-<p>编码规则为: <code>k[encoded_string]</code>，表示其中方括号内部的 <code>encoded_string</code> 正好重复 <code>k</code> 次。注意 <code>k</code> 保证为正整数。</p>
-<p>你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。</p>
-<p>此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 <code>k</code> ，例如不会出现像 <code>3a</code> 或 <code>2[4]</code> 的输入。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;3[a]2[bc]&quot;</span><br><span class="line">输出：&quot;aaabcbc&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;3[a2[c]]&quot;</span><br><span class="line">输出：&quot;accaccacc&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;2[abc]3[cd]ef&quot;</span><br><span class="line">输出：&quot;abcabccdcdcdef&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 4：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;abc3[cd]xyz&quot;</span><br><span class="line">输出：&quot;abccdcdcdxyz&quot;</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= s.length &lt;= 30</code></li>
-<li><code>s</code> 由小写英文字母、数字和方括号 <code>&#39;[]&#39;</code> 组成</li>
-<li><code>s</code> 保证是一个 <strong>有效</strong> 的输入。</li>
-<li><code>s</code> 中所有整数的取值范围为 <code>[1, 300]</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）辅助栈法"><a href="#（1）辅助栈法" class="headerlink" title="（1）辅助栈法"></a>（1）辅助栈法</h3><p><strong>思路及算法</strong></p>
-<p>本题难点在于括号内嵌套括号，需要从内向外生成与拼接字符串，这与栈的先入后出特性对应。</p>
-<p>算法流程：</p>
-<ul>
-<li><p>构建辅助栈 <code>stack</code>， 遍历字符串 <code>s </code>中每个字符 <code>c</code>；</p>
-<ul>
-<li>当 <code>c</code> 为数字时，将数字字符转化为数字 <code>multi</code>，用于后续倍数计算；</li>
-<li>当 <code>c</code> 为字母时，在 <code>res</code> 尾部添加 <code>c</code>；</li>
-<li>当 <code>c </code>为 <code>[</code> 时，将当前<code> multi</code> 和 <code>res</code> 入栈，并分别置空置 <code>0</code>：<ul>
-<li>记录此 <code>[</code> 前的临时结果<code> res</code> 至栈，用于发现对应 <code>]</code> 后的拼接操作；</li>
-<li>记录此 <code>[</code> 前的倍数 <code>multi</code> 至栈，用于发现对应 <code>]</code> 后，获取 <code>multi × [...]</code> 字符串。</li>
-<li>进入到新 <code>[</code> 后，<code>res</code> 和 <code>multi</code> 重新记录。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><ul>
-<li>当 <code>c</code> 为<code> ]</code> 时，<code>stack</code> 出栈，拼接字符串<code> res = last_res + cur_multi * res</code>，其中:<ul>
-<li><code>last_res</code>是上个 <code>[ </code>到当前 <code>[ </code>的字符串，例如<code> &quot;3[a2[c]]&quot;</code> 中的 <code>a</code>；</li>
-<li><code>cur_multi</code>是当前 <code>[ </code>到 <code>] </code>内字符串的重复倍数，例如 <code>&quot;3[a2[c]]&quot;</code> 中的 <code>2</code>。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>返回字符串 <code>res</code>。</p>
-</li>
-</ul>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public String decodeString(String s) &#123;</span><br><span class="line">        StringBuilder res = new StringBuilder();</span><br><span class="line">        int multi = 0;</span><br><span class="line">        LinkedList&lt;Integer&gt; stack_multi = new LinkedList&lt;&gt;();</span><br><span class="line">        LinkedList&lt;String&gt; stack_res = new LinkedList&lt;&gt;();</span><br><span class="line">        for(Character c : s.toCharArray()) &#123;</span><br><span class="line">            if(c == &#x27;[&#x27;) &#123;</span><br><span class="line">                stack_multi.addLast(multi);</span><br><span class="line">                stack_res.addLast(res.toString());</span><br><span class="line">                multi = 0;</span><br><span class="line">                res = new StringBuilder();</span><br><span class="line">            &#125;</span><br><span class="line">            else if(c == &#x27;]&#x27;) &#123;</span><br><span class="line">                StringBuilder tmp = new StringBuilder();</span><br><span class="line">                int cur_multi = stack_multi.removeLast();</span><br><span class="line">                for(int i = 0; i &lt; cur_multi; i++) tmp.append(res);</span><br><span class="line">                res = new StringBuilder(stack_res.removeLast() + tmp);</span><br><span class="line">            &#125;</span><br><span class="line">            else if(c &gt;= &#x27;0&#x27; &amp;&amp; c &lt;= &#x27;9&#x27;) multi = multi * 10 + Integer.parseInt(c + &quot;&quot;);</span><br><span class="line">            else res.append(c);</span><br><span class="line">        &#125;</span><br><span class="line">        return res.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度 O(N)，一次遍历 <code>s</code>；</li>
-<li>空间复杂度 O(N)，辅助栈在极端情况下需要线性空间，例如 <code>2[2[2[a]]]</code>。</li>
-</ul>
-<h3 id="（2）递归"><a href="#（2）递归" class="headerlink" title="（2）递归"></a>（2）递归</h3><p><strong>思路及算法</strong></p>
-<p>总体思路与辅助栈法一致，不同点在于将 <code>[ </code>和 <code>]</code> 分别作为递归的开启与终止条件：</p>
-<ul>
-<li>当 <code>s[i] == &#39;]&#39; </code>时，返回当前括号内记录的 <code>res</code> 字符串与 <code>]</code> 的索引 <code>i </code>（更新上层递归指针位置）；</li>
-<li>当<code> s[i] == &#39;[&#39;</code> 时，开启新一层递归，记录此 <code>[...]</code> 内字符串 <code>tmp</code> 和递归后的最新索引<code> i</code>，并执行 <code>res + multi * tmp</code> 拼接字符串。</li>
-<li>遍历完毕后返回 <code>res</code>。</li>
-</ul>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public String decodeString(String s) &#123;</span><br><span class="line">        return dfs(s, 0)[0];</span><br><span class="line">    &#125;</span><br><span class="line">    private String[] dfs(String s, int i) &#123;</span><br><span class="line">        StringBuilder res = new StringBuilder();</span><br><span class="line">        int multi = 0;</span><br><span class="line">        while(i &lt; s.length()) &#123;</span><br><span class="line">            if(s.charAt(i) &gt;= &#x27;0&#x27; &amp;&amp; s.charAt(i) &lt;= &#x27;9&#x27;) </span><br><span class="line">                multi = multi * 10 + Integer.parseInt(String.valueOf(s.charAt(i))); </span><br><span class="line">            else if(s.charAt(i) == &#x27;[&#x27;) &#123;</span><br><span class="line">                String[] tmp = dfs(s, i + 1);</span><br><span class="line">                i = Integer.parseInt(tmp[0]);</span><br><span class="line">                while(multi &gt; 0) &#123;</span><br><span class="line">                    res.append(tmp[1]);</span><br><span class="line">                    multi--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else if(s.charAt(i) == &#x27;]&#x27;) </span><br><span class="line">                return new String[] &#123; String.valueOf(i), res.toString() &#125;;</span><br><span class="line">            else </span><br><span class="line">                res.append(String.valueOf(s.charAt(i)));</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        return new String[] &#123; res.toString() &#125;;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度 O(N)，递归会更新索引，因此实际上还是一次遍历<code> s</code>；</li>
-<li>空间复杂度 O(N)，极端情况下递归深度将会达到线性级别。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/16/%E6%9C%80%E5%B0%8F%E6%A0%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/16/%E6%9C%80%E5%B0%8F%E6%A0%88/" class="post-title-link" itemprop="url">最小栈</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-04-16 09:44:31 / 修改时间：09:45:12" itemprop="dateCreated datePublished" datetime="2024-04-16T09:44:31+08:00">2024-04-16</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>775</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="最小栈"><a href="#最小栈" class="headerlink" title="最小栈"></a>最小栈</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>设计一个支持 <code>push</code> ，<code>pop</code> ，<code>top</code> 操作，并能在常数时间内检索到最小元素的栈。</p>
-<p>实现 <code>MinStack</code> 类:</p>
-<ul>
-<li><code>MinStack()</code> 初始化堆栈对象。</li>
-<li><code>void push(int val)</code> 将元素val推入堆栈。</li>
-<li><code>void pop()</code> 删除堆栈顶部的元素。</li>
-<li><code>int top()</code> 获取堆栈顶部的元素。</li>
-<li><code>int getMin()</code> 获取堆栈中的最小元素。</li>
-</ul>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line">[&quot;MinStack&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;getMin&quot;,&quot;pop&quot;,&quot;top&quot;,&quot;getMin&quot;]</span><br><span class="line">[[],[-2],[0],[-3],[],[],[],[]]</span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line">[null,null,null,null,-3,null,0,-2]</span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">MinStack minStack = new MinStack();</span><br><span class="line">minStack.push(-2);</span><br><span class="line">minStack.push(0);</span><br><span class="line">minStack.push(-3);</span><br><span class="line">minStack.getMin();   --&gt; 返回 -3.</span><br><span class="line">minStack.pop();</span><br><span class="line">minStack.top();      --&gt; 返回 0.</span><br><span class="line">minStack.getMin();   --&gt; 返回 -2.</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>-231 &lt;= val &lt;= 231 - 1</code></li>
-<li><code>pop</code>、<code>top</code> 和 <code>getMin</code> 操作总是在 <strong>非空栈</strong> 上调用</li>
-<li><code>push</code>, <code>pop</code>, <code>top</code>, and <code>getMin</code>最多被调用 <code>3 * 104</code> 次</li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="辅助栈"><a href="#辅助栈" class="headerlink" title="辅助栈"></a>辅助栈</h3><p><strong>思路及算法</strong></p>
-<p>要做出这道题目，首先要理解栈结构先进后出的性质。</p>
-<p>对于栈来说，如果一个元素 <code>a </code>在入栈时，栈里有其它的元素 <code>b, c, d</code>，那么无论这个栈在之后经历了什么操作，只要 <code>a</code> 在栈中，<code>b, c, d</code> 就一定在栈中，因为在 <code>a</code> 被弹出之前，<code>b, c, d</code> 不会被弹出。</p>
-<p>因此，在操作过程中的任意一个时刻，只要栈顶的元素是 <code>a</code>，那么我们就可以确定栈里面现在的元素一定是 <code>a, b, c, d</code>。</p>
-<p>那么，我们可以在每个元素 <code>a</code> 入栈时把当前栈的最小值 <code>m</code> 存储起来。在这之后无论何时，如果栈顶元素是 <code>a</code>，我们就可以直接返回存储的最小值 <code>m</code>。</p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/155/155_fig1.gif" alt="fig1"></p>
-<p>按照上面的思路，我们只需要设计一个数据结构，使得每个元素 <code>a</code> 与其相应的最小值 <code>m</code> 时刻保持一一对应。因此我们可以使用一个辅助栈，与元素栈同步插入与删除，用于存储与每个元素对应的最小值。</p>
-<ul>
-<li>当一个元素要入栈时，我们取当前辅助栈的栈顶存储的最小值，与当前元素比较得出最小值，将这个最小值插入辅助栈中；</li>
-<li>当一个元素要出栈时，我们把辅助栈的栈顶元素也一并弹出；</li>
-<li>在任意一个时刻，栈内元素的最小值就存储在辅助栈的栈顶元素中。</li>
-</ul>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class MinStack &#123;</span><br><span class="line">    stack&lt;int&gt; x_stack;</span><br><span class="line">    stack&lt;int&gt; min_stack;</span><br><span class="line">public:</span><br><span class="line">    MinStack() &#123;</span><br><span class="line">        min_stack.push(INT_MAX);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void push(int x) &#123;</span><br><span class="line">        x_stack.push(x);</span><br><span class="line">        min_stack.push(min(min_stack.top(), x));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void pop() &#123;</span><br><span class="line">        x_stack.pop();</span><br><span class="line">        min_stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int top() &#123;</span><br><span class="line">        return x_stack.top();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int getMin() &#123;</span><br><span class="line">        return min_stack.top();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class MinStack &#123;</span><br><span class="line">    Deque&lt;Integer&gt; xStack;</span><br><span class="line">    Deque&lt;Integer&gt; minStack;</span><br><span class="line"></span><br><span class="line">    public MinStack() &#123;</span><br><span class="line">        xStack = new LinkedList&lt;Integer&gt;();</span><br><span class="line">        minStack = new LinkedList&lt;Integer&gt;();</span><br><span class="line">        minStack.push(Integer.MAX_VALUE);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void push(int x) &#123;</span><br><span class="line">        xStack.push(x);</span><br><span class="line">        minStack.push(Math.min(minStack.peek(), x));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void pop() &#123;</span><br><span class="line">        xStack.pop();</span><br><span class="line">        minStack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public int top() &#123;</span><br><span class="line">        return xStack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public int getMin() &#123;</span><br><span class="line">        return minStack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：对于题目中的所有操作，时间复杂度均为 O(1)。因为栈的插入、删除与读取操作都是 O(1)，我们定义的每个操作最多调用栈操作两次。</li>
-<li>空间复杂度：O(n)，其中 n 为总操作数。最坏情况下，我们会连续插入 n 个元素，此时两个栈占用的空间为 O(n)。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/15/%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/15/%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7/" class="post-title-link" itemprop="url">有效的括号</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-04-15 09:27:11 / 修改时间：09:37:21" itemprop="dateCreated datePublished" datetime="2024-04-15T09:27:11+08:00">2024-04-15</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>612</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="有效的括号"><a href="#有效的括号" class="headerlink" title="有效的括号"></a>有效的括号</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个只包括 <code>&#39;(&#39;</code>，<code>&#39;)&#39;</code>，<code>&#39;&#123;&#39;</code>，<code>&#39;&#125;&#39;</code>，<code>&#39;[&#39;</code>，<code>&#39;]&#39;</code> 的字符串 <code>s</code> ，判断字符串是否有效。</p>
-<p>有效字符串需满足：</p>
-<ol>
-<li>左括号必须用相同类型的右括号闭合。</li>
-<li>左括号必须以正确的顺序闭合。</li>
-<li>每个右括号都有一个对应的相同类型的左括号。</li>
-</ol>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;()&quot;</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;()[]&#123;&#125;&quot;</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;(]&quot;</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= s.length &lt;= 104</code></li>
-<li><code>s</code> 仅由括号 <code>&#39;()[]&#123;&#125;&#39;</code> 组成</li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="辅助栈法"><a href="#辅助栈法" class="headerlink" title="辅助栈法"></a>辅助栈法</h3><p><strong>思路及算法</strong></p>
-<ul>
-<li><p>算法原理</p>
-<ul>
-<li>栈先入后出特点恰好与本题括号排序特点一致，即若遇到左括号入栈，遇到右括号时将对应栈顶左括号出栈，则遍历完所有括号后 stack 仍然为空；</li>
-<li>建立哈希表 dic 构建左右括号对应关系：key 左括号，value 右括号；这样查询 2 个括号是否对应只需 O(1) 时间复杂度；建立栈 stack，遍历字符串 s 并按照算法流程一一判断。</li>
-</ul>
-</li>
-<li><p>算法流程</p>
-<ul>
-<li>如果 c 是左括号，则入栈 push；</li>
-<li>否则通过哈希表判断括号对应关系，若 stack 栈顶出栈括号 stack.pop() 与当前遍历括号 c 不对应，则提前返回 false。</li>
-</ul>
-</li>
-<li><p>提前返回 false</p>
-<ul>
-<li>提前返回优点： 在迭代过程中，提前发现不符合的括号并且返回，提升算法效率。</li>
-<li>解决边界问题：<ul>
-<li>栈 stack 为空： 此时 stack.pop() 操作会报错；因此，我们采用一个取巧方法，给 stack 赋初值 ? ，并在哈希表 dic 中建立 key:′?′，value:′?′ 的对应关系予以配合。此时当 stack 为空且 c 为右括号时，可以正常提前返回 false；</li>
-<li>字符串 s 以左括号结尾： 此情况下可以正常遍历完整个 s，但 stack 中遗留未出栈的左括号；因此，最后需返回 len(stack) &#x3D;&#x3D; 1，以判断是否是有效的括号组合。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://pic.leetcode-cn.com/91ed1b06b593e0b7a2ddb967cf20077ad3c815826dfa602bf20c9214ec3cb466-Picture1.png" alt="img"></p>
-<p><img src="https://pic.leetcode-cn.com/829aae155c20fed4ce43a1bba2077bb46979a08e842b98f1f97f183a1016afee-Picture2.png" alt="img"></p>
-<p><img src="https://pic.leetcode-cn.com/5456814fa5b10a5e859996daaf2f6b56287af368134d8b04dce820612f2c4608-Picture3.png" alt="img"></p>
-<p><img src="https://pic.leetcode-cn.com/e782bcb808af96146e730f32feffabc7e224df847d9ff541d25171994748f243-Picture4.png" alt="img"></p>
-<p><img src="https://pic.leetcode-cn.com/bc514b643a0769c23b6a4ce86f8bb8207cee71c4b5aa41350f269b52b317256f-Picture5.png" alt="img"></p>
-<p><img src="https://pic.leetcode-cn.com/1e5dd507b6a41a3e5ce1d9fc50f9c78a4cd8845ae6a8ec1c5146190abd97dfe4-Picture6.png" alt="img"></p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    private static final Map&lt;Character,Character&gt; map = new HashMap&lt;Character,Character&gt;()&#123;&#123;</span><br><span class="line">        put(&#x27;&#123;&#x27;,&#x27;&#125;&#x27;); put(&#x27;[&#x27;,&#x27;]&#x27;); put(&#x27;(&#x27;,&#x27;)&#x27;); put(&#x27;?&#x27;,&#x27;?&#x27;);</span><br><span class="line">    &#125;&#125;;</span><br><span class="line">    public boolean isValid(String s) &#123;</span><br><span class="line">        if(s.length() &gt; 0 &amp;&amp; !map.containsKey(s.charAt(0))) return false;</span><br><span class="line">        LinkedList&lt;Character&gt; stack = new LinkedList&lt;Character&gt;() &#123;&#123; add(&#x27;?&#x27;); &#125;&#125;;</span><br><span class="line">        for(Character c : s.toCharArray())&#123;</span><br><span class="line">            if(map.containsKey(c)) stack.addLast(c);</span><br><span class="line">            else if(map.get(stack.removeLast()) != c) return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return stack.size() == 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度 O(N)：正确的括号组合需要遍历 1 遍 s；</li>
-<li>空间复杂度 O(N)：哈希表和栈使用线性的空间大小。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
@@ -1644,14 +1615,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">119k</span>
+    <span title="站点总字数">124k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">7:14</span>
+    <span title="站点阅读时长">7:32</span>
   </span>
 </div>
 <div class="busuanzi-count">
