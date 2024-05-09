@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">118</span>
+          <span class="site-state-item-count">120</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,6 +174,289 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/05/06/%E6%B1%82%E6%A0%B9%E7%BB%93%E7%82%B9%E5%88%B0%E5%8F%B6%E8%8A%82%E7%82%B9%E6%95%B0%E5%AD%97%E4%B9%8B%E5%92%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/05/06/%E6%B1%82%E6%A0%B9%E7%BB%93%E7%82%B9%E5%88%B0%E5%8F%B6%E8%8A%82%E7%82%B9%E6%95%B0%E5%AD%97%E4%B9%8B%E5%92%8C/" class="post-title-link" itemprop="url">求根结点到叶节点数字之和</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-05-06 10:13:01 / 修改时间：10:22:57" itemprop="dateCreated datePublished" datetime="2024-05-06T10:13:01+08:00">2024-05-06</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="求根结点到叶节点数字之和"><a href="#求根结点到叶节点数字之和" class="headerlink" title="求根结点到叶节点数字之和"></a>求根结点到叶节点数字之和</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个二叉树的根节点 <code>root</code> ，树中每个节点都存放有一个 <code>0</code> 到 <code>9</code> 之间的数字。</p>
+<p>每条从根节点到叶节点的路径都代表一个数字：</p>
+<ul>
+<li>例如，从根节点到叶节点的路径 <code>1 -&gt; 2 -&gt; 3</code> 表示数字 <code>123</code> 。</li>
+</ul>
+<p>计算从根节点到叶节点生成的 <strong>所有数字之和</strong> 。</p>
+<p><strong>叶节点</strong> 是指没有子节点的节点。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/02/19/num1tree.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [1,2,3]</span><br><span class="line">输出：25</span><br><span class="line">解释：</span><br><span class="line">从根到叶子节点路径 1-&gt;2 代表数字 12</span><br><span class="line">从根到叶子节点路径 1-&gt;3 代表数字 13</span><br><span class="line">因此，数字总和 = 12 + 13 = 25</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/02/19/num2tree.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [4,9,0,5,1]</span><br><span class="line">输出：1026</span><br><span class="line">解释：</span><br><span class="line">从根到叶子节点路径 4-&gt;9-&gt;5 代表数字 495</span><br><span class="line">从根到叶子节点路径 4-&gt;9-&gt;1 代表数字 491</span><br><span class="line">从根到叶子节点路径 4-&gt;0 代表数字 40</span><br><span class="line">因此，数字总和 = 495 + 491 + 40 = 1026</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>树中节点的数目在范围 <code>[1, 1000]</code> 内</li>
+<li><code>0 &lt;= Node.val &lt;= 9</code></li>
+<li>树的深度不超过 <code>10</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><p><strong>思路及算法</strong></p>
+<h3 id="（1）深度优先搜索"><a href="#（1）深度优先搜索" class="headerlink" title="（1）深度优先搜索"></a>（1）深度优先搜索</h3><p><strong>思路及算法</strong></p>
+<p>深度优先搜索是很直观的做法。从根节点开始，遍历每个节点，如果遇到叶子节点，则将叶子节点对应的数字加到数字之和。如果当前节点不是叶子节点，则计算其子节点对应的数字，然后对子节点递归遍历。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/129/fig1.png" alt="fig1"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int dfs(TreeNode* root, int prevSum) &#123;</span><br><span class="line">        if (root == nullptr) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int sum = prevSum * 10 + root-&gt;val;</span><br><span class="line">        if (root-&gt;left == nullptr &amp;&amp; root-&gt;right == nullptr) &#123;</span><br><span class="line">            return sum;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return dfs(root-&gt;left, sum) + dfs(root-&gt;right, sum);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    int sumNumbers(TreeNode* root) &#123;</span><br><span class="line">        return dfs(root, 0);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int sumNumbers(TreeNode root) &#123;</span><br><span class="line">        return dfs(root, 0);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int dfs(TreeNode root, int prevSum) &#123;</span><br><span class="line">        if (root == null) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int sum = prevSum * 10 + root.val;</span><br><span class="line">        if (root.left == null &amp;&amp; root.right == null) &#123;</span><br><span class="line">            return sum;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return dfs(root.left, sum) + dfs(root.right, sum);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是二叉树的节点个数。对每个节点访问一次。</p>
+</li>
+<li><p>空间复杂度：O(n)，其中 n 是二叉树的节点个数。空间复杂度主要取决于递归调用的栈空间，递归栈的深度等于二叉树的高度，最坏情况下，二叉树的高度等于节点个数，空间复杂度为 O(n)。</p>
+</li>
+</ul>
+<h3 id="（2）广度优先搜索"><a href="#（2）广度优先搜索" class="headerlink" title="（2）广度优先搜索"></a>（2）广度优先搜索</h3><p><strong>思路及算法</strong></p>
+<p>使用广度优先搜索，需要维护两个队列，分别存储节点和节点对应的数字。</p>
+<p>初始时，将根节点和根节点的值分别加入两个队列。每次从两个队列分别取出一个节点和一个数字，进行如下操作：</p>
+<ul>
+<li><p>如果当前节点是叶子节点，则将该节点对应的数字加到数字之和；</p>
+</li>
+<li><p>如果当前节点不是叶子节点，则获得当前节点的非空子节点，并根据当前节点对应的数字和子节点的值计算子节点对应的数字，然后将子节点和子节点对应的数字分别加入两个队列。</p>
+</li>
+</ul>
+<p>搜索结束后，即可得到所有叶子节点对应的数字之和。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int sumNumbers(TreeNode* root) &#123;</span><br><span class="line">        if (root == nullptr) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        queue&lt;TreeNode*&gt; nodeQueue;</span><br><span class="line">        queue&lt;int&gt; numQueue;</span><br><span class="line">        nodeQueue.push(root);</span><br><span class="line">        numQueue.push(root-&gt;val);</span><br><span class="line">        while (!nodeQueue.empty()) &#123;</span><br><span class="line">            TreeNode* node = nodeQueue.front();</span><br><span class="line">            int num = numQueue.front();</span><br><span class="line">            nodeQueue.pop();</span><br><span class="line">            numQueue.pop();</span><br><span class="line">            TreeNode* left = node-&gt;left;</span><br><span class="line">            TreeNode* right = node-&gt;right;</span><br><span class="line">            if (left == nullptr &amp;&amp; right == nullptr) &#123;</span><br><span class="line">                sum += num;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                if (left != nullptr) &#123;</span><br><span class="line">                    nodeQueue.push(left);</span><br><span class="line">                    numQueue.push(num * 10 + left-&gt;val);</span><br><span class="line">                &#125;</span><br><span class="line">                if (right != nullptr) &#123;</span><br><span class="line">                    nodeQueue.push(right);</span><br><span class="line">                    numQueue.push(num * 10 + right-&gt;val);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int sumNumbers(TreeNode root) &#123;</span><br><span class="line">        if (root == null) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        Queue&lt;TreeNode&gt; nodeQueue = new LinkedList&lt;TreeNode&gt;();</span><br><span class="line">        Queue&lt;Integer&gt; numQueue = new LinkedList&lt;Integer&gt;();</span><br><span class="line">        nodeQueue.offer(root);</span><br><span class="line">        numQueue.offer(root.val);</span><br><span class="line">        while (!nodeQueue.isEmpty()) &#123;</span><br><span class="line">            TreeNode node = nodeQueue.poll();</span><br><span class="line">            int num = numQueue.poll();</span><br><span class="line">            TreeNode left = node.left, right = node.right;</span><br><span class="line">            if (left == null &amp;&amp; right == null) &#123;</span><br><span class="line">                sum += num;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                if (left != null) &#123;</span><br><span class="line">                    nodeQueue.offer(left);</span><br><span class="line">                    numQueue.offer(num * 10 + left.val);</span><br><span class="line">                &#125;</span><br><span class="line">                if (right != null) &#123;</span><br><span class="line">                    nodeQueue.offer(right);</span><br><span class="line">                    numQueue.offer(num * 10 + right.val);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 是二叉树的节点个数。对每个节点访问一次。</p>
+</li>
+<li><p>空间复杂度：O(n)，其中 n 是二叉树的节点个数。空间复杂度主要取决于队列，每个队列中的元素个数不会超过 n 。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/05/06/%E5%A1%AB%E5%85%85%E6%AF%8F%E4%B8%AA%E7%BB%93%E7%82%B9%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E5%8F%B3%E4%BE%A7%E6%8C%87%E9%92%88II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/05/06/%E5%A1%AB%E5%85%85%E6%AF%8F%E4%B8%AA%E7%BB%93%E7%82%B9%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E5%8F%B3%E4%BE%A7%E6%8C%87%E9%92%88II/" class="post-title-link" itemprop="url">填充每个结点的下一个右侧指针II</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-05-06 10:11:47 / 修改时间：10:23:32" itemprop="dateCreated datePublished" datetime="2024-05-06T10:11:47+08:00">2024-05-06</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p> 填充每个结点的下一个右侧指针II</p>
+<h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个二叉树：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct Node &#123;</span><br><span class="line">  int val;</span><br><span class="line">  Node *left;</span><br><span class="line">  Node *right;</span><br><span class="line">  Node *next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 <code>NULL</code> 。</p>
+<p>初始状态下，所有 next 指针都被设置为 <code>NULL</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2019/02/15/117_sample.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [1,2,3,4,5,null,7]</span><br><span class="line">输出：[1,#,2,3,#,4,5,7,#]</span><br><span class="line">解释：给定二叉树如图 A 所示，你的函数应该填充它的每个 next 指针，以指向其下一个右侧节点，如图 B 所示。序列化输出按层序遍历顺序（由 next 指针连接），&#x27;#&#x27; 表示每层的末尾。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = []</span><br><span class="line">输出：[]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>树中的节点数在范围 <code>[0, 6000]</code> 内</li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）层次遍历"><a href="#（1）层次遍历" class="headerlink" title="（1）层次遍历"></a>（1）层次遍历</h3><p><strong>思路及算法</strong></p>
+<p>这道题希望我们把二叉树各个层的点组织成链表，一个非常直观的思路是层次遍历。树的层次遍历基于广度优先搜索，它按照层的顺序遍历二叉树，在遍历第 iii 层前，一定会遍历完第 i−1 层。</p>
+<p>算法如下：初始化一个队列 q，将根结点放入队列中。当队列不为空的时候，记录当前队列大小为 n，从队列中以此取出 n 个元素并通过这 n 个元素拓展新节点。如此循环，直到队列为空。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    Node* connect(Node* root) &#123;</span><br><span class="line">        if (!root) &#123;</span><br><span class="line">            return nullptr;</span><br><span class="line">        &#125;</span><br><span class="line">        queue&lt;Node*&gt; q;</span><br><span class="line">        q.push(root);</span><br><span class="line">        while (!q.empty()) &#123;</span><br><span class="line">            int n = q.size();</span><br><span class="line">            Node *last = nullptr;</span><br><span class="line">            for (int i = 1; i &lt;= n; ++i) &#123;</span><br><span class="line">                Node *f = q.front();</span><br><span class="line">                q.pop();</span><br><span class="line">                if (f-&gt;left) &#123;</span><br><span class="line">                    q.push(f-&gt;left);</span><br><span class="line">                &#125;</span><br><span class="line">                if (f-&gt;right) &#123;</span><br><span class="line">                    q.push(f-&gt;right);</span><br><span class="line">                &#125;</span><br><span class="line">                if (i != 1) &#123;</span><br><span class="line">                    last-&gt;next = f;</span><br><span class="line">                &#125;</span><br><span class="line">                last = f;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public Node connect(Node root) &#123;</span><br><span class="line">        if (root == null) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        Queue&lt;Node&gt; queue = new ArrayDeque&lt;Node&gt;();</span><br><span class="line">        queue.offer(root);</span><br><span class="line">        while (!queue.isEmpty()) &#123;</span><br><span class="line">            int n = queue.size();</span><br><span class="line">            Node last = null;</span><br><span class="line">            for (int i = 1; i &lt;= n; ++i) &#123;</span><br><span class="line">                Node f = queue.poll();</span><br><span class="line">                if (f.left != null) &#123;</span><br><span class="line">                    queue.offer(f.left);</span><br><span class="line">                &#125;</span><br><span class="line">                if (f.right != null) &#123;</span><br><span class="line">                    queue.offer(f.right);</span><br><span class="line">                &#125;</span><br><span class="line">                if (i != 1) &#123;</span><br><span class="line">                    last.next = f;</span><br><span class="line">                &#125;</span><br><span class="line">                last = f;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<p>记树上的点的个数为 N。</p>
+<ul>
+<li><p>时间复杂度：O(N)。我们需要遍历这棵树上所有的点，时间复杂度为 O(N)。</p>
+</li>
+<li><p>空间复杂度：O(N)。即队列的空间代价。</p>
+</li>
+</ul>
+<h3 id="（2）指针"><a href="#（2）指针" class="headerlink" title="（2）指针"></a>（2）指针</h3><p><strong>思路及算法</strong></p>
+<p>因为必须处理树上的所有节点，所以无法降低时间复杂度，但是可以尝试降低空间复杂度。</p>
+<p>在方法一中，因为对树的结构一无所知，所以使用队列保证有序访问同一层的所有节点，并建立它们之间的连接。然而不难发现：一旦在某层的节点之间建立了 next 指针，那这层节点实际上形成了一个链表。因此，如果先去建立某一层的 next 指针，再去遍历这一层，就无需再使用队列了。</p>
+<p>基于该想法，提出降低空间复杂度的思路：如果第 iii 层节点之间已经建立 next 指针，就可以通过 next 指针访问该层的所有节点，同时对于每个第 i 层的节点，我们又可以通过它的 left 和 right 指针知道其第 i+1 层的孩子节点是什么，所以遍历过程中就能够按顺序为第 i+1 层节点建立 next 指针。</p>
+<p>具体来说：</p>
+<ul>
+<li>从根节点开始。因为第 0 层只有一个节点，不需要处理。可以在上一层为下一层建立 next 指针。该方法最重要的一点是：位于第 x 层时为第 x+1 层建立 next 指针。一旦完成这些连接操作，移至第 x+1 层为第 x+2 层建立 next 指针。</li>
+<li>当遍历到某层节点时，该层节点的 next 指针已经建立。这样就不需要队列从而节省空间。每次只要知道下一层的最左边的节点，就可以从该节点开始，像遍历链表一样遍历该层的所有节点。</li>
+</ul>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void handle(Node* &amp;last, Node* &amp;p, Node* &amp;nextStart) &#123;</span><br><span class="line">        if (last) &#123;</span><br><span class="line">            last-&gt;next = p;</span><br><span class="line">        &#125; </span><br><span class="line">        if (!nextStart) &#123;</span><br><span class="line">            nextStart = p;</span><br><span class="line">        &#125;</span><br><span class="line">        last = p;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Node* connect(Node* root) &#123;</span><br><span class="line">        if (!root) &#123;</span><br><span class="line">            return nullptr;</span><br><span class="line">        &#125;</span><br><span class="line">        Node *start = root;</span><br><span class="line">        while (start) &#123;</span><br><span class="line">            Node *last = nullptr, *nextStart = nullptr;</span><br><span class="line">            for (Node *p = start; p != nullptr; p = p-&gt;next) &#123;</span><br><span class="line">                if (p-&gt;left) &#123;</span><br><span class="line">                    handle(last, p-&gt;left, nextStart);</span><br><span class="line">                &#125;</span><br><span class="line">                if (p-&gt;right) &#123;</span><br><span class="line">                    handle(last, p-&gt;right, nextStart);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            start = nextStart;</span><br><span class="line">        &#125;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    Node last = null, nextStart = null;</span><br><span class="line"></span><br><span class="line">    public Node connect(Node root) &#123;</span><br><span class="line">        if (root == null) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        Node start = root;</span><br><span class="line">        while (start != null) &#123;</span><br><span class="line">            last = null;</span><br><span class="line">            nextStart = null;</span><br><span class="line">            for (Node p = start; p != null; p = p.next) &#123;</span><br><span class="line">                if (p.left != null) &#123;</span><br><span class="line">                    handle(p.left);</span><br><span class="line">                &#125;</span><br><span class="line">                if (p.right != null) &#123;</span><br><span class="line">                    handle(p.right);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            start = nextStart;</span><br><span class="line">        &#125;</span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void handle(Node p) &#123;</span><br><span class="line">        if (last != null) &#123;</span><br><span class="line">            last.next = p;</span><br><span class="line">        &#125; </span><br><span class="line">        if (nextStart == null) &#123;</span><br><span class="line">            nextStart = p;</span><br><span class="line">        &#125;</span><br><span class="line">        last = p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<p>记树上的点的个数为 N。</p>
+<ul>
+<li><p>时间复杂度：O(N)。我们需要遍历这棵树上所有的点，时间复杂度为 O(N)。</p>
+</li>
+<li><p>空间复杂度：O(1)。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1206,245 +1489,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/27/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E8%B7%AF%E5%BE%84%E5%92%8C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/27/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E8%B7%AF%E5%BE%84%E5%92%8C/" class="post-title-link" itemprop="url">二叉树的最大路径和</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-04-27 10:26:41 / 修改时间：10:27:33" itemprop="dateCreated datePublished" datetime="2024-04-27T10:26:41+08:00">2024-04-27</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="二叉树的最大路径和"><a href="#二叉树的最大路径和" class="headerlink" title="二叉树的最大路径和"></a>二叉树的最大路径和</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>二叉树中的 <strong>路径</strong> 被定义为一条节点序列，序列中每对相邻节点之间都存在一条边。同一个节点在一条路径序列中 <strong>至多出现一次</strong> 。该路径 <strong>至少包含一个</strong> 节点，且不一定经过根节点。</p>
-<p><strong>路径和</strong> 是路径中各节点值的总和。</p>
-<p>给你一个二叉树的根节点 <code>root</code> ，返回其 <strong>最大路径和</strong> 。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2020/10/13/exx1.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [1,2,3]</span><br><span class="line">输出：6</span><br><span class="line">解释：最优路径是 2 -&gt; 1 -&gt; 3 ，路径和为 2 + 1 + 3 = 6</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2020/10/13/exx2.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [-10,9,20,null,null,15,7]</span><br><span class="line">输出：42</span><br><span class="line">解释：最优路径是 15 -&gt; 20 -&gt; 7 ，路径和为 15 + 20 + 7 = 42</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li>树中节点数目范围是 <code>[1, 3 * 104]</code></li>
-<li><code>-1000 &lt;= Node.val &lt;= 1000</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p><strong>思路及算法</strong></p>
-<p>首先，考虑实现一个简化的函数 maxGain(node)，该函数计算二叉树中的一个节点的最大贡献值，具体而言，就是在以该节点为根节点的子树中寻找以该节点为起点的一条路径，使得该路径上的节点值之和最大。</p>
-<p>具体而言，该函数的计算如下。</p>
-<p>空节点的最大贡献值等于 0。</p>
-<p>非空节点的最大贡献值等于节点值与其子节点中的最大贡献值之和（对于叶节点而言，最大贡献值等于节点值）。</p>
-<p>例如，考虑如下二叉树。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> -10</span><br><span class="line"> / \</span><br><span class="line">9  20</span><br><span class="line">  /  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure>
-
-<p>叶节点 9、15、7 的最大贡献值分别为 9、15、7。</p>
-<p>得到叶节点的最大贡献值之后，再计算非叶节点的最大贡献值。节点 20 的最大贡献值等于 20+max⁡(15,7)&#x3D;35，节点 −10 的最大贡献值等于 −10+max⁡(9,35)&#x3D;25。</p>
-<p>上述计算过程是递归的过程，因此，对根节点调用函数 maxGain，即可得到每个节点的最大贡献值。</p>
-<p>根据函数 maxGain 得到每个节点的最大贡献值之后，如何得到二叉树的最大路径和？对于二叉树中的一个节点，该节点的最大路径和取决于该节点的值与该节点的左右子节点的最大贡献值，如果子节点的最大贡献值为正，则计入该节点的最大路径和，否则不计入该节点的最大路径和。维护一个全局变量 maxSum 存储最大路径和，在递归过程中更新 maxSum 的值，最后得到的 maxSum 的值即为二叉树中的最大路径和。</p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/124/1.PNG" alt="img"></p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/124/2.PNG" alt="img"></p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/124/3.PNG" alt="img"></p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/124/4.PNG" alt="img"></p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/124/5.PNG" alt="img"></p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/124/6.PNG" alt="img"></p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/124/7.PNG" alt="img"></p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">private:</span><br><span class="line">    int maxSum = INT_MIN;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    int maxGain(TreeNode* node) &#123;</span><br><span class="line">        if (node == nullptr) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        // 递归计算左右子节点的最大贡献值</span><br><span class="line">        // 只有在最大贡献值大于 0 时，才会选取对应子节点</span><br><span class="line">        int leftGain = max(maxGain(node-&gt;left), 0);</span><br><span class="line">        int rightGain = max(maxGain(node-&gt;right), 0);</span><br><span class="line"></span><br><span class="line">        // 节点的最大路径和取决于该节点的值与该节点的左右子节点的最大贡献值</span><br><span class="line">        int priceNewpath = node-&gt;val + leftGain + rightGain;</span><br><span class="line"></span><br><span class="line">        // 更新答案</span><br><span class="line">        maxSum = max(maxSum, priceNewpath);</span><br><span class="line"></span><br><span class="line">        // 返回节点的最大贡献值</span><br><span class="line">        return node-&gt;val + max(leftGain, rightGain);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int maxPathSum(TreeNode* root) &#123;</span><br><span class="line">        maxGain(root);</span><br><span class="line">        return maxSum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    int maxSum = Integer.MIN_VALUE;</span><br><span class="line"></span><br><span class="line">    public int maxPathSum(TreeNode root) &#123;</span><br><span class="line">        maxGain(root);</span><br><span class="line">        return maxSum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int maxGain(TreeNode node) &#123;</span><br><span class="line">        if (node == null) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        // 递归计算左右子节点的最大贡献值</span><br><span class="line">        // 只有在最大贡献值大于 0 时，才会选取对应子节点</span><br><span class="line">        int leftGain = Math.max(maxGain(node.left), 0);</span><br><span class="line">        int rightGain = Math.max(maxGain(node.right), 0);</span><br><span class="line"></span><br><span class="line">        // 节点的最大路径和取决于该节点的值与该节点的左右子节点的最大贡献值</span><br><span class="line">        int priceNewpath = node.val + leftGain + rightGain;</span><br><span class="line"></span><br><span class="line">        // 更新答案</span><br><span class="line">        maxSum = Math.max(maxSum, priceNewpath);</span><br><span class="line"></span><br><span class="line">        // 返回节点的最大贡献值</span><br><span class="line">        return node.val + Math.max(leftGain, rightGain);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(N)，其中 N 是二叉树中的节点个数。对每个节点访问不超过 2 次。</li>
-<li>空间复杂度：O(N)，其中 N 是二叉树中的节点个数。空间复杂度主要取决于递归调用层数，最大层数等于二叉树的高度，最坏情况下，二叉树的高度等于二叉树中的节点个数。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/27/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/27/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0/" class="post-title-link" itemprop="url">完全二叉树的节点个数</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-04-27 09:46:37 / 修改时间：09:48:17" itemprop="dateCreated datePublished" datetime="2024-04-27T09:46:37+08:00">2024-04-27</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>536</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="完全二叉树的节点个数"><a href="#完全二叉树的节点个数" class="headerlink" title="完全二叉树的节点个数"></a>完全二叉树的节点个数</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一棵 <strong>完全二叉树</strong> 的根节点 <code>root</code> ，求出该树的节点个数。</p>
-<p>完全二叉树的定义如下：在完全二叉树中，除了最底层节点可能没填满外，其余每层节点数都达到最大值，并且最下面一层的节点都集中在该层最左边的若干位置。若最底层为第 <code>h</code> 层，则该层包含 <code>1~ 2h</code> 个节点。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2021/01/14/complete.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [1,2,3,4,5,6]</span><br><span class="line">输出：6</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = []</span><br><span class="line">输出：0</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [1]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li>树中节点的数目范围是<code>[0, 5 * 104]</code></li>
-<li><code>0 &lt;= Node.val &lt;= 5 * 104</code></li>
-<li>题目数据保证输入的树是 <strong>完全二叉树</strong></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><p>首先需要明确完全二叉树的定义：它是一棵空树或者它的叶子节点只出在最后两层，若最后一层不满则叶子节点只在最左侧。</p>
-<p>再来回顾一下满二叉的节点个数怎么计算，如果满二叉树的层数为h，则总节点数为：2^h - 1.<br>那么我们来对 root 节点的左右子树进行高度统计，分别记为 left 和 right，有以下两种结果：</p>
-<ol>
-<li>left &#x3D;&#x3D; right。这说明，左子树一定是满二叉树，因为节点已经填充到右子树了，左子树必定已经填满了。所以左子树的节点总数我们可以直接得到，是 2^left - 1，加上当前这个 root 节点，则正好是 2^left。再对右子树进行递归统计。</li>
-<li>left !&#x3D; right。说明此时最后一层不满，但倒数第二层已经满了，可以直接得到右子树的节点个数。同理，右子树节点 +root 节点，总数为 2^right。再对左子树进行递归查找。</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode left;</span><br><span class="line"> *     TreeNode right;</span><br><span class="line"> *     TreeNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int countNodes(TreeNode root) &#123;</span><br><span class="line">        if(root == null)&#123;</span><br><span class="line">           return 0;</span><br><span class="line">        &#125; </span><br><span class="line">        int left = countLevel(root.left);</span><br><span class="line">        int right = countLevel(root.right);</span><br><span class="line">        if(left == right)&#123;</span><br><span class="line">            return countNodes(root.right) + (1&lt;&lt;left);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            return countNodes(root.left) + (1&lt;&lt;right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    private int countLevel(TreeNode root)&#123;</span><br><span class="line">        int level = 0;</span><br><span class="line">        while(root != null)&#123;</span><br><span class="line">            level++;</span><br><span class="line">            root = root.left;</span><br><span class="line">        &#125;</span><br><span class="line">        return level;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1469,14 +1513,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">127k</span>
+    <span title="站点总字数">130k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">7:43</span>
+    <span title="站点阅读时长">7:51</span>
   </span>
 </div>
 <div class="busuanzi-count">
