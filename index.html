@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">120</span>
+          <span class="site-state-item-count">124</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,6 +174,564 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/05/10/%E8%AF%BE%E7%A8%8B%E8%A1%A8II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/05/10/%E8%AF%BE%E7%A8%8B%E8%A1%A8II/" class="post-title-link" itemprop="url">课程表II</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-05-10 10:34:54 / 修改时间：10:37:40" itemprop="dateCreated datePublished" datetime="2024-05-10T10:34:54+08:00">2024-05-10</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="课程表II"><a href="#课程表II" class="headerlink" title="课程表II"></a>课程表II</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>现在你总共有 <code>numCourses</code> 门课需要选，记为 <code>0</code> 到 <code>numCourses - 1</code>。给你一个数组 <code>prerequisites</code> ，其中 <code>prerequisites[i] = [ai, bi]</code> ，表示在选修课程 <code>ai</code> 前 <strong>必须</strong> 先选修 <code>bi</code> 。</p>
+<ul>
+<li>例如，想要学习课程 <code>0</code> ，你需要先完成课程 <code>1</code> ，我们用一个匹配来表示：<code>[0,1]</code> 。</li>
+</ul>
+<p>返回你为了学完所有课程所安排的学习顺序。可能会有多个正确的顺序，你只要返回 <strong>任意一种</strong> 就可以了。如果不可能完成所有课程，返回 <strong>一个空数组</strong> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：numCourses = 2, prerequisites = [[1,0]]</span><br><span class="line">输出：[0,1]</span><br><span class="line">解释：总共有 2 门课程。要学习课程 1，你需要先完成课程 0。因此，正确的课程顺序为 [0,1] 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]</span><br><span class="line">输出：[0,2,1,3]</span><br><span class="line">解释：总共有 4 门课程。要学习课程 3，你应该先完成课程 1 和课程 2。并且课程 1 和课程 2 都应该排在课程 0 之后。</span><br><span class="line">因此，一个正确的课程顺序是 [0,1,2,3] 。另一个正确的排序是 [0,2,1,3] 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：numCourses = 1, prerequisites = []</span><br><span class="line">输出：[0]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= numCourses &lt;= 2000</code></li>
+<li><code>0 &lt;= prerequisites.length &lt;= numCourses * (numCourses - 1)</code></li>
+<li><code>prerequisites[i].length == 2</code></li>
+<li><code>0 &lt;= ai, bi &lt; numCourses</code></li>
+<li><code>ai != bi</code></li>
+<li>所有<code>[ai, bi]</code> <strong>互不相同</strong></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）深度优先搜索"><a href="#（1）深度优先搜索" class="headerlink" title="（1）深度优先搜索"></a>（1）深度优先搜索</h3><p><strong>思路及算法</strong></p>
+<p>我们可以将深度优先搜索的流程与拓扑排序的求解联系起来，用一个栈来存储所有<strong>已经搜索完成的节点</strong>。</p>
+<p>假设我们当前搜索到了节点 u，如果它的所有相邻节点都已经搜索完成，那么这些节点都已经在栈中了，此时我们就可以把 u 入栈。可以发现，如果我们从栈顶往栈底的顺序看，由于 u 处于栈顶的位置，那么 u 出现在所有 u 的相邻节点的前面。因此对于 u 这个节点而言，它是满足拓扑排序的要求的。</p>
+<p>这样以来，我们对图进行一遍深度优先搜索。当每个节点进行回溯的时候，我们把该节点放入栈中。最终从栈顶到栈底的序列就是一种拓扑排序。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">private:</span><br><span class="line">    // 存储有向图</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; edges;</span><br><span class="line">    // 标记每个节点的状态：0=未搜索，1=搜索中，2=已完成</span><br><span class="line">    vector&lt;int&gt; visited;</span><br><span class="line">    // 用数组来模拟栈，下标 0 为栈底，n-1 为栈顶</span><br><span class="line">    vector&lt;int&gt; result;</span><br><span class="line">    // 判断有向图中是否有环</span><br><span class="line">    bool valid = true;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    void dfs(int u) &#123;</span><br><span class="line">        // 将节点标记为「搜索中」</span><br><span class="line">        visited[u] = 1;</span><br><span class="line">        // 搜索其相邻节点</span><br><span class="line">        // 只要发现有环，立刻停止搜索</span><br><span class="line">        for (int v: edges[u]) &#123;</span><br><span class="line">            // 如果「未搜索」那么搜索相邻节点</span><br><span class="line">            if (visited[v] == 0) &#123;</span><br><span class="line">                dfs(v);</span><br><span class="line">                if (!valid) &#123;</span><br><span class="line">                    return;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            // 如果「搜索中」说明找到了环</span><br><span class="line">            else if (visited[v] == 1) &#123;</span><br><span class="line">                valid = false;</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        // 将节点标记为「已完成」</span><br><span class="line">        visited[u] = 2;</span><br><span class="line">        // 将节点入栈</span><br><span class="line">        result.push_back(u);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    vector&lt;int&gt; findOrder(int numCourses, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) &#123;</span><br><span class="line">        edges.resize(numCourses);</span><br><span class="line">        visited.resize(numCourses);</span><br><span class="line">        for (const auto&amp; info: prerequisites) &#123;</span><br><span class="line">            edges[info[1]].push_back(info[0]);</span><br><span class="line">        &#125;</span><br><span class="line">        // 每次挑选一个「未搜索」的节点，开始进行深度优先搜索</span><br><span class="line">        for (int i = 0; i &lt; numCourses &amp;&amp; valid; ++i) &#123;</span><br><span class="line">            if (!visited[i]) &#123;</span><br><span class="line">                dfs(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (!valid) &#123;</span><br><span class="line">            return &#123;&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        // 如果没有环，那么就有拓扑排序</span><br><span class="line">        // 注意下标 0 为栈底，因此需要将数组反序输出</span><br><span class="line">        reverse(result.begin(), result.end());</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    // 存储有向图</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; edges;</span><br><span class="line">    // 标记每个节点的状态：0=未搜索，1=搜索中，2=已完成</span><br><span class="line">    int[] visited;</span><br><span class="line">    // 用数组来模拟栈，下标 n-1 为栈底，0 为栈顶</span><br><span class="line">    int[] result;</span><br><span class="line">    // 判断有向图中是否有环</span><br><span class="line">    boolean valid = true;</span><br><span class="line">    // 栈下标</span><br><span class="line">    int index;</span><br><span class="line"></span><br><span class="line">    public int[] findOrder(int numCourses, int[][] prerequisites) &#123;</span><br><span class="line">        edges = new ArrayList&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line">        for (int i = 0; i &lt; numCourses; ++i) &#123;</span><br><span class="line">            edges.add(new ArrayList&lt;Integer&gt;());</span><br><span class="line">        &#125;</span><br><span class="line">        visited = new int[numCourses];</span><br><span class="line">        result = new int[numCourses];</span><br><span class="line">        index = numCourses - 1;</span><br><span class="line">        for (int[] info : prerequisites) &#123;</span><br><span class="line">            edges.get(info[1]).add(info[0]);</span><br><span class="line">        &#125;</span><br><span class="line">        // 每次挑选一个「未搜索」的节点，开始进行深度优先搜索</span><br><span class="line">        for (int i = 0; i &lt; numCourses &amp;&amp; valid; ++i) &#123;</span><br><span class="line">            if (visited[i] == 0) &#123;</span><br><span class="line">                dfs(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (!valid) &#123;</span><br><span class="line">            return new int[0];</span><br><span class="line">        &#125;</span><br><span class="line">        // 如果没有环，那么就有拓扑排序</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void dfs(int u) &#123;</span><br><span class="line">        // 将节点标记为「搜索中」</span><br><span class="line">        visited[u] = 1;</span><br><span class="line">        // 搜索其相邻节点</span><br><span class="line">        // 只要发现有环，立刻停止搜索</span><br><span class="line">        for (int v: edges.get(u)) &#123;</span><br><span class="line">            // 如果「未搜索」那么搜索相邻节点</span><br><span class="line">            if (visited[v] == 0) &#123;</span><br><span class="line">                dfs(v);</span><br><span class="line">                if (!valid) &#123;</span><br><span class="line">                    return;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            // 如果「搜索中」说明找到了环</span><br><span class="line">            else if (visited[v] == 1) &#123;</span><br><span class="line">                valid = false;</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        // 将节点标记为「已完成」</span><br><span class="line">        visited[u] = 2;</span><br><span class="line">        // 将节点入栈</span><br><span class="line">        result[index--] = u;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度: O(n+m)，其中 n 为课程数，m 为先修课程的要求数。这其实就是对图进行深度优先搜索的时间复杂度。</p>
+</li>
+<li><p>空间复杂度: O(n+m)。题目中是以列表形式给出的先修课程关系，为了对图进行深度优先搜索，我们需要存储成邻接表的形式，空间复杂度为 O(n+m)。在深度优先搜索的过程中，我们需要最多 O(n) 的栈空间（递归）进行深度优先搜索，并且还需要若干个 O(n) 的空间存储节点状态、最终答案等。</p>
+</li>
+</ul>
+<h3 id="（2）广度优先搜索"><a href="#（2）广度优先搜索" class="headerlink" title="（2）广度优先搜索"></a>（2）广度优先搜索</h3><p><strong>思路及算法</strong></p>
+<p>我们考虑拓扑排序中最前面的节点，该节点一定不会有任何入边，也就是它没有任何的先修课程要求。当我们将一个节点加入答案中后，我们就可以移除它的所有出边，代表着它的相邻节点少了一门先修课程的要求。如果某个相邻节点变成了「没有任何入边的节点」，那么就代表着这门课可以开始学习了。按照这样的流程，我们不断地将没有入边的节点加入答案，直到答案中包含所有的节点（得到了一种拓扑排序）或者不存在没有入边的节点。</p>
+<p>上面的想法类似于广度优先搜索，因此我们可以将广度优先搜索的流程与拓扑排序的求解联系起来。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">private:</span><br><span class="line">    // 存储有向图</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; edges;</span><br><span class="line">    // 存储每个节点的入度</span><br><span class="line">    vector&lt;int&gt; indeg;</span><br><span class="line">    // 存储答案</span><br><span class="line">    vector&lt;int&gt; result;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; findOrder(int numCourses, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) &#123;</span><br><span class="line">        edges.resize(numCourses);</span><br><span class="line">        indeg.resize(numCourses);</span><br><span class="line">        for (const auto&amp; info: prerequisites) &#123;</span><br><span class="line">            edges[info[1]].push_back(info[0]);</span><br><span class="line">            ++indeg[info[0]];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        queue&lt;int&gt; q;</span><br><span class="line">        // 将所有入度为 0 的节点放入队列中</span><br><span class="line">        for (int i = 0; i &lt; numCourses; ++i) &#123;</span><br><span class="line">            if (indeg[i] == 0) &#123;</span><br><span class="line">                q.push(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        while (!q.empty()) &#123;</span><br><span class="line">            // 从队首取出一个节点</span><br><span class="line">            int u = q.front();</span><br><span class="line">            q.pop();</span><br><span class="line">            // 放入答案中</span><br><span class="line">            result.push_back(u);</span><br><span class="line">            for (int v: edges[u]) &#123;</span><br><span class="line">                --indeg[v];</span><br><span class="line">                // 如果相邻节点 v 的入度为 0，就可以选 v 对应的课程了</span><br><span class="line">                if (indeg[v] == 0) &#123;</span><br><span class="line">                    q.push(v);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (result.size() != numCourses) &#123;</span><br><span class="line">            return &#123;&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    // 存储有向图</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; edges;</span><br><span class="line">    // 存储每个节点的入度</span><br><span class="line">    int[] indeg;</span><br><span class="line">    // 存储答案</span><br><span class="line">    int[] result;</span><br><span class="line">    // 答案下标</span><br><span class="line">    int index;</span><br><span class="line"></span><br><span class="line">    public int[] findOrder(int numCourses, int[][] prerequisites) &#123;</span><br><span class="line">        edges = new ArrayList&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line">        for (int i = 0; i &lt; numCourses; ++i) &#123;</span><br><span class="line">            edges.add(new ArrayList&lt;Integer&gt;());</span><br><span class="line">        &#125;</span><br><span class="line">        indeg = new int[numCourses];</span><br><span class="line">        result = new int[numCourses];</span><br><span class="line">        index = 0;</span><br><span class="line">        for (int[] info : prerequisites) &#123;</span><br><span class="line">            edges.get(info[1]).add(info[0]);</span><br><span class="line">            ++indeg[info[0]];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Queue&lt;Integer&gt; queue = new LinkedList&lt;Integer&gt;();</span><br><span class="line">        // 将所有入度为 0 的节点放入队列中</span><br><span class="line">        for (int i = 0; i &lt; numCourses; ++i) &#123;</span><br><span class="line">            if (indeg[i] == 0) &#123;</span><br><span class="line">                queue.offer(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        while (!queue.isEmpty()) &#123;</span><br><span class="line">            // 从队首取出一个节点</span><br><span class="line">            int u = queue.poll();</span><br><span class="line">            // 放入答案中</span><br><span class="line">            result[index++] = u;</span><br><span class="line">            for (int v: edges.get(u)) &#123;</span><br><span class="line">                --indeg[v];</span><br><span class="line">                // 如果相邻节点 v 的入度为 0，就可以选 v 对应的课程了</span><br><span class="line">                if (indeg[v] == 0) &#123;</span><br><span class="line">                    queue.offer(v);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (index != numCourses) &#123;</span><br><span class="line">            return new int[0];</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度: O(n+m)，其中 n 为课程数，m 为先修课程的要求数。这其实就是对图进行广度优先搜索的时间复杂度。</p>
+</li>
+<li><p>空间复杂度: O(n+m)。题目中是以列表形式给出的先修课程关系，为了对图进行广度优先搜索，我们需要存储成邻接表的形式，空间复杂度为 O(n+m)。在广度优先搜索的过程中，我们需要最多 O(n) 的队列空间（迭代）进行广度优先搜索，并且还需要若干个 O(n) 的空间存储节点入度、最终答案等。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/05/10/%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/05/10/%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC/" class="post-title-link" itemprop="url">除法求值</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-05-10 10:33:45 / 修改时间：10:38:11" itemprop="dateCreated datePublished" datetime="2024-05-10T10:33:45+08:00">2024-05-10</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="除法求值"><a href="#除法求值" class="headerlink" title="除法求值"></a>除法求值</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个变量对数组 <code>equations</code> 和一个实数值数组 <code>values</code> 作为已知条件，其中 <code>equations[i] = [Ai, Bi]</code> 和 <code>values[i]</code> 共同表示等式 <code>Ai / Bi = values[i]</code> 。每个 <code>Ai</code> 或 <code>Bi</code> 是一个表示单个变量的字符串。</p>
+<p>另有一些以数组 <code>queries</code> 表示的问题，其中 <code>queries[j] = [Cj, Dj]</code> 表示第 <code>j</code> 个问题，请你根据已知条件找出 <code>Cj / Dj = ?</code> 的结果作为答案。</p>
+<p>返回 <strong>所有问题的答案</strong> 。如果存在某个无法确定的答案，则用 <code>-1.0</code> 替代这个答案。如果问题中出现了给定的已知条件中没有出现的字符串，也需要用 <code>-1.0</code> 替代这个答案。</p>
+<p><strong>注意：</strong>输入总是有效的。你可以假设除法运算中不会出现除数为 0 的情况，且不存在任何矛盾的结果。</p>
+<p><strong>注意：</strong>未在等式列表中出现的变量是未定义的，因此无法确定它们的答案。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：equations = [[&quot;a&quot;,&quot;b&quot;],[&quot;b&quot;,&quot;c&quot;]], values = [2.0,3.0], queries = [[&quot;a&quot;,&quot;c&quot;],[&quot;b&quot;,&quot;a&quot;],[&quot;a&quot;,&quot;e&quot;],[&quot;a&quot;,&quot;a&quot;],[&quot;x&quot;,&quot;x&quot;]]</span><br><span class="line">输出：[6.00000,0.50000,-1.00000,1.00000,-1.00000]</span><br><span class="line">解释：</span><br><span class="line">条件：a / b = 2.0, b / c = 3.0</span><br><span class="line">问题：a / c = ?, b / a = ?, a / e = ?, a / a = ?, x / x = ?</span><br><span class="line">结果：[6.0, 0.5, -1.0, 1.0, -1.0 ]</span><br><span class="line">注意：x 是未定义的 =&gt; -1.0</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：equations = [[&quot;a&quot;,&quot;b&quot;],[&quot;b&quot;,&quot;c&quot;],[&quot;bc&quot;,&quot;cd&quot;]], values = [1.5,2.5,5.0], queries = [[&quot;a&quot;,&quot;c&quot;],[&quot;c&quot;,&quot;b&quot;],[&quot;bc&quot;,&quot;cd&quot;],[&quot;cd&quot;,&quot;bc&quot;]]</span><br><span class="line">输出：[3.75000,0.40000,5.00000,0.20000]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：equations = [[&quot;a&quot;,&quot;b&quot;]], values = [0.5], queries = [[&quot;a&quot;,&quot;b&quot;],[&quot;b&quot;,&quot;a&quot;],[&quot;a&quot;,&quot;c&quot;],[&quot;x&quot;,&quot;y&quot;]]</span><br><span class="line">输出：[0.50000,2.00000,-1.00000,-1.00000]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= equations.length &lt;= 20</code></li>
+<li><code>equations[i].length == 2</code></li>
+<li><code>1 &lt;= Ai.length, Bi.length &lt;= 5</code></li>
+<li><code>values.length == equations.length</code></li>
+<li><code>0.0 &lt; values[i] &lt;= 20.0</code></li>
+<li><code>1 &lt;= queries.length &lt;= 20</code></li>
+<li><code>queries[i].length == 2</code></li>
+<li><code>1 &lt;= Cj.length, Dj.length &lt;= 5</code></li>
+<li><code>Ai, Bi, Cj, Dj</code> 由小写英文字母与数字组成</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h3><p><strong>思路及算法</strong></p>
+<p>我们可以将整个问题建模成一张图：给定图中的一些点（变量），以及某些边的权值（两个变量的比值），试对任意两点（两个变量）求出其路径长（两个变量的比值）。</p>
+<p>因此，我们首先需要遍历 equations 数组，找出其中所有不同的字符串，并通过哈希表将每个不同的字符串映射成整数。</p>
+<p>在构建完图之后，对于任何一个查询，就可以从起点出发，通过广度优先搜索的方式，不断更新起点与当前点之间的路径长度，直到搜索到终点为止。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;double&gt; calcEquation(vector&lt;vector&lt;string&gt;&gt;&amp; equations, vector&lt;double&gt;&amp; values, vector&lt;vector&lt;string&gt;&gt;&amp; queries) &#123;</span><br><span class="line">        int nvars = 0;</span><br><span class="line">        unordered_map&lt;string, int&gt; variables;</span><br><span class="line"></span><br><span class="line">        int n = equations.size();</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            if (variables.find(equations[i][0]) == variables.end()) &#123;</span><br><span class="line">                variables[equations[i][0]] = nvars++;</span><br><span class="line">            &#125;</span><br><span class="line">            if (variables.find(equations[i][1]) == variables.end()) &#123;</span><br><span class="line">                variables[equations[i][1]] = nvars++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 对于每个点，存储其直接连接到的所有点及对应的权值</span><br><span class="line">        vector&lt;vector&lt;pair&lt;int, double&gt;&gt;&gt; edges(nvars);</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            int va = variables[equations[i][0]], vb = variables[equations[i][1]];</span><br><span class="line">            edges[va].push_back(make_pair(vb, values[i]));</span><br><span class="line">            edges[vb].push_back(make_pair(va, 1.0 / values[i]));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vector&lt;double&gt; ret;</span><br><span class="line">        for (const auto&amp; q: queries) &#123;</span><br><span class="line">            double result = -1.0;</span><br><span class="line">            if (variables.find(q[0]) != variables.end() &amp;&amp; variables.find(q[1]) != variables.end()) &#123;</span><br><span class="line">                int ia = variables[q[0]], ib = variables[q[1]];</span><br><span class="line">                if (ia == ib) &#123;</span><br><span class="line">                    result = 1.0;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    queue&lt;int&gt; points;</span><br><span class="line">                    points.push(ia);</span><br><span class="line">                    vector&lt;double&gt; ratios(nvars, -1.0);</span><br><span class="line">                    ratios[ia] = 1.0;</span><br><span class="line"></span><br><span class="line">                    while (!points.empty() &amp;&amp; ratios[ib] &lt; 0) &#123;</span><br><span class="line">                        int x = points.front();</span><br><span class="line">                        points.pop();</span><br><span class="line"></span><br><span class="line">                        for (const auto [y, val]: edges[x]) &#123;</span><br><span class="line">                            if (ratios[y] &lt; 0) &#123;</span><br><span class="line">                                ratios[y] = ratios[x] * val;</span><br><span class="line">                                points.push(y);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    result = ratios[ib];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ret.push_back(result);</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public double[] calcEquation(List&lt;List&lt;String&gt;&gt; equations, double[] values, List&lt;List&lt;String&gt;&gt; queries) &#123;</span><br><span class="line">        int nvars = 0;</span><br><span class="line">        Map&lt;String, Integer&gt; variables = new HashMap&lt;String, Integer&gt;();</span><br><span class="line"></span><br><span class="line">        int n = equations.size();</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            if (!variables.containsKey(equations.get(i).get(0))) &#123;</span><br><span class="line">                variables.put(equations.get(i).get(0), nvars++);</span><br><span class="line">            &#125;</span><br><span class="line">            if (!variables.containsKey(equations.get(i).get(1))) &#123;</span><br><span class="line">                variables.put(equations.get(i).get(1), nvars++);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 对于每个点，存储其直接连接到的所有点及对应的权值</span><br><span class="line">        List&lt;Pair&gt;[] edges = new List[nvars];</span><br><span class="line">        for (int i = 0; i &lt; nvars; i++) &#123;</span><br><span class="line">            edges[i] = new ArrayList&lt;Pair&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            int va = variables.get(equations.get(i).get(0)), vb = variables.get(equations.get(i).get(1));</span><br><span class="line">            edges[va].add(new Pair(vb, values[i]));</span><br><span class="line">            edges[vb].add(new Pair(va, 1.0 / values[i]));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int queriesCount = queries.size();</span><br><span class="line">        double[] ret = new double[queriesCount];</span><br><span class="line">        for (int i = 0; i &lt; queriesCount; i++) &#123;</span><br><span class="line">            List&lt;String&gt; query = queries.get(i);</span><br><span class="line">            double result = -1.0;</span><br><span class="line">            if (variables.containsKey(query.get(0)) &amp;&amp; variables.containsKey(query.get(1))) &#123;</span><br><span class="line">                int ia = variables.get(query.get(0)), ib = variables.get(query.get(1));</span><br><span class="line">                if (ia == ib) &#123;</span><br><span class="line">                    result = 1.0;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    Queue&lt;Integer&gt; points = new LinkedList&lt;Integer&gt;();</span><br><span class="line">                    points.offer(ia);</span><br><span class="line">                    double[] ratios = new double[nvars];</span><br><span class="line">                    Arrays.fill(ratios, -1.0);</span><br><span class="line">                    ratios[ia] = 1.0;</span><br><span class="line"></span><br><span class="line">                    while (!points.isEmpty() &amp;&amp; ratios[ib] &lt; 0) &#123;</span><br><span class="line">                        int x = points.poll();</span><br><span class="line">                        for (Pair pair : edges[x]) &#123;</span><br><span class="line">                            int y = pair.index;</span><br><span class="line">                            double val = pair.value;</span><br><span class="line">                            if (ratios[y] &lt; 0) &#123;</span><br><span class="line">                                ratios[y] = ratios[x] * val;</span><br><span class="line">                                points.offer(y);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    result = ratios[ib];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ret[i] = result;</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Pair &#123;</span><br><span class="line">    int index;</span><br><span class="line">    double value;</span><br><span class="line"></span><br><span class="line">    Pair(int index, double value) &#123;</span><br><span class="line">        this.index = index;</span><br><span class="line">        this.value = value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(ML+Q⋅(L+M))，其中 M 为边的数量，Q 为询问的数量，L 为字符串的平均长度。构建图时，需要处理 M 条边，每条边都涉及到 O(L) 的字符串比较；处理查询时，每次查询首先要进行一次 O(L) 的比较，然后至多遍历 O(M) 条边。</p>
+</li>
+<li><p>空间复杂度：O(NL+M)，其中 N 为点的数量，M 为边的数量，L 为字符串的平均长度。为了将每个字符串映射到整数，需要开辟空间为 O(NL) 的哈希表；随后，需要花费 O(M) 的空间存储每条边的权重；处理查询时，还需要 O(N) 的空间维护访问队列。最终，总的复杂度为 O(NL+M+N)&#x3D;O(NL+M)。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/05/10/%E5%85%8B%E9%9A%86%E5%9B%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/05/10/%E5%85%8B%E9%9A%86%E5%9B%BE/" class="post-title-link" itemprop="url">克隆图</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-05-10 10:33:24 / 修改时间：10:37:03" itemprop="dateCreated datePublished" datetime="2024-05-10T10:33:24+08:00">2024-05-10</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="克隆图"><a href="#克隆图" class="headerlink" title="克隆图"></a>克隆图</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你无向连通图中一个节点的引用，请你返回该图的深拷贝（克隆）。</p>
+<p>图中的每个节点都包含它的值 <code>val</code>（<code>int</code>） 和其邻居的列表（<code>list[Node]</code>）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class Node &#123;</span><br><span class="line">    public int val;</span><br><span class="line">    public List&lt;Node&gt; neighbors;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试用例格式：</strong></p>
+<p>简单起见，每个节点的值都和它的索引相同。例如，第一个节点值为 1（<code>val = 1</code>），第二个节点值为 2（<code>val = 2</code>），以此类推。该图在测试用例中使用邻接列表表示。</p>
+<p><strong>邻接列表</strong> 是用于表示有限图的无序列表的集合。每个列表都描述了图中节点的邻居集。</p>
+<p>给定节点将始终是图中的第一个节点（值为 1）。你必须将 <strong>给定节点的拷贝</strong> 作为对克隆图的引用返回。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/02/01/133_clone_graph_question.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">输入：adjList = [[2,4],[1,3],[2,4],[1,3]]</span><br><span class="line">输出：[[2,4],[1,3],[2,4],[1,3]]</span><br><span class="line">解释：</span><br><span class="line">图中有 4 个节点。</span><br><span class="line">节点 1 的值是 1，它有两个邻居：节点 2 和 4 。</span><br><span class="line">节点 2 的值是 2，它有两个邻居：节点 1 和 3 。</span><br><span class="line">节点 3 的值是 3，它有两个邻居：节点 2 和 4 。</span><br><span class="line">节点 4 的值是 4，它有两个邻居：节点 1 和 3 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/02/01/graph.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：adjList = [[]]</span><br><span class="line">输出：[[]]</span><br><span class="line">解释：输入包含一个空列表。该图仅仅只有一个值为 1 的节点，它没有任何邻居。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：adjList = []</span><br><span class="line">输出：[]</span><br><span class="line">解释：这个图是空的，它不含任何节点。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>这张图中的节点数在 <code>[0, 100]</code> 之间。</li>
+<li><code>1 &lt;= Node.val &lt;= 100</code></li>
+<li>每个节点值 <code>Node.val</code> 都是唯一的，</li>
+<li>图中没有重复的边，也没有自环。</li>
+<li>图是连通图，你可以从给定节点访问到所有节点。</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）深度优先遍历"><a href="#（1）深度优先遍历" class="headerlink" title="（1）深度优先遍历"></a>（1）深度优先遍历</h3><p><strong>思路及算法</strong></p>
+<p>对于本题而言，我们需要明确图的深拷贝是在做什么，对于一张图而言，它的深拷贝即构建一张与原图结构，值均一样的图，但是其中的节点不再是原来图节点的引用。因此，为了深拷贝出整张图，我们需要知道整张图的结构以及对应节点的值。</p>
+<p>由于题目只给了我们一个节点的引用，因此为了知道整张图的结构以及对应节点的值，我们需要从给定的节点出发，进行「图的遍历」，并在遍历的过程中完成图的深拷贝。</p>
+<p>为了避免在深拷贝时陷入死循环，我们需要理解图的结构。对于一张无向图，任何给定的无向边都可以表示为两个有向边，即如果节点 A 和节点 B 之间存在无向边，则表示该图具有从节点 A 到节点 B 的有向边和从节点 B 到节点 A 的有向边。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/133/1.png" alt="fig1"></p>
+<p>流程如下：</p>
+<ol>
+<li><p>使用一个哈希表存储所有已被访问和克隆的节点。哈希表中的 key 是原始图中的节点，value 是克隆图中的对应节点。</p>
+</li>
+<li><p>从给定节点开始遍历图。如果某个节点已经被访问过，则返回其克隆图中的对应节点。</p>
+<p>如下图，我们给定无向边边 A - B，表示 A 能连接到 B，且 B 能连接到 A。如果不对访问过的节点做标记，则会陷入死循环中。</p>
+</li>
+</ol>
+<p><img src="https://assets.leetcode-cn.com/solution-static/133/2.png" alt="fig2"></p>
+<ol start="3">
+<li>如果当前访问的节点不在哈希表中，则创建它的克隆节点并存储在哈希表中。注意：在进入递归之前，必须先创建克隆节点并保存在哈希表中。如果不保证这种顺序，可能会在递归中再次遇到同一个节点，再次遍历该节点时，陷入死循环。</li>
+</ol>
+<p><img src="https://assets.leetcode-cn.com/solution-static/133/3.png" alt="fig3"></p>
+<ol start="4">
+<li>递归调用每个节点的邻接点。每个节点递归调用的次数等于邻接点的数量，每一次调用返回其对应邻接点的克隆节点，最终返回这些克隆邻接点的列表，将其放入对应克隆节点的邻接表中。这样就可以克隆给定的节点和其邻接点。</li>
+</ol>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    private HashMap &lt;Node, Node&gt; visited = new HashMap &lt;&gt; ();</span><br><span class="line">    public Node cloneGraph(Node node) &#123;</span><br><span class="line">        if (node == null) &#123;</span><br><span class="line">            return node;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 如果该节点已经被访问过了，则直接从哈希表中取出对应的克隆节点返回</span><br><span class="line">        if (visited.containsKey(node)) &#123;</span><br><span class="line">            return visited.get(node);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 克隆节点，注意到为了深拷贝我们不会克隆它的邻居的列表</span><br><span class="line">        Node cloneNode = new Node(node.val, new ArrayList());</span><br><span class="line">        // 哈希表存储</span><br><span class="line">        visited.put(node, cloneNode);</span><br><span class="line"></span><br><span class="line">        // 遍历该节点的邻居并更新克隆节点的邻居列表</span><br><span class="line">        for (Node neighbor: node.neighbors) &#123;</span><br><span class="line">            cloneNode.neighbors.add(cloneGraph(neighbor));</span><br><span class="line">        &#125;</span><br><span class="line">        return cloneNode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    unordered_map&lt;Node*, Node*&gt; visited;</span><br><span class="line">    Node* cloneGraph(Node* node) &#123;</span><br><span class="line">        if (node == nullptr) &#123;</span><br><span class="line">            return node;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 如果该节点已经被访问过了，则直接从哈希表中取出对应的克隆节点返回</span><br><span class="line">        if (visited.find(node) != visited.end()) &#123;</span><br><span class="line">            return visited[node];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 克隆节点，注意到为了深拷贝我们不会克隆它的邻居的列表</span><br><span class="line">        Node* cloneNode = new Node(node-&gt;val);</span><br><span class="line">        // 哈希表存储</span><br><span class="line">        visited[node] = cloneNode;</span><br><span class="line"></span><br><span class="line">        // 遍历该节点的邻居并更新克隆节点的邻居列表</span><br><span class="line">        for (auto&amp; neighbor: node-&gt;neighbors) &#123;</span><br><span class="line">            cloneNode-&gt;neighbors.emplace_back(cloneGraph(neighbor));</span><br><span class="line">        &#125;</span><br><span class="line">        return cloneNode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(N)，其中 N 表示节点数量。深度优先搜索遍历图的过程中每个节点只会被访问一次。</p>
+</li>
+<li><p>空间复杂度：O(N)。存储克隆节点和原节点的哈希表需要 O(N) 的空间，递归调用栈需要 O(H) 的空间，其中 H 是图的深度，经过放缩可以得到 O(H)&#x3D;O(N)，因此总体空间复杂度为 O(N)。</p>
+</li>
+</ul>
+<h3 id="（2）广度优先遍历"><a href="#（2）广度优先遍历" class="headerlink" title="（2）广度优先遍历"></a>（2）广度优先遍历</h3><p>同样，我们也可以用广度优先搜索来进行「图的遍历」。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/133/4.png" alt="fig4"></p>
+<p>流程如下：</p>
+<ol>
+<li><p>使用一个哈希表 visited 存储所有已被访问和克隆的节点。哈希表中的 key 是原始图中的节点，value 是克隆图中的对应节点。</p>
+</li>
+<li><p>将题目给定的节点添加到队列。克隆该节点并存储到哈希表中。</p>
+</li>
+<li><p>每次从队列首部取出一个节点，遍历该节点的所有邻接点。如果某个邻接点已被访问，则该邻接点一定在 visited 中，那么从 visited 获得该邻接点，否则创建一个新的节点存储在 visited 中，并将邻接点添加到队列。将克隆的邻接点添加到克隆图对应节点的邻接表中。重复上述操作直到队列为空，则整个图遍历结束。</p>
+</li>
+</ol>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public Node cloneGraph(Node node) &#123;</span><br><span class="line">        if (node == null) &#123;</span><br><span class="line">            return node;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        HashMap&lt;Node, Node&gt; visited = new HashMap();</span><br><span class="line"></span><br><span class="line">        // 将题目给定的节点添加到队列</span><br><span class="line">        LinkedList&lt;Node&gt; queue = new LinkedList&lt;Node&gt; ();</span><br><span class="line">        queue.add(node);</span><br><span class="line">        // 克隆第一个节点并存储到哈希表中</span><br><span class="line">        visited.put(node, new Node(node.val, new ArrayList()));</span><br><span class="line"></span><br><span class="line">        // 广度优先搜索</span><br><span class="line">        while (!queue.isEmpty()) &#123;</span><br><span class="line">            // 取出队列的头节点</span><br><span class="line">            Node n = queue.remove();</span><br><span class="line">            // 遍历该节点的邻居</span><br><span class="line">            for (Node neighbor: n.neighbors) &#123;</span><br><span class="line">                if (!visited.containsKey(neighbor)) &#123;</span><br><span class="line">                    // 如果没有被访问过，就克隆并存储在哈希表中</span><br><span class="line">                    visited.put(neighbor, new Node(neighbor.val, new ArrayList()));</span><br><span class="line">                    // 将邻居节点加入队列中</span><br><span class="line">                    queue.add(neighbor);</span><br><span class="line">                &#125;</span><br><span class="line">                // 更新当前节点的邻居列表</span><br><span class="line">                visited.get(n).neighbors.add(visited.get(neighbor));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return visited.get(node);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    Node* cloneGraph(Node* node) &#123;</span><br><span class="line">        if (node == nullptr) &#123;</span><br><span class="line">            return node;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        unordered_map&lt;Node*, Node*&gt; visited;</span><br><span class="line"></span><br><span class="line">        // 将题目给定的节点添加到队列</span><br><span class="line">        queue&lt;Node*&gt; Q;</span><br><span class="line">        Q.push(node);</span><br><span class="line">        // 克隆第一个节点并存储到哈希表中</span><br><span class="line">        visited[node] = new Node(node-&gt;val);</span><br><span class="line"></span><br><span class="line">        // 广度优先搜索</span><br><span class="line">        while (!Q.empty()) &#123;</span><br><span class="line">            // 取出队列的头节点</span><br><span class="line">            auto n = Q.front();</span><br><span class="line">            Q.pop();</span><br><span class="line">            // 遍历该节点的邻居</span><br><span class="line">            for (auto&amp; neighbor: n-&gt;neighbors) &#123;</span><br><span class="line">                if (visited.find(neighbor) == visited.end()) &#123;</span><br><span class="line">                    // 如果没有被访问过，就克隆并存储在哈希表中</span><br><span class="line">                    visited[neighbor] = new Node(neighbor-&gt;val);</span><br><span class="line">                    // 将邻居节点加入队列中</span><br><span class="line">                    Q.push(neighbor);</span><br><span class="line">                &#125;</span><br><span class="line">                // 更新当前节点的邻居列表</span><br><span class="line">                visited[n]-&gt;neighbors.emplace_back(visited[neighbor]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return visited[node];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(N)，其中 N 表示节点数量。广度优先搜索遍历图的过程中每个节点只会被访问一次。</p>
+</li>
+<li><p>空间复杂度：O(N)。哈希表使用 O(N) 的空间。广度优先搜索中的队列在最坏情况下会达到 O(N) 的空间复杂度，因此总体空间复杂度为 O(N)。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/05/10/%E8%A2%AB%E5%9B%B4%E7%BB%95%E7%9A%84%E5%8C%BA%E5%9F%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/05/10/%E8%A2%AB%E5%9B%B4%E7%BB%95%E7%9A%84%E5%8C%BA%E5%9F%9F/" class="post-title-link" itemprop="url">被围绕的区域</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-05-10 10:32:56 / 修改时间：10:35:58" itemprop="dateCreated datePublished" datetime="2024-05-10T10:32:56+08:00">2024-05-10</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="被围绕的区域"><a href="#被围绕的区域" class="headerlink" title="被围绕的区域"></a>被围绕的区域</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个 <code>m x n</code> 的矩阵 <code>board</code> ，由若干字符 <code>&#39;X&#39;</code> 和 <code>&#39;O&#39;</code> ，找到所有被 <code>&#39;X&#39;</code> 围绕的区域，并将这些区域里所有的 <code>&#39;O&#39;</code> 用 <code>&#39;X&#39;</code> 填充。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/02/19/xogrid.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：board = [[&quot;X&quot;,&quot;X&quot;,&quot;X&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;O&quot;,&quot;O&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;X&quot;,&quot;O&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;O&quot;,&quot;X&quot;,&quot;X&quot;]]</span><br><span class="line">输出：[[&quot;X&quot;,&quot;X&quot;,&quot;X&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;X&quot;,&quot;X&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;X&quot;,&quot;X&quot;,&quot;X&quot;],[&quot;X&quot;,&quot;O&quot;,&quot;X&quot;,&quot;X&quot;]]</span><br><span class="line">解释：被围绕的区间不会存在于边界上，换句话说，任何边界上的 &#x27;O&#x27; 都不会被填充为 &#x27;X&#x27;。 任何不在边界上，或不与边界上的 &#x27;O&#x27; 相连的 &#x27;O&#x27; 最终都会被填充为 &#x27;X&#x27;。如果两个元素在水平或垂直方向相邻，则称它们是“相连”的。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：board = [[&quot;X&quot;]]</span><br><span class="line">输出：[[&quot;X&quot;]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>m == board.length</code></li>
+<li><code>n == board[i].length</code></li>
+<li><code>1 &lt;= m, n &lt;= 200</code></li>
+<li><code>board[i][j]</code> 为 <code>&#39;X&#39;</code> 或 <code>&#39;O&#39;</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）深度优先搜索"><a href="#（1）深度优先搜索" class="headerlink" title="（1）深度优先搜索"></a>（1）深度优先搜索</h3><p><strong>思路及算法</strong></p>
+<p>我们可以使用深度优先搜索实现标记操作。在下面的代码中，我们把标记过的字母 <code>O</code> 修改为字母 <code>A</code>。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int n, m;</span><br><span class="line"></span><br><span class="line">    void dfs(vector&lt;vector&lt;char&gt;&gt;&amp; board, int x, int y) &#123;</span><br><span class="line">        if (x &lt; 0 || x &gt;= n || y &lt; 0 || y &gt;= m || board[x][y] != &#x27;O&#x27;) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        board[x][y] = &#x27;A&#x27;;</span><br><span class="line">        dfs(board, x + 1, y);</span><br><span class="line">        dfs(board, x - 1, y);</span><br><span class="line">        dfs(board, x, y + 1);</span><br><span class="line">        dfs(board, x, y - 1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void solve(vector&lt;vector&lt;char&gt;&gt;&amp; board) &#123;</span><br><span class="line">        n = board.size();</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        m = board[0].size();</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            dfs(board, i, 0);</span><br><span class="line">            dfs(board, i, m - 1);</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 1; i &lt; m - 1; i++) &#123;</span><br><span class="line">            dfs(board, 0, i);</span><br><span class="line">            dfs(board, n - 1, i);</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            for (int j = 0; j &lt; m; j++) &#123;</span><br><span class="line">                if (board[i][j] == &#x27;A&#x27;) &#123;</span><br><span class="line">                    board[i][j] = &#x27;O&#x27;;</span><br><span class="line">                &#125; else if (board[i][j] == &#x27;O&#x27;) &#123;</span><br><span class="line">                    board[i][j] = &#x27;X&#x27;;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    int n, m;</span><br><span class="line"></span><br><span class="line">    public void solve(char[][] board) &#123;</span><br><span class="line">        n = board.length;</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        m = board[0].length;</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            dfs(board, i, 0);</span><br><span class="line">            dfs(board, i, m - 1);</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 1; i &lt; m - 1; i++) &#123;</span><br><span class="line">            dfs(board, 0, i);</span><br><span class="line">            dfs(board, n - 1, i);</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            for (int j = 0; j &lt; m; j++) &#123;</span><br><span class="line">                if (board[i][j] == &#x27;A&#x27;) &#123;</span><br><span class="line">                    board[i][j] = &#x27;O&#x27;;</span><br><span class="line">                &#125; else if (board[i][j] == &#x27;O&#x27;) &#123;</span><br><span class="line">                    board[i][j] = &#x27;X&#x27;;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void dfs(char[][] board, int x, int y) &#123;</span><br><span class="line">        if (x &lt; 0 || x &gt;= n || y &lt; 0 || y &gt;= m || board[x][y] != &#x27;O&#x27;) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        board[x][y] = &#x27;A&#x27;;</span><br><span class="line">        dfs(board, x + 1, y);</span><br><span class="line">        dfs(board, x - 1, y);</span><br><span class="line">        dfs(board, x, y + 1);</span><br><span class="line">        dfs(board, x, y - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n×m)，其中 n 和 m 分别为矩阵的行数和列数。深度优先搜索过程中，每一个点至多只会被标记一次。</p>
+</li>
+<li><p>空间复杂度：O(n×m)，其中 n 和 m 分别为矩阵的行数和列数。主要为深度优先搜索的栈的开销。</p>
+</li>
+</ul>
+<h3 id="（2）广度优先搜索"><a href="#（2）广度优先搜索" class="headerlink" title="（2）广度优先搜索"></a>（2）广度优先搜索</h3><p><strong>思路及算法</strong></p>
+<p>我们可以使用广度优先搜索实现标记操作。在下面的代码中，我们把标记过的字母 <code>O</code> 修改为字母 <code>A</code>。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    const int dx[4] = &#123;1, -1, 0, 0&#125;;</span><br><span class="line">    const int dy[4] = &#123;0, 0, 1, -1&#125;;</span><br><span class="line"></span><br><span class="line">    void solve(vector&lt;vector&lt;char&gt;&gt;&amp; board) &#123;</span><br><span class="line">        int n = board.size();</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        int m = board[0].size();</span><br><span class="line">        queue&lt;pair&lt;int, int&gt;&gt; que;</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            if (board[i][0] == &#x27;O&#x27;) &#123;</span><br><span class="line">                que.emplace(i, 0);</span><br><span class="line">                board[i][0] = &#x27;A&#x27;;</span><br><span class="line">            &#125;</span><br><span class="line">            if (board[i][m - 1] == &#x27;O&#x27;) &#123;</span><br><span class="line">                que.emplace(i, m - 1);</span><br><span class="line">                board[i][m - 1] = &#x27;A&#x27;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 1; i &lt; m - 1; i++) &#123;</span><br><span class="line">            if (board[0][i] == &#x27;O&#x27;) &#123;</span><br><span class="line">                que.emplace(0, i);</span><br><span class="line">                board[0][i] = &#x27;A&#x27;;</span><br><span class="line">            &#125;</span><br><span class="line">            if (board[n - 1][i] == &#x27;O&#x27;) &#123;</span><br><span class="line">                que.emplace(n - 1, i);</span><br><span class="line">                board[n - 1][i] = &#x27;A&#x27;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        while (!que.empty()) &#123;</span><br><span class="line">            int x = que.front().first, y = que.front().second;</span><br><span class="line">            que.pop();</span><br><span class="line">            for (int i = 0; i &lt; 4; i++) &#123;</span><br><span class="line">                int mx = x + dx[i], my = y + dy[i];</span><br><span class="line">                if (mx &lt; 0 || my &lt; 0 || mx &gt;= n || my &gt;= m || board[mx][my] != &#x27;O&#x27;) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                que.emplace(mx, my);</span><br><span class="line">                board[mx][my] = &#x27;A&#x27;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            for (int j = 0; j &lt; m; j++) &#123;</span><br><span class="line">                if (board[i][j] == &#x27;A&#x27;) &#123;</span><br><span class="line">                    board[i][j] = &#x27;O&#x27;;</span><br><span class="line">                &#125; else if (board[i][j] == &#x27;O&#x27;) &#123;</span><br><span class="line">                    board[i][j] = &#x27;X&#x27;;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    int[] dx = &#123;1, -1, 0, 0&#125;;</span><br><span class="line">    int[] dy = &#123;0, 0, 1, -1&#125;;</span><br><span class="line"></span><br><span class="line">    public void solve(char[][] board) &#123;</span><br><span class="line">        int n = board.length;</span><br><span class="line">        if (n == 0) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        int m = board[0].length;</span><br><span class="line">        Queue&lt;int[]&gt; queue = new LinkedList&lt;int[]&gt;();</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            if (board[i][0] == &#x27;O&#x27;) &#123;</span><br><span class="line">                queue.offer(new int[]&#123;i, 0&#125;);</span><br><span class="line">                board[i][0] = &#x27;A&#x27;;</span><br><span class="line">            &#125;</span><br><span class="line">            if (board[i][m - 1] == &#x27;O&#x27;) &#123;</span><br><span class="line">                queue.offer(new int[]&#123;i, m - 1&#125;);</span><br><span class="line">                board[i][m - 1] = &#x27;A&#x27;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 1; i &lt; m - 1; i++) &#123;</span><br><span class="line">            if (board[0][i] == &#x27;O&#x27;) &#123;</span><br><span class="line">                queue.offer(new int[]&#123;0, i&#125;);</span><br><span class="line">                board[0][i] = &#x27;A&#x27;;</span><br><span class="line">            &#125;</span><br><span class="line">            if (board[n - 1][i] == &#x27;O&#x27;) &#123;</span><br><span class="line">                queue.offer(new int[]&#123;n - 1, i&#125;);</span><br><span class="line">                board[n - 1][i] = &#x27;A&#x27;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        while (!queue.isEmpty()) &#123;</span><br><span class="line">            int[] cell = queue.poll();</span><br><span class="line">            int x = cell[0], y = cell[1];</span><br><span class="line">            for (int i = 0; i &lt; 4; i++) &#123;</span><br><span class="line">                int mx = x + dx[i], my = y + dy[i];</span><br><span class="line">                if (mx &lt; 0 || my &lt; 0 || mx &gt;= n || my &gt;= m || board[mx][my] != &#x27;O&#x27;) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                queue.offer(new int[]&#123;mx, my&#125;);</span><br><span class="line">                board[mx][my] = &#x27;A&#x27;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            for (int j = 0; j &lt; m; j++) &#123;</span><br><span class="line">                if (board[i][j] == &#x27;A&#x27;) &#123;</span><br><span class="line">                    board[i][j] = &#x27;O&#x27;;</span><br><span class="line">                &#125; else if (board[i][j] == &#x27;O&#x27;) &#123;</span><br><span class="line">                    board[i][j] = &#x27;X&#x27;;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n×m)，其中 n 和 m 分别为矩阵的行数和列数。广度优先搜索过程中，每一个点至多只会被标记一次。</p>
+</li>
+<li><p>空间复杂度：O(n×m)，其中 n 和 m 分别为矩阵的行数和列数。主要为广度优先搜索的队列的开销。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -996,514 +1554,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/05/07/%E5%BB%BA%E7%AB%8B%E5%9B%9B%E5%8F%89%E6%A0%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/05/07/%E5%BB%BA%E7%AB%8B%E5%9B%9B%E5%8F%89%E6%A0%91/" class="post-title-link" itemprop="url">建立四叉树</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-05-07 11:07:29 / 修改时间：11:09:47" itemprop="dateCreated datePublished" datetime="2024-05-07T11:07:29+08:00">2024-05-07</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.3k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="建立四叉树"><a href="#建立四叉树" class="headerlink" title="建立四叉树"></a>建立四叉树</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个 <code>n * n</code> 矩阵 <code>grid</code> ，矩阵由若干 <code>0</code> 和 <code>1</code> 组成。请你用四叉树表示该矩阵 <code>grid</code> 。</p>
-<p>你需要返回能表示矩阵 <code>grid</code> 的 四叉树 的根结点。</p>
-<p>四叉树数据结构中，每个内部节点只有四个子节点。此外，每个节点都有两个属性：</p>
-<ul>
-<li><code>val</code>：储存叶子结点所代表的区域的值。1 对应 <strong>True</strong>，0 对应 <strong>False</strong>。注意，当 <code>isLeaf</code> 为 <strong>False</strong> 时，你可以把 <strong>True</strong> 或者 <strong>False</strong> 赋值给节点，两种值都会被判题机制 <strong>接受</strong> 。</li>
-<li><code>isLeaf</code>: 当这个节点是一个叶子结点时为 <strong>True</strong>，如果它有 4 个子节点则为 <strong>False</strong> 。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Node &#123;</span><br><span class="line">    public boolean val;</span><br><span class="line">    public boolean isLeaf;</span><br><span class="line">    public Node topLeft;</span><br><span class="line">    public Node topRight;</span><br><span class="line">    public Node bottomLeft;</span><br><span class="line">    public Node bottomRight;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们可以按以下步骤为二维区域构建四叉树：</p>
-<ol>
-<li>如果当前网格的值相同（即，全为 <code>0</code> 或者全为 <code>1</code>），将 <code>isLeaf</code> 设为 True ，将 <code>val</code> 设为网格相应的值，并将四个子节点都设为 Null 然后停止。</li>
-<li>如果当前网格的值不同，将 <code>isLeaf</code> 设为 False， 将 <code>val</code> 设为任意值，然后如下图所示，将当前网格划分为四个子网格。</li>
-<li>使用适当的子网格递归每个子节点。</li>
-</ol>
-<p><img src="https://assets.leetcode.com/uploads/2020/02/11/new_top.png" alt="img"></p>
-<p><strong>四叉树格式：</strong></p>
-<p>你不需要阅读本节来解决这个问题。只有当你想了解输出格式时才会这样做。输出为使用层序遍历后四叉树的序列化形式，其中 <code>null</code> 表示路径终止符，其下面不存在节点。</p>
-<p>它与二叉树的序列化非常相似。唯一的区别是节点以列表形式表示 <code>[isLeaf, val]</code> 。</p>
-<p>如果 <code>isLeaf</code> 或者 <code>val</code> 的值为 True ，则表示它在列表 <code>[isLeaf, val]</code> 中的值为 <strong>1</strong> ；如果 <code>isLeaf</code> 或者 <code>val</code> 的值为 False ，则表示值为 <strong>0</strong> 。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2020/02/11/grid1.png" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [[0,1],[1,0]]</span><br><span class="line">输出：[[0,1],[1,0],[1,1],[1,1],[1,0]]</span><br><span class="line">解释：此示例的解释如下：</span><br><span class="line">请注意，在下面四叉树的图示中，0 表示 false，1 表示 True 。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2020/02/12/e2mat.png" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0],[1,1,1,1,0,0,0,0]]</span><br><span class="line">输出：[[0,1],[1,1],[0,1],[1,1],[1,0],null,null,null,null,[1,0],[1,0],[1,1],[1,1]]</span><br><span class="line">解释：网格中的所有值都不相同。我们将网格划分为四个子网格。</span><br><span class="line">topLeft，bottomLeft 和 bottomRight 均具有相同的值。</span><br><span class="line">topRight 具有不同的值，因此我们将其再分为 4 个子网格，这样每个子网格都具有相同的值。</span><br><span class="line">解释如下图所示：</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ol>
-<li><code>n == grid.length == grid[i].length</code></li>
-<li><code>n == 2x</code> 其中 <code>0 &lt;= x &lt;= 6</code></li>
-</ol>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p><strong>思路及算法</strong></p>
-<p>具体地，我们用递归函数 dfs(r0,c0,r1,c1) 处理给定的矩阵 grid 行开始到 r1−1 行，从 c0 和 c1−1 列的部分。我们首先判定这一部分是否均为 0 或 1，如果是，那么这一部分对应的是一个叶节点，我们构造出对应的叶节点并结束递归；如果不是，那么这一部分对应的是一个非叶节点，我们需要将其分成四个部分：行的分界线为 $\dfrac{r_0+r_1}{2} $，列的分界线为 $\dfrac{c_0+c_1}{2} $，根据这两条分界线递归地调用 dfs 函数得到四个部分对应的树，再将它们对应地挂在非叶节点的四个子节点上。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    Node *construct(vector&lt;vector&lt;int&gt;&gt; &amp;grid) &#123;</span><br><span class="line">        function&lt;Node*(int, int, int, int)&gt; dfs = [&amp;](int r0, int c0, int r1, int c1) &#123;</span><br><span class="line">            for (int i = r0; i &lt; r1; ++i) &#123;</span><br><span class="line">                for (int j = c0; j &lt; c1; ++j) &#123;</span><br><span class="line">                    if (grid[i][j] != grid[r0][c0]) &#123; // 不是叶节点</span><br><span class="line">                        return new Node(</span><br><span class="line">                                true,</span><br><span class="line">                                false,</span><br><span class="line">                                dfs(r0, c0, (r0 + r1) / 2, (c0 + c1) / 2),</span><br><span class="line">                                dfs(r0, (c0 + c1) / 2, (r0 + r1) / 2, c1),</span><br><span class="line">                                dfs((r0 + r1) / 2, c0, r1, (c0 + c1) / 2),</span><br><span class="line">                                dfs((r0 + r1) / 2, (c0 + c1) / 2, r1, c1)</span><br><span class="line">                        );</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            // 是叶节点</span><br><span class="line">            return new Node(grid[r0][c0], true);</span><br><span class="line">        &#125;;</span><br><span class="line">        return dfs(0, 0, grid.size(), grid.size());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public Node construct(int[][] grid) &#123;</span><br><span class="line">        return dfs(grid, 0, 0, grid.length, grid.length);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Node dfs(int[][] grid, int r0, int c0, int r1, int c1) &#123;</span><br><span class="line">        boolean same = true;</span><br><span class="line">        for (int i = r0; i &lt; r1; ++i) &#123;</span><br><span class="line">            for (int j = c0; j &lt; c1; ++j) &#123;</span><br><span class="line">                if (grid[i][j] != grid[r0][c0]) &#123;</span><br><span class="line">                    same = false;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (!same) &#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (same) &#123;</span><br><span class="line">            return new Node(grid[r0][c0] == 1, true);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Node ret = new Node(</span><br><span class="line">            true,</span><br><span class="line">            false,</span><br><span class="line">            dfs(grid, r0, c0, (r0 + r1) / 2, (c0 + c1) / 2),</span><br><span class="line">            dfs(grid, r0, (c0 + c1) / 2, (r0 + r1) / 2, c1),</span><br><span class="line">            dfs(grid, (r0 + r1) / 2, c0, r1, (c0 + c1) / 2),</span><br><span class="line">            dfs(grid, (r0 + r1) / 2, (c0 + c1) / 2, r1, c1)</span><br><span class="line">        );</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n^2^log⁡n)。这里给出一个较为宽松的时间复杂度上界。记 T(n)T(n)T(n) 为边长为 nnn 的数组需要的时间复杂度，那么「判定这一部分是否均为 0 或 1」需要的时间为 O(n^2^)，在这之后会递归调用 4 规模为 n&#x2F;2 的子问题，那么有：</p>
-<p>T(n)&#x3D;4T(n&#x2F;2)+O(n^2^)<br>以及：</p>
-<p>T(1)&#x3D;O(1)<br>根据主定理，可以得到 T(n)&#x3D;O(n^2^log⁡n)。但如果判定需要的时间达到了渐近紧界 Θ(n^2^)，那么说明这一部分包含的元素大部分都是相同的，也就是说，有很大概率在深入递归时遇到元素完全相同的一部分，从而提前结束递归。因此 O(n^2^log⁡n) 的时间复杂度是很宽松的。</p>
-</li>
-<li><p>空间复杂度：O(log⁡n)，即为递归需要使用的栈空间。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/05/07/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E7%BB%9D%E5%AF%B9%E5%B7%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/05/07/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E7%BB%9D%E5%AF%B9%E5%B7%AE/" class="post-title-link" itemprop="url">二叉搜索树的最小绝对差</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-05-07 10:16:46 / 修改时间：10:17:41" itemprop="dateCreated datePublished" datetime="2024-05-07T10:16:46+08:00">2024-05-07</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>658</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="二叉搜索树的最小绝对差"><a href="#二叉搜索树的最小绝对差" class="headerlink" title="二叉搜索树的最小绝对差"></a>二叉搜索树的最小绝对差</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个二叉搜索树的根节点 <code>root</code> ，返回 <strong>树中任意两不同节点值之间的最小差值</strong> 。</p>
-<p>差值是一个正数，其数值等于两值之差的绝对值。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2021/02/05/bst1.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [4,2,6,1,3]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2021/02/05/bst2.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [1,0,48,null,null,12,49]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li>树中节点的数目范围是 <code>[2, 104]</code></li>
-<li><code>0 &lt;= Node.val &lt;= 105</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h3><p><strong>思路及算法</strong></p>
-<p>考虑对升序数组 a 求任意两个元素之差的绝对值的最小值，答案一定为相邻两个元素之差的最小值，即</p>
-<p>ans&#x3D;min⁡i&#x3D;0n−2{a[i+1]−a[i]}<br>其中 n 为数组 a 的长度。其他任意间隔距离大于等于 2 的下标对 (i,j) 的元素之差一定大于下标对 (i,i+1) 的元素之差，故不需要再被考虑。</p>
-<p>回到本题，本题要求二叉搜索树任意两节点差的绝对值的最小值，而我们知道二叉搜索树有个性质为二叉搜索树中序遍历得到的值序列是递增有序的，因此我们只要得到中序遍历后的值序列即能用上文提及的方法来解决。</p>
-<p>朴素的方法是经过一次中序遍历将值保存在一个数组中再进行遍历求解，我们也可以在中序遍历的过程中用 pre 变量保存前驱节点的值，这样即能边遍历边更新答案，不再需要显式创建数组来保存，需要注意的是 pre 的初始值需要设置成任意负数标记开头，下文代码中设置为 −1。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void dfs(TreeNode* root, int&amp; pre, int&amp; ans) &#123;</span><br><span class="line">        if (root == nullptr) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        dfs(root-&gt;left, pre, ans);</span><br><span class="line">        if (pre == -1) &#123;</span><br><span class="line">            pre = root-&gt;val;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            ans = min(ans, root-&gt;val - pre);</span><br><span class="line">            pre = root-&gt;val;</span><br><span class="line">        &#125;</span><br><span class="line">        dfs(root-&gt;right, pre, ans);</span><br><span class="line">    &#125;</span><br><span class="line">    int getMinimumDifference(TreeNode* root) &#123;</span><br><span class="line">        int ans = INT_MAX, pre = -1;</span><br><span class="line">        dfs(root, pre, ans);</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    int pre;</span><br><span class="line">    int ans;</span><br><span class="line"></span><br><span class="line">    public int getMinimumDifference(TreeNode root) &#123;</span><br><span class="line">        ans = Integer.MAX_VALUE;</span><br><span class="line">        pre = -1;</span><br><span class="line">        dfs(root);</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void dfs(TreeNode root) &#123;</span><br><span class="line">        if (root == null) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        dfs(root.left);</span><br><span class="line">        if (pre == -1) &#123;</span><br><span class="line">            pre = root.val;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            ans = Math.min(ans, root.val - pre);</span><br><span class="line">            pre = root.val;</span><br><span class="line">        &#125;</span><br><span class="line">        dfs(root.right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 为二叉搜索树节点的个数。每个节点在中序遍历中都会被访问一次且只会被访问一次，因此总时间复杂度为 O(n)。</p>
-</li>
-<li><p>空间复杂度：O(n)。递归函数的空间复杂度取决于递归的栈深度，而栈深度在二叉搜索树为一条链的情况下会达到 O(n) 级别。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/05/07/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%94%AF%E9%BD%BF%E5%BD%A2%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/05/07/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%94%AF%E9%BD%BF%E5%BD%A2%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" class="post-title-link" itemprop="url">二叉树的锯齿形层序遍历</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-05-07 10:15:38 / 修改时间：10:18:19" itemprop="dateCreated datePublished" datetime="2024-05-07T10:15:38+08:00">2024-05-07</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>597</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="二叉树的锯齿形层序遍历"><a href="#二叉树的锯齿形层序遍历" class="headerlink" title="二叉树的锯齿形层序遍历"></a>二叉树的锯齿形层序遍历</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你二叉树的根节点 <code>root</code> ，返回其节点值的 <strong>锯齿形层序遍历</strong> 。（即先从左往右，再从右往左进行下一层遍历，以此类推，层与层之间交替进行）。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2021/02/19/tree1.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [3,9,20,null,null,15,7]</span><br><span class="line">输出：[[3],[20,9],[15,7]]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [1]</span><br><span class="line">输出：[[1]]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = []</span><br><span class="line">输出：[]</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li>树中节点数目在范围 <code>[0, 2000]</code> 内</li>
-<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="广度优先遍历"><a href="#广度优先遍历" class="headerlink" title="广度优先遍历"></a>广度优先遍历</h3><p><strong>思路及算法</strong></p>
-<p>为了满足题目要求的返回值为「先从左往右，再从右往左」交替输出的锯齿形，我们可以利用「双端队列」的数据结构来维护当前层节点值输出的顺序。</p>
-<p>双端队列是一个可以在队列任意一端插入元素的队列。在广度优先搜索遍历当前层节点拓展下一层节点的时候我们仍然从左往右按顺序拓展，但是对当前层节点的存储我们维护一个变量 isOrderLeft 记录是从左至右还是从右至左的：</p>
-<ul>
-<li><p>如果从左至右，我们每次将被遍历到的元素插入至双端队列的末尾。</p>
-</li>
-<li><p>如果从右至左，我们每次将被遍历到的元素插入至双端队列的头部。</p>
-</li>
-</ul>
-<p>当遍历结束的时候我们就得到了答案数组。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; zigzagLevelOrder(TreeNode* root) &#123;</span><br><span class="line">        vector&lt;vector&lt;int&gt;&gt; ans;</span><br><span class="line">        if (!root) &#123;</span><br><span class="line">            return ans;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        queue&lt;TreeNode*&gt; nodeQueue;</span><br><span class="line">        nodeQueue.push(root);</span><br><span class="line">        bool isOrderLeft = true;</span><br><span class="line"></span><br><span class="line">        while (!nodeQueue.empty()) &#123;</span><br><span class="line">            deque&lt;int&gt; levelList;</span><br><span class="line">            int size = nodeQueue.size();</span><br><span class="line">            for (int i = 0; i &lt; size; ++i) &#123;</span><br><span class="line">                auto node = nodeQueue.front();</span><br><span class="line">                nodeQueue.pop();</span><br><span class="line">                if (isOrderLeft) &#123;</span><br><span class="line">                    levelList.push_back(node-&gt;val);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    levelList.push_front(node-&gt;val);</span><br><span class="line">                &#125;</span><br><span class="line">                if (node-&gt;left) &#123;</span><br><span class="line">                    nodeQueue.push(node-&gt;left);</span><br><span class="line">                &#125;</span><br><span class="line">                if (node-&gt;right) &#123;</span><br><span class="line">                    nodeQueue.push(node-&gt;right);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ans.emplace_back(vector&lt;int&gt;&#123;levelList.begin(), levelList.end()&#125;);</span><br><span class="line">            isOrderLeft = !isOrderLeft;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;List&lt;Integer&gt;&gt; zigzagLevelOrder(TreeNode root) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; ans = new LinkedList&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line">        if (root == null) &#123;</span><br><span class="line">            return ans;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Queue&lt;TreeNode&gt; nodeQueue = new ArrayDeque&lt;TreeNode&gt;();</span><br><span class="line">        nodeQueue.offer(root);</span><br><span class="line">        boolean isOrderLeft = true;</span><br><span class="line"></span><br><span class="line">        while (!nodeQueue.isEmpty()) &#123;</span><br><span class="line">            Deque&lt;Integer&gt; levelList = new LinkedList&lt;Integer&gt;();</span><br><span class="line">            int size = nodeQueue.size();</span><br><span class="line">            for (int i = 0; i &lt; size; ++i) &#123;</span><br><span class="line">                TreeNode curNode = nodeQueue.poll();</span><br><span class="line">                if (isOrderLeft) &#123;</span><br><span class="line">                    levelList.offerLast(curNode.val);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    levelList.offerFirst(curNode.val);</span><br><span class="line">                &#125;</span><br><span class="line">                if (curNode.left != null) &#123;</span><br><span class="line">                    nodeQueue.offer(curNode.left);</span><br><span class="line">                &#125;</span><br><span class="line">                if (curNode.right != null) &#123;</span><br><span class="line">                    nodeQueue.offer(curNode.right);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ans.add(new LinkedList&lt;Integer&gt;(levelList));</span><br><span class="line">            isOrderLeft = !isOrderLeft;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(N)，其中 N 为二叉树的节点数。每个节点会且仅会被遍历一次。</p>
-</li>
-<li><p>空间复杂度：O(N)。我们需要维护存储节点的队列和存储节点值的双端队列，空间复杂度为 O(N)。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/05/07/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%B9%B3%E5%9D%87%E5%80%BC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/05/07/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%B9%B3%E5%9D%87%E5%80%BC/" class="post-title-link" itemprop="url">二叉树的层平均值</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-05-07 10:14:14 / 修改时间：10:17:15" itemprop="dateCreated datePublished" datetime="2024-05-07T10:14:14+08:00">2024-05-07</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="二叉树的层平均值"><a href="#二叉树的层平均值" class="headerlink" title="二叉树的层平均值"></a>二叉树的层平均值</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个非空二叉树的根节点 <code>root</code> , 以数组的形式返回每一层节点的平均值。与实际答案相差 <code>10-5</code> 以内的答案可以被接受。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2021/03/09/avg1-tree.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [3,9,20,null,null,15,7]</span><br><span class="line">输出：[3.00000,14.50000,11.00000]</span><br><span class="line">解释：第 0 层的平均值为 3,第 1 层的平均值为 14.5,第 2 层的平均值为 11 。</span><br><span class="line">因此返回 [3, 14.5, 11] 。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2:</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2021/03/09/avg2-tree.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [3,9,20,15,7]</span><br><span class="line">输出：[3.00000,14.50000,11.00000]</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li>树中节点数量在 <code>[1, 104]</code> 范围内</li>
-<li><code>-231 &lt;= Node.val &lt;= 231 - 1</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）深度优先搜索"><a href="#（1）深度优先搜索" class="headerlink" title="（1）深度优先搜索"></a>（1）深度优先搜索</h3><p><strong>思路及算法</strong></p>
-<p>使用深度优先搜索计算二叉树的层平均值，需要维护两个数组，counts 用于存储二叉树的每一层的节点数，sums 用于存储二叉树的每一层的节点值之和。搜索过程中需要记录当前节点所在层，如果访问到的节点在第 i 层，则将 counts[i] 的值加 1，并将该节点的值加到 sums[i]。遍历结束之后，第 i 层的平均值即为 sums[i]&#x2F;counts[i]。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;Double&gt; averageOfLevels(TreeNode root) &#123;</span><br><span class="line">        List&lt;Integer&gt; counts = new ArrayList&lt;Integer&gt;();</span><br><span class="line">        List&lt;Double&gt; sums = new ArrayList&lt;Double&gt;();</span><br><span class="line">        dfs(root, 0, counts, sums);</span><br><span class="line">        List&lt;Double&gt; averages = new ArrayList&lt;Double&gt;();</span><br><span class="line">        int size = sums.size();</span><br><span class="line">        for (int i = 0; i &lt; size; i++) &#123;</span><br><span class="line">            averages.add(sums.get(i) / counts.get(i));</span><br><span class="line">        &#125;</span><br><span class="line">        return averages;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void dfs(TreeNode root, int level, List&lt;Integer&gt; counts, List&lt;Double&gt; sums) &#123;</span><br><span class="line">        if (root == null) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        if (level &lt; sums.size()) &#123;</span><br><span class="line">            sums.set(level, sums.get(level) + root.val);</span><br><span class="line">            counts.set(level, counts.get(level) + 1);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            sums.add(1.0 * root.val);</span><br><span class="line">            counts.add(1);</span><br><span class="line">        &#125;</span><br><span class="line">        dfs(root.left, level + 1, counts, sums);</span><br><span class="line">        dfs(root.right, level + 1, counts, sums);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;double&gt; averageOfLevels(TreeNode* root) &#123;</span><br><span class="line">        auto counts = vector&lt;int&gt;();</span><br><span class="line">        auto sums = vector&lt;double&gt;();</span><br><span class="line">        dfs(root, 0, counts, sums);</span><br><span class="line">        auto averages = vector&lt;double&gt;();</span><br><span class="line">        int size = sums.size();</span><br><span class="line">        for (int i = 0; i &lt; size; i++) &#123;</span><br><span class="line">            averages.push_back(sums[i] / counts[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return averages;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void dfs(TreeNode* root, int level, vector&lt;int&gt; &amp;counts, vector&lt;double&gt; &amp;sums) &#123;</span><br><span class="line">        if (root == nullptr) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        if (level &lt; sums.size()) &#123;</span><br><span class="line">            sums[level] += root-&gt;val;</span><br><span class="line">            counts[level] += 1;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            sums.push_back(1.0 * root-&gt;val);</span><br><span class="line">            counts.push_back(1);</span><br><span class="line">        &#125;</span><br><span class="line">        dfs(root-&gt;left, level + 1, counts, sums);</span><br><span class="line">        dfs(root-&gt;right, level + 1, counts, sums);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong> </p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是二叉树中的节点个数。<br>深度优先搜索需要对每个节点访问一次，对于每个节点，维护两个数组的时间复杂度都是 O(1)，因此深度优先搜索的时间复杂度是 O(n)。<br>遍历结束之后计算每层的平均值的时间复杂度是 O(h)，其中 h 是二叉树的高度，任何情况下都满足 h≤n。<br>因此总时间复杂度是 O(n)。</p>
-</li>
-<li><p>空间复杂度：O(n)，其中 n 是二叉树中的节点个数。空间复杂度取决于两个数组的大小和递归调用的层数，两个数组的大小都等于二叉树的高度，递归调用的层数不会超过二叉树的高度，最坏情况下，二叉树的高度等于节点个数。</p>
-</li>
-</ul>
-<h3 id="（2）广度优先搜索"><a href="#（2）广度优先搜索" class="headerlink" title="（2）广度优先搜索"></a>（2）广度优先搜索</h3><p><strong>思路及算法</strong></p>
-<p>也可以使用广度优先搜索计算二叉树的层平均值。从根节点开始搜索，每一轮遍历同一层的全部节点，计算该层的节点数以及该层的节点值之和，然后计算该层的平均值。</p>
-<p>如何确保每一轮遍历的是同一层的全部节点呢？我们可以借鉴层次遍历的做法，广度优先搜索使用队列存储待访问节点，只要确保在每一轮遍历时，队列中的节点是同一层的全部节点即可。具体做法如下：</p>
-<ul>
-<li><p>初始时，将根节点加入队列；</p>
-</li>
-<li><p>每一轮遍历时，将队列中的节点全部取出，计算这些节点的数量以及它们的节点值之和，并计算这些节点的平均值，然后将这些节点的全部非空子节点加入队列，重复上述操作直到队列为空，遍历结束。</p>
-</li>
-</ul>
-<p>由于初始时队列中只有根节点，满足队列中的节点是同一层的全部节点，每一轮遍历时都会将队列中的当前层节点全部取出，并将下一层的全部节点加入队列，因此可以确保每一轮遍历的是同一层的全部节点。</p>
-<p>具体实现方面，可以在每一轮遍历之前获得队列中的节点数量 size，遍历时只遍历 size 个节点，即可满足每一轮遍历的是同一层的全部节点。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;Double&gt; averageOfLevels(TreeNode root) &#123;</span><br><span class="line">        List&lt;Double&gt; averages = new ArrayList&lt;Double&gt;();</span><br><span class="line">        Queue&lt;TreeNode&gt; queue = new LinkedList&lt;TreeNode&gt;();</span><br><span class="line">        queue.offer(root);</span><br><span class="line">        while (!queue.isEmpty()) &#123;</span><br><span class="line">            double sum = 0;</span><br><span class="line">            int size = queue.size();</span><br><span class="line">            for (int i = 0; i &lt; size; i++) &#123;</span><br><span class="line">                TreeNode node = queue.poll();</span><br><span class="line">                sum += node.val;</span><br><span class="line">                TreeNode left = node.left, right = node.right;</span><br><span class="line">                if (left != null) &#123;</span><br><span class="line">                    queue.offer(left);</span><br><span class="line">                &#125;</span><br><span class="line">                if (right != null) &#123;</span><br><span class="line">                    queue.offer(right);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            averages.add(sum / size);</span><br><span class="line">        &#125;</span><br><span class="line">        return averages;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;double&gt; averageOfLevels(TreeNode* root) &#123;</span><br><span class="line">        auto averages = vector&lt;double&gt;();</span><br><span class="line">        auto q = queue&lt;TreeNode*&gt;();</span><br><span class="line">        q.push(root);</span><br><span class="line">        while (!q.empty()) &#123;</span><br><span class="line">            double sum = 0;</span><br><span class="line">            int size = q.size();</span><br><span class="line">            for (int i = 0; i &lt; size; i++) &#123;</span><br><span class="line">                auto node = q.front();</span><br><span class="line">                q.pop();</span><br><span class="line">                sum += node-&gt;val;</span><br><span class="line">                auto left = node-&gt;left, right = node-&gt;right;</span><br><span class="line">                if (left != nullptr) &#123;</span><br><span class="line">                    q.push(left);</span><br><span class="line">                &#125;</span><br><span class="line">                if (right != nullptr) &#123;</span><br><span class="line">                    q.push(right);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            averages.push_back(sum / size);</span><br><span class="line">        &#125;</span><br><span class="line">        return averages;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是二叉树中的节点个数。<br>广度优先搜索需要对每个节点访问一次，时间复杂度是 O(n)。<br>需要对二叉树的每一层计算平均值，时间复杂度是 O(h)，其中 h 是二叉树的高度，任何情况下都满足 h≤n。<br>因此总时间复杂度是 O(n)。</p>
-</li>
-<li><p>空间复杂度：O(n)，其中 n 是二叉树中的节点个数。空间复杂度取决于队列开销，队列中的节点个数不会超过 n。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
@@ -1526,14 +1578,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">130k</span>
+    <span title="站点总字数">136k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">7:51</span>
+    <span title="站点阅读时长">8:15</span>
   </span>
 </div>
 <div class="busuanzi-count">
