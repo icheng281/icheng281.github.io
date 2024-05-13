@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">127</span>
+          <span class="site-state-item-count">129</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,6 +174,266 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/05/13/%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/05/13/%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2II/" class="post-title-link" itemprop="url">单词搜索II</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-05-13 10:14:12 / 修改时间：10:16:38" itemprop="dateCreated datePublished" datetime="2024-05-13T10:14:12+08:00">2024-05-13</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="单词搜索II"><a href="#单词搜索II" class="headerlink" title="单词搜索II"></a>单词搜索II</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个 <code>m x n</code> 二维字符网格 <code>board</code> 和一个单词（字符串）列表 <code>words</code>， <em>返回所有二维网格上的单词</em> 。</p>
+<p>单词必须按照字母顺序，通过 <strong>相邻的单元格</strong> 内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母在一个单词中不允许被重复使用。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/11/07/search1.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：board = [[&quot;o&quot;,&quot;a&quot;,&quot;a&quot;,&quot;n&quot;],[&quot;e&quot;,&quot;t&quot;,&quot;a&quot;,&quot;e&quot;],[&quot;i&quot;,&quot;h&quot;,&quot;k&quot;,&quot;r&quot;],[&quot;i&quot;,&quot;f&quot;,&quot;l&quot;,&quot;v&quot;]], words = [&quot;oath&quot;,&quot;pea&quot;,&quot;eat&quot;,&quot;rain&quot;]</span><br><span class="line">输出：[&quot;eat&quot;,&quot;oath&quot;]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/11/07/search2.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：board = [[&quot;a&quot;,&quot;b&quot;],[&quot;c&quot;,&quot;d&quot;]], words = [&quot;abcb&quot;]</span><br><span class="line">输出：[]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>m == board.length</code></li>
+<li><code>n == board[i].length</code></li>
+<li><code>1 &lt;= m, n &lt;= 12</code></li>
+<li><code>board[i][j]</code> 是一个小写英文字母</li>
+<li><code>1 &lt;= words.length &lt;= 3 * 104</code></li>
+<li><code>1 &lt;= words[i].length &lt;= 10</code></li>
+<li><code>words[i]</code> 由小写英文字母组成</li>
+<li><code>words</code> 中的所有字符串互不相同</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="回溯-字典树"><a href="#回溯-字典树" class="headerlink" title="回溯+字典树"></a>回溯+字典树</h3><p><strong>思路及算法</strong></p>
+<p>根据题意，我们需要逐个遍历二维网格中的每一个单元格；然后搜索从该单元格出发的所有路径，找到其中对应 words 中的单词的路径。因为这是一个回溯的过程，所以我们有如下算法：</p>
+<ul>
+<li><p>遍历二维网格中的所有单元格。</p>
+</li>
+<li><p>深度优先搜索所有从当前正在遍历的单元格出发的、由相邻且不重复的单元格组成的路径。因为题目要求同一个单元格内的字母在一个单词中不能被重复使用；所以我们在深度优先搜索的过程中，每经过一个单元格，都将该单元格的字母临时修改为特殊字符（例如 #），以避免再次经过该单元格。</p>
+</li>
+<li><p>如果当前路径是 words 中的单词，则将其添加到结果集中。如果当前路径是 words 中任意一个单词的前缀，则继续搜索；反之，如果当前路径不是 words 中任意一个单词的前缀，则剪枝。我们可以将 words 中的所有字符串先添加到前缀树中，而后用 O(∣S∣) 的时间复杂度查询当前路径是否为 words 中任意一个单词的前缀。</p>
+</li>
+</ul>
+<p>在具体实现中，我们需要注意如下情况：</p>
+<ul>
+<li><p>因为同一个单词可能在多个不同的路径中出现，所以我们需要使用哈希集合对结果集去重。</p>
+</li>
+<li><p>在回溯的过程中，我们不需要每一步都判断完整的当前路径是否是 words 中任意一个单词的前缀；而是可以记录下路径中每个单元格所对应的前缀树结点，每次只需要判断新增单元格的字母是否是上一个单元格对应前缀树结点的子结点即可。</p>
+</li>
+</ul>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    int[][] dirs = &#123;&#123;1, 0&#125;, &#123;-1, 0&#125;, &#123;0, 1&#125;, &#123;0, -1&#125;&#125;;</span><br><span class="line"></span><br><span class="line">    public List&lt;String&gt; findWords(char[][] board, String[] words) &#123;</span><br><span class="line">        Trie trie = new Trie();</span><br><span class="line">        for (String word : words) &#123;</span><br><span class="line">            trie.insert(word);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Set&lt;String&gt; ans = new HashSet&lt;String&gt;();</span><br><span class="line">        for (int i = 0; i &lt; board.length; ++i) &#123;</span><br><span class="line">            for (int j = 0; j &lt; board[0].length; ++j) &#123;</span><br><span class="line">                dfs(board, trie, i, j, ans);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return new ArrayList&lt;String&gt;(ans);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void dfs(char[][] board, Trie now, int i1, int j1, Set&lt;String&gt; ans) &#123;</span><br><span class="line">        if (!now.children.containsKey(board[i1][j1])) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        char ch = board[i1][j1];</span><br><span class="line">        now = now.children.get(ch);</span><br><span class="line">        if (!&quot;&quot;.equals(now.word)) &#123;</span><br><span class="line">            ans.add(now.word);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        board[i1][j1] = &#x27;#&#x27;;</span><br><span class="line">        for (int[] dir : dirs) &#123;</span><br><span class="line">            int i2 = i1 + dir[0], j2 = j1 + dir[1];</span><br><span class="line">            if (i2 &gt;= 0 &amp;&amp; i2 &lt; board.length &amp;&amp; j2 &gt;= 0 &amp;&amp; j2 &lt; board[0].length) &#123;</span><br><span class="line">                dfs(board, now, i2, j2, ans);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        board[i1][j1] = ch;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Trie &#123;</span><br><span class="line">    String word;</span><br><span class="line">    Map&lt;Character, Trie&gt; children;</span><br><span class="line">    boolean isWord;</span><br><span class="line"></span><br><span class="line">    public Trie() &#123;</span><br><span class="line">        this.word = &quot;&quot;;</span><br><span class="line">        this.children = new HashMap&lt;Character, Trie&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void insert(String word) &#123;</span><br><span class="line">        Trie cur = this;</span><br><span class="line">        for (int i = 0; i &lt; word.length(); ++i) &#123;</span><br><span class="line">            char c = word.charAt(i);</span><br><span class="line">            if (!cur.children.containsKey(c)) &#123;</span><br><span class="line">                cur.children.put(c, new Trie());</span><br><span class="line">            &#125;</span><br><span class="line">            cur = cur.children.get(c);</span><br><span class="line">        &#125;</span><br><span class="line">        cur.word = word;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">struct TrieNode &#123;</span><br><span class="line">    string word;</span><br><span class="line">    unordered_map&lt;char,TrieNode *&gt; children;</span><br><span class="line">    TrieNode() &#123;</span><br><span class="line">        this-&gt;word = &quot;&quot;;</span><br><span class="line">    &#125;   </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">void insertTrie(TrieNode * root,const string &amp; word) &#123;</span><br><span class="line">    TrieNode * node = root;</span><br><span class="line">    for (auto c : word)&#123;</span><br><span class="line">        if (!node-&gt;children.count(c)) &#123;</span><br><span class="line">            node-&gt;children[c] = new TrieNode();</span><br><span class="line">        &#125;</span><br><span class="line">        node = node-&gt;children[c];</span><br><span class="line">    &#125;</span><br><span class="line">    node-&gt;word = word;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int dirs[4][2] = &#123;&#123;1, 0&#125;, &#123;-1, 0&#125;, &#123;0, 1&#125;, &#123;0, -1&#125;&#125;;</span><br><span class="line"></span><br><span class="line">    bool dfs(vector&lt;vector&lt;char&gt;&gt;&amp; board, int x, int y, TrieNode * root, set&lt;string&gt; &amp; res) &#123;</span><br><span class="line">        char ch = board[x][y];        </span><br><span class="line">        if (!root-&gt;children.count(ch)) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        root = root-&gt;children[ch];</span><br><span class="line">        if (root-&gt;word.size() &gt; 0) &#123;</span><br><span class="line">            res.insert(root-&gt;word);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        board[x][y] = &#x27;#&#x27;;</span><br><span class="line">        for (int i = 0; i &lt; 4; ++i) &#123;</span><br><span class="line">            int nx = x + dirs[i][0];</span><br><span class="line">            int ny = y + dirs[i][1];</span><br><span class="line">            if (nx &gt;= 0 &amp;&amp; nx &lt; board.size() &amp;&amp; ny &gt;= 0 &amp;&amp; ny &lt; board[0].size()) &#123;</span><br><span class="line">                if (board[nx][ny] != &#x27;#&#x27;) &#123;</span><br><span class="line">                    dfs(board, nx, ny, root,res);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        board[x][y] = ch;</span><br><span class="line"></span><br><span class="line">        return true;      </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    vector&lt;string&gt; findWords(vector&lt;vector&lt;char&gt;&gt; &amp; board, vector&lt;string&gt; &amp; words) &#123;</span><br><span class="line">        TrieNode * root = new TrieNode();</span><br><span class="line">        set&lt;string&gt; res;</span><br><span class="line">        vector&lt;string&gt; ans;</span><br><span class="line"></span><br><span class="line">        for (auto &amp; word: words)&#123;</span><br><span class="line">            insertTrie(root,word);</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; board.size(); ++i) &#123;</span><br><span class="line">            for (int j = 0; j &lt; board[0].size(); ++j) &#123;</span><br><span class="line">                dfs(board, i, j, root, res);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;        </span><br><span class="line">        for (auto &amp; word: res) &#123;</span><br><span class="line">            ans.emplace_back(word);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(m×n×3^l−1^)，其中 m 是二维网格的高度，n 是二维网格的宽度，l 是最长单词的长度。我们需要遍历 m×n 个单元格，每个单元格最多需要遍历 4×3^l−1^ 条路径。</p>
+</li>
+<li><p>空间复杂度：O(k×l)，其中 k 是 words 的长度，l 是最长单词的长度。最坏情况下，我们需要 O(k×l) 用于存储前缀树。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/05/13/%E6%B7%BB%E5%8A%A0%E4%B8%8E%E6%90%9C%E7%B4%A2%E5%8D%95%E8%AF%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/05/13/%E6%B7%BB%E5%8A%A0%E4%B8%8E%E6%90%9C%E7%B4%A2%E5%8D%95%E8%AF%8D/" class="post-title-link" itemprop="url">添加与搜索单词</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-05-13 10:13:47 / 修改时间：10:15:42" itemprop="dateCreated datePublished" datetime="2024-05-13T10:13:47+08:00">2024-05-13</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="添加与搜索单词"><a href="#添加与搜索单词" class="headerlink" title="添加与搜索单词"></a>添加与搜索单词</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>请你设计一个数据结构，支持 添加新单词 和 查找字符串是否与任何先前添加的字符串匹配 。</p>
+<p>实现词典类 <code>WordDictionary</code> ：</p>
+<ul>
+<li><code>WordDictionary()</code> 初始化词典对象</li>
+<li><code>void addWord(word)</code> 将 <code>word</code> 添加到数据结构中，之后可以对它进行匹配</li>
+<li><code>bool search(word)</code> 如果数据结构中存在字符串与 <code>word</code> 匹配，则返回 <code>true</code> ；否则，返回 <code>false</code> 。<code>word</code> 中可能包含一些 <code>&#39;.&#39;</code> ，每个 <code>.</code> 都可以表示任何一个字母。</li>
+</ul>
+<p><strong>示例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line">[&quot;WordDictionary&quot;,&quot;addWord&quot;,&quot;addWord&quot;,&quot;addWord&quot;,&quot;search&quot;,&quot;search&quot;,&quot;search&quot;,&quot;search&quot;]</span><br><span class="line">[[],[&quot;bad&quot;],[&quot;dad&quot;],[&quot;mad&quot;],[&quot;pad&quot;],[&quot;bad&quot;],[&quot;.ad&quot;],[&quot;b..&quot;]]</span><br><span class="line">输出：</span><br><span class="line">[null,null,null,null,false,true,true,true]</span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">WordDictionary wordDictionary = new WordDictionary();</span><br><span class="line">wordDictionary.addWord(&quot;bad&quot;);</span><br><span class="line">wordDictionary.addWord(&quot;dad&quot;);</span><br><span class="line">wordDictionary.addWord(&quot;mad&quot;);</span><br><span class="line">wordDictionary.search(&quot;pad&quot;); // 返回 False</span><br><span class="line">wordDictionary.search(&quot;bad&quot;); // 返回 True</span><br><span class="line">wordDictionary.search(&quot;.ad&quot;); // 返回 True</span><br><span class="line">wordDictionary.search(&quot;b..&quot;); // 返回 True</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= word.length &lt;= 25</code></li>
+<li><code>addWord</code> 中的 <code>word</code> 由小写英文字母组成</li>
+<li><code>search</code> 中的 <code>word</code> 由 ‘.’ 或小写英文字母组成</li>
+<li>最多调用 <code>104</code> 次 <code>addWord</code> 和 <code>search</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="字典树"><a href="#字典树" class="headerlink" title="字典树"></a>字典树</h3><p><strong>思路及算法</strong></p>
+<p>根据题意，WordDictionary 类需要支持添加单词和搜索单词的操作，可以使用字典树实现。</p>
+<p>对于添加单词，将单词添加到字典树中即可。</p>
+<p>对于搜索单词，从字典树的根结点开始搜索。由于待搜索的单词可能包含点号，因此在搜索过程中需要考虑点号的处理。对于当前字符是字母和点号的情况，分别按照如下方式处理：</p>
+<ul>
+<li><p>如果当前字符是字母，则判断当前字符对应的子结点是否存在，如果子结点存在则移动到子结点，继续搜索下一个字符，如果子结点不存在则说明单词不存在，返回 false；</p>
+</li>
+<li><p>如果当前字符是点号，由于点号可以表示任何字母，因此需要对当前结点的所有非空子结点继续搜索下一个字符。</p>
+</li>
+</ul>
+<p>重复上述步骤，直到返回 false\text{false}false 或搜索完给定单词的最后一个字符。</p>
+<p>如果搜索完给定的单词的最后一个字符，则当搜索到的最后一个结点的 isEnd 为 true 时，给定的单词存在。</p>
+<p>特别地，当搜索到点号时，只要存在一个非空子结点可以搜索到给定的单词，即返回 true。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class WordDictionary &#123;</span><br><span class="line">    private Trie root;</span><br><span class="line"></span><br><span class="line">    public WordDictionary() &#123;</span><br><span class="line">        root = new Trie();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void addWord(String word) &#123;</span><br><span class="line">        root.insert(word);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public boolean search(String word) &#123;</span><br><span class="line">        return dfs(word, 0, root);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private boolean dfs(String word, int index, Trie node) &#123;</span><br><span class="line">        if (index == word.length()) &#123;</span><br><span class="line">            return node.isEnd();</span><br><span class="line">        &#125;</span><br><span class="line">        char ch = word.charAt(index);</span><br><span class="line">        if (Character.isLetter(ch)) &#123;</span><br><span class="line">            int childIndex = ch - &#x27;a&#x27;;</span><br><span class="line">            Trie child = node.getChildren()[childIndex];</span><br><span class="line">            if (child != null &amp;&amp; dfs(word, index + 1, child)) &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            for (int i = 0; i &lt; 26; i++) &#123;</span><br><span class="line">                Trie child = node.getChildren()[i];</span><br><span class="line">                if (child != null &amp;&amp; dfs(word, index + 1, child)) &#123;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Trie &#123;</span><br><span class="line">    private Trie[] children;</span><br><span class="line">    private boolean isEnd;</span><br><span class="line"></span><br><span class="line">    public Trie() &#123;</span><br><span class="line">        children = new Trie[26];</span><br><span class="line">        isEnd = false;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void insert(String word) &#123;</span><br><span class="line">        Trie node = this;</span><br><span class="line">        for (int i = 0; i &lt; word.length(); i++) &#123;</span><br><span class="line">            char ch = word.charAt(i);</span><br><span class="line">            int index = ch - &#x27;a&#x27;;</span><br><span class="line">            if (node.children[index] == null) &#123;</span><br><span class="line">                node.children[index] = new Trie();</span><br><span class="line">            &#125;</span><br><span class="line">            node = node.children[index];</span><br><span class="line">        &#125;</span><br><span class="line">        node.isEnd = true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Trie[] getChildren() &#123;</span><br><span class="line">        return children;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean isEnd() &#123;</span><br><span class="line">        return isEnd;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">struct TrieNode&#123;</span><br><span class="line">    vector&lt;TrieNode *&gt; child;</span><br><span class="line">    bool isEnd;</span><br><span class="line">    TrieNode() &#123;</span><br><span class="line">        this-&gt;child = vector&lt;TrieNode *&gt;(26,nullptr);</span><br><span class="line">        this-&gt;isEnd = false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">void insert(TrieNode * root, const string &amp; word) &#123;</span><br><span class="line">    TrieNode * node = root;</span><br><span class="line">    for (auto c : word) &#123;</span><br><span class="line">        if (node-&gt;child[c - &#x27;a&#x27;] == nullptr) &#123;</span><br><span class="line">            node-&gt;child[c - &#x27;a&#x27;] = new TrieNode();</span><br><span class="line">        &#125;</span><br><span class="line">        node = node-&gt;child[c - &#x27;a&#x27;];</span><br><span class="line">    &#125;</span><br><span class="line">    node-&gt;isEnd = true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class WordDictionary &#123;</span><br><span class="line">public:</span><br><span class="line">    WordDictionary() &#123;</span><br><span class="line">        trie = new TrieNode();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void addWord(string word) &#123;</span><br><span class="line">        insert(trie,word);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    bool search(string word) &#123;</span><br><span class="line">        return dfs(word, 0, trie);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    bool dfs(const string &amp; word,int index,TrieNode * node) &#123;</span><br><span class="line">　　　　if (index == word.size()) &#123;</span><br><span class="line">            return node-&gt;isEnd;    </span><br><span class="line">        &#125;</span><br><span class="line">        char ch = word[index];</span><br><span class="line">        if (ch &gt;= &#x27;a&#x27; &amp;&amp; ch &lt;= &#x27;z&#x27;) &#123;</span><br><span class="line">            TrieNode * child = node-&gt;child[ch - &#x27;a&#x27;];</span><br><span class="line">            if (child != nullptr &amp;&amp; dfs(word, index + 1, child)) &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else if (ch == &#x27;.&#x27;) &#123;</span><br><span class="line">            for (int i = 0; i &lt; 26; i++) &#123;</span><br><span class="line">                TrieNode * child = node-&gt;child[i];</span><br><span class="line">                if (child != nullptr &amp;&amp; dfs(word, index + 1, child)) &#123;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">private:</span><br><span class="line">    TrieNode * trie;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：初始化为 O(1)，添加单词为 O(∣S∣)，搜索单词为 O(∣Σ∣∣S∣)，其中 ∣S∣ 是每次添加或搜索的单词的长度，Σ 是字符集，这道题中的字符集为全部小写英语字母，∣Σ∣&#x3D;26。最坏情况下，待搜索的单词中的每个字符都是点号，则每个字符都有 ∣Σ∣ 种可能。</p>
+</li>
+<li><p>空间复杂度：O(∣T∣⋅∣Σ∣)，其中 ∣T∣ 是所有添加的单词的长度之和，Σ是字符集，这道题中的字符集为全部小写英语字母，∣Σ∣&#x3D;26 。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1312,264 +1572,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/05/09/%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%BC%80%E6%A0%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/05/09/%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%BC%80%E6%A0%91/" class="post-title-link" itemprop="url">实现前缀树</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-05-09 16:55:44 / 修改时间：16:59:37" itemprop="dateCreated datePublished" datetime="2024-05-09T16:55:44+08:00">2024-05-09</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>969</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="实现前缀树"><a href="#实现前缀树" class="headerlink" title="实现前缀树"></a>实现前缀树</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>T（发音类似 “try”）或者说 <strong>前缀树</strong> 是一种树形数据结构，用于高效地存储和检索字符串数据集中的键。这一数据结构有相当多的应用情景，例如自动补完和拼写检查。</p>
-<p>请你实现 Trie 类：</p>
-<ul>
-<li><code>Trie()</code> 初始化前缀树对象。</li>
-<li><code>void insert(String word)</code> 向前缀树中插入字符串 <code>word</code> 。</li>
-<li><code>boolean search(String word)</code> 如果字符串 <code>word</code> 在前缀树中，返回 <code>true</code>（即，在检索之前已经插入）；否则，返回 <code>false</code> 。</li>
-<li><code>boolean startsWith(String prefix)</code> 如果之前已经插入的字符串 <code>word</code> 的前缀之一为 <code>prefix</code> ，返回 <code>true</code> ；否则，返回 <code>false</code> 。</li>
-</ul>
-<p><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">输入</span><br><span class="line">[&quot;Trie&quot;, &quot;insert&quot;, &quot;search&quot;, &quot;search&quot;, &quot;startsWith&quot;, &quot;insert&quot;, &quot;search&quot;]</span><br><span class="line">[[], [&quot;apple&quot;], [&quot;apple&quot;], [&quot;app&quot;], [&quot;app&quot;], [&quot;app&quot;], [&quot;app&quot;]]</span><br><span class="line">输出</span><br><span class="line">[null, null, true, false, true, null, true]</span><br><span class="line"></span><br><span class="line">解释</span><br><span class="line">Trie trie = new Trie();</span><br><span class="line">trie.insert(&quot;apple&quot;);</span><br><span class="line">trie.search(&quot;apple&quot;);   // 返回 True</span><br><span class="line">trie.search(&quot;app&quot;);     // 返回 False</span><br><span class="line">trie.startsWith(&quot;app&quot;); // 返回 True</span><br><span class="line">trie.insert(&quot;app&quot;);</span><br><span class="line">trie.search(&quot;app&quot;);     // 返回 True</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= word.length, prefix.length &lt;= 2000</code></li>
-<li><code>word</code> 和 <code>prefix</code> 仅由小写英文字母组成</li>
-<li><code>insert</code>、<code>search</code> 和 <code>startsWith</code> 调用次数 <strong>总计</strong> 不超过 <code>3 * 10000</code> 次</li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="字典树"><a href="#字典树" class="headerlink" title="字典树"></a>字典树</h3><p><strong>思路及算法</strong></p>
-<p>Trie，又称前缀树或字典树，是一棵有根树，其每个节点包含以下字段：</p>
-<ul>
-<li>指向子节点的指针数组 children。对于本题而言，数组长度为 26，即小写英文字母的数量。此时 children[0] 对应小写字母 a，children[1] 对应小写字母 b，…，children[25] 对应小写字母 z。</li>
-<li>布尔字段 isEnd，表示该节点是否为字符串的结尾。</li>
-</ul>
-<p><strong>插入字符串</strong></p>
-<p>我们从字典树的根开始，插入字符串。对于当前字符对应的子节点，有两种情况：</p>
-<ul>
-<li>子节点存在。沿着指针移动到子节点，继续处理下一个字符。</li>
-<li>子节点不存在。创建一个新的子节点，记录在 children数组的对应位置上，然后沿着指针移动到子节点，继续搜索下一个字符。<br>重复以上步骤，直到处理字符串的最后一个字符，然后将当前节点标记为字符串的结尾。</li>
-</ul>
-<p><strong>查找前缀</strong></p>
-<p>我们从字典树的根开始，查找前缀。对于当前字符对应的子节点，有两种情况：</p>
-<ul>
-<li>子节点存在。沿着指针移动到子节点，继续搜索下一个字符。</li>
-<li>子节点不存在。说明字典树中不包含该前缀，返回空指针。</li>
-<li>重复以上步骤，直到返回空指针或搜索完前缀的最后一个字符。</li>
-</ul>
-<p>若搜索到了前缀的末尾，就说明字典树中存在该前缀。此外，若前缀末尾对应节点的 isEnd\textit{isEnd}isEnd 为真，则说明字典树中存在该字符串。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Trie &#123;</span><br><span class="line">private:</span><br><span class="line">    vector&lt;Trie*&gt; children;</span><br><span class="line">    bool isEnd;</span><br><span class="line"></span><br><span class="line">    Trie* searchPrefix(string prefix) &#123;</span><br><span class="line">        Trie* node = this;</span><br><span class="line">        for (char ch : prefix) &#123;</span><br><span class="line">            ch -= &#x27;a&#x27;;</span><br><span class="line">            if (node-&gt;children[ch] == nullptr) &#123;</span><br><span class="line">                return nullptr;</span><br><span class="line">            &#125;</span><br><span class="line">            node = node-&gt;children[ch];</span><br><span class="line">        &#125;</span><br><span class="line">        return node;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    Trie() : children(26), isEnd(false) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    void insert(string word) &#123;</span><br><span class="line">        Trie* node = this;</span><br><span class="line">        for (char ch : word) &#123;</span><br><span class="line">            ch -= &#x27;a&#x27;;</span><br><span class="line">            if (node-&gt;children[ch] == nullptr) &#123;</span><br><span class="line">                node-&gt;children[ch] = new Trie();</span><br><span class="line">            &#125;</span><br><span class="line">            node = node-&gt;children[ch];</span><br><span class="line">        &#125;</span><br><span class="line">        node-&gt;isEnd = true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    bool search(string word) &#123;</span><br><span class="line">        Trie* node = this-&gt;searchPrefix(word);</span><br><span class="line">        return node != nullptr &amp;&amp; node-&gt;isEnd;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    bool startsWith(string prefix) &#123;</span><br><span class="line">        return this-&gt;searchPrefix(prefix) != nullptr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Trie &#123;</span><br><span class="line">    private Trie[] children;</span><br><span class="line">    private boolean isEnd;</span><br><span class="line"></span><br><span class="line">    public Trie() &#123;</span><br><span class="line">        children = new Trie[26];</span><br><span class="line">        isEnd = false;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void insert(String word) &#123;</span><br><span class="line">        Trie node = this;</span><br><span class="line">        for (int i = 0; i &lt; word.length(); i++) &#123;</span><br><span class="line">            char ch = word.charAt(i);</span><br><span class="line">            int index = ch - &#x27;a&#x27;;</span><br><span class="line">            if (node.children[index] == null) &#123;</span><br><span class="line">                node.children[index] = new Trie();</span><br><span class="line">            &#125;</span><br><span class="line">            node = node.children[index];</span><br><span class="line">        &#125;</span><br><span class="line">        node.isEnd = true;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public boolean search(String word) &#123;</span><br><span class="line">        Trie node = searchPrefix(word);</span><br><span class="line">        return node != null &amp;&amp; node.isEnd;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public boolean startsWith(String prefix) &#123;</span><br><span class="line">        return searchPrefix(prefix) != null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private Trie searchPrefix(String prefix) &#123;</span><br><span class="line">        Trie node = this;</span><br><span class="line">        for (int i = 0; i &lt; prefix.length(); i++) &#123;</span><br><span class="line">            char ch = prefix.charAt(i);</span><br><span class="line">            int index = ch - &#x27;a&#x27;;</span><br><span class="line">            if (node.children[index] == null) &#123;</span><br><span class="line">                return null;</span><br><span class="line">            &#125;</span><br><span class="line">            node = node.children[index];</span><br><span class="line">        &#125;</span><br><span class="line">        return node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：初始化为 O(1)，其余操作为 O(∣S∣)，其中 ∣S∣ 是每次插入或查询的字符串的长度。</p>
-</li>
-<li><p>空间复杂度：O(∣T∣⋅Σ)，其中 ∣T∣ 为所有插入字符串的长度之和，Σ 为字符集的大小，本题 Σ&#x3D;26。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/05/08/%E8%85%90%E7%83%82%E7%9A%84%E6%A9%98%E5%AD%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/05/08/%E8%85%90%E7%83%82%E7%9A%84%E6%A9%98%E5%AD%90/" class="post-title-link" itemprop="url">腐烂的橘子</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-05-08 10:17:34 / 修改时间：10:22:45" itemprop="dateCreated datePublished" datetime="2024-05-08T10:17:34+08:00">2024-05-08</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="腐烂的橘子"><a href="#腐烂的橘子" class="headerlink" title="腐烂的橘子"></a>腐烂的橘子</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>在给定的 <code>m x n</code> 网格 <code>grid</code> 中，每个单元格可以有以下三个值之一：</p>
-<ul>
-<li>值 <code>0</code> 代表空单元格；</li>
-<li>值 <code>1</code> 代表新鲜橘子；</li>
-<li>值 <code>2</code> 代表腐烂的橘子。</li>
-</ul>
-<p>每分钟，腐烂的橘子 <strong>周围 4 个方向上相邻</strong> 的新鲜橘子都会腐烂。</p>
-<p>返回 <em>直到单元格中没有新鲜橘子为止所必须经过的最小分钟数。如果不可能，返回 <code>-1</code></em> 。</p>
-<p><strong>示例 1：</strong></p>
-<p><strong><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/02/16/oranges.png" alt="img"></strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [[2,1,1],[1,1,0],[0,1,1]]</span><br><span class="line">输出：4</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [[2,1,1],[0,1,1],[1,0,1]]</span><br><span class="line">输出：-1</span><br><span class="line">解释：左下角的橘子（第 2 行， 第 0 列）永远不会腐烂，因为腐烂只会发生在 4 个方向上。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [[0,2]]</span><br><span class="line">输出：0</span><br><span class="line">解释：因为 0 分钟时已经没有新鲜橘子了，所以答案就是 0 。</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>m == grid.length</code></li>
-<li><code>n == grid[i].length</code></li>
-<li><code>1 &lt;= m, n &lt;= 10</code></li>
-<li><code>grid[i][j]</code> 仅为 <code>0</code>、<code>1</code> 或 <code>2</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h4 id="多源广度优先搜索"><a href="#多源广度优先搜索" class="headerlink" title="多源广度优先搜索"></a>多源广度优先搜索</h4><p><strong>思路及算法</strong></p>
-<p>观察到对于所有的腐烂橘子，其实它们在广度优先搜索上是等价于同一层的节点的。</p>
-<p>假设这些腐烂橘子刚开始是新鲜的，而有一个腐烂橘子(我们令其为超级源点)会在下一秒把这些橘子都变腐烂，而这个腐烂橘子刚开始在的时间是 −1 ，那么按照广度优先搜索的算法，下一分钟也就是第 0 分钟的时候，这个腐烂橘子会把它们都变成腐烂橘子，然后继续向外拓展，所以其实这些腐烂橘子是同一层的节点。那么在广度优先搜索的时候，我们将这些腐烂橘子都放进队列里进行广度优先搜索即可，最后每个新鲜橘子被腐烂的最短时间 dis[x] [y]其实是以这个超级源点的腐烂橘子为起点的广度优先搜索得到的结果。</p>
-<p>为了确认是否所有新鲜橘子都被腐烂，可以记录一个变量 cnt 表示当前网格中的新鲜橘子数，广度优先搜索的时候如果有新鲜橘子被腐烂，则 cnt&#x3D;cnt−1 ，最后搜索结束时如果 cnt 大于 0 ，说明有新鲜橘子没被腐烂，返回 −1 ，否则返回所有新鲜橘子被腐烂的时间的最大值即可，也可以在广度优先搜索的过程中把已腐烂的新鲜橘子的值由 1 改为 2，最后看网格中是否由值为 1 即新鲜的橘子即可。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">    int cnt;</span><br><span class="line">    int dis[10][10];</span><br><span class="line">    int dir_x[4] = &#123;0, 1, 0, -1&#125;;</span><br><span class="line">    int dir_y[4] = &#123;1, 0, -1, 0&#125;;</span><br><span class="line">public:</span><br><span class="line">    int orangesRotting(vector&lt;vector&lt;int&gt;&gt;&amp; grid) &#123;</span><br><span class="line">        queue&lt;pair&lt;int, int&gt;&gt;Q;</span><br><span class="line">        memset(dis, -1, sizeof(dis));</span><br><span class="line">        cnt = 0;</span><br><span class="line">        int n = (int)grid.size(), m = (int)grid[0].size(), ans = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            for (int j = 0; j &lt; m; ++j) &#123;</span><br><span class="line">                if (grid[i][j] == 2) &#123;</span><br><span class="line">                    Q.emplace(i, j);</span><br><span class="line">                    dis[i][j] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">                else if (grid[i][j] == 1) &#123;</span><br><span class="line">                    cnt += 1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        while (!Q.empty())&#123;</span><br><span class="line">            auto [r, c] = Q.front();</span><br><span class="line">            Q.pop();</span><br><span class="line">            for (int i = 0; i &lt; 4; ++i) &#123;</span><br><span class="line">                int tx = r + dir_x[i];</span><br><span class="line">                int ty = c + dir_y[i];</span><br><span class="line">                if (tx &lt; 0|| tx &gt;= n || ty &lt; 0|| ty &gt;= m || ~dis[tx][ty] || !grid[tx][ty]) &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">                dis[tx][ty] = dis[r][c] + 1;</span><br><span class="line">                Q.emplace(tx, ty);</span><br><span class="line">                if (grid[tx][ty] == 1) &#123;</span><br><span class="line">                    cnt -= 1;</span><br><span class="line">                    ans = dis[tx][ty];</span><br><span class="line">                    if (!cnt) &#123;</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return cnt ? -1 : ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    int[] dr = new int[]&#123;-1, 0, 1, 0&#125;;</span><br><span class="line">    int[] dc = new int[]&#123;0, -1, 0, 1&#125;;</span><br><span class="line"></span><br><span class="line">    public int orangesRotting(int[][] grid) &#123;</span><br><span class="line">        int R = grid.length, C = grid[0].length;</span><br><span class="line">        Queue&lt;Integer&gt; queue = new ArrayDeque&lt;Integer&gt;();</span><br><span class="line">        Map&lt;Integer, Integer&gt; depth = new HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        for (int r = 0; r &lt; R; ++r) &#123;</span><br><span class="line">            for (int c = 0; c &lt; C; ++c) &#123;</span><br><span class="line">                if (grid[r][c] == 2) &#123;</span><br><span class="line">                    int code = r * C + c;</span><br><span class="line">                    queue.add(code);</span><br><span class="line">                    depth.put(code, 0);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        while (!queue.isEmpty()) &#123;</span><br><span class="line">            int code = queue.remove();</span><br><span class="line">            int r = code / C, c = code % C;</span><br><span class="line">            for (int k = 0; k &lt; 4; ++k) &#123;</span><br><span class="line">                int nr = r + dr[k];</span><br><span class="line">                int nc = c + dc[k];</span><br><span class="line">                if (0 &lt;= nr &amp;&amp; nr &lt; R &amp;&amp; 0 &lt;= nc &amp;&amp; nc &lt; C &amp;&amp; grid[nr][nc] == 1) &#123;</span><br><span class="line">                    grid[nr][nc] = 2;</span><br><span class="line">                    int ncode = nr * C + nc;</span><br><span class="line">                    queue.add(ncode);</span><br><span class="line">                    depth.put(ncode, depth.get(code) + 1);</span><br><span class="line">                    ans = depth.get(ncode);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int[] row: grid) &#123;</span><br><span class="line">            for (int v: row) &#123;</span><br><span class="line">                if (v == 1) &#123;</span><br><span class="line">                    return -1;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(nm)。即进行一次广度优先搜索的时间，其中 n,m 分别为 grid 的行数与列数。</p>
-</li>
-<li><p>空间复杂度：O(nm)。需要额外的 dis 数组记录每个新鲜橘子被腐烂的最短时间，大小为 O(nm)，且广度优先搜索中队列里存放的状态最多不会超过 nm 个，最多需要 O(nm) 的空间，所以最后的空间复杂度为 O(nm)。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1594,14 +1596,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">140k</span>
+    <span title="站点总字数">142k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">8:30</span>
+    <span title="站点阅读时长">8:38</span>
   </span>
 </div>
 <div class="busuanzi-count">
