@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">135</span>
+          <span class="site-state-item-count">136</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,6 +174,112 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/05/17/%E7%BB%84%E5%90%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/05/17/%E7%BB%84%E5%90%88/" class="post-title-link" itemprop="url">组合</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-05-17 10:16:02 / 修改时间：10:18:06" itemprop="dateCreated datePublished" datetime="2024-05-17T10:16:02+08:00">2024-05-17</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>359</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定两个整数 <code>n</code> 和 <code>k</code>，返回范围 <code>[1, n]</code> 中所有可能的 <code>k</code> 个数的组合。</p>
+<p>你可以按 <strong>任何顺序</strong> 返回答案。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 4, k = 2</span><br><span class="line">输出：</span><br><span class="line">[</span><br><span class="line">  [2,4],</span><br><span class="line">  [3,4],</span><br><span class="line">  [2,3],</span><br><span class="line">  [1,2],</span><br><span class="line">  [1,3],</span><br><span class="line">  [1,4],</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 1, k = 1</span><br><span class="line">输出：[[1]]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n &lt;= 20</code></li>
+<li><code>1 &lt;= k &lt;= n</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h3><p><strong>思路及算法</strong></p>
+<p>n 表示范围为 1…n，balance 表示剩余空间，start 表示开始位置，list 为回溯列表。判断 balance &#x3D;&#x3D; 0，如果为 0 则代表 list 中已经存入 k 个数，拷贝 list 存入结果 ans 中。如果不为 0，从 start 位置开始递归调用，现将当前位置数据加入 list 中，并进入下一层，等待返回后将本层加入的数据移除，本质就是树的构造过程<br>其中循环结束条件默认为最大值到 n，这里可以优化进行剪枝，比如 n&#x3D;4，k&#x3D;3 时，如果列表从 start&#x3D;3 也就是 [3] 开始，那么该组合一定不存在，因为至少要 k&#x3D;3 个数据，所以剪枝临界点为 n-balance+1</p>
+<p><img src="https://pic.leetcode-cn.com/56fc86462db842d44a7e3e7983a7b5b01c8c25d106a9f4296c500d6d84478d74-frame_00001.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/e4bec9a5d9a76fa4e369ce9bd1422c606155d92fdf81014426b41f5479c7faff-frame_00002.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/4fbddb60995860f7b4c74f915cf220ce164ee4043b1a60a635d22f969c9c0dbb-frame_00003.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/df42c567454065d283b99fb51ce74ba780c14e2193873b734a5c4266567465a8-frame_00004.png" alt="img"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    private List&lt;List&lt;Integer&gt;&gt; ans = new ArrayList&lt;&gt;();</span><br><span class="line">    public List&lt;List&lt;Integer&gt;&gt; combine(int n, int k) &#123;</span><br><span class="line">        getCombine(n, k, 1, new ArrayList&lt;&gt;());</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void getCombine(int n, int k, int start, List&lt;Integer&gt; list) &#123;</span><br><span class="line">        if(k == 0) &#123;</span><br><span class="line">            ans.add(new ArrayList&lt;&gt;(list));</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i = start;i &lt;= n - k + 1;i++) &#123;</span><br><span class="line">            list.add(i);</span><br><span class="line">            getCombine(n, k - 1, i+1, list);</span><br><span class="line">            list.remove(list.size() - 1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1285,145 +1391,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/05/12/%E6%9C%80%E5%B0%8F%E5%9F%BA%E5%9B%A0%E5%8F%98%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/05/12/%E6%9C%80%E5%B0%8F%E5%9F%BA%E5%9B%A0%E5%8F%98%E5%8C%96/" class="post-title-link" itemprop="url">最小基因变化</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-05-12 10:57:27 / 修改时间：10:59:07" itemprop="dateCreated datePublished" datetime="2024-05-12T10:57:27+08:00">2024-05-12</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.2k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="最小基因变化"><a href="#最小基因变化" class="headerlink" title="最小基因变化"></a>最小基因变化</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>基因序列可以表示为一条由 8 个字符组成的字符串，其中每个字符都是 <code>&#39;A&#39;</code>、<code>&#39;C&#39;</code>、<code>&#39;G&#39;</code> 和 <code>&#39;T&#39;</code> 之一。</p>
-<p>假设我们需要调查从基因序列 <code>start</code> 变为 <code>end</code> 所发生的基因变化。一次基因变化就意味着这个基因序列中的一个字符发生了变化。</p>
-<ul>
-<li>例如，<code>&quot;AACCGGTT&quot; --&gt; &quot;AACCGGTA&quot;</code> 就是一次基因变化。</li>
-</ul>
-<p>另有一个基因库 <code>bank</code> 记录了所有有效的基因变化，只有基因库中的基因才是有效的基因序列。（变化后的基因必须位于基因库 <code>bank</code> 中）</p>
-<p>给你两个基因序列 <code>start</code> 和 <code>end</code> ，以及一个基因库 <code>bank</code> ，请你找出并返回能够使 <code>start</code> 变化为 <code>end</code> 所需的最少变化次数。如果无法完成此基因变化，返回 <code>-1</code> 。</p>
-<p>注意：起始基因序列 <code>start</code> 默认是有效的，但是它并不一定会出现在基因库中。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：start = &quot;AACCGGTT&quot;, end = &quot;AACCGGTA&quot;, bank = [&quot;AACCGGTA&quot;]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：start = &quot;AACCGGTT&quot;, end = &quot;AAACGGTA&quot;, bank = [&quot;AACCGGTA&quot;,&quot;AACCGCTA&quot;,&quot;AAACGGTA&quot;]</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：start = &quot;AAAAACCC&quot;, end = &quot;AACCCCCC&quot;, bank = [&quot;AAAACCCC&quot;,&quot;AAACCCCC&quot;,&quot;AACCCCCC&quot;]</span><br><span class="line">输出：3</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>start.length == 8</code></li>
-<li><code>end.length == 8</code></li>
-<li><code>0 &lt;= bank.length &lt;= 10</code></li>
-<li><code>bank[i].length == 8</code></li>
-<li><code>start</code>、<code>end</code> 和 <code>bank[i]</code> 仅由字符 <code>[&#39;A&#39;, &#39;C&#39;, &#39;G&#39;, &#39;T&#39;]</code> 组成</li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h3><p><strong>思路及算法</strong></p>
-<p>经过分析可知，题目要求将一个基因序列 A 变化至另一个基因序列 B，需要满足以下条件：</p>
-<ul>
-<li>序列 A 与 序列 B 之间只有一个字符不同；</li>
-<li>变化字符只能从 ‘A’, ‘C’, ‘G’, ‘T’ 中进行选择；</li>
-<li>变换后的序列 B 一定要在字符串数组 bank 中。</li>
-</ul>
-<p>根据以上变换规则，我们可以进行尝试所有合法的基因变化，并找到最小的变换次数即可。步骤如下：</p>
-<ul>
-<li><p>如果 start 与 end 相等，此时直接返回 0；如果最终的基因序列不在 bank 中，则此时按照题意要求，无法生成，直接返回 −1；</p>
-</li>
-<li><p>首先我们将可能变换的基因 s 从队列中取出，按照上述的变换规则，尝试所有可能的变化后的基因，比如一个 AACCGGTA，我们依次尝试改变基因 s 的一个字符，并尝试所有可能的基因变化序列 s0,s1,s2,⋯ ,si,⋯ ,s23，变化一次最多可能会生成 3×8&#x3D;24 种不同的基因序列。</p>
-</li>
-<li><p>我们需要检测当前生成的基因序列的合法性 si，首先利用哈希表检测 si 是否在数组 bank 中，如果是则认为该基因合法，否则该变化非法直接丢弃；其次我们还需要用哈希表记录已经遍历过的基因序列，如果该基因序列已经遍历过，则此时直接跳过；如果合法且未遍历过的基因序列，则我们将其加入到队列中。</p>
-</li>
-<li><p>如果当前变换后的基因序列与 end 相等，则此时我们直接返回最小的变化次数即可；如果队列中所有的元素都已经遍历完成还无法变成 end，则此时无法实现目标变化，返回 −1。</p>
-</li>
-</ul>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:    </span><br><span class="line">    int minMutation(string start, string end, vector&lt;string&gt;&amp; bank) &#123;</span><br><span class="line">        unordered_set&lt;string&gt; cnt;</span><br><span class="line">        unordered_set&lt;string&gt; visited;</span><br><span class="line">        char keys[4] = &#123;&#x27;A&#x27;, &#x27;C&#x27;, &#x27;G&#x27;, &#x27;T&#x27;&#125;;        </span><br><span class="line">        for (auto &amp; w : bank) &#123;</span><br><span class="line">            cnt.emplace(w);</span><br><span class="line">        &#125;</span><br><span class="line">        if (start == end) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        if (!cnt.count(end)) &#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">        queue&lt;string&gt; qu;</span><br><span class="line">        qu.emplace(start);</span><br><span class="line">        visited.emplace(start);</span><br><span class="line">        int step = 1;</span><br><span class="line">        while (!qu.empty()) &#123;</span><br><span class="line">            int sz = qu.size();</span><br><span class="line">            for (int i = 0; i &lt; sz; i++) &#123;</span><br><span class="line">                string curr = qu.front();</span><br><span class="line">                qu.pop();</span><br><span class="line">                for (int j = 0; j &lt; 8; j++) &#123;</span><br><span class="line">                    for (int k = 0; k &lt; 4; k++) &#123;</span><br><span class="line">                        if (keys[k] != curr[j]) &#123;</span><br><span class="line">                            string next = curr;</span><br><span class="line">                            next[j] = keys[k];</span><br><span class="line">                            if (!visited.count(next) &amp;&amp; cnt.count(next)) &#123;</span><br><span class="line">                                if (next == end) &#123;</span><br><span class="line">                                    return step;</span><br><span class="line">                                &#125;</span><br><span class="line">                                qu.emplace(next);</span><br><span class="line">                                visited.emplace(next);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            step++;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int minMutation(String start, String end, String[] bank) &#123;</span><br><span class="line">        Set&lt;String&gt; cnt = new HashSet&lt;String&gt;();</span><br><span class="line">        Set&lt;String&gt; visited = new HashSet&lt;String&gt;();</span><br><span class="line">        char[] keys = &#123;&#x27;A&#x27;, &#x27;C&#x27;, &#x27;G&#x27;, &#x27;T&#x27;&#125;;        </span><br><span class="line">        for (String w : bank) &#123;</span><br><span class="line">            cnt.add(w);</span><br><span class="line">        &#125;</span><br><span class="line">        if (start.equals(end)) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        if (!cnt.contains(end)) &#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">        Queue&lt;String&gt; queue = new ArrayDeque&lt;String&gt;();</span><br><span class="line">        queue.offer(start);</span><br><span class="line">        visited.add(start);</span><br><span class="line">        int step = 1;</span><br><span class="line">        while (!queue.isEmpty()) &#123;</span><br><span class="line">            int sz = queue.size();</span><br><span class="line">            for (int i = 0; i &lt; sz; i++) &#123;</span><br><span class="line">                String curr = queue.poll();</span><br><span class="line">                for (int j = 0; j &lt; 8; j++) &#123;</span><br><span class="line">                    for (int k = 0; k &lt; 4; k++) &#123;</span><br><span class="line">                        if (keys[k] != curr.charAt(j)) &#123;</span><br><span class="line">                            StringBuffer sb = new StringBuffer(curr);</span><br><span class="line">                            sb.setCharAt(j, keys[k]);</span><br><span class="line">                            String next = sb.toString();</span><br><span class="line">                            if (!visited.contains(next) &amp;&amp; cnt.contains(next)) &#123;</span><br><span class="line">                                if (next.equals(end)) &#123;</span><br><span class="line">                                    return step;</span><br><span class="line">                                &#125;</span><br><span class="line">                                queue.offer(next);</span><br><span class="line">                                visited.add(next);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            step++;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(C×n×m)，其中 n 为基因序列的长度，m 为数组 bank 的长度。对于队列中的每个合法的基因序列每次都需要计算 C×n 种变化，在这里 C&#x3D;4；队列中最多有 m 个元素，因此时间复杂度为 O(C×n×m)。</p>
-</li>
-<li><p>空间复杂度：O(n×m)，其中 n 为基因序列的长度，m 为数组 bank 的长度。合法性的哈希表中一共存有 m 个元素，队列中最多有 m 个元素，每个元素的空间为 O(n)；队列中最多有 m 个元素，每个元素的空间为 O(n)，因此空间复杂度为 O(n×m)。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1455,7 +1422,7 @@
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">8:58</span>
+    <span title="站点阅读时长">8:59</span>
   </span>
 </div>
 <div class="busuanzi-count">
