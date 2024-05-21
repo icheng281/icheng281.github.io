@@ -152,12 +152,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">136</span>
+          <span class="site-state-item-count">138</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -174,6 +174,286 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/02/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/02/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8II/" class="post-title-link" itemprop="url">环形链表II</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-02 10:25:46 / 修改时间：10:26:38" itemprop="dateCreated datePublished" datetime="2024-04-02T10:25:46+08:00">2024-04-02</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="环形链表II"><a href="#环形链表II" class="headerlink" title="环形链表II"></a>环形链表II</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个链表的头节点  <code>head</code> ，返回链表开始入环的第一个节点。 <em>如果链表无环，则返回 <code>null</code>。</em></p>
+<p>如果链表中有某个节点，可以通过连续跟踪 <code>next</code> 指针再次到达，则链表中存在环。 为了表示给定链表中的环，评测系统内部使用整数 <code>pos</code> 来表示链表尾连接到链表中的位置（<strong>索引从 0 开始</strong>）。如果 <code>pos</code> 是 <code>-1</code>，则在该链表中没有环。<strong>注意：<code>pos</code> 不作为参数进行传递</strong>，仅仅是为了标识链表的实际情况。</p>
+<p><strong>不允许修改</strong> 链表。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [3,2,0,-4], pos = 1</span><br><span class="line">输出：返回索引为 1 的链表节点</span><br><span class="line">解释：链表中有一个环，其尾部连接到第二个节点。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test2.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [1,2], pos = 0</span><br><span class="line">输出：返回索引为 0 的链表节点</span><br><span class="line">解释：链表中有一个环，其尾部连接到第一个节点。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test3.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [1], pos = -1</span><br><span class="line">输出：返回 null</span><br><span class="line">解释：链表中没有环。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>链表中节点的数目范围在范围 <code>[0, 104]</code> 内</li>
+<li><code>-105 &lt;= Node.val &lt;= 105</code></li>
+<li><code>pos</code> 的值为 <code>-1</code> 或者链表中的一个有效索引</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）哈希表"><a href="#（1）哈希表" class="headerlink" title="（1）哈希表"></a>（1）哈希表</h3><p><strong>思路及算法</strong></p>
+<p>一个非常直观的思路是：我们遍历链表中的每个节点，并将它记录下来；一旦遇到了此前遍历过的节点，就可以判定链表中存在环。借助哈希表可以很方便地实现。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode *detectCycle(ListNode *head) &#123;</span><br><span class="line">        unordered_set&lt;ListNode *&gt; visited;</span><br><span class="line">        while (head != nullptr) &#123;</span><br><span class="line">            if (visited.count(head)) &#123;</span><br><span class="line">                return head;</span><br><span class="line">            &#125;</span><br><span class="line">            visited.insert(head);</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        return nullptr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public ListNode detectCycle(ListNode head) &#123;</span><br><span class="line">        ListNode pos = head;</span><br><span class="line">        Set&lt;ListNode&gt; visited = new HashSet&lt;ListNode&gt;();</span><br><span class="line">        while (pos != null) &#123;</span><br><span class="line">            if (visited.contains(pos)) &#123;</span><br><span class="line">                return pos;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                visited.add(pos);</span><br><span class="line">            &#125;</span><br><span class="line">            pos = pos.next;</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(N)，其中 N 为链表中节点的数目。我们恰好需要访问链表中的每一个节点。</p>
+</li>
+<li><p>空间复杂度：O(N)，其中 N 为链表中节点的数目。我们需要将链表中的每个节点都保存在哈希表当中。</p>
+</li>
+</ul>
+<h3 id="（2）快慢指针"><a href="#（2）快慢指针" class="headerlink" title="（2）快慢指针"></a>（2）快慢指针</h3><p><strong>思路及算法</strong></p>
+<p>我们使用两个指针，fast 与 slow。它们起始都位于链表的头部。随后，slow 指针每次向后移动一个位置，而 fast 指针向后移动两个位置。如果链表中存在环，则 fast 指针最终将再次与 slow 指针在环中相遇。</p>
+<p>如下图所示，设链表中环外部分的长度为 a。slow 指针进入环后，又走了 b 的距离与 fast 相遇。此时，fast 指针已经走完了环的 n 圈，因此它走过的总距离为 a+n(b+c)+b&#x3D;a+(n+1)b+nc。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/142/142_fig1.png" alt="fig1"></p>
+<p>根据题意，任意时刻，fast 指针走过的距离都为 slow 指针的 2 倍。因此，我们有</p>
+<p>a+(n+1)b+nc&#x3D;2(a+b)  ⟹  a&#x3D;c+(n−1)(b+c)</p>
+<p>有了 a&#x3D;c+(n−1)(b+c) 的等量关系，我们会发现：从相遇点到入环点的距离加上 n−1 圈的环长，恰好等于从链表头部到入环点的距离。</p>
+<p>因此，当发现 slow 与 fast 相遇时，我们再额外使用一个指针 ptr。起始，它指向链表头部；随后，它和 slow 每次向后移动一个位置。最终，它们会在入环点相遇。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode *detectCycle(ListNode *head) &#123;</span><br><span class="line">        ListNode *slow = head, *fast = head;</span><br><span class="line">        while (fast != nullptr) &#123;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">            if (fast-&gt;next == nullptr) &#123;</span><br><span class="line">                return nullptr;</span><br><span class="line">            &#125;</span><br><span class="line">            fast = fast-&gt;next-&gt;next;</span><br><span class="line">            if (fast == slow) &#123;</span><br><span class="line">                ListNode *ptr = head;</span><br><span class="line">                while (ptr != slow) &#123;</span><br><span class="line">                    ptr = ptr-&gt;next;</span><br><span class="line">                    slow = slow-&gt;next;</span><br><span class="line">                &#125;</span><br><span class="line">                return ptr;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return nullptr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public ListNode detectCycle(ListNode head) &#123;</span><br><span class="line">        if (head == null) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode slow = head, fast = head;</span><br><span class="line">        while (fast != null) &#123;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            if (fast.next != null) &#123;</span><br><span class="line">                fast = fast.next.next;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                return null;</span><br><span class="line">            &#125;</span><br><span class="line">            if (fast == slow) &#123;</span><br><span class="line">                ListNode ptr = head;</span><br><span class="line">                while (ptr != slow) &#123;</span><br><span class="line">                    ptr = ptr.next;</span><br><span class="line">                    slow = slow.next;</span><br><span class="line">                &#125;</span><br><span class="line">                return ptr;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(N)，其中 N 为链表中节点的数目。在最初判断快慢指针是否相遇时，slow 指针走过的距离不会超过链表的总长度；随后寻找入环点时，走过的距离也不会超过链表的总长度。因此，总的执行时间为 O(N)+O(N)&#x3D;O(N)。</p>
+</li>
+<li><p>空间复杂度：O(1)。我们只使用了 slow,fast,ptr 三个指针。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/02/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8I/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/02/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8I/" class="post-title-link" itemprop="url">环形链表I</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-02 10:25:28 / 修改时间：10:26:22" itemprop="dateCreated datePublished" datetime="2024-04-02T10:25:28+08:00">2024-04-02</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="环形链表I"><a href="#环形链表I" class="headerlink" title="环形链表I"></a>环形链表I</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个链表的头节点 <code>head</code> ，判断链表中是否有环。</p>
+<p>如果链表中有某个节点，可以通过连续跟踪 <code>next</code> 指针再次到达，则链表中存在环。 为了表示给定链表中的环，评测系统内部使用整数 <code>pos</code> 来表示链表尾连接到链表中的位置（索引从 0 开始）。<strong>注意：<code>pos</code> 不作为参数进行传递</strong> 。仅仅是为了标识链表的实际情况。</p>
+<p><em>如果链表中存在环</em> ，则返回 <code>true</code> 。 否则，返回 <code>false</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [3,2,0,-4], pos = 1</span><br><span class="line">输出：true</span><br><span class="line">解释：链表中有一个环，其尾部连接到第二个节点。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test2.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [1,2], pos = 0</span><br><span class="line">输出：true</span><br><span class="line">解释：链表中有一个环，其尾部连接到第一个节点。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test3.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [1], pos = -1</span><br><span class="line">输出：false</span><br><span class="line">解释：链表中没有环。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>链表中节点的数目范围是 <code>[0, 104]</code></li>
+<li><code>-105 &lt;= Node.val &lt;= 105</code></li>
+<li><code>pos</code> 为 <code>-1</code> 或者链表中的一个 <strong>有效索引</strong> 。</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）哈希表"><a href="#（1）哈希表" class="headerlink" title="（1）哈希表"></a>（1）哈希表</h3><p><strong>思路及算法</strong></p>
+<p>最容易想到的方法是遍历所有节点，每次遍历到一个节点时，判断该节点此前是否被访问过。</p>
+<p>具体地，我们可以使用哈希表来存储所有已经访问过的节点。每次我们到达一个节点，如果该节点已经存在于哈希表中，则说明该链表是环形链表，否则就将该节点加入哈希表中。重复这一过程，直到我们遍历完整个链表即可。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool hasCycle(ListNode *head) &#123;</span><br><span class="line">        unordered_set&lt;ListNode*&gt; seen;</span><br><span class="line">        while (head != nullptr) &#123;</span><br><span class="line">            if (seen.count(head)) &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">            seen.insert(head);</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public boolean hasCycle(ListNode head) &#123;</span><br><span class="line">        Set&lt;ListNode&gt; seen = new HashSet&lt;ListNode&gt;();</span><br><span class="line">        while (head != null) &#123;</span><br><span class="line">            if (!seen.add(head)) &#123;</span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line">            head = head.next;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(N)，其中 N 是链表中的节点数。最坏情况下我们需要遍历每个节点一次。</p>
+</li>
+<li><p>空间复杂度：O(N)，其中 N 是链表中的节点数。主要为哈希表的开销，最坏情况下我们需要将每个节点插入到哈希表中一次。</p>
+</li>
+</ul>
+<h3 id="（2）快慢指针"><a href="#（2）快慢指针" class="headerlink" title="（2）快慢指针"></a>（2）快慢指针</h3><p><strong>思路及算法</strong></p>
+<p>本方法需要读者对「Floyd 判圈算法」（又称龟兔赛跑算法）有所了解。</p>
+<p>假想「乌龟」和「兔子」在链表上移动，「兔子」跑得快，「乌龟」跑得慢。当「乌龟」和「兔子」从链表上的同一个节点开始移动时，如果该链表中没有环，那么「兔子」将一直处于「乌龟」的前方；如果该链表中有环，那么「兔子」会先于「乌龟」进入环，并且一直在环内移动。等到「乌龟」进入环时，由于「兔子」的速度快，它一定会在某个时刻与乌龟相遇，即套了「乌龟」若干圈。</p>
+<p>我们可以根据上述思路来解决本题。具体地，我们定义两个指针，一快一慢。慢指针每次只移动一步，而快指针每次移动两步。初始时，慢指针在位置 head，而快指针在位置 head.next。这样一来，如果在移动的过程中，快指针反过来追上慢指针，就说明该链表为环形链表。否则快指针将到达链表尾部，该链表不为环形链表。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/141/1.png" alt="img"></p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/141/2.png" alt="img"></p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/141/3.png" alt="img"></p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/141/4.png" alt="img"></p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/141/5.png" alt="img"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public boolean hasCycle(ListNode head) &#123;</span><br><span class="line">        if (head == null || head.next == null) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode slow = head;</span><br><span class="line">        ListNode fast = head.next;</span><br><span class="line">        while (slow != fast) &#123;</span><br><span class="line">            if (fast == null || fast.next == null) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            fast = fast.next.next;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool hasCycle(ListNode* head) &#123;</span><br><span class="line">        if (head == nullptr || head-&gt;next == nullptr) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode* slow = head;</span><br><span class="line">        ListNode* fast = head-&gt;next;</span><br><span class="line">        while (slow != fast) &#123;</span><br><span class="line">            if (fast == nullptr || fast-&gt;next == nullptr) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">            fast = fast-&gt;next-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(N)，其中 N 是链表中的节点数。当链表中不存在环时，快指针将先于慢指针到达链表尾部，链表中每个节点至多被访问两次。当链表中存在环时，每一轮移动后，快慢指针的距离将减小一。而初始距离为环的长度，因此至多移动 N 轮。</p>
+</li>
+<li><p>空间复杂度：O(1)。我们只使用了两个指针的额外空间。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1321,293 +1601,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/23/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/23/%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5/" class="post-title-link" itemprop="url">螺旋矩阵</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-03-23 09:18:35 / 修改时间：09:28:48" itemprop="dateCreated datePublished" datetime="2024-03-23T09:18:35+08:00">2024-03-23</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.2k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="螺旋矩阵"><a href="#螺旋矩阵" class="headerlink" title="螺旋矩阵"></a>螺旋矩阵</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个 <code>m</code> 行 <code>n</code> 列的矩阵 <code>matrix</code> ，请按照 <strong>顺时针螺旋顺序</strong> ，返回矩阵中的所有元素。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2020/11/13/spiral1.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]</span><br><span class="line">输出：[1,2,3,6,9,8,7,4,5]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2020/11/13/spiral.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]</span><br><span class="line">输出：[1,2,3,4,8,12,11,10,9,5,6,7]</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>m == matrix.length</code></li>
-<li><code>n == matrix[i].length</code></li>
-<li><code>1 &lt;= m, n &lt;= 10</code></li>
-<li><code>-100 &lt;= matrix[i][j] &lt;= 100</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）模拟"><a href="#（1）模拟" class="headerlink" title="（1）模拟"></a>（1）模拟</h3><p><strong>思路与算法</strong></p>
-<p>可以模拟螺旋矩阵的路径。初始位置是矩阵的左上角，初始方向是向右，当路径超出界限或者进入之前访问过的位置时，顺时针旋转，进入下一个方向。</p>
-<p>判断路径是否进入之前访问过的位置需要使用一个与输入矩阵大小相同的辅助矩阵 visited，其中的每个元素表示该位置是否被访问过。当一个元素被访问时，将 visited 中的对应位置的元素设为已访问。</p>
-<p>如何判断路径是否结束？由于矩阵中的每个元素都被访问一次，因此路径的长度即为矩阵中的元素数量，当路径的长度达到矩阵中的元素数量时即为完整路径，将该路径返回。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">private:</span><br><span class="line">    static constexpr int directions[4][2] = &#123;&#123;0, 1&#125;, &#123;1, 0&#125;, &#123;0, -1&#125;, &#123;-1, 0&#125;&#125;;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; spiralOrder(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) &#123;</span><br><span class="line">        if (matrix.size() == 0 || matrix[0].size() == 0) &#123;</span><br><span class="line">            return &#123;&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        int rows = matrix.size(), columns = matrix[0].size();</span><br><span class="line">        vector&lt;vector&lt;bool&gt;&gt; visited(rows, vector&lt;bool&gt;(columns));</span><br><span class="line">        int total = rows * columns;</span><br><span class="line">        vector&lt;int&gt; order(total);</span><br><span class="line"></span><br><span class="line">        int row = 0, column = 0;</span><br><span class="line">        int directionIndex = 0;</span><br><span class="line">        for (int i = 0; i &lt; total; i++) &#123;</span><br><span class="line">            order[i] = matrix[row][column];</span><br><span class="line">            visited[row][column] = true;</span><br><span class="line">            int nextRow = row + directions[directionIndex][0], nextColumn = column + directions[directionIndex][1];</span><br><span class="line">            if (nextRow &lt; 0 || nextRow &gt;= rows || nextColumn &lt; 0 || nextColumn &gt;= columns || visited[nextRow][nextColumn]) &#123;</span><br><span class="line">                directionIndex = (directionIndex + 1) % 4;</span><br><span class="line">            &#125;</span><br><span class="line">            row += directions[directionIndex][0];</span><br><span class="line">            column += directions[directionIndex][1];</span><br><span class="line">        &#125;</span><br><span class="line">        return order;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;Integer&gt; spiralOrder(int[][] matrix) &#123;</span><br><span class="line">        List&lt;Integer&gt; order = new ArrayList&lt;Integer&gt;();</span><br><span class="line">        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) &#123;</span><br><span class="line">            return order;</span><br><span class="line">        &#125;</span><br><span class="line">        int rows = matrix.length, columns = matrix[0].length;</span><br><span class="line">        boolean[][] visited = new boolean[rows][columns];</span><br><span class="line">        int total = rows * columns;</span><br><span class="line">        int row = 0, column = 0;</span><br><span class="line">        int[][] directions = &#123;&#123;0, 1&#125;, &#123;1, 0&#125;, &#123;0, -1&#125;, &#123;-1, 0&#125;&#125;;</span><br><span class="line">        int directionIndex = 0;</span><br><span class="line">        for (int i = 0; i &lt; total; i++) &#123;</span><br><span class="line">            order.add(matrix[row][column]);</span><br><span class="line">            visited[row][column] = true;</span><br><span class="line">            int nextRow = row + directions[directionIndex][0], nextColumn = column + directions[directionIndex][1];</span><br><span class="line">            if (nextRow &lt; 0 || nextRow &gt;= rows || nextColumn &lt; 0 || nextColumn &gt;= columns || visited[nextRow][nextColumn]) &#123;</span><br><span class="line">                directionIndex = (directionIndex + 1) % 4;</span><br><span class="line">            &#125;</span><br><span class="line">            row += directions[directionIndex][0];</span><br><span class="line">            column += directions[directionIndex][1];</span><br><span class="line">        &#125;</span><br><span class="line">        return order;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(mn)，其中 m 和 n 分别是输入矩阵的行数和列数。矩阵中的每个元素都要被访问一次。</p>
-</li>
-<li><p>空间复杂度：O(mn)。需要创建一个大小为 m×n 的矩阵 visited 记录每个位置是否被访问过。</p>
-</li>
-</ul>
-<h3 id="（2）按层模拟"><a href="#（2）按层模拟" class="headerlink" title="（2）按层模拟"></a>（2）按层模拟</h3><p>可以将矩阵看成若干层，首先输出最外层的元素，其次输出次外层的元素，直到输出最内层的元素。</p>
-<p>定义矩阵的第 k 层是到最近边界距离为 k 的所有顶点。例如，下图矩阵最外层元素都是第 1 层，次外层元素都是第 2 层，剩下的元素都是第 3 层。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[[1, 1, 1, 1, 1, 1, 1],</span><br><span class="line"> [1, 2, 2, 2, 2, 2, 1],</span><br><span class="line"> [1, 2, 3, 3, 3, 2, 1],</span><br><span class="line"> [1, 2, 2, 2, 2, 2, 1],</span><br><span class="line"> [1, 1, 1, 1, 1, 1, 1]]</span><br></pre></td></tr></table></figure>
-
-<p>对于每层，从左上方开始以顺时针的顺序遍历所有元素。假设当前层的左上角位于 (top,left)，右下角位于 (bottom,right)，按照如下顺序遍历当前层的元素。</p>
-<ol>
-<li><p>从左到右遍历上侧元素，依次为 (top,left) 到 (top,right)。</p>
-</li>
-<li><p>从上到下遍历右侧元素，依次为 (top+1,right) 到 (bottom,right)。</p>
-</li>
-<li><p>如果 left&lt;right 且 top&lt;bottom，则从右到左遍历下侧元素，依次为 (bottom,right−1) 到 (bottom,left+1)，以及从下到上遍历左侧元素，依次为 (bottom,left) 到 (top+1,left)。</p>
-</li>
-</ol>
-<p>遍历完当前层的元素之后，将 left 和 top 分别增加 1，将 right 和 bottom 分别减少 1，进入下一层继续遍历，直到遍历完所有元素为止。</p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/54/54_fig1.png" alt="fig1"></p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; spiralOrder(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) &#123;</span><br><span class="line">        if (matrix.size() == 0 || matrix[0].size() == 0) &#123;</span><br><span class="line">            return &#123;&#125;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int rows = matrix.size(), columns = matrix[0].size();</span><br><span class="line">        vector&lt;int&gt; order;</span><br><span class="line">        int left = 0, right = columns - 1, top = 0, bottom = rows - 1;</span><br><span class="line">        while (left &lt;= right &amp;&amp; top &lt;= bottom) &#123;</span><br><span class="line">            for (int column = left; column &lt;= right; column++) &#123;</span><br><span class="line">                order.push_back(matrix[top][column]);</span><br><span class="line">            &#125;</span><br><span class="line">            for (int row = top + 1; row &lt;= bottom; row++) &#123;</span><br><span class="line">                order.push_back(matrix[row][right]);</span><br><span class="line">            &#125;</span><br><span class="line">            if (left &lt; right &amp;&amp; top &lt; bottom) &#123;</span><br><span class="line">                for (int column = right - 1; column &gt; left; column--) &#123;</span><br><span class="line">                    order.push_back(matrix[bottom][column]);</span><br><span class="line">                &#125;</span><br><span class="line">                for (int row = bottom; row &gt; top; row--) &#123;</span><br><span class="line">                    order.push_back(matrix[row][left]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            left++;</span><br><span class="line">            right--;</span><br><span class="line">            top++;</span><br><span class="line">            bottom--;</span><br><span class="line">        &#125;</span><br><span class="line">        return order;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public List&lt;Integer&gt; spiralOrder(int[][] matrix) &#123;</span><br><span class="line">        List&lt;Integer&gt; order = new ArrayList&lt;Integer&gt;();</span><br><span class="line">        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) &#123;</span><br><span class="line">            return order;</span><br><span class="line">        &#125;</span><br><span class="line">        int rows = matrix.length, columns = matrix[0].length;</span><br><span class="line">        int left = 0, right = columns - 1, top = 0, bottom = rows - 1;</span><br><span class="line">        while (left &lt;= right &amp;&amp; top &lt;= bottom) &#123;</span><br><span class="line">            for (int column = left; column &lt;= right; column++) &#123;</span><br><span class="line">                order.add(matrix[top][column]);</span><br><span class="line">            &#125;</span><br><span class="line">            for (int row = top + 1; row &lt;= bottom; row++) &#123;</span><br><span class="line">                order.add(matrix[row][right]);</span><br><span class="line">            &#125;</span><br><span class="line">            if (left &lt; right &amp;&amp; top &lt; bottom) &#123;</span><br><span class="line">                for (int column = right - 1; column &gt; left; column--) &#123;</span><br><span class="line">                    order.add(matrix[bottom][column]);</span><br><span class="line">                &#125;</span><br><span class="line">                for (int row = bottom; row &gt; top; row--) &#123;</span><br><span class="line">                    order.add(matrix[row][left]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            left++;</span><br><span class="line">            right--;</span><br><span class="line">            top++;</span><br><span class="line">            bottom--;</span><br><span class="line">        &#125;</span><br><span class="line">        return order;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(mn)，其中 m 和 n 分别是输入矩阵的行数和列数。矩阵中的每个元素都要被访问一次。</p>
-</li>
-<li><p>空间复杂度：O(1)。除了输出数组以外，空间复杂度是常数。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/03/22/%E7%9F%A9%E9%98%B5%E7%BD%AE%E9%9B%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/03/22/%E7%9F%A9%E9%98%B5%E7%BD%AE%E9%9B%B6/" class="post-title-link" itemprop="url">矩阵置零</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-03-22 11:02:36 / 修改时间：11:04:08" itemprop="dateCreated datePublished" datetime="2024-03-22T11:02:36+08:00">2024-03-22</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.3k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="矩阵置零"><a href="#矩阵置零" class="headerlink" title="矩阵置零"></a>矩阵置零</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个 <code>*m* x *n*</code> 的矩阵，如果一个元素为 <strong>0</strong> ，则将其所在行和列的所有元素都设为 <strong>0</strong> 。请使用原地算法<strong>。</strong></p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2020/08/17/mat1.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：matrix = [[1,1,1],[1,0,1],[1,1,1]]</span><br><span class="line">输出：[[1,0,1],[0,0,0],[1,0,1]]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2020/08/17/mat2.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]</span><br><span class="line">输出：[[0,0,0,0],[0,4,5,0],[0,3,1,0]]</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>m == matrix.length</code></li>
-<li><code>n == matrix[0].length</code></li>
-<li><code>1 &lt;= m, n &lt;= 200</code></li>
-<li><code>-231 &lt;= matrix[i][j] &lt;= 231 - 1</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）使用标记数组"><a href="#（1）使用标记数组" class="headerlink" title="（1）使用标记数组"></a>（1）使用标记数组</h3><p><strong>思路及算法</strong></p>
-<p>我们可以用两个标记数组分别记录每一行和每一列是否有零出现。</p>
-<p>具体地，我们首先遍历该数组一次，如果某个元素为 0，那么就将该元素所在的行和列所对应标记数组的位置置为 true。最后我们再次遍历该数组，用标记数组更新原数组即可。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void setZeroes(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) &#123;</span><br><span class="line">        int m = matrix.size();</span><br><span class="line">        int n = matrix[0].size();</span><br><span class="line">        vector&lt;int&gt; row(m), col(n);</span><br><span class="line">        for (int i = 0; i &lt; m; i++) &#123;</span><br><span class="line">            for (int j = 0; j &lt; n; j++) &#123;</span><br><span class="line">                if (!matrix[i][j]) &#123;</span><br><span class="line">                    row[i] = col[j] = true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; m; i++) &#123;</span><br><span class="line">            for (int j = 0; j &lt; n; j++) &#123;</span><br><span class="line">                if (row[i] || col[j]) &#123;</span><br><span class="line">                    matrix[i][j] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public void setZeroes(int[][] matrix) &#123;</span><br><span class="line">        int m = matrix.length, n = matrix[0].length;</span><br><span class="line">        boolean[] row = new boolean[m];</span><br><span class="line">        boolean[] col = new boolean[n];</span><br><span class="line">        for (int i = 0; i &lt; m; i++) &#123;</span><br><span class="line">            for (int j = 0; j &lt; n; j++) &#123;</span><br><span class="line">                if (matrix[i][j] == 0) &#123;</span><br><span class="line">                    row[i] = col[j] = true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; m; i++) &#123;</span><br><span class="line">            for (int j = 0; j &lt; n; j++) &#123;</span><br><span class="line">                if (row[i] || col[j]) &#123;</span><br><span class="line">                    matrix[i][j] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(mn)，其中 m 是矩阵的行数，n 是矩阵的列数。我们至多只需要遍历该矩阵两次。</p>
-</li>
-<li><p>空间复杂度：O(m+n)，其中 m 是矩阵的行数，n 是矩阵的列数。我们需要分别记录每一行或每一列是否有零出现。</p>
-</li>
-</ul>
-<h3 id="（2）使用两个标记变量"><a href="#（2）使用两个标记变量" class="headerlink" title="（2）使用两个标记变量"></a>（2）使用两个标记变量</h3><p><strong>思路及算法</strong></p>
-<p>我们可以用矩阵的第一行和第一列代替方法一中的两个标记数组，以达到 O(1) 的额外空间。但这样会导致原数组的第一行和第一列被修改，无法记录它们是否原本包含 0。因此我们需要额外使用两个标记变量分别记录第一行和第一列是否原本包含 0。</p>
-<p>在实际代码中，我们首先预处理出两个标记变量，接着使用其他行与列去处理第一行与第一列，然后反过来使用第一行与第一列去更新其他行与列，最后使用两个标记变量更新第一行与第一列即可。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void setZeroes(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) &#123;</span><br><span class="line">        int m = matrix.size();</span><br><span class="line">        int n = matrix[0].size();</span><br><span class="line">        int flag_col0 = false, flag_row0 = false;</span><br><span class="line">        for (int i = 0; i &lt; m; i++) &#123;</span><br><span class="line">            if (!matrix[i][0]) &#123;</span><br><span class="line">                flag_col0 = true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int j = 0; j &lt; n; j++) &#123;</span><br><span class="line">            if (!matrix[0][j]) &#123;</span><br><span class="line">                flag_row0 = true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 1; i &lt; m; i++) &#123;</span><br><span class="line">            for (int j = 1; j &lt; n; j++) &#123;</span><br><span class="line">                if (!matrix[i][j]) &#123;</span><br><span class="line">                    matrix[i][0] = matrix[0][j] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 1; i &lt; m; i++) &#123;</span><br><span class="line">            for (int j = 1; j &lt; n; j++) &#123;</span><br><span class="line">                if (!matrix[i][0] || !matrix[0][j]) &#123;</span><br><span class="line">                    matrix[i][j] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (flag_col0) &#123;</span><br><span class="line">            for (int i = 0; i &lt; m; i++) &#123;</span><br><span class="line">                matrix[i][0] = 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (flag_row0) &#123;</span><br><span class="line">            for (int j = 0; j &lt; n; j++) &#123;</span><br><span class="line">                matrix[0][j] = 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public void setZeroes(int[][] matrix) &#123;</span><br><span class="line">        int m = matrix.length, n = matrix[0].length;</span><br><span class="line">        boolean flagCol0 = false, flagRow0 = false;</span><br><span class="line">        for (int i = 0; i &lt; m; i++) &#123;</span><br><span class="line">            if (matrix[i][0] == 0) &#123;</span><br><span class="line">                flagCol0 = true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int j = 0; j &lt; n; j++) &#123;</span><br><span class="line">            if (matrix[0][j] == 0) &#123;</span><br><span class="line">                flagRow0 = true;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 1; i &lt; m; i++) &#123;</span><br><span class="line">            for (int j = 1; j &lt; n; j++) &#123;</span><br><span class="line">                if (matrix[i][j] == 0) &#123;</span><br><span class="line">                    matrix[i][0] = matrix[0][j] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 1; i &lt; m; i++) &#123;</span><br><span class="line">            for (int j = 1; j &lt; n; j++) &#123;</span><br><span class="line">                if (matrix[i][0] == 0 || matrix[0][j] == 0) &#123;</span><br><span class="line">                    matrix[i][j] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (flagCol0) &#123;</span><br><span class="line">            for (int i = 0; i &lt; m; i++) &#123;</span><br><span class="line">                matrix[i][0] = 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (flagRow0) &#123;</span><br><span class="line">            for (int j = 0; j &lt; n; j++) &#123;</span><br><span class="line">                matrix[0][j] = 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(mn)，其中 m 是矩阵的行数，n 是矩阵的列数。我们至多只需要遍历该矩阵两次。</p>
-</li>
-<li><p>空间复杂度：O(1)。我们只需要常数空间存储若干变量。</p>
-</li>
-</ul>
-<h3 id="（3）使用一个标记变量"><a href="#（3）使用一个标记变量" class="headerlink" title="（3）使用一个标记变量"></a>（3）使用一个标记变量</h3><p><strong>思路及算法</strong></p>
-<p>我们可以对方法二进一步优化，只使用一个标记变量记录第一列是否原本存在 0。这样，第一列的第一个元素即可以标记第一行是否出现 0。但为了防止每一列的第一个元素被提前更新，我们需要从最后一行开始，倒序地处理矩阵元素。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void setZeroes(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) &#123;</span><br><span class="line">        int m = matrix.size();</span><br><span class="line">        int n = matrix[0].size();</span><br><span class="line">        int flag_col0 = false;</span><br><span class="line">        for (int i = 0; i &lt; m; i++) &#123;</span><br><span class="line">            if (!matrix[i][0]) &#123;</span><br><span class="line">                flag_col0 = true;</span><br><span class="line">            &#125;</span><br><span class="line">            for (int j = 1; j &lt; n; j++) &#123;</span><br><span class="line">                if (!matrix[i][j]) &#123;</span><br><span class="line">                    matrix[i][0] = matrix[0][j] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = m - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">            for (int j = 1; j &lt; n; j++) &#123;</span><br><span class="line">                if (!matrix[i][0] || !matrix[0][j]) &#123;</span><br><span class="line">                    matrix[i][j] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (flag_col0) &#123;</span><br><span class="line">                matrix[i][0] = 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public void setZeroes(int[][] matrix) &#123;</span><br><span class="line">        int m = matrix.length, n = matrix[0].length;</span><br><span class="line">        boolean flagCol0 = false;</span><br><span class="line">        for (int i = 0; i &lt; m; i++) &#123;</span><br><span class="line">            if (matrix[i][0] == 0) &#123;</span><br><span class="line">                flagCol0 = true;</span><br><span class="line">            &#125;</span><br><span class="line">            for (int j = 1; j &lt; n; j++) &#123;</span><br><span class="line">                if (matrix[i][j] == 0) &#123;</span><br><span class="line">                    matrix[i][0] = matrix[0][j] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = m - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">            for (int j = 1; j &lt; n; j++) &#123;</span><br><span class="line">                if (matrix[i][0] == 0 || matrix[0][j] == 0) &#123;</span><br><span class="line">                    matrix[i][j] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (flagCol0) &#123;</span><br><span class="line">                matrix[i][0] = 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(mn)，其中 m 是矩阵的行数，n 是矩阵的列数。我们至多只需要遍历该矩阵两次。</p>
-</li>
-<li><p>空间复杂度：O(1)。我们只需要常数空间存储若干变量。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1632,14 +1625,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">148k</span>
+    <span title="站点总字数">150k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">8:59</span>
+    <span title="站点阅读时长">9:07</span>
   </span>
 </div>
 <div class="busuanzi-count">

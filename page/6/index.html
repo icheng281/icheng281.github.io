@@ -152,12 +152,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">136</span>
+          <span class="site-state-item-count">138</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -174,6 +174,288 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/19/%E5%9F%BA%E6%9C%AC%E8%AE%A1%E7%AE%97%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/19/%E5%9F%BA%E6%9C%AC%E8%AE%A1%E7%AE%97%E5%99%A8/" class="post-title-link" itemprop="url">基本计算器</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-19 10:14:48 / 修改时间：10:17:06" itemprop="dateCreated datePublished" datetime="2024-04-19T10:14:48+08:00">2024-04-19</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="基本计算器"><a href="#基本计算器" class="headerlink" title="基本计算器"></a>基本计算器</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个字符串表达式 <code>s</code> ，请你实现一个基本计算器来计算并返回它的值。</p>
+<p>注意:不允许使用任何将字符串作为数学表达式计算的内置函数，比如 <code>eval()</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;1 + 1&quot;</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot; 2-1 + 2 &quot;</span><br><span class="line">输出：3</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;(1+(4+5+2)-3)+(6+8)&quot;</span><br><span class="line">输出：23</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 3 * 105</code></li>
+<li><code>s</code> 由数字、<code>&#39;+&#39;</code>、<code>&#39;-&#39;</code>、<code>&#39;(&#39;</code>、<code>&#39;)&#39;</code>、和 <code>&#39; &#39;</code> 组成</li>
+<li><code>s</code> 表示一个有效的表达式</li>
+<li>‘+’ 不能用作一元运算(例如， “+1” 和 <code>&quot;+(2 + 3)&quot;</code> 无效)</li>
+<li>‘-‘ 可以用作一元运算(即 “-1” 和 <code>&quot;-(2 + 3)&quot;</code> 是有效的)</li>
+<li>输入中不存在两个连续的操作符</li>
+<li>每个数字和运行的计算将适合于一个有符号的 32位 整数</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="双栈"><a href="#双栈" class="headerlink" title="双栈"></a>双栈</h3><p><strong>思路及算法</strong></p>
+<p>我们可以使用两个栈 <code>nums</code> 和 <code>ops</code> 。</p>
+<ul>
+<li><code>nums</code> ： 存放所有的数字</li>
+<li><code>ops</code> ：存放所有的数字以外的操作，<code>+/-</code> 也看做是一种操作</li>
+</ul>
+<p>然后从前往后做，对遍历到的字符做分情况讨论：</p>
+<ul>
+<li>空格 : 跳过</li>
+<li><code>( </code>: 直接加入 <code>ops</code> 中，等待与之匹配的 )</li>
+<li><code>)</code> : 使用现有的 <code>nums</code> 和 <code>ops</code> 进行计算，直到遇到左边最近的一个左括号为止，计算结果放到 <code>nums</code></li>
+<li>数字 : 从当前位置开始继续往后取，将整一个连续数字整体取出，加入 <code>nums</code></li>
+<li><code>+/-</code> : 需要将操作放入 <code>ops</code> 中。在放入之前先把栈内可以算的都算掉，使用现有的 <code>nums</code> 和 <code>ops</code> 进行计算，直到没有操作或者遇到左括号，计算结果放到 <code>nums</code></li>
+</ul>
+<p>一些细节：</p>
+<ul>
+<li>由于第一个数可能是负数，为了减少边界判断。一个小技巧是先往 <code>nums</code> 添加一个 <code>0</code></li>
+<li>为防止<code>()</code>内出现的首个字符为运算符，将所有的空格去掉，并将<code>(-</code>替换为 <code>(0-</code>，<code>(+</code> 替换为 <code>(0+</code>（当然也可以不进行这样的预处理，将这个处理逻辑放到循环里去做）</li>
+</ul>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void replace(string&amp; s)&#123;</span><br><span class="line">        int pos = s.find(&quot; &quot;);</span><br><span class="line">        while (pos != -1) &#123;</span><br><span class="line">            s.replace(pos, 1, &quot;&quot;);</span><br><span class="line">            pos = s.find(&quot; &quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    int calculate(string s) &#123;</span><br><span class="line">        // 存放所有的数字</span><br><span class="line">        stack&lt;int&gt; nums;</span><br><span class="line">        // 为了防止第一个数为负数，先往 nums 加个 0</span><br><span class="line">        nums.push(0);</span><br><span class="line">        // 将所有的空格去掉</span><br><span class="line">        replace(s);</span><br><span class="line">        // 存放所有的操作，包括 +/-</span><br><span class="line">        stack&lt;char&gt; ops;</span><br><span class="line">        int n = s.size();</span><br><span class="line">        for(int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            char c = s[i];</span><br><span class="line">            if(c == &#x27;(&#x27;)</span><br><span class="line">                ops.push(c);</span><br><span class="line">            else if(c == &#x27;)&#x27;) &#123;</span><br><span class="line">                // 计算到最近一个左括号为止</span><br><span class="line">                while(!ops.empty()) &#123;</span><br><span class="line">                    char op = ops.top();</span><br><span class="line">                    if(op != &#x27;(&#x27;)</span><br><span class="line">                        calc(nums, ops);</span><br><span class="line">                    else &#123;</span><br><span class="line">                        ops.pop();</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else &#123;</span><br><span class="line">                if(isdigit(c)) &#123;</span><br><span class="line">                    int cur_num = 0;</span><br><span class="line">                    int j = i;</span><br><span class="line">                    // 将从 i 位置开始后面的连续数字整体取出，加入 nums</span><br><span class="line">                    while(j &lt;n &amp;&amp; isdigit(s[j]))</span><br><span class="line">                        cur_num = cur_num*10 + (s[j++] - &#x27;0&#x27;);</span><br><span class="line">                    // 注意上面的计算一定要有括号，否则有可能会溢出</span><br><span class="line">                    nums.push(cur_num);</span><br><span class="line">                    i = j-1;</span><br><span class="line">                &#125;</span><br><span class="line">                else &#123;</span><br><span class="line">                    if (i &gt; 0 &amp;&amp; (s[i - 1] == &#x27;(&#x27; || s[i - 1] == &#x27;+&#x27; || s[i - 1] == &#x27;-&#x27;)) &#123;</span><br><span class="line">                        nums.push(0);</span><br><span class="line">                    &#125;</span><br><span class="line">                    // 有一个新操作要入栈时，先把栈内可以算的都算了</span><br><span class="line">                    while(!ops.empty() &amp;&amp; ops.top() != &#x27;(&#x27;)</span><br><span class="line">                        calc(nums, ops);</span><br><span class="line">                    ops.push(c);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        while(!ops.empty())</span><br><span class="line">            calc(nums, ops);</span><br><span class="line">        return nums.top();</span><br><span class="line">    &#125;</span><br><span class="line">    void calc(stack&lt;int&gt; &amp;nums, stack&lt;char&gt; &amp;ops) &#123;</span><br><span class="line">        if(nums.size() &lt; 2 || ops.empty())</span><br><span class="line">            return;</span><br><span class="line">        int b = nums.top(); nums.pop();</span><br><span class="line">        int a = nums.top(); nums.pop();</span><br><span class="line">        char op = ops.top(); ops.pop();</span><br><span class="line">        nums.push(op == &#x27;+&#x27; ? a+b : a-b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int calculate(String s) &#123;</span><br><span class="line">        // 存放所有的数字</span><br><span class="line">        Deque&lt;Integer&gt; nums = new ArrayDeque&lt;&gt;();</span><br><span class="line">        // 为了防止第一个数为负数，先往 nums 加个 0</span><br><span class="line">        nums.addLast(0);</span><br><span class="line">        // 将所有的空格去掉</span><br><span class="line">        s = s.replaceAll(&quot; &quot;, &quot;&quot;);</span><br><span class="line">        // 存放所有的操作，包括 +/-</span><br><span class="line">        Deque&lt;Character&gt; ops = new ArrayDeque&lt;&gt;();</span><br><span class="line">        int n = s.length();</span><br><span class="line">        char[] cs = s.toCharArray();</span><br><span class="line">        for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">            char c = cs[i];</span><br><span class="line">            if (c == &#x27;(&#x27;) &#123;</span><br><span class="line">                ops.addLast(c);</span><br><span class="line">            &#125; else if (c == &#x27;)&#x27;) &#123;</span><br><span class="line">                // 计算到最近一个左括号为止</span><br><span class="line">                while (!ops.isEmpty()) &#123;</span><br><span class="line">                    char op = ops.peekLast();</span><br><span class="line">                    if (op != &#x27;(&#x27;) &#123;</span><br><span class="line">                        calc(nums, ops);</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        ops.pollLast();</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                if (isNum(c)) &#123;</span><br><span class="line">                    int u = 0;</span><br><span class="line">                    int j = i;</span><br><span class="line">                    // 将从 i 位置开始后面的连续数字整体取出，加入 nums</span><br><span class="line">                    while (j &lt; n &amp;&amp; isNum(cs[j])) u = u * 10 + (int)(cs[j++] - &#x27;0&#x27;);</span><br><span class="line">                    nums.addLast(u);</span><br><span class="line">                    i = j - 1;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    if (i &gt; 0 &amp;&amp; (cs[i - 1] == &#x27;(&#x27; || cs[i - 1] == &#x27;+&#x27; || cs[i - 1] == &#x27;-&#x27;)) &#123;</span><br><span class="line">                        nums.addLast(0);</span><br><span class="line">                    &#125;</span><br><span class="line">                    // 有一个新操作要入栈时，先把栈内可以算的都算了</span><br><span class="line">                    while (!ops.isEmpty() &amp;&amp; ops.peekLast() != &#x27;(&#x27;) calc(nums, ops);</span><br><span class="line">                    ops.addLast(c);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        while (!ops.isEmpty()) calc(nums, ops);</span><br><span class="line">        return nums.peekLast();</span><br><span class="line">    &#125;</span><br><span class="line">    void calc(Deque&lt;Integer&gt; nums, Deque&lt;Character&gt; ops) &#123;</span><br><span class="line">        if (nums.isEmpty() || nums.size() &lt; 2) return;</span><br><span class="line">        if (ops.isEmpty()) return;</span><br><span class="line">        int b = nums.pollLast(), a = nums.pollLast();</span><br><span class="line">        char op = ops.pollLast();</span><br><span class="line">        nums.addLast(op == &#x27;+&#x27; ? a + b : a - b);</span><br><span class="line">    &#125;</span><br><span class="line">    boolean isNum(char c) &#123;</span><br><span class="line">        return Character.isDigit(c);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(n)。</li>
+<li>空间复杂度：O(n)。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/19/%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%A4%A7%E7%9A%84%E7%9F%A9%E5%BD%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/19/%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%A4%A7%E7%9A%84%E7%9F%A9%E5%BD%A2/" class="post-title-link" itemprop="url">柱状图中最大的矩形</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-19 10:14:22 / 修改时间：10:16:38" itemprop="dateCreated datePublished" datetime="2024-04-19T10:14:22+08:00">2024-04-19</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>8 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="柱状图中最大的矩形"><a href="#柱状图中最大的矩形" class="headerlink" title="柱状图中最大的矩形"></a>柱状图中最大的矩形</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定 <em>n</em> 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。</p>
+<p>求在该柱状图中，能够勾勒出来的矩形的最大面积。</p>
+<p><strong>示例 1:</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/01/04/histogram.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：heights = [2,1,5,6,2,3]</span><br><span class="line">输出：10</span><br><span class="line">解释：最大的矩形为图中红色区域，面积为 10</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/01/04/histogram-1.jpg" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入： heights = [2,4]</span><br><span class="line">输出： 4</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= heights.length &lt;=105</code></li>
+<li><code>0 &lt;= heights[i] &lt;= 104</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（3）单调栈"><a href="#（3）单调栈" class="headerlink" title="（3）单调栈"></a>（3）单调栈</h3><p><strong>思路及算法</strong></p>
+<p>我们归纳一下枚举「高」的方法：</p>
+<ul>
+<li>首先我们枚举某一根柱子 i 作为高 h&#x3D;heights[i]；</li>
+<li>随后我们需要进行向左右两边扩展，使得扩展到的柱子的高度均不小于 h。换句话说，我们需要找到左右两侧最近的高度小于 h 的柱子，这样这两根柱子之间（不包括其本身）的所有柱子高度均不小于 h，并且就是 iii 能够扩展到的最远范围。</li>
+</ul>
+<p>那么我们先来看看如何求出一根柱子的左侧且最近的小于其高度的柱子。除了根据「前言」部分暴力地进行枚举之外，我们可以通过如下的一个结论来深入地进行思考：</p>
+<p>对于两根柱子 j0 以及 j1，如果 j0&lt;j1并且 heights[j0]≥heights[j1]，那么对于任意的在它们之后出现的柱子 i（j1&lt;i） 一定不会是 i 左侧且最近的小于其高度的柱子。</p>
+<p>换句话说，如果有两根柱子 j0 和 j1，其中 j0 在 j1 的左侧，并且 j0 的高度大于等于 j1，那么在后面的柱子 i 向左找小于其高度的柱子时，j1 会「挡住」j0，j0 就不会作为答案了。</p>
+<p>这样以来，我们可以对数组从左向右进行遍历，同时维护一个「可能作为答案」的数据结构，其中按照从小到大的顺序存放了一些 j 值。根据上面的结论，如果我们存放了 j0,j1,⋯ ,js，那么一定有 height[j0]&lt;height[j1]&lt;⋯&lt;height[js]，因为如果有两个相邻的 j 值对应的高度不满足 &lt; 关系，那么后者会「挡住」前者，前者就不可能作为答案了。</p>
+<p>当我们枚举到第 i 根柱子时，我们的数据结构中存放了 j0,j1,⋯ ,js，如果第 iii 根柱子左侧且最近的小于其高度的柱子为 ji，那么必然有height[j0]&lt;height[j1]&lt;⋯&lt;height[ji]&lt;height[i]≤height[ji+1]&lt;⋯&lt;height[js] 这样我们就可以使用二分查找的方法找到 i 对应的 ji，但真的需要吗？当我们枚举到 i+1 时，原来的 i 也变成了 j值，因此 i 会被放入数据结构。由于所有在数据结构中的 j 值均小于 i，那么所有高度大于等于 height[i] 的 j 都不会作为答案，需要从数据结构中移除。而我们发现，这些被移除的 j 值恰好就是ji+1,⋯ ,js。</p>
+<p>这样我们在枚举到第 i 根柱子的时候，就可以先把所有高度大于等于 height[i] 的 j 值全部移除，剩下的 j值中高度最高的即为答案。在这之后，我们将 i 放入数据结构中，开始接下来的枚举。此时，我们需要使用的数据结构也就呼之欲出了，它就是栈。</p>
+<ul>
+<li><p>栈中存放了 j 值。从栈底到栈顶，j 的值严格单调递增，同时对应的高度值也严格单调递增；</p>
+</li>
+<li><p>当我们枚举到第 i 根柱子时，我们从栈顶不断地移除 height[j]≥height[i] 的 j 值。在移除完毕后，栈顶的 j 值就一定满足 height[j]&lt;height[i]，此时 j 就是 i 左侧且最近的小于其高度的柱子。</p>
+<ul>
+<li>这里会有一种特殊情况。如果我们移除了栈中所有的 j 值，那就说明 i 左侧所有柱子的高度都大于 height[i]，那么我们可以认为 i 左侧且最近的小于其高度的柱子在位置 j&#x3D;−1，它是一根「虚拟」的、高度无限低的柱子。这样的定义不会对我们的答案产生任何的影响，我们也称这根「虚拟」的柱子为「哨兵」。</li>
+</ul>
+</li>
+<li><p>我们再将 i 放入栈顶。</p>
+</li>
+</ul>
+<p>栈中存放的元素具有单调性，这就是经典的数据结构「单调栈」了。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int largestRectangleArea(vector&lt;int&gt;&amp; heights) &#123;</span><br><span class="line">        int n = heights.size();</span><br><span class="line">        vector&lt;int&gt; left(n), right(n);</span><br><span class="line">        </span><br><span class="line">        stack&lt;int&gt; mono_stack;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            while (!mono_stack.empty() &amp;&amp; heights[mono_stack.top()] &gt;= heights[i]) &#123;</span><br><span class="line">                mono_stack.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            left[i] = (mono_stack.empty() ? -1 : mono_stack.top());</span><br><span class="line">            mono_stack.push(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        mono_stack = stack&lt;int&gt;();</span><br><span class="line">        for (int i = n - 1; i &gt;= 0; --i) &#123;</span><br><span class="line">            while (!mono_stack.empty() &amp;&amp; heights[mono_stack.top()] &gt;= heights[i]) &#123;</span><br><span class="line">                mono_stack.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            right[i] = (mono_stack.empty() ? n : mono_stack.top());</span><br><span class="line">            mono_stack.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        int ans = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            ans = max(ans, (right[i] - left[i] - 1) * heights[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int largestRectangleArea(int[] heights) &#123;</span><br><span class="line">        int n = heights.length;</span><br><span class="line">        int[] left = new int[n];</span><br><span class="line">        int[] right = new int[n];</span><br><span class="line">        </span><br><span class="line">        Deque&lt;Integer&gt; mono_stack = new ArrayDeque&lt;Integer&gt;();</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            while (!mono_stack.isEmpty() &amp;&amp; heights[mono_stack.peek()] &gt;= heights[i]) &#123;</span><br><span class="line">                mono_stack.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            left[i] = (mono_stack.isEmpty() ? -1 : mono_stack.peek());</span><br><span class="line">            mono_stack.push(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        mono_stack.clear();</span><br><span class="line">        for (int i = n - 1; i &gt;= 0; --i) &#123;</span><br><span class="line">            while (!mono_stack.isEmpty() &amp;&amp; heights[mono_stack.peek()] &gt;= heights[i]) &#123;</span><br><span class="line">                mono_stack.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            right[i] = (mono_stack.isEmpty() ? n : mono_stack.peek());</span><br><span class="line">            mono_stack.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        int ans = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            ans = Math.max(ans, (right[i] - left[i] - 1) * heights[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(N)。</li>
+<li>空间复杂度：O(N)。</li>
+</ul>
+<h3 id="（2）单调栈-常数优化"><a href="#（2）单调栈-常数优化" class="headerlink" title="（2）单调栈+常数优化"></a>（2）单调栈+常数优化</h3><p><strong>思路及算法</strong></p>
+<p>在方法一中，我们首先从左往右对数组进行遍历，借助单调栈求出了每根柱子的左边界，随后从右往左对数组进行遍历，借助单调栈求出了每根柱子的右边界。那么我们是否可以只遍历一次就求出答案呢？</p>
+<p>答案是可以的。在方法一中，我们在对位置 i 进行入栈操作时，确定了它的左边界。从直觉上来说，与之对应的我们在对位置 i 进行出栈操作时可以确定它的右边界！仔细想一想，这确实是对的。当位置 i 被弹出栈时，说明此时遍历到的位置 i0 的高度小于等于 height[i]，并且在 i0 与 i 之间没有其他高度小于等于 height[i] 的柱子。这是因为，如果在 i 和 i0之间还有其它位置的高度小于等于 height[i] 的，那么在遍历到那个位置的时候，i 应该已经被弹出栈了。所以位置 i0 就是位置 i 的右边界。</p>
+<p>等等，我们需要的是「一根柱子的左侧且最近的小于其高度的柱子」，但这里我们求的是小于等于，那么会造成什么影响呢？答案是：我们确实无法求出正确的右边界，但对最终的答案没有任何影响。这是因为在答案对应的矩形中，如果有若干个柱子的高度都等于矩形的高度，那么最右侧的那根柱子是可以求出正确的右边界的，而我们没有对求出左边界的算法进行任何改动，因此最终的答案还是可以从最右侧的与矩形高度相同的柱子求得的。读者可以仔细思考一下这一步。</p>
+<p>在遍历结束后，栈中仍然有一些位置，这些位置对应的右边界就是位置为 n 的「哨兵」。我们可以将它们依次出栈并更新右边界，也可以在初始化右边界数组时就将所有的元素的值置为 n。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int largestRectangleArea(vector&lt;int&gt;&amp; heights) &#123;</span><br><span class="line">        int n = heights.size();</span><br><span class="line">        vector&lt;int&gt; left(n), right(n, n);</span><br><span class="line">        </span><br><span class="line">        stack&lt;int&gt; mono_stack;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            while (!mono_stack.empty() &amp;&amp; heights[mono_stack.top()] &gt;= heights[i]) &#123;</span><br><span class="line">                right[mono_stack.top()] = i;</span><br><span class="line">                mono_stack.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            left[i] = (mono_stack.empty() ? -1 : mono_stack.top());</span><br><span class="line">            mono_stack.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        int ans = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            ans = max(ans, (right[i] - left[i] - 1) * heights[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int largestRectangleArea(int[] heights) &#123;</span><br><span class="line">        int n = heights.length;</span><br><span class="line">        int[] left = new int[n];</span><br><span class="line">        int[] right = new int[n];</span><br><span class="line">        Arrays.fill(right, n);</span><br><span class="line">        </span><br><span class="line">        Deque&lt;Integer&gt; mono_stack = new ArrayDeque&lt;Integer&gt;();</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            while (!mono_stack.isEmpty() &amp;&amp; heights[mono_stack.peek()] &gt;= heights[i]) &#123;</span><br><span class="line">                right[mono_stack.peek()] = i;</span><br><span class="line">                mono_stack.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            left[i] = (mono_stack.isEmpty() ? -1 : mono_stack.peek());</span><br><span class="line">            mono_stack.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        int ans = 0;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            ans = Math.max(ans, (right[i] - left[i] - 1) * heights[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(N)。</li>
+<li>空间复杂度：O(N)。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1266,279 +1548,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/14/%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0II/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/14/%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0II/" class="post-title-link" itemprop="url">删除排序链表中的重复元素II</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-04-14 12:47:44 / 修改时间：12:52:31" itemprop="dateCreated datePublished" datetime="2024-04-14T12:47:44+08:00">2024-04-14</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>573</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="删除排序链表中的重复元素II"><a href="#删除排序链表中的重复元素II" class="headerlink" title="删除排序链表中的重复元素II"></a>删除排序链表中的重复元素II</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个已排序的链表的头 <code>head</code> ， <em>删除原始链表中所有重复数字的节点，只留下不同的数字</em> 。返回 <em>已排序的链表</em> 。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2021/01/04/linkedlist1.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [1,2,3,3,4,4,5]</span><br><span class="line">输出：[1,2,5]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2021/01/04/linkedlist2.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [1,1,1,2,3]</span><br><span class="line">输出：[2,3]</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li>链表中节点数目在范围 <code>[0, 300]</code> 内</li>
-<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
-<li>题目数据保证链表已经按升序 <strong>排列</strong></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="一次遍历"><a href="#一次遍历" class="headerlink" title="一次遍历"></a>一次遍历</h3><p><strong>思路及算法</strong></p>
-<p>由于给定的链表是排好序的，因此重复的元素在链表中出现的位置是连续的，因此我们只需要对链表进行一次遍历，就可以删除重复的元素。由于链表的头节点可能会被删除，因此我们需要额外使用一个哑节点（dummy node）指向链表的头节点。</p>
-<p>具体地，我们从指针 cur 指向链表的哑节点，随后开始对链表进行遍历。如果当前 cur.next 与 cur.next.next 对应的元素相同，那么我们就需要将 cur.next 以及所有后面拥有相同元素值的链表节点全部删除。我们记下这个元素值 x，随后不断将 cur.next 从链表中移除，直到 cur.next 为空节点或者其元素值不等于 x 为止。此时，我们将链表中所有元素值为 x 的节点全部删除。</p>
-<p>如果当前 cur.next 与 cur.next.next 对应的元素不相同，那么说明链表中只有一个元素值为 cur.next 的节点，那么我们就可以将 cur 指向 cur.next。</p>
-<p>当遍历完整个链表之后，我们返回链表的的哑节点的下一个节点 dummy.next即可。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* deleteDuplicates(ListNode* head) &#123;</span><br><span class="line">        if (!head) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        ListNode* dummy = new ListNode(0, head);</span><br><span class="line"></span><br><span class="line">        ListNode* cur = dummy;</span><br><span class="line">        while (cur-&gt;next &amp;&amp; cur-&gt;next-&gt;next) &#123;</span><br><span class="line">            if (cur-&gt;next-&gt;val == cur-&gt;next-&gt;next-&gt;val) &#123;</span><br><span class="line">                int x = cur-&gt;next-&gt;val;</span><br><span class="line">                while (cur-&gt;next &amp;&amp; cur-&gt;next-&gt;val == x) &#123;</span><br><span class="line">                    cur-&gt;next = cur-&gt;next-&gt;next;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else &#123;</span><br><span class="line">                cur = cur-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return dummy-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode deleteDuplicates(ListNode head) &#123;</span><br><span class="line">        if (head == null) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        ListNode dummy = new ListNode(0, head);</span><br><span class="line"></span><br><span class="line">        ListNode cur = dummy;</span><br><span class="line">        while (cur.next != null &amp;&amp; cur.next.next != null) &#123;</span><br><span class="line">            if (cur.next.val == cur.next.next.val) &#123;</span><br><span class="line">                int x = cur.next.val;</span><br><span class="line">                while (cur.next != null &amp;&amp; cur.next.val == x) &#123;</span><br><span class="line">                    cur.next = cur.next.next;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                cur = cur.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是链表的长度。</p>
-</li>
-<li><p>空间复杂度：O(1)。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/14/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8II/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/14/%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8II/" class="post-title-link" itemprop="url">反转链表</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-04-14 12:41:49 / 修改时间：12:47:05" itemprop="dateCreated datePublished" datetime="2024-04-14T12:41:49+08:00">2024-04-14</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.3k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="反转链表II"><a href="#反转链表II" class="headerlink" title="反转链表II"></a>反转链表II</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你单链表的头指针 <code>head</code> 和两个整数 <code>left</code> 和 <code>right</code> ，其中 <code>left &lt;= right</code> 。请你反转从位置 <code>left</code> 到位置 <code>right</code> 的链表节点，返回 <strong>反转后的链表</strong> 。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2021/02/19/rev2ex2.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [1,2,3,4,5], left = 2, right = 4</span><br><span class="line">输出：[1,4,3,2,5]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [5], left = 1, right = 1</span><br><span class="line">输出：[5]</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li>链表中节点数目为 <code>n</code></li>
-<li><code>1 &lt;= n &lt;= 500</code></li>
-<li><code>-500 &lt;= Node.val &lt;= 500</code></li>
-<li><code>1 &lt;= left &lt;= right &lt;= n</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）穿针引线"><a href="#（1）穿针引线" class="headerlink" title="（1）穿针引线"></a>（1）穿针引线</h3><p><strong>思路及算法</strong></p>
-<p>我们以下图中黄色区域的链表反转为例。</p>
-<p><img src="https://pic.leetcode-cn.com/1615105129-iUPoGi-image.png" alt="image.png"></p>
-<p>反转 <code>left</code> 到 <code>right</code> 部分以后，再拼接起来。我们还需要记录 <code>left</code> 的前一个节点，和 <code>right</code> 的后一个节点。如图所示：</p>
-<p><img src="https://pic.leetcode-cn.com/1615105150-pfWiGq-image.png" alt="image.png"></p>
-<p>算法步骤：</p>
-<p>第 1 步：先将待反转的区域反转；<br>第 2 步：把 <code>pre</code> 的 <code>next</code> 指针指向反转以后的链表头节点，把反转以后的链表的尾节点的 <code>next</code> 指针指向 <code>succ</code>。</p>
-<p><img src="https://pic.leetcode-cn.com/1615105168-ZQRZew-image.png" alt="image.png"></p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">private:</span><br><span class="line">    void reverseLinkedList(ListNode *head) &#123;</span><br><span class="line">        // 也可以使用递归反转一个链表</span><br><span class="line">        ListNode *pre = nullptr;</span><br><span class="line">        ListNode *cur = head;</span><br><span class="line"></span><br><span class="line">        while (cur != nullptr) &#123;</span><br><span class="line">            ListNode *next = cur-&gt;next;</span><br><span class="line">            cur-&gt;next = pre;</span><br><span class="line">            pre = cur;</span><br><span class="line">            cur = next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    ListNode *reverseBetween(ListNode *head, int left, int right) &#123;</span><br><span class="line">        // 因为头节点有可能发生变化，使用虚拟头节点可以避免复杂的分类讨论</span><br><span class="line">        ListNode *dummyNode = new ListNode(-1);</span><br><span class="line">        dummyNode-&gt;next = head;</span><br><span class="line"></span><br><span class="line">        ListNode *pre = dummyNode;</span><br><span class="line">        // 第 1 步：从虚拟头节点走 left - 1 步，来到 left 节点的前一个节点</span><br><span class="line">        // 建议写在 for 循环里，语义清晰</span><br><span class="line">        for (int i = 0; i &lt; left - 1; i++) &#123;</span><br><span class="line">            pre = pre-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 第 2 步：从 pre 再走 right - left + 1 步，来到 right 节点</span><br><span class="line">        ListNode *rightNode = pre;</span><br><span class="line">        for (int i = 0; i &lt; right - left + 1; i++) &#123;</span><br><span class="line">            rightNode = rightNode-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 第 3 步：切断出一个子链表（截取链表）</span><br><span class="line">        ListNode *leftNode = pre-&gt;next;</span><br><span class="line">        ListNode *curr = rightNode-&gt;next;</span><br><span class="line"></span><br><span class="line">        // 注意：切断链接</span><br><span class="line">        pre-&gt;next = nullptr;</span><br><span class="line">        rightNode-&gt;next = nullptr;</span><br><span class="line"></span><br><span class="line">        // 第 4 步：同第 206 题，反转链表的子区间</span><br><span class="line">        reverseLinkedList(leftNode);</span><br><span class="line"></span><br><span class="line">        // 第 5 步：接回到原来的链表中</span><br><span class="line">        pre-&gt;next = rightNode;</span><br><span class="line">        leftNode-&gt;next = curr;</span><br><span class="line">        return dummyNode-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode reverseBetween(ListNode head, int left, int right) &#123;</span><br><span class="line">        // 因为头节点有可能发生变化，使用虚拟头节点可以避免复杂的分类讨论</span><br><span class="line">        ListNode dummyNode = new ListNode(-1);</span><br><span class="line">        dummyNode.next = head;</span><br><span class="line"></span><br><span class="line">        ListNode pre = dummyNode;</span><br><span class="line">        // 第 1 步：从虚拟头节点走 left - 1 步，来到 left 节点的前一个节点</span><br><span class="line">        // 建议写在 for 循环里，语义清晰</span><br><span class="line">        for (int i = 0; i &lt; left - 1; i++) &#123;</span><br><span class="line">            pre = pre.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 第 2 步：从 pre 再走 right - left + 1 步，来到 right 节点</span><br><span class="line">        ListNode rightNode = pre;</span><br><span class="line">        for (int i = 0; i &lt; right - left + 1; i++) &#123;</span><br><span class="line">            rightNode = rightNode.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        // 第 3 步：切断出一个子链表（截取链表）</span><br><span class="line">        ListNode leftNode = pre.next;</span><br><span class="line">        ListNode curr = rightNode.next;</span><br><span class="line"></span><br><span class="line">        // 注意：切断链接</span><br><span class="line">        pre.next = null;</span><br><span class="line">        rightNode.next = null;</span><br><span class="line"></span><br><span class="line">        // 第 4 步：同第 206 题，反转链表的子区间</span><br><span class="line">        reverseLinkedList(leftNode);</span><br><span class="line"></span><br><span class="line">        // 第 5 步：接回到原来的链表中</span><br><span class="line">        pre.next = rightNode;</span><br><span class="line">        leftNode.next = curr;</span><br><span class="line">        return dummyNode.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void reverseLinkedList(ListNode head) &#123;</span><br><span class="line">        // 也可以使用递归反转一个链表</span><br><span class="line">        ListNode pre = null;</span><br><span class="line">        ListNode cur = head;</span><br><span class="line"></span><br><span class="line">        while (cur != null) &#123;</span><br><span class="line">            ListNode next = cur.next;</span><br><span class="line">            cur.next = pre;</span><br><span class="line">            pre = cur;</span><br><span class="line">            cur = next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(N)，其中 N 是链表总节点数。最坏情况下，需要遍历整个链表。</p>
-</li>
-<li><p>空间复杂度：O(1)。只使用到常数个变量。</p>
-</li>
-</ul>
-<h3 id="（2）头插法"><a href="#（2）头插法" class="headerlink" title="（2）头插法"></a>（2）头插法</h3><p><strong>思路及算法</strong></p>
-<p>使用三个指针变量 <code>pre</code>、<code>curr</code>、<code>next</code> 来记录反转的过程中需要的变量，它们的意义如下：</p>
-<ul>
-<li><code>curr</code>：指向待反转区域的第一个节点 <code>left</code>；</li>
-<li><code>next</code>：永远指向 <code>curr</code> 的下一个节点，循环过程中，<code>curr</code> 变化以后<code> next</code> 会变化；</li>
-<li><code>pre</code>：永远指向待反转区域的第一个节点 <code>left</code> 的前一个节点，在循环过程中不变。</li>
-</ul>
-<p>第 1 步，我们使用 ①、②、③ 标注「穿针引线」的步骤。</p>
-<p><img src="https://pic.leetcode-cn.com/1615105296-bmiPxl-image.png" alt="image.png"></p>
-<p>操作步骤：</p>
-<ul>
-<li>先将 <code>curr</code> 的下一个节点记录为 <code>next</code>；</li>
-<li>执行操作 ①：把 <code>curr</code> 的下一个节点指向 <code>next</code> 的下一个节点；</li>
-<li>执行操作 ②：把 <code>next</code> 的下一个节点指向 <code>pre</code> 的下一个节点；</li>
-<li>执行操作 ③：把 <code>pre</code> 的下一个节点指向 <code>next</code>。</li>
-</ul>
-<p>第 1 步完成以后「拉直」的效果如下：</p>
-<p><img src="https://pic.leetcode-cn.com/1615105340-UBnTBZ-image.png" alt="image.png"></p>
-<p>第 2 步，同理。同样需要注意 <strong>「穿针引线」操作的先后顺序</strong>。</p>
-<p><img src="https://pic.leetcode-cn.com/1615105353-PsCmzb-image.png" alt="image.png"></p>
-<p>第 2 步完成以后「拉直」的效果如下：</p>
-<p><img src="https://pic.leetcode-cn.com/1615105364-aDIFqy-image.png" alt="image.png"></p>
-<p>第 3 步，同理。</p>
-<p><img src="https://pic.leetcode-cn.com/1615105376-jIyGwv-image.png" alt="image.png"></p>
-<p>第 3 步完成以后「拉直」的效果如下：</p>
-<p><img src="https://pic.leetcode-cn.com/1615105395-EJQnMe-image.png" alt="image.png"></p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode *reverseBetween(ListNode *head, int left, int right) &#123;</span><br><span class="line">        // 设置 dummyNode 是这一类问题的一般做法</span><br><span class="line">        ListNode *dummyNode = new ListNode(-1);</span><br><span class="line">        dummyNode-&gt;next = head;</span><br><span class="line">        ListNode *pre = dummyNode;</span><br><span class="line">        for (int i = 0; i &lt; left - 1; i++) &#123;</span><br><span class="line">            pre = pre-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode *cur = pre-&gt;next;</span><br><span class="line">        ListNode *next;</span><br><span class="line">        for (int i = 0; i &lt; right - left; i++) &#123;</span><br><span class="line">            next = cur-&gt;next;</span><br><span class="line">            cur-&gt;next = next-&gt;next;</span><br><span class="line">            next-&gt;next = pre-&gt;next;</span><br><span class="line">            pre-&gt;next = next;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummyNode-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode reverseBetween(ListNode head, int left, int right) &#123;</span><br><span class="line">        // 设置 dummyNode 是这一类问题的一般做法</span><br><span class="line">        ListNode dummyNode = new ListNode(-1);</span><br><span class="line">        dummyNode.next = head;</span><br><span class="line">        ListNode pre = dummyNode;</span><br><span class="line">        for (int i = 0; i &lt; left - 1; i++) &#123;</span><br><span class="line">            pre = pre.next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode cur = pre.next;</span><br><span class="line">        ListNode next;</span><br><span class="line">        for (int i = 0; i &lt; right - left; i++) &#123;</span><br><span class="line">            next = cur.next;</span><br><span class="line">            cur.next = next.next;</span><br><span class="line">            next.next = pre.next;</span><br><span class="line">            pre.next = next;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummyNode.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(N)，其中 N 是链表总节点数。最多只遍历了链表一次，就完成了反转。</p>
-</li>
-<li><p>空间复杂度：O(1)。只使用到常数个变量。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1563,14 +1572,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">148k</span>
+    <span title="站点总字数">150k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">8:59</span>
+    <span title="站点阅读时长">9:07</span>
   </span>
 </div>
 <div class="busuanzi-count">
