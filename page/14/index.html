@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">140</span>
+          <span class="site-state-item-count">143</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,6 +174,490 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/02/20/%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/02/20/%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0/" class="post-title-link" itemprop="url">移除元素</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-02-20 15:22:05 / 修改时间：15:25:37" itemprop="dateCreated datePublished" datetime="2024-02-20T15:22:05+08:00">2024-02-20</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="移除元素"><a href="#移除元素" class="headerlink" title="移除元素"></a>移除元素</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个数组 <code>nums</code> 和一个值 <code>val</code>，你需要原地移除所有数值等于 <code>val</code> 的元素，并返回移除后数组的新长度。</p>
+<p>不要使用额外的数组空间，你必须仅使用 <code>O(1)</code> 额外空间并原地修改输入数组。</p>
+<p>元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。</p>
+<p><strong>说明:</strong></p>
+<p>为什么返回数值是整数，但输出的答案是数组呢?</p>
+<p>请注意，输入数组是以<strong>「引用」</strong>方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。</p>
+<p>你可以想象内部操作如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// nums 是以“引用”方式传递的。也就是说，不对实参作任何拷贝</span><br><span class="line">int len = removeElement(nums, val);</span><br><span class="line"></span><br><span class="line">// 在函数里修改输入数组对于调用者是可见的。</span><br><span class="line">// 根据你的函数返回的长度, 它会打印出数组中 该长度范围内 的所有元素。</span><br><span class="line">for (int i = 0; i &lt; len; i++) &#123;</span><br><span class="line">    print(nums[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [3,2,2,3], val = 3</span><br><span class="line">输出：2, nums = [2,2]</span><br><span class="line">解释：函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。你不需要考虑数组中超出新长度后面的元素。例如，函数返回的新长度为 2 ，而 nums = [2,2,3,3] 或 nums = [2,2,0,0]，也会被视作正确答案。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [0,1,2,2,3,0,4,2], val = 2</span><br><span class="line">输出：5, nums = [0,1,3,0,4]</span><br><span class="line">解释：函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。注意这五个元素可为任意顺序。你不需要考虑数组中超出新长度后面的元素。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>0 &lt;= nums.length &lt;= 100</code></li>
+<li><code>0 &lt;= nums[i] &lt;= 50</code></li>
+<li><code>0 &lt;= val &lt;= 100</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）双指针"><a href="#（1）双指针" class="headerlink" title="（1）双指针"></a>（1）双指针</h3><p><strong>思路及算法</strong></p>
+<p>由于题目要求删除数组中等于 val 的元素，因此输出数组的长度一定小于等于输入数组的长度，我们可以把输出的数组直接写在输入数组上。可以使用双指针：右指针 right 指向当前将要处理的元素，左指针 left 指向下一个将要赋值的位置。</p>
+<p>如果右指针指向的元素不等于 val，它一定是输出数组的一个元素，我们就将右指针指向的元素复制到左指针位置，然后将左右指针同时右移；</p>
+<p>如果右指针指向的元素等于 val，它不能在输出数组里，此时左指针不动，右指针右移一位。</p>
+<p>整个过程保持不变的性质是：区间 [0,left) 中的元素都不等于 val。当左右指针遍历完输入数组以后，left的值就是输出数组的长度。</p>
+<p>这样的算法在最坏情况下（输入数组中没有元素等于 val），左右指针各遍历了数组一次。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int removeElement(vector&lt;int&gt;&amp; nums, int val) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        int left = 0;</span><br><span class="line">        for (int right = 0; right &lt; n; right++) &#123;</span><br><span class="line">            if (nums[right] != val) &#123;</span><br><span class="line">                nums[left] = nums[right];</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int removeElement(int[] nums, int val) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        int left = 0;</span><br><span class="line">        for (int right = 0; right &lt; n; right++) &#123;</span><br><span class="line">            if (nums[right] != val) &#123;</span><br><span class="line">                nums[left] = nums[right];</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 为序列的长度。我们只需要遍历该序列至多两次。</p>
+</li>
+<li><p>空间复杂度：O(1)。我们只需要常数的空间保存若干变量。</p>
+</li>
+</ul>
+<h3 id="（2）双指针优化"><a href="#（2）双指针优化" class="headerlink" title="（2）双指针优化"></a>（2）双指针优化</h3><p><strong>思路及算法</strong></p>
+<p>如果要移除的元素恰好在数组的开头，例如序列 [1,2,3,4,5]，当 val 为 1 时，我们需要把每一个元素都左移一位。注意到题目中说：「元素的顺序可以改变」。实际上我们可以直接将最后一个元素 5 移动到序列开头，取代元素 1，得到序列 [5,2,3,4]，同样满足题目要求。这个优化在序列中 val 元素的数量较少时非常有效。</p>
+<p>实现方面，我们依然使用双指针，两个指针初始时分别位于数组的首尾，向中间移动遍历该序列。</p>
+<p>如果左指针 left 指向的元素等于 val，此时将右指针 right 指向的元素复制到左指针 left 的位置，然后右指针 right 左移一位。如果赋值过来的元素恰好也等于 val，可以继续把右指针 right 指向的元素的值赋值过来（左指针 left 指向的等于 val 的元素的位置继续被覆盖），直到左指针指向的元素的值不等于 val 为止。</p>
+<p>当左指针 left 和右指针 right 重合的时候，左右指针遍历完数组中所有的元素。</p>
+<p>这样的方法两个指针在最坏的情况下合起来只遍历了数组一次。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int removeElement(vector&lt;int&gt;&amp; nums, int val) &#123;</span><br><span class="line">        int left = 0, right = nums.size();</span><br><span class="line">        while (left &lt; right) &#123;</span><br><span class="line">            if (nums[left] == val) &#123;</span><br><span class="line">                nums[left] = nums[right - 1];</span><br><span class="line">                right--;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int removeElement(int[] nums, int val) &#123;</span><br><span class="line">        int left = 0;</span><br><span class="line">        int right = nums.length;</span><br><span class="line">        while (left &lt; right) &#123;</span><br><span class="line">            if (nums[left] == val) &#123;</span><br><span class="line">                nums[left] = nums[right - 1];</span><br><span class="line">                right--;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n)，其中 n 为序列的长度。我们只需要遍历该序列至多一次。</p>
+</li>
+<li><p>空间复杂度：O(1)。我们只需要常数的空间保存若干变量。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/02/19/%E5%BF%AB%E4%B9%90%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/02/19/%E5%BF%AB%E4%B9%90%E6%95%B0/" class="post-title-link" itemprop="url">快乐数</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-02-19 15:07:29" itemprop="dateCreated datePublished" datetime="2024-02-19T15:07:29+08:00">2024-02-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-07 19:59:18" itemprop="dateModified" datetime="2024-03-07T19:59:18+08:00">2024-03-07</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>9 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="快乐数"><a href="#快乐数" class="headerlink" title="快乐数"></a>快乐数</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>编写一个算法来判断一个数 <code>n</code> 是不是快乐数。</p>
+<p><strong>「快乐数」</strong> 定义为：</p>
+<ul>
+<li>对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和。</li>
+<li>然后重复这个过程直到这个数变为 1，也可能是 <strong>无限循环</strong> 但始终变不到 1。</li>
+<li>如果这个过程 <strong>结果为</strong> 1，那么这个数就是快乐数。</li>
+</ul>
+<p>如果 <code>n</code> 是 <em>快乐数</em> 就返回 <code>true</code> ；不是，则返回 <code>false</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 19</span><br><span class="line">输出：true</span><br><span class="line">解释：</span><br><span class="line">12 + 92 = 82</span><br><span class="line">82 + 22 = 68</span><br><span class="line">62 + 82 = 100</span><br><span class="line">12 + 02 + 02 = 1</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 2</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n &lt;= 231 - 1</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）哈希集合检测"><a href="#（1）哈希集合检测" class="headerlink" title="（1）哈希集合检测"></a>（1）哈希集合检测</h3><p><strong>思路及算法</strong></p>
+<p>我们可以先举几个例子。我们从 7 开始。则下一个数字是 49（因为 7^2^&#x3D;49），然后下一个数字是 97（因为 4^2^+9^2^&#x3D;97）。我们可以不断重复该的过程，直到我们得到 1。因为我们得到了 1，我们知道 7 是一个快乐数，函数应该返回 true。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/202/202_fig1.png" alt="fig1"></p>
+<p>再举一个例子，让我们从 116 开始。通过反复通过平方和计算下一个数字，我们最终得到 58，再继续计算之后，我们又回到 58。由于我们回到了一个已经计算过的数字，可以知道有一个循环，因此不可能达到 1。所以对于 116，函数应该返回 false。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/202/202_fig2.png" alt="fig2"></p>
+<p>根据我们的探索，我们猜测会有以下三种可能。</p>
+<ol>
+<li>最终会得到 111。</li>
+<li>最终会进入循环。</li>
+<li>值会越来越大，最后接近无穷大。</li>
+</ol>
+<p>第三个情况比较难以检测和处理。我们怎么知道它会继续变大，而不是最终得到 111 呢？我们可以仔细想一想，每一位数的最大数字的下一位数是多少。</p>
+<table>
+<thead>
+<tr>
+<th>Digits</th>
+<th>Largest</th>
+<th>Next</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>9</td>
+<td>81</td>
+</tr>
+<tr>
+<td>2</td>
+<td>99</td>
+<td>162</td>
+</tr>
+<tr>
+<td>3</td>
+<td>999</td>
+<td>243</td>
+</tr>
+<tr>
+<td>4</td>
+<td>9999</td>
+<td>324</td>
+</tr>
+<tr>
+<td>13</td>
+<td>9999999999999</td>
+<td>1053</td>
+</tr>
+</tbody></table>
+<p>对于 333 位数的数字，它不可能大于 243。这意味着它要么被困在 243以下的循环内，要么跌到 1。4 位或 4 位以上的数字在每一步都会丢失一位，直到降到 3 位为止。所以我们知道，最坏的情况下，算法可能会在 243 以下的所有数字上循环，然后回到它已经到过的一个循环或者回到 1。但它不会无限期地进行下去，所以我们排除第三种选择。</p>
+<p>即使在代码中你不需要处理第三种情况，你仍然需要理解为什么它永远不会发生，这样你就可以证明为什么你不处理它。</p>
+<p>算法分为两部分，我们需要设计和编写代码。</p>
+<ol>
+<li>给一个数字 n，它的下一个数字是什么？</li>
+<li>按照一系列的数字来判断我们是否进入了一个循环。</li>
+</ol>
+<p>第 1 部分我们按照题目的要求做数位分离，求平方和。</p>
+<p>第 2 部分可以使用哈希集合完成。每次生成链中的下一个数字时，我们都会检查它是否已经在哈希集合中。</p>
+<ul>
+<li><p>如果它不在哈希集合中，我们应该添加它。</p>
+</li>
+<li><p>如果它在哈希集合中，这意味着我们处于一个循环中，因此应该返回 false。  </p>
+<p>我们使用哈希集合而不是向量、列表或数组的原因是因为我们反复检查其中是否存在某数字。检查数字是否在哈希集合中需要 O(1)O(1)O(1) 的时间，而对于其他数据结构，则需要 O(n)O(n)O(n) 的时间。选择正确的数据结构是解决这些问题的关键部分。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    private int getNext(int n) &#123;</span><br><span class="line">        int totalSum = 0;</span><br><span class="line">        while (n &gt; 0) &#123;</span><br><span class="line">            int d = n % 10;</span><br><span class="line">            n = n / 10;</span><br><span class="line">            totalSum += d * d;</span><br><span class="line">        &#125;</span><br><span class="line">        return totalSum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean isHappy(int n) &#123;</span><br><span class="line">        Set&lt;Integer&gt; seen = new HashSet&lt;&gt;();</span><br><span class="line">        while (n != 1 &amp;&amp; !seen.contains(n)) &#123;</span><br><span class="line">            seen.add(n);</span><br><span class="line">            n = getNext(n);</span><br><span class="line">        &#125;</span><br><span class="line">        return n == 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>复杂度分析</strong></p>
+<p>确定这个问题的时间复杂度对于一个「简单」级别的问题来说是一个挑战。如果您对这些问题还不熟悉，可以尝试只计算 getNext(n) 函数的时间复杂度。</p>
+<ul>
+<li><p>时间复杂度：O(243⋅3+log⁡n+log⁡log⁡n+log⁡log⁡log⁡n)…&#x3D; O(log⁡n)。</p>
+<ul>
+<li>查找给定数字的下一个值的成本为 O(log⁡n)，因为我们正在处理数字中的每位数字，而数字中的位数由 log⁡n 给定。<br>要计算出总的时间复杂度，我们需要仔细考虑循环中有多少个数字，它们有多大。</li>
+<li>我们在上面确定，一旦一个数字低于 243，它就不可能回到 243 以上。因此，我们就可以用 243 以下最长循环的长度来代替 243，不过，因为常数无论如何都无关紧要，所以我们不会担心它。</li>
+<li>对于高于 243 的 n，我们需要考虑循环中每个数高于 243 的成本。通过数学运算，我们可以证明在最坏的情况下，这些成本将是 O(log⁡n)+O(log⁡log⁡n)+O(log⁡log⁡log⁡n)…。幸运的是，O(log⁡n) 是占主导地位的部分，而其他部分相比之下都很小（总的来说，它们的总和小于log⁡n），所以我们可以忽略它们。</li>
+</ul>
+</li>
+<li><p>空间复杂度：O(log⁡n)。与时间复杂度密切相关的是衡量我们放入哈希集合中的数字以及它们有多大的指标。对于足够大的 n，大部分空间将由 n 本身占用。我们可以很容易地优化到 O(243⋅3)&#x3D;O(1)，方法是只保存集合中小于 243 的数字，因为对于较高的数字，无论如何都不可能返回到它们。</p>
+</li>
+</ul>
+<h3 id="（2）快慢指针法"><a href="#（2）快慢指针法" class="headerlink" title="（2）快慢指针法"></a>（2）快慢指针法</h3><p><strong>思路及算法</strong></p>
+<p>通过反复调用 getNext(n) 得到的链是一个隐式的链表。隐式意味着我们没有实际的链表节点和指针，但数据仍然形成链表结构。起始数字是链表的头 “节点”，链中的所有其他数字都是节点。next 指针是通过调用 getNext(n) 函数获得。</p>
+<p>意识到我们实际有个链表，那么这个问题就可以转换为检测一个链表是否有环。因此我们在这里可以使用弗洛伊德循环查找算法。这个算法是两个奔跑选手，一个跑的快，一个跑得慢。在龟兔赛跑的寓言中，跑的慢的称为 “乌龟”，跑得快的称为 “兔子”。</p>
+<p>不管乌龟和兔子在循环中从哪里开始，它们最终都会相遇。这是因为兔子每走一步就向乌龟靠近一个节点（在它们的移动方向上）。</p>
+<p><strong>代码</strong></p>
+<p>我们不是只跟踪链表中的一个值，而是跟踪两个值，称为快跑者和慢跑者。</p>
+<p>在算法的每一步中，慢速在链表中前进 1 个节点，快跑者前进 2 个节点（对 getNext(n) 函数的嵌套调用）。</p>
+<p>如果 n 是一个快乐数，即没有循环，那么快跑者最终会比慢跑者先到达数字 1。</p>
+<p>如果 n 不是一个快乐的数字，那么最终快跑者和慢跑者将在同一个数字上相遇。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">def isHappy(self, n: int) -&gt; bool:  </span><br><span class="line">    def get_next(number):</span><br><span class="line">        total_sum = 0</span><br><span class="line">        while number &gt; 0:</span><br><span class="line">            number, digit = divmod(number, 10)</span><br><span class="line">            total_sum += digit ** 2</span><br><span class="line">        return total_sum</span><br><span class="line"></span><br><span class="line">    slow_runner = n</span><br><span class="line">    fast_runner = get_next(n)</span><br><span class="line">    while fast_runner != 1 and slow_runner != fast_runner:</span><br><span class="line">        slow_runner = get_next(slow_runner)</span><br><span class="line">        fast_runner = get_next(get_next(fast_runner))</span><br><span class="line">    return fast_runner == 1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(log⁡n)。该分析建立在对前一种方法的分析的基础上，但是这次我们需要跟踪两个指针而不是一个指针来分析，以及在它们相遇前需要绕着这个循环走多少次。<ul>
+<li>如果没有循环，那么快跑者将先到达 1，慢跑者将到达链表中的一半。我们知道最坏的情况下，成本是 O(2⋅log⁡n)&#x3D;O(log⁡n)。</li>
+<li>一旦两个指针都在循环中，在每个循环中，快跑者将离慢跑者更近一步。一旦快跑者落后慢跑者一步，他们就会在下一步相遇。假设循环中有 k 个数字。如果他们的起点是相隔 k−1 的位置（这是他们可以开始的最远的距离），那么快跑者需要 k−1 步才能到达慢跑者，这对于我们的目的来说也是不变的。因此，主操作仍然在计算起始 n 的下一个值，即 O(log⁡n)。</li>
+</ul>
+</li>
+<li>空间复杂度：O(1)，对于这种方法，我们不需要哈希集来检测循环。指针需要常数的额外空间。</li>
+</ul>
+<h3 id="（3）数学"><a href="#（3）数学" class="headerlink" title="（3）数学"></a>（3）数学</h3><p><strong>思路及算法</strong></p>
+<p>根据我们之前的分析，我们知道它必须低于 243。因此，我们知道任何循环都必须包含小于 243 的数字，用这么小的数字，编写一个能找到所有周期的强力程序并不困难。</p>
+<p>如果这样做，您会发现只有一个循环：4→16→37→58→89→145→42→20→4。所有其他数字都在进入这个循环的链上，或者在进入 111 的链上。</p>
+<p>因此，我们可以硬编码一个包含这些数字的散列集，如果我们达到其中一个数字，那么我们就知道在循环中。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line"></span><br><span class="line">    private static Set&lt;Integer&gt; cycleMembers =</span><br><span class="line">        new HashSet&lt;&gt;(Arrays.asList(4, 16, 37, 58, 89, 145, 42, 20));</span><br><span class="line"></span><br><span class="line">    public int getNext(int n) &#123;</span><br><span class="line">        int totalSum = 0;</span><br><span class="line">        while (n &gt; 0) &#123;</span><br><span class="line">            int d = n % 10;</span><br><span class="line">            n = n / 10;</span><br><span class="line">            totalSum += d * d;</span><br><span class="line">        &#125;</span><br><span class="line">        return totalSum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public boolean isHappy(int n) &#123;</span><br><span class="line">        while (n != 1 &amp;&amp; !cycleMembers.contains(n)) &#123;</span><br><span class="line">            n = getNext(n);</span><br><span class="line">        &#125;</span><br><span class="line">        return n == 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：O(log⁡n)。</li>
+<li>空间复杂度：O(1)，我们没有保留我们所遇到的数字的历史记录。硬编码哈希集的大小是固定的。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/02/19/%E5%8D%95%E8%AF%8D%E8%A7%84%E5%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/02/19/%E5%8D%95%E8%AF%8D%E8%A7%84%E5%BE%8B/" class="post-title-link" itemprop="url">单词规律</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-02-19 14:45:40" itemprop="dateCreated datePublished" datetime="2024-02-19T14:45:40+08:00">2024-02-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-02-20 15:21:14" itemprop="dateModified" datetime="2024-02-20T15:21:14+08:00">2024-02-20</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>735</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="单词规律"><a href="#单词规律" class="headerlink" title="单词规律"></a>单词规律</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一种规律 <code>pattern</code> 和一个字符串 <code>s</code> ，判断 <code>s</code> 是否遵循相同的规律。</p>
+<p>这里的 <strong>遵循</strong> 指完全匹配，例如， <code>pattern</code> 里的每个字母和字符串 <code>s</code> 中的每个非空单词之间存在着双向连接的对应规律。</p>
+<p><strong>示例1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: pattern = &quot;abba&quot;, s = &quot;dog cat cat dog&quot;</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入:pattern = &quot;abba&quot;, s = &quot;dog cat cat fish&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: pattern = &quot;aaaa&quot;, s = &quot;dog cat cat dog&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示:</strong></p>
+<ul>
+<li><code>1 &lt;= pattern.length &lt;= 300</code></li>
+<li><code>pattern</code> 只包含小写英文字母</li>
+<li><code>1 &lt;= s.length &lt;= 3000</code></li>
+<li><code>s</code> 只包含小写英文字母和 <code>&#39; &#39;</code></li>
+<li><code>s</code> <strong>不包含</strong> 任何前导或尾随对空格</li>
+<li><code>s</code> 中每个单词都被 <strong>单个空格</strong> 分隔</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><p><strong>思路及解法</strong></p>
+<p>在本题中，我们需要判断字符与字符串之间是否恰好一一对应。即任意一个字符都对应着唯一的字符串，任意一个字符串也只被唯一的一个字符对应。在集合论中，这种关系被称为「双射」。</p>
+<p>想要解决本题，我们可以利用哈希表记录每一个字符对应的字符串，以及每一个字符串对应的字符。然后我们枚举每一对字符与字符串的配对过程，不断更新哈希表，如果发生了冲突，则说明给定的输入不满足双射关系。</p>
+<p>在实际代码中，我们枚举 pattern\textit{pattern}pattern 中的每一个字符，利用双指针来均摊线性地找到该字符在 str\textit{str}str 中对应的字符串。每次确定一个字符与字符串的组合，我们就检查是否出现冲突，最后我们再检查两字符串是否比较完毕即可。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool wordPattern(string pattern, string str) &#123;</span><br><span class="line">        unordered_map&lt;string, char&gt; str2ch;</span><br><span class="line">        unordered_map&lt;char, string&gt; ch2str;</span><br><span class="line">        int m = str.length();</span><br><span class="line">        int i = 0;</span><br><span class="line">        for (auto ch : pattern) &#123;</span><br><span class="line">            if (i &gt;= m) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            int j = i;</span><br><span class="line">            while (j &lt; m &amp;&amp; str[j] != &#x27; &#x27;) j++;</span><br><span class="line">            const string &amp;tmp = str.substr(i, j - i);</span><br><span class="line">            if (str2ch.count(tmp) &amp;&amp; str2ch[tmp] != ch) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            if (ch2str.count(ch) &amp;&amp; ch2str[ch] != tmp) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            str2ch[tmp] = ch;</span><br><span class="line">            ch2str[ch] = tmp;</span><br><span class="line">            i = j + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        return i &gt;= m;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public boolean wordPattern(String pattern, String str) &#123;</span><br><span class="line">        Map&lt;String, Character&gt; str2ch = new HashMap&lt;String, Character&gt;();</span><br><span class="line">        Map&lt;Character, String&gt; ch2str = new HashMap&lt;Character, String&gt;();</span><br><span class="line">        int m = str.length();</span><br><span class="line">        int i = 0;</span><br><span class="line">        for (int p = 0; p &lt; pattern.length(); ++p) &#123;</span><br><span class="line">            char ch = pattern.charAt(p);</span><br><span class="line">            if (i &gt;= m) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            int j = i;</span><br><span class="line">            while (j &lt; m &amp;&amp; str.charAt(j) != &#x27; &#x27;) &#123;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            String tmp = str.substring(i, j);</span><br><span class="line">            if (str2ch.containsKey(tmp) &amp;&amp; str2ch.get(tmp) != ch) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            if (ch2str.containsKey(ch) &amp;&amp; !tmp.equals(ch2str.get(ch))) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            str2ch.put(tmp, ch);</span><br><span class="line">            ch2str.put(ch, tmp);</span><br><span class="line">            i = j + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        return i &gt;= m;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li><p>时间复杂度：O(n+m)，其中 n 为 pattern 的长度，m 为 str 的长度。插入和查询哈希表的均摊时间复杂度均为 O(n+m)。每一个字符至多只被遍历一次。</p>
+</li>
+<li><p>空间复杂度：O(n+m)，其中 n 为 pattern 的长度，m 为 str 的长度。最坏情况下，我们需要存储 pattern 中的每一个字符和 str 中的每一个字符串。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1114,441 +1598,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/02/09/%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/02/09/%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" class="post-title-link" itemprop="url">两数之和</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-02-09 21:46:25" itemprop="dateCreated datePublished" datetime="2024-02-09T21:46:25+08:00">2024-02-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-03-08 13:51:30" itemprop="dateModified" datetime="2024-03-08T13:51:30+08:00">2024-03-08</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>778</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="两数之和"><a href="#两数之和" class="headerlink" title="两数之和"></a>两数之和</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>题目如下：给定一个整数数组 <code>nums</code> 和一个整数目标值 <code>target</code>，请你在该数组中找出 <strong>和为目标值</strong> <em><code>target</code></em> 的那 <strong>两个</strong> 整数，并返回它们的数组下标。</p>
-<p>你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。</p>
-<p>你可以按任意顺序返回答案。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [2,7,11,15], target = 9</span><br><span class="line">输出：[0,1]</span><br><span class="line">解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [3,2,4], target = 6</span><br><span class="line">输出：[1,2]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [3,3], target = 6</span><br><span class="line">输出：[0,1]</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li><p><code>2 &lt;= nums.length &lt;= 104</code></p>
-</li>
-<li><p><code>-109 &lt;= nums[i] &lt;= 109</code></p>
-</li>
-<li><p><code>-109 &lt;= target &lt;= 109</code></p>
-</li>
-<li><p><strong>只会存在一个有效答案</strong></p>
-</li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）哈希表"><a href="#（1）哈希表" class="headerlink" title="（1）哈希表"></a>（1）哈希表</h3><p><strong>思路及算法</strong></p>
-<p>注意到方法一的时间复杂度较高的原因是寻找 target - x 的时间复杂度过高。因此，我们需要一种更优秀的方法，能够快速寻找数组中是否存在目标元素。如果存在，我们需要找出它的索引。</p>
-<p>使用哈希表，可以将寻找 target - x 的时间复杂度降低到从 O(N) 降低到 O(1)。</p>
-<p>这样我们创建一个哈希表，对于每一个 x，我们首先查询哈希表中是否存在 target - x，然后将 x 插入到哈希表中，即可保证不会让 x 和自己匹配。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        unordered_map&lt;int, int&gt; hashtable;</span><br><span class="line">        for (int i = 0; i &lt; nums.size(); ++i) &#123;</span><br><span class="line">            auto it = hashtable.find(target - nums[i]);</span><br><span class="line">            if (it != hashtable.end()) &#123;</span><br><span class="line">                return &#123;it-&gt;second, i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            hashtable[nums[i]] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        return &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int[] twoSum(int[] nums, int target) &#123;</span><br><span class="line">        Map&lt;Integer, Integer&gt; hashtable = new HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        for (int i = 0; i &lt; nums.length; ++i) &#123;</span><br><span class="line">            if (hashtable.containsKey(target - nums[i])) &#123;</span><br><span class="line">                return new int[]&#123;hashtable.get(target - nums[i]), i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            hashtable.put(nums[i], i);</span><br><span class="line">        &#125;</span><br><span class="line">        return new int[0];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(N)，其中 N 是数组中的元素数量。对于每一个元素 x，我们可以 O(1)地寻找 target - x。</p>
-</li>
-<li><p>空间复杂度：O(N)，其中 N是数组中的元素数量。主要为哈希表的开销。</p>
-</li>
-</ul>
-<h3 id="（2）蛮力枚举"><a href="#（2）蛮力枚举" class="headerlink" title="（2）蛮力枚举"></a>（2）蛮力枚举</h3><p><strong>思路及算法</strong></p>
-<p>最容易想到的方法是枚举数组中的每一个数 x，寻找数组中是否存在 target - x。</p>
-<p>当我们使用遍历整个数组的方式寻找 target - x 时，需要注意到每一个位于 x 之前的元素都已经和 x 匹配过，因此不需要再进行匹配。而每一个元素不能被使用两次，所以我们只需要在 x 后面的元素中寻找 target - x。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">        int n = nums.size();</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            for (int j = i + 1; j &lt; n; ++j) &#123;</span><br><span class="line">                if (nums[i] + nums[j] == target) &#123;</span><br><span class="line">                    return &#123;i, j&#125;;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public int[] twoSum(int[] nums, int target) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">            for (int j = i + 1; j &lt; n; ++j) &#123;</span><br><span class="line">                if (nums[i] + nums[j] == target) &#123;</span><br><span class="line">                    return new int[]&#123;i, j&#125;;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return new int[0];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(N^2^)其中 N 是数组中的元素数量。最坏情况下数组中任意两个数都要被匹配一次。</p>
-</li>
-<li><p>空间复杂度：O(1)。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/02/04/%E9%A2%98%E7%9B%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/02/04/%E9%A2%98%E7%9B%AE/" class="post-title-link" itemprop="url">题目</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-02-04 14:21:24 / 修改时间：14:24:17" itemprop="dateCreated datePublished" datetime="2024-02-04T14:21:24+08:00">2024-02-04</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>795</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong>习题1：</strong></p>
-<h2 id="将这段话改为2级标题"><a href="#将这段话改为2级标题" class="headerlink" title="将这段话改为2级标题"></a>将这段话改为2级标题</h2><p><strong>习题2：</strong></p>
-<blockquote>
-<p>试着在你的<code>Typora</code>中编辑下面的内容：</p>
-</blockquote>
-<p>这是第1行</p>
-<p>这是第2行</p>
-<p>这是补充内容</p>
-<p>这是第3行</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">这是第一行</span><br><span class="line">这是第二行</span><br><span class="line">这是补充内容</span><br><span class="line">这是第三行</span><br></pre></td></tr></table></figure>
-
-<p><strong>习题3：</strong></p>
-<blockquote>
-<p>将下面的内容改为指定的格式要求：</p>
-</blockquote>
-<p><u><em>&#x3D;&#x3D;<strong>黑体</strong>&#x3D;&#x3D;</em></u>	<em>斜体</em>	<u>下划线</u>	&#x3D;&#x3D;高亮&#x3D;&#x3D;</p>
-<p>黑体加下划线，并高亮显示</p>
-<p><strong>拓展题：</strong></p>
-<blockquote>
-<p>试着输入<code>1*2*3*...*99</code>，如何解决<code>*</code>不显示的问题？</p>
-<p>1^<em>^2^</em>^3^<em>^…^</em>^99</p>
-</blockquote>
-<blockquote>
-<p>试着输入<code>\*</code>，如何解决<code>\</code>消失的问题？</p>
-<p>* </p>
-</blockquote>
-<p><strong>习题4：</strong></p>
-<blockquote>
-<p>试着打出<code>x~1~^2^</code>，观察它的结果是不是$x_1^2$​，了解上下标的局限性。</p>
-<p>x<del>1</del>^2^  </p>
-<p><code>int a=0;</code></p>
-</blockquote>
-<p><strong>习题5</strong>：</p>
-<blockquote>
-<p>试着使用列表编辑出下面的效果：</p>
-</blockquote>
-<ol>
-<li><p>删除官方YUM库</p>
-</li>
-<li><p>编写本地YUM库配置文件</p>
-<ul>
-<li><p>内容：</p>
-<p>一个图片。</p>
-</li>
-<li><p>注意事项</p>
-</li>
-</ul>
-</li>
-<li><p>安装挂载光盘：</p>
-<ol>
-<li>插入光盘并通电，挂载</li>
-<li>将上述挂载命令写入</li>
-</ol>
-</li>
-</ol>
-<p><strong>习题6：</strong></p>
-<blockquote>
-<ol>
-<li>将习题5中的一个图片前增加区块（不是前一行）。</li>
-<li>试着打出下面的效果。</li>
-</ol>
-</blockquote>
-<blockquote>
-<p>我们处在一个区块里。</p>
-<p>对的，没错。</p>
-</blockquote>
-<blockquote>
-<p>我们处在一个区块里。</p>
-</blockquote>
-<blockquote>
-<p>不，不对。</p>
-</blockquote>
-<p><strong>习题7：</strong></p>
-<blockquote>
-<p>使用行内代码美化下面第一段的内容（第二段用于对照）：</p>
-</blockquote>
-<p><code>即使cv::Vec&lt;&gt;是模板，但大部分的时间你都不会倾向于使用它的这个形式。相对的，有很多它的别名（typedef）以便用于通用的实例。它们有着cv::Vec2i, cv::Vec3i和cv::Vec4d这样的名称（分别对应于2个元素的整型向量、3个元素的整型向量和4个元素的双精度浮点向量）。任何有着cv::Vec&#123;2,3,4,6&#125;&#123;b,w,s,i,f,d&#125;形式的声明（b=unsigned char，w=unsigned short，s=short），对于2个到6个维度的6种数据类型的任何组合都是有效的。</code></p>
-<p>即使cv::Vec&lt;&gt;是模板，但大部分的时间你都不会倾向于使用它的这个形式。相对的，有很多它的别名（typedef）以便用于通用的实例。它们有着cv::Vec2i, cv::Vec3i和cv::Vec4d这样的名称（分别对应于2个元素的整型向量、3个元素的整型向量和4个元素的双精度浮点向量）。任何有着cv::Vec{2,3,4,6}{b,w,s,i,f,d}形式的声明（b&#x3D;unsigned char，w&#x3D;unsigned short，s&#x3D;short），对于2个到6个维度的6种数据类型的任何组合都是有效的。</p>
-<p><strong>习题8</strong>：</p>
-<blockquote>
-<p>下面试图使用多行脚注，但预期效果不对，如何解决？</p>
-</blockquote>
-<p>右边是对我<a href="%E8%BF%99%E6%98%AF%E4%B8%80%E6%AE%B5%E6%AF%94%E8%BE%83%E9%95%BF%E7%9A%84%E6%B3%A8%E8%A7%A3%E3%80%82">^1</a>的解释。</p>
-<p>这是第二行。</p>
-<p><strong>习题9：</strong></p>
-<blockquote>
-<p>试着插入一个图片，要求图片缩小1&#x2F;2，左对齐。</p>
-</blockquote>
-<p><strong>习题10：</strong></p>
-<blockquote>
-<p>下面有两个相邻的表格，如何在二者之间增加内容？</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th align="left">表1头</th>
-<th>表1头</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">表1内容</td>
-<td>表1内容</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>表2头</th>
-<th>表2头</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>表2内容</td>
-<td>表2内容</td>
-</tr>
-</tbody></table>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">我是一段很长的代码</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">我是另一段很长的代码</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/02/04/%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/02/04/%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">第一次记录</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-02-04 12:55:42 / 修改时间：14:24:11" itemprop="dateCreated datePublished" datetime="2024-02-04T12:55:42+08:00">2024-02-04</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>19</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="1-这是第一次尝试"><a href="#1-这是第一次尝试" class="headerlink" title="###1.这是第一次尝试"></a>###1.这是第一次尝试</h1><p>记录自己第一次搭建博客。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/13/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/13/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/15/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
@@ -1571,14 +1622,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">151k</span>
+    <span title="站点总字数">153k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">9:11</span>
+    <span title="站点阅读时长">9:17</span>
   </span>
 </div>
 <div class="busuanzi-count">

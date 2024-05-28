@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">140</span>
+          <span class="site-state-item-count">143</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,6 +174,431 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/17/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/17/%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81/" class="post-title-link" itemprop="url">字符串解码</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-17 10:03:50 / 修改时间：10:05:02" itemprop="dateCreated datePublished" datetime="2024-04-17T10:03:50+08:00">2024-04-17</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>895</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="字符串解码"><a href="#字符串解码" class="headerlink" title="字符串解码"></a>字符串解码</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个经过编码的字符串，返回它解码后的字符串。</p>
+<p>编码规则为: <code>k[encoded_string]</code>，表示其中方括号内部的 <code>encoded_string</code> 正好重复 <code>k</code> 次。注意 <code>k</code> 保证为正整数。</p>
+<p>你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。</p>
+<p>此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 <code>k</code> ，例如不会出现像 <code>3a</code> 或 <code>2[4]</code> 的输入。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;3[a]2[bc]&quot;</span><br><span class="line">输出：&quot;aaabcbc&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;3[a2[c]]&quot;</span><br><span class="line">输出：&quot;accaccacc&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;2[abc]3[cd]ef&quot;</span><br><span class="line">输出：&quot;abcabccdcdcdef&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 4：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;abc3[cd]xyz&quot;</span><br><span class="line">输出：&quot;abccdcdcdxyz&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 30</code></li>
+<li><code>s</code> 由小写英文字母、数字和方括号 <code>&#39;[]&#39;</code> 组成</li>
+<li><code>s</code> 保证是一个 <strong>有效</strong> 的输入。</li>
+<li><code>s</code> 中所有整数的取值范围为 <code>[1, 300]</code></li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）辅助栈法"><a href="#（1）辅助栈法" class="headerlink" title="（1）辅助栈法"></a>（1）辅助栈法</h3><p><strong>思路及算法</strong></p>
+<p>本题难点在于括号内嵌套括号，需要从内向外生成与拼接字符串，这与栈的先入后出特性对应。</p>
+<p>算法流程：</p>
+<ul>
+<li><p>构建辅助栈 <code>stack</code>， 遍历字符串 <code>s </code>中每个字符 <code>c</code>；</p>
+<ul>
+<li>当 <code>c</code> 为数字时，将数字字符转化为数字 <code>multi</code>，用于后续倍数计算；</li>
+<li>当 <code>c</code> 为字母时，在 <code>res</code> 尾部添加 <code>c</code>；</li>
+<li>当 <code>c </code>为 <code>[</code> 时，将当前<code> multi</code> 和 <code>res</code> 入栈，并分别置空置 <code>0</code>：<ul>
+<li>记录此 <code>[</code> 前的临时结果<code> res</code> 至栈，用于发现对应 <code>]</code> 后的拼接操作；</li>
+<li>记录此 <code>[</code> 前的倍数 <code>multi</code> 至栈，用于发现对应 <code>]</code> 后，获取 <code>multi × [...]</code> 字符串。</li>
+<li>进入到新 <code>[</code> 后，<code>res</code> 和 <code>multi</code> 重新记录。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ul>
+<li>当 <code>c</code> 为<code> ]</code> 时，<code>stack</code> 出栈，拼接字符串<code> res = last_res + cur_multi * res</code>，其中:<ul>
+<li><code>last_res</code>是上个 <code>[ </code>到当前 <code>[ </code>的字符串，例如<code> &quot;3[a2[c]]&quot;</code> 中的 <code>a</code>；</li>
+<li><code>cur_multi</code>是当前 <code>[ </code>到 <code>] </code>内字符串的重复倍数，例如 <code>&quot;3[a2[c]]&quot;</code> 中的 <code>2</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>返回字符串 <code>res</code>。</p>
+</li>
+</ul>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public String decodeString(String s) &#123;</span><br><span class="line">        StringBuilder res = new StringBuilder();</span><br><span class="line">        int multi = 0;</span><br><span class="line">        LinkedList&lt;Integer&gt; stack_multi = new LinkedList&lt;&gt;();</span><br><span class="line">        LinkedList&lt;String&gt; stack_res = new LinkedList&lt;&gt;();</span><br><span class="line">        for(Character c : s.toCharArray()) &#123;</span><br><span class="line">            if(c == &#x27;[&#x27;) &#123;</span><br><span class="line">                stack_multi.addLast(multi);</span><br><span class="line">                stack_res.addLast(res.toString());</span><br><span class="line">                multi = 0;</span><br><span class="line">                res = new StringBuilder();</span><br><span class="line">            &#125;</span><br><span class="line">            else if(c == &#x27;]&#x27;) &#123;</span><br><span class="line">                StringBuilder tmp = new StringBuilder();</span><br><span class="line">                int cur_multi = stack_multi.removeLast();</span><br><span class="line">                for(int i = 0; i &lt; cur_multi; i++) tmp.append(res);</span><br><span class="line">                res = new StringBuilder(stack_res.removeLast() + tmp);</span><br><span class="line">            &#125;</span><br><span class="line">            else if(c &gt;= &#x27;0&#x27; &amp;&amp; c &lt;= &#x27;9&#x27;) multi = multi * 10 + Integer.parseInt(c + &quot;&quot;);</span><br><span class="line">            else res.append(c);</span><br><span class="line">        &#125;</span><br><span class="line">        return res.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度 O(N)，一次遍历 <code>s</code>；</li>
+<li>空间复杂度 O(N)，辅助栈在极端情况下需要线性空间，例如 <code>2[2[2[a]]]</code>。</li>
+</ul>
+<h3 id="（2）递归"><a href="#（2）递归" class="headerlink" title="（2）递归"></a>（2）递归</h3><p><strong>思路及算法</strong></p>
+<p>总体思路与辅助栈法一致，不同点在于将 <code>[ </code>和 <code>]</code> 分别作为递归的开启与终止条件：</p>
+<ul>
+<li>当 <code>s[i] == &#39;]&#39; </code>时，返回当前括号内记录的 <code>res</code> 字符串与 <code>]</code> 的索引 <code>i </code>（更新上层递归指针位置）；</li>
+<li>当<code> s[i] == &#39;[&#39;</code> 时，开启新一层递归，记录此 <code>[...]</code> 内字符串 <code>tmp</code> 和递归后的最新索引<code> i</code>，并执行 <code>res + multi * tmp</code> 拼接字符串。</li>
+<li>遍历完毕后返回 <code>res</code>。</li>
+</ul>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public String decodeString(String s) &#123;</span><br><span class="line">        return dfs(s, 0)[0];</span><br><span class="line">    &#125;</span><br><span class="line">    private String[] dfs(String s, int i) &#123;</span><br><span class="line">        StringBuilder res = new StringBuilder();</span><br><span class="line">        int multi = 0;</span><br><span class="line">        while(i &lt; s.length()) &#123;</span><br><span class="line">            if(s.charAt(i) &gt;= &#x27;0&#x27; &amp;&amp; s.charAt(i) &lt;= &#x27;9&#x27;) </span><br><span class="line">                multi = multi * 10 + Integer.parseInt(String.valueOf(s.charAt(i))); </span><br><span class="line">            else if(s.charAt(i) == &#x27;[&#x27;) &#123;</span><br><span class="line">                String[] tmp = dfs(s, i + 1);</span><br><span class="line">                i = Integer.parseInt(tmp[0]);</span><br><span class="line">                while(multi &gt; 0) &#123;</span><br><span class="line">                    res.append(tmp[1]);</span><br><span class="line">                    multi--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else if(s.charAt(i) == &#x27;]&#x27;) </span><br><span class="line">                return new String[] &#123; String.valueOf(i), res.toString() &#125;;</span><br><span class="line">            else </span><br><span class="line">                res.append(String.valueOf(s.charAt(i)));</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        return new String[] &#123; res.toString() &#125;;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度 O(N)，递归会更新索引，因此实际上还是一次遍历<code> s</code>；</li>
+<li>空间复杂度 O(N)，极端情况下递归深度将会达到线性级别。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/16/%E6%9C%80%E5%B0%8F%E6%A0%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/16/%E6%9C%80%E5%B0%8F%E6%A0%88/" class="post-title-link" itemprop="url">最小栈</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-16 09:44:31 / 修改时间：09:45:12" itemprop="dateCreated datePublished" datetime="2024-04-16T09:44:31+08:00">2024-04-16</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>775</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="最小栈"><a href="#最小栈" class="headerlink" title="最小栈"></a>最小栈</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>设计一个支持 <code>push</code> ，<code>pop</code> ，<code>top</code> 操作，并能在常数时间内检索到最小元素的栈。</p>
+<p>实现 <code>MinStack</code> 类:</p>
+<ul>
+<li><code>MinStack()</code> 初始化堆栈对象。</li>
+<li><code>void push(int val)</code> 将元素val推入堆栈。</li>
+<li><code>void pop()</code> 删除堆栈顶部的元素。</li>
+<li><code>int top()</code> 获取堆栈顶部的元素。</li>
+<li><code>int getMin()</code> 获取堆栈中的最小元素。</li>
+</ul>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line">[&quot;MinStack&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;getMin&quot;,&quot;pop&quot;,&quot;top&quot;,&quot;getMin&quot;]</span><br><span class="line">[[],[-2],[0],[-3],[],[],[],[]]</span><br><span class="line"></span><br><span class="line">输出：</span><br><span class="line">[null,null,null,null,-3,null,0,-2]</span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">MinStack minStack = new MinStack();</span><br><span class="line">minStack.push(-2);</span><br><span class="line">minStack.push(0);</span><br><span class="line">minStack.push(-3);</span><br><span class="line">minStack.getMin();   --&gt; 返回 -3.</span><br><span class="line">minStack.pop();</span><br><span class="line">minStack.top();      --&gt; 返回 0.</span><br><span class="line">minStack.getMin();   --&gt; 返回 -2.</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>-231 &lt;= val &lt;= 231 - 1</code></li>
+<li><code>pop</code>、<code>top</code> 和 <code>getMin</code> 操作总是在 <strong>非空栈</strong> 上调用</li>
+<li><code>push</code>, <code>pop</code>, <code>top</code>, and <code>getMin</code>最多被调用 <code>3 * 104</code> 次</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="辅助栈"><a href="#辅助栈" class="headerlink" title="辅助栈"></a>辅助栈</h3><p><strong>思路及算法</strong></p>
+<p>要做出这道题目，首先要理解栈结构先进后出的性质。</p>
+<p>对于栈来说，如果一个元素 <code>a </code>在入栈时，栈里有其它的元素 <code>b, c, d</code>，那么无论这个栈在之后经历了什么操作，只要 <code>a</code> 在栈中，<code>b, c, d</code> 就一定在栈中，因为在 <code>a</code> 被弹出之前，<code>b, c, d</code> 不会被弹出。</p>
+<p>因此，在操作过程中的任意一个时刻，只要栈顶的元素是 <code>a</code>，那么我们就可以确定栈里面现在的元素一定是 <code>a, b, c, d</code>。</p>
+<p>那么，我们可以在每个元素 <code>a</code> 入栈时把当前栈的最小值 <code>m</code> 存储起来。在这之后无论何时，如果栈顶元素是 <code>a</code>，我们就可以直接返回存储的最小值 <code>m</code>。</p>
+<p><img src="https://assets.leetcode-cn.com/solution-static/155/155_fig1.gif" alt="fig1"></p>
+<p>按照上面的思路，我们只需要设计一个数据结构，使得每个元素 <code>a</code> 与其相应的最小值 <code>m</code> 时刻保持一一对应。因此我们可以使用一个辅助栈，与元素栈同步插入与删除，用于存储与每个元素对应的最小值。</p>
+<ul>
+<li>当一个元素要入栈时，我们取当前辅助栈的栈顶存储的最小值，与当前元素比较得出最小值，将这个最小值插入辅助栈中；</li>
+<li>当一个元素要出栈时，我们把辅助栈的栈顶元素也一并弹出；</li>
+<li>在任意一个时刻，栈内元素的最小值就存储在辅助栈的栈顶元素中。</li>
+</ul>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class MinStack &#123;</span><br><span class="line">    stack&lt;int&gt; x_stack;</span><br><span class="line">    stack&lt;int&gt; min_stack;</span><br><span class="line">public:</span><br><span class="line">    MinStack() &#123;</span><br><span class="line">        min_stack.push(INT_MAX);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void push(int x) &#123;</span><br><span class="line">        x_stack.push(x);</span><br><span class="line">        min_stack.push(min(min_stack.top(), x));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void pop() &#123;</span><br><span class="line">        x_stack.pop();</span><br><span class="line">        min_stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int top() &#123;</span><br><span class="line">        return x_stack.top();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int getMin() &#123;</span><br><span class="line">        return min_stack.top();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class MinStack &#123;</span><br><span class="line">    Deque&lt;Integer&gt; xStack;</span><br><span class="line">    Deque&lt;Integer&gt; minStack;</span><br><span class="line"></span><br><span class="line">    public MinStack() &#123;</span><br><span class="line">        xStack = new LinkedList&lt;Integer&gt;();</span><br><span class="line">        minStack = new LinkedList&lt;Integer&gt;();</span><br><span class="line">        minStack.push(Integer.MAX_VALUE);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void push(int x) &#123;</span><br><span class="line">        xStack.push(x);</span><br><span class="line">        minStack.push(Math.min(minStack.peek(), x));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public void pop() &#123;</span><br><span class="line">        xStack.pop();</span><br><span class="line">        minStack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public int top() &#123;</span><br><span class="line">        return xStack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public int getMin() &#123;</span><br><span class="line">        return minStack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：对于题目中的所有操作，时间复杂度均为 O(1)。因为栈的插入、删除与读取操作都是 O(1)，我们定义的每个操作最多调用栈操作两次。</li>
+<li>空间复杂度：O(n)，其中 n 为总操作数。最坏情况下，我们会连续插入 n 个元素，此时两个栈占用的空间为 O(n)。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/15/%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.png">
+      <meta itemprop="name" content="icheng281">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="勇者抽刃向强者的博客">
+      <meta itemprop="description" content="计算机小白一枚">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/15/%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7/" class="post-title-link" itemprop="url">有效的括号</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-15 09:27:11 / 修改时间：09:37:21" itemprop="dateCreated datePublished" datetime="2024-04-15T09:27:11+08:00">2024-04-15</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>612</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="有效的括号"><a href="#有效的括号" class="headerlink" title="有效的括号"></a>有效的括号</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给定一个只包括 <code>&#39;(&#39;</code>，<code>&#39;)&#39;</code>，<code>&#39;&#123;&#39;</code>，<code>&#39;&#125;&#39;</code>，<code>&#39;[&#39;</code>，<code>&#39;]&#39;</code> 的字符串 <code>s</code> ，判断字符串是否有效。</p>
+<p>有效字符串需满足：</p>
+<ol>
+<li>左括号必须用相同类型的右括号闭合。</li>
+<li>左括号必须以正确的顺序闭合。</li>
+<li>每个右括号都有一个对应的相同类型的左括号。</li>
+</ol>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;()&quot;</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;()[]&#123;&#125;&quot;</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s = &quot;(]&quot;</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 104</code></li>
+<li><code>s</code> 仅由括号 <code>&#39;()[]&#123;&#125;&#39;</code> 组成</li>
+</ul>
+<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="辅助栈法"><a href="#辅助栈法" class="headerlink" title="辅助栈法"></a>辅助栈法</h3><p><strong>思路及算法</strong></p>
+<ul>
+<li><p>算法原理</p>
+<ul>
+<li>栈先入后出特点恰好与本题括号排序特点一致，即若遇到左括号入栈，遇到右括号时将对应栈顶左括号出栈，则遍历完所有括号后 stack 仍然为空；</li>
+<li>建立哈希表 dic 构建左右括号对应关系：key 左括号，value 右括号；这样查询 2 个括号是否对应只需 O(1) 时间复杂度；建立栈 stack，遍历字符串 s 并按照算法流程一一判断。</li>
+</ul>
+</li>
+<li><p>算法流程</p>
+<ul>
+<li>如果 c 是左括号，则入栈 push；</li>
+<li>否则通过哈希表判断括号对应关系，若 stack 栈顶出栈括号 stack.pop() 与当前遍历括号 c 不对应，则提前返回 false。</li>
+</ul>
+</li>
+<li><p>提前返回 false</p>
+<ul>
+<li>提前返回优点： 在迭代过程中，提前发现不符合的括号并且返回，提升算法效率。</li>
+<li>解决边界问题：<ul>
+<li>栈 stack 为空： 此时 stack.pop() 操作会报错；因此，我们采用一个取巧方法，给 stack 赋初值 ? ，并在哈希表 dic 中建立 key:′?′，value:′?′ 的对应关系予以配合。此时当 stack 为空且 c 为右括号时，可以正常提前返回 false；</li>
+<li>字符串 s 以左括号结尾： 此情况下可以正常遍历完整个 s，但 stack 中遗留未出栈的左括号；因此，最后需返回 len(stack) &#x3D;&#x3D; 1，以判断是否是有效的括号组合。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://pic.leetcode-cn.com/91ed1b06b593e0b7a2ddb967cf20077ad3c815826dfa602bf20c9214ec3cb466-Picture1.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/829aae155c20fed4ce43a1bba2077bb46979a08e842b98f1f97f183a1016afee-Picture2.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/5456814fa5b10a5e859996daaf2f6b56287af368134d8b04dce820612f2c4608-Picture3.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/e782bcb808af96146e730f32feffabc7e224df847d9ff541d25171994748f243-Picture4.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/bc514b643a0769c23b6a4ce86f8bb8207cee71c4b5aa41350f269b52b317256f-Picture5.png" alt="img"></p>
+<p><img src="https://pic.leetcode-cn.com/1e5dd507b6a41a3e5ce1d9fc50f9c78a4cd8845ae6a8ec1c5146190abd97dfe4-Picture6.png" alt="img"></p>
+<p><strong>代码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    private static final Map&lt;Character,Character&gt; map = new HashMap&lt;Character,Character&gt;()&#123;&#123;</span><br><span class="line">        put(&#x27;&#123;&#x27;,&#x27;&#125;&#x27;); put(&#x27;[&#x27;,&#x27;]&#x27;); put(&#x27;(&#x27;,&#x27;)&#x27;); put(&#x27;?&#x27;,&#x27;?&#x27;);</span><br><span class="line">    &#125;&#125;;</span><br><span class="line">    public boolean isValid(String s) &#123;</span><br><span class="line">        if(s.length() &gt; 0 &amp;&amp; !map.containsKey(s.charAt(0))) return false;</span><br><span class="line">        LinkedList&lt;Character&gt; stack = new LinkedList&lt;Character&gt;() &#123;&#123; add(&#x27;?&#x27;); &#125;&#125;;</span><br><span class="line">        for(Character c : s.toCharArray())&#123;</span><br><span class="line">            if(map.containsKey(c)) stack.addLast(c);</span><br><span class="line">            else if(map.get(stack.removeLast()) != c) return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return stack.size() == 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度 O(N)：正确的括号组合需要遍历 1 遍 s；</li>
+<li>空间复杂度 O(N)：哈希表和栈使用线性的空间大小。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1068,439 +1493,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/11/%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/11/%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/" class="post-title-link" itemprop="url">排序链表</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-04-11 09:44:19 / 修改时间：09:44:54" itemprop="dateCreated datePublished" datetime="2024-04-11T09:44:19+08:00">2024-04-11</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="排序链表"><a href="#排序链表" class="headerlink" title="排序链表"></a>排序链表</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你链表的头结点 <code>head</code> ，请将其按 <strong>升序</strong> 排列并返回 <strong>排序后的链表</strong> 。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2020/09/14/sort_list_1.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [4,2,1,3]</span><br><span class="line">输出：[1,2,3,4]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2020/09/14/sort_list_2.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [-1,5,3,4,0]</span><br><span class="line">输出：[-1,0,3,4,5]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = []</span><br><span class="line">输出：[]</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li>链表中节点的数目在范围 <code>[0, 5 * 104]</code> 内</li>
-<li><code>-105 &lt;= Node.val &lt;= 105</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）自顶向下的归并排序"><a href="#（1）自顶向下的归并排序" class="headerlink" title="（1）自顶向下的归并排序"></a>（1）自顶向下的归并排序</h3><p><strong>思路及算法</strong></p>
-<p>对链表自顶向下归并排序的过程如下。</p>
-<ol>
-<li><p>找到链表的中点，以中点为分界，将链表拆分成两个子链表。寻找链表的中点可以使用快慢指针的做法，快指针每次移动 2 步，慢指针每次移动 1 步，当快指针到达链表末尾时，慢指针指向的链表节点即为链表的中点。</p>
-</li>
-<li><p>对两个子链表分别排序。</p>
-</li>
-<li><p>将两个排序后的子链表合并，得到完整的排序后的链表。</p>
-</li>
-</ol>
-<p>上述过程可以通过递归实现。递归的终止条件是链表的节点个数小于或等于 1，即当链表为空或者链表只包含 1 个节点时，不需要对链表进行拆分和排序。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode sortList(ListNode head) &#123;</span><br><span class="line">        return sortList(head, null);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public ListNode sortList(ListNode head, ListNode tail) &#123;</span><br><span class="line">        if (head == null) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        if (head.next == tail) &#123;</span><br><span class="line">            head.next = null;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode slow = head, fast = head;</span><br><span class="line">        while (fast != tail) &#123;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            fast = fast.next;</span><br><span class="line">            if (fast != tail) &#123;</span><br><span class="line">                fast = fast.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode mid = slow;</span><br><span class="line">        ListNode list1 = sortList(head, mid);</span><br><span class="line">        ListNode list2 = sortList(mid, tail);</span><br><span class="line">        ListNode sorted = merge(list1, list2);</span><br><span class="line">        return sorted;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public ListNode merge(ListNode head1, ListNode head2) &#123;</span><br><span class="line">        ListNode dummyHead = new ListNode(0);</span><br><span class="line">        ListNode temp = dummyHead, temp1 = head1, temp2 = head2;</span><br><span class="line">        while (temp1 != null &amp;&amp; temp2 != null) &#123;</span><br><span class="line">            if (temp1.val &lt;= temp2.val) &#123;</span><br><span class="line">                temp.next = temp1;</span><br><span class="line">                temp1 = temp1.next;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                temp.next = temp2;</span><br><span class="line">                temp2 = temp2.next;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        if (temp1 != null) &#123;</span><br><span class="line">            temp.next = temp1;</span><br><span class="line">        &#125; else if (temp2 != null) &#123;</span><br><span class="line">            temp.next = temp2;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummyHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* sortList(ListNode* head) &#123;</span><br><span class="line">        return sortList(head, nullptr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ListNode* sortList(ListNode* head, ListNode* tail) &#123;</span><br><span class="line">        if (head == nullptr) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        if (head-&gt;next == tail) &#123;</span><br><span class="line">            head-&gt;next = nullptr;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode* slow = head, *fast = head;</span><br><span class="line">        while (fast != tail) &#123;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">            fast = fast-&gt;next;</span><br><span class="line">            if (fast != tail) &#123;</span><br><span class="line">                fast = fast-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode* mid = slow;</span><br><span class="line">        return merge(sortList(head, mid), sortList(mid, tail));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ListNode* merge(ListNode* head1, ListNode* head2) &#123;</span><br><span class="line">        ListNode* dummyHead = new ListNode(0);</span><br><span class="line">        ListNode* temp = dummyHead, *temp1 = head1, *temp2 = head2;</span><br><span class="line">        while (temp1 != nullptr &amp;&amp; temp2 != nullptr) &#123;</span><br><span class="line">            if (temp1-&gt;val &lt;= temp2-&gt;val) &#123;</span><br><span class="line">                temp-&gt;next = temp1;</span><br><span class="line">                temp1 = temp1-&gt;next;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                temp-&gt;next = temp2;</span><br><span class="line">                temp2 = temp2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        if (temp1 != nullptr) &#123;</span><br><span class="line">            temp-&gt;next = temp1;</span><br><span class="line">        &#125; else if (temp2 != nullptr) &#123;</span><br><span class="line">            temp-&gt;next = temp2;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummyHead-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(nlog⁡n)，其中 n 是链表的长度。</p>
-</li>
-<li><p>空间复杂度：O(log⁡n)，其中 n 是链表的长度。空间复杂度主要取决于递归调用的栈空间。</p>
-</li>
-</ul>
-<h3 id="（2）自底向上的归并排序"><a href="#（2）自底向上的归并排序" class="headerlink" title="（2）自底向上的归并排序"></a>（2）自底向上的归并排序</h3><p><strong>思路及算法</strong></p>
-<p>首先求得链表的长度 length，然后将链表拆分成子链表进行合并。</p>
-<p>具体做法如下。</p>
-<ol>
-<li><p>用 subLength 表示每次需要排序的子链表的长度，初始时 subLength&#x3D;1。</p>
-</li>
-<li><p>每次将链表拆分成若干个长度为 subLength 的子链表（最后一个子链表的长度可以小于 subLength），按照每两个子链表一组进行合并，合并后即可得到若干个长度为 subLength×2 的有序子链表（最后一个子链表的长度可以小于 subLength×2）。</p>
-</li>
-<li><p>将 subLength 的值加倍，重复第 2 步，对更长的有序子链表进行合并操作，直到有序子链表的长度大于或等于 length，整个链表排序完毕。</p>
-</li>
-</ol>
-<p>如何保证每次合并之后得到的子链表都是有序的呢？可以通过数学归纳法证明。</p>
-<ol>
-<li><p>初始时 subLength&#x3D;1，每个长度为 1 的子链表都是有序的。</p>
-</li>
-<li><p>如果每个长度为 subLength 的子链表已经有序，合并两个长度为 subLength 的有序子链表，得到长度为 subLength×2 的子链表，一定也是有序的。</p>
-</li>
-<li><p>当最后一个子链表的长度小于 subLength 时，该子链表也是有序的，合并两个有序子链表之后得到的子链表一定也是有序的。</p>
-</li>
-</ol>
-<p>因此可以保证最后得到的链表是有序的。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode sortList(ListNode head) &#123;</span><br><span class="line">        if (head == null) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        int length = 0;</span><br><span class="line">        ListNode node = head;</span><br><span class="line">        while (node != null) &#123;</span><br><span class="line">            length++;</span><br><span class="line">            node = node.next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode dummyHead = new ListNode(0, head);</span><br><span class="line">        for (int subLength = 1; subLength &lt; length; subLength &lt;&lt;= 1) &#123;</span><br><span class="line">            ListNode prev = dummyHead, curr = dummyHead.next;</span><br><span class="line">            while (curr != null) &#123;</span><br><span class="line">                ListNode head1 = curr;</span><br><span class="line">                for (int i = 1; i &lt; subLength &amp;&amp; curr.next != null; i++) &#123;</span><br><span class="line">                    curr = curr.next;</span><br><span class="line">                &#125;</span><br><span class="line">                ListNode head2 = curr.next;</span><br><span class="line">                curr.next = null;</span><br><span class="line">                curr = head2;</span><br><span class="line">                for (int i = 1; i &lt; subLength &amp;&amp; curr != null &amp;&amp; curr.next != null; i++) &#123;</span><br><span class="line">                    curr = curr.next;</span><br><span class="line">                &#125;</span><br><span class="line">                ListNode next = null;</span><br><span class="line">                if (curr != null) &#123;</span><br><span class="line">                    next = curr.next;</span><br><span class="line">                    curr.next = null;</span><br><span class="line">                &#125;</span><br><span class="line">                ListNode merged = merge(head1, head2);</span><br><span class="line">                prev.next = merged;</span><br><span class="line">                while (prev.next != null) &#123;</span><br><span class="line">                    prev = prev.next;</span><br><span class="line">                &#125;</span><br><span class="line">                curr = next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummyHead.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public ListNode merge(ListNode head1, ListNode head2) &#123;</span><br><span class="line">        ListNode dummyHead = new ListNode(0);</span><br><span class="line">        ListNode temp = dummyHead, temp1 = head1, temp2 = head2;</span><br><span class="line">        while (temp1 != null &amp;&amp; temp2 != null) &#123;</span><br><span class="line">            if (temp1.val &lt;= temp2.val) &#123;</span><br><span class="line">                temp.next = temp1;</span><br><span class="line">                temp1 = temp1.next;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                temp.next = temp2;</span><br><span class="line">                temp2 = temp2.next;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        if (temp1 != null) &#123;</span><br><span class="line">            temp.next = temp1;</span><br><span class="line">        &#125; else if (temp2 != null) &#123;</span><br><span class="line">            temp.next = temp2;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummyHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* sortList(ListNode* head) &#123;</span><br><span class="line">        if (head == nullptr) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        int length = 0;</span><br><span class="line">        ListNode* node = head;</span><br><span class="line">        while (node != nullptr) &#123;</span><br><span class="line">            length++;</span><br><span class="line">            node = node-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode* dummyHead = new ListNode(0, head);</span><br><span class="line">        for (int subLength = 1; subLength &lt; length; subLength &lt;&lt;= 1) &#123;</span><br><span class="line">            ListNode* prev = dummyHead, *curr = dummyHead-&gt;next;</span><br><span class="line">            while (curr != nullptr) &#123;</span><br><span class="line">                ListNode* head1 = curr;</span><br><span class="line">                for (int i = 1; i &lt; subLength &amp;&amp; curr-&gt;next != nullptr; i++) &#123;</span><br><span class="line">                    curr = curr-&gt;next;</span><br><span class="line">                &#125;</span><br><span class="line">                ListNode* head2 = curr-&gt;next;</span><br><span class="line">                curr-&gt;next = nullptr;</span><br><span class="line">                curr = head2;</span><br><span class="line">                for (int i = 1; i &lt; subLength &amp;&amp; curr != nullptr &amp;&amp; curr-&gt;next != nullptr; i++) &#123;</span><br><span class="line">                    curr = curr-&gt;next;</span><br><span class="line">                &#125;</span><br><span class="line">                ListNode* next = nullptr;</span><br><span class="line">                if (curr != nullptr) &#123;</span><br><span class="line">                    next = curr-&gt;next;</span><br><span class="line">                    curr-&gt;next = nullptr;</span><br><span class="line">                &#125;</span><br><span class="line">                ListNode* merged = merge(head1, head2);</span><br><span class="line">                prev-&gt;next = merged;</span><br><span class="line">                while (prev-&gt;next != nullptr) &#123;</span><br><span class="line">                    prev = prev-&gt;next;</span><br><span class="line">                &#125;</span><br><span class="line">                curr = next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummyHead-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ListNode* merge(ListNode* head1, ListNode* head2) &#123;</span><br><span class="line">        ListNode* dummyHead = new ListNode(0);</span><br><span class="line">        ListNode* temp = dummyHead, *temp1 = head1, *temp2 = head2;</span><br><span class="line">        while (temp1 != nullptr &amp;&amp; temp2 != nullptr) &#123;</span><br><span class="line">            if (temp1-&gt;val &lt;= temp2-&gt;val) &#123;</span><br><span class="line">                temp-&gt;next = temp1;</span><br><span class="line">                temp1 = temp1-&gt;next;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                temp-&gt;next = temp2;</span><br><span class="line">                temp2 = temp2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        if (temp1 != nullptr) &#123;</span><br><span class="line">            temp-&gt;next = temp1;</span><br><span class="line">        &#125; else if (temp2 != nullptr) &#123;</span><br><span class="line">            temp-&gt;next = temp2;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummyHead-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(nlog⁡n)，其中 n 是链表的长度。</li>
-<li>空间复杂度：O(1)。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/10/LRU%E7%BC%93%E5%AD%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/10/LRU%E7%BC%93%E5%AD%98/" class="post-title-link" itemprop="url">LRU缓存</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-04-10 09:47:04 / 修改时间：09:49:04" itemprop="dateCreated datePublished" datetime="2024-04-10T09:47:04+08:00">2024-04-10</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.5k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="LRU缓存"><a href="#LRU缓存" class="headerlink" title="LRU缓存"></a>LRU缓存</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>请你设计并实现一个满足 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/LRU">LRU (最近最少使用) 缓存</a> 约束的数据结构。</p>
-<p>实现 <code>LRUCache</code> 类：</p>
-<ul>
-<li><code>LRUCache(int capacity)</code> 以 <strong>正整数</strong> 作为容量 <code>capacity</code> 初始化 LRU 缓存</li>
-<li><code>int get(int key)</code> 如果关键字 <code>key</code> 存在于缓存中，则返回关键字的值，否则返回 <code>-1</code> 。</li>
-<li><code>void put(int key, int value)</code> 如果关键字 <code>key</code> 已经存在，则变更其数据值 <code>value</code> ；如果不存在，则向缓存中插入该组 <code>key-value</code> 。如果插入操作导致关键字数量超过 <code>capacity</code> ，则应该 <strong>逐出</strong> 最久未使用的关键字。</li>
-</ul>
-<p>函数 <code>get</code> 和 <code>put</code> 必须以 <code>O(1)</code> 的平均时间复杂度运行。</p>
-<p><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">输入</span><br><span class="line">[&quot;LRUCache&quot;, &quot;put&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;get&quot;, &quot;get&quot;]</span><br><span class="line">[[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]</span><br><span class="line">输出</span><br><span class="line">[null, null, null, 1, null, -1, null, -1, 3, 4]</span><br><span class="line"></span><br><span class="line">解释</span><br><span class="line">LRUCache lRUCache = new LRUCache(2);</span><br><span class="line">lRUCache.put(1, 1); // 缓存是 &#123;1=1&#125;</span><br><span class="line">lRUCache.put(2, 2); // 缓存是 &#123;1=1, 2=2&#125;</span><br><span class="line">lRUCache.get(1);    // 返回 1</span><br><span class="line">lRUCache.put(3, 3); // 该操作会使得关键字 2 作废，缓存是 &#123;1=1, 3=3&#125;</span><br><span class="line">lRUCache.get(2);    // 返回 -1 (未找到)</span><br><span class="line">lRUCache.put(4, 4); // 该操作会使得关键字 1 作废，缓存是 &#123;4=4, 3=3&#125;</span><br><span class="line">lRUCache.get(1);    // 返回 -1 (未找到)</span><br><span class="line">lRUCache.get(3);    // 返回 3</span><br><span class="line">lRUCache.get(4);    // 返回 4</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="哈希表-双向链表"><a href="#哈希表-双向链表" class="headerlink" title="哈希表+双向链表"></a>哈希表+双向链表</h3><p><strong>思路及算法</strong></p>
-<p>LRU 缓存机制可以通过哈希表辅以双向链表实现，我们用一个哈希表和一个双向链表维护所有在缓存中的键值对。</p>
-<ul>
-<li><p>双向链表按照被使用的顺序存储了这些键值对，靠近头部的键值对是最近使用的，而靠近尾部的键值对是最久未使用的。</p>
-</li>
-<li><p>哈希表即为普通的哈希映射（HashMap），通过缓存数据的键映射到其在双向链表中的位置。</p>
-</li>
-</ul>
-<p>这样以来，我们首先使用哈希表进行定位，找出缓存项在双向链表中的位置，随后将其移动到双向链表的头部，即可在 O(1) 的时间内完成 get 或者 put 操作。具体的方法如下：</p>
-<ul>
-<li><p>对于 get 操作，首先判断 key 是否存在：</p>
-<ul>
-<li>如果 key 不存在，则返回 −1；</li>
-<li>如果 key 存在，则 key 对应的节点是最近被使用的节点。通过哈希表定位到该节点在双向链表中的位置，并将其移动到双向链表的头部，最后返回该节点的值。</li>
-</ul>
-</li>
-<li><p>对于 put 操作，首先判断 key 是否存在：</p>
-<ul>
-<li>如果 key 不存在，使用 key 和 value 创建一个新的节点，在双向链表的头部添加该节点，并将 key 和该节点添加进哈希表中。然后判断双向链表的节点数是否超出容量，如果超出容量，则删除双向链表的尾部节点，并删除哈希表中对应的项；</li>
-<li>如果 key 存在，则与 get 操作类似，先通过哈希表定位，再将对应的节点的值更新为 value，并将该节点移到双向链表的头部。</li>
-</ul>
-</li>
-</ul>
-<p>上述各项操作中，访问哈希表的时间复杂度为 O(1)，在双向链表的头部添加节点、在双向链表的尾部删除节点的复杂度也为 O(1)。而将一个节点移到双向链表的头部，可以分成「删除该节点」和「在双向链表的头部添加节点」两步操作，都可以在 O(1) 时间内完成。</p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/146/1.PNG" alt="img"></p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/146/2.PNG" alt="img"></p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/146/3.PNG" alt="img"></p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/146/4.PNG" alt="img"></p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/146/5.PNG" alt="img"></p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/146/6.PNG" alt="img"></p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/146/7.PNG" alt="img"></p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/146/8.PNG" alt="img"></p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/146/9.PNG" alt="img"></p>
-<p><img src="https://assets.leetcode-cn.com/solution-static/146/10.PNG" alt="img"></p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">public class LRUCache &#123;</span><br><span class="line">    class DLinkedNode &#123;</span><br><span class="line">        int key;</span><br><span class="line">        int value;</span><br><span class="line">        DLinkedNode prev;</span><br><span class="line">        DLinkedNode next;</span><br><span class="line">        public DLinkedNode() &#123;&#125;</span><br><span class="line">        public DLinkedNode(int _key, int _value) &#123;key = _key; value = _value;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private Map&lt;Integer, DLinkedNode&gt; cache = new HashMap&lt;Integer, DLinkedNode&gt;();</span><br><span class="line">    private int size;</span><br><span class="line">    private int capacity;</span><br><span class="line">    private DLinkedNode head, tail;</span><br><span class="line"></span><br><span class="line">    public LRUCache(int capacity) &#123;</span><br><span class="line">        this.size = 0;</span><br><span class="line">        this.capacity = capacity;</span><br><span class="line">        // 使用伪头部和伪尾部节点</span><br><span class="line">        head = new DLinkedNode();</span><br><span class="line">        tail = new DLinkedNode();</span><br><span class="line">        head.next = tail;</span><br><span class="line">        tail.prev = head;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int get(int key) &#123;</span><br><span class="line">        DLinkedNode node = cache.get(key);</span><br><span class="line">        if (node == null) &#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">        // 如果 key 存在，先通过哈希表定位，再移到头部</span><br><span class="line">        moveToHead(node);</span><br><span class="line">        return node.value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void put(int key, int value) &#123;</span><br><span class="line">        DLinkedNode node = cache.get(key);</span><br><span class="line">        if (node == null) &#123;</span><br><span class="line">            // 如果 key 不存在，创建一个新的节点</span><br><span class="line">            DLinkedNode newNode = new DLinkedNode(key, value);</span><br><span class="line">            // 添加进哈希表</span><br><span class="line">            cache.put(key, newNode);</span><br><span class="line">            // 添加至双向链表的头部</span><br><span class="line">            addToHead(newNode);</span><br><span class="line">            ++size;</span><br><span class="line">            if (size &gt; capacity) &#123;</span><br><span class="line">                // 如果超出容量，删除双向链表的尾部节点</span><br><span class="line">                DLinkedNode tail = removeTail();</span><br><span class="line">                // 删除哈希表中对应的项</span><br><span class="line">                cache.remove(tail.key);</span><br><span class="line">                --size;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            // 如果 key 存在，先通过哈希表定位，再修改 value，并移到头部</span><br><span class="line">            node.value = value;</span><br><span class="line">            moveToHead(node);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void addToHead(DLinkedNode node) &#123;</span><br><span class="line">        node.prev = head;</span><br><span class="line">        node.next = head.next;</span><br><span class="line">        head.next.prev = node;</span><br><span class="line">        head.next = node;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void removeNode(DLinkedNode node) &#123;</span><br><span class="line">        node.prev.next = node.next;</span><br><span class="line">        node.next.prev = node.prev;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void moveToHead(DLinkedNode node) &#123;</span><br><span class="line">        removeNode(node);</span><br><span class="line">        addToHead(node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private DLinkedNode removeTail() &#123;</span><br><span class="line">        DLinkedNode res = tail.prev;</span><br><span class="line">        removeNode(res);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">struct DLinkedNode &#123;</span><br><span class="line">    int key, value;</span><br><span class="line">    DLinkedNode* prev;</span><br><span class="line">    DLinkedNode* next;</span><br><span class="line">    DLinkedNode(): key(0), value(0), prev(nullptr), next(nullptr) &#123;&#125;</span><br><span class="line">    DLinkedNode(int _key, int _value): key(_key), value(_value), prev(nullptr), next(nullptr) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">class LRUCache &#123;</span><br><span class="line">private:</span><br><span class="line">    unordered_map&lt;int, DLinkedNode*&gt; cache;</span><br><span class="line">    DLinkedNode* head;</span><br><span class="line">    DLinkedNode* tail;</span><br><span class="line">    int size;</span><br><span class="line">    int capacity;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    LRUCache(int _capacity): capacity(_capacity), size(0) &#123;</span><br><span class="line">        // 使用伪头部和伪尾部节点</span><br><span class="line">        head = new DLinkedNode();</span><br><span class="line">        tail = new DLinkedNode();</span><br><span class="line">        head-&gt;next = tail;</span><br><span class="line">        tail-&gt;prev = head;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int get(int key) &#123;</span><br><span class="line">        if (!cache.count(key)) &#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">        // 如果 key 存在，先通过哈希表定位，再移到头部</span><br><span class="line">        DLinkedNode* node = cache[key];</span><br><span class="line">        moveToHead(node);</span><br><span class="line">        return node-&gt;value;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void put(int key, int value) &#123;</span><br><span class="line">        if (!cache.count(key)) &#123;</span><br><span class="line">            // 如果 key 不存在，创建一个新的节点</span><br><span class="line">            DLinkedNode* node = new DLinkedNode(key, value);</span><br><span class="line">            // 添加进哈希表</span><br><span class="line">            cache[key] = node;</span><br><span class="line">            // 添加至双向链表的头部</span><br><span class="line">            addToHead(node);</span><br><span class="line">            ++size;</span><br><span class="line">            if (size &gt; capacity) &#123;</span><br><span class="line">                // 如果超出容量，删除双向链表的尾部节点</span><br><span class="line">                DLinkedNode* removed = removeTail();</span><br><span class="line">                // 删除哈希表中对应的项</span><br><span class="line">                cache.erase(removed-&gt;key);</span><br><span class="line">                // 防止内存泄漏</span><br><span class="line">                delete removed;</span><br><span class="line">                --size;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            // 如果 key 存在，先通过哈希表定位，再修改 value，并移到头部</span><br><span class="line">            DLinkedNode* node = cache[key];</span><br><span class="line">            node-&gt;value = value;</span><br><span class="line">            moveToHead(node);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void addToHead(DLinkedNode* node) &#123;</span><br><span class="line">        node-&gt;prev = head;</span><br><span class="line">        node-&gt;next = head-&gt;next;</span><br><span class="line">        head-&gt;next-&gt;prev = node;</span><br><span class="line">        head-&gt;next = node;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    void removeNode(DLinkedNode* node) &#123;</span><br><span class="line">        node-&gt;prev-&gt;next = node-&gt;next;</span><br><span class="line">        node-&gt;next-&gt;prev = node-&gt;prev;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void moveToHead(DLinkedNode* node) &#123;</span><br><span class="line">        removeNode(node);</span><br><span class="line">        addToHead(node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    DLinkedNode* removeTail() &#123;</span><br><span class="line">        DLinkedNode* node = tail-&gt;prev;</span><br><span class="line">        removeNode(node);</span><br><span class="line">        return node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：对于 put 和 get 都是 O(1)。</p>
-</li>
-<li><p>空间复杂度：O(capacity)，因为哈希表和双向链表最多存储 capacity+1 个元素。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://icheng281.github.io/2024/04/09/%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E7%BB%93%E7%82%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.png">
-      <meta itemprop="name" content="icheng281">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="勇者抽刃向强者的博客">
-      <meta itemprop="description" content="计算机小白一枚">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 勇者抽刃向强者的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/09/%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E7%BB%93%E7%82%B9/" class="post-title-link" itemprop="url">两两交换链表中的结点</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-04-09 09:40:51 / 修改时间：09:55:14" itemprop="dateCreated datePublished" datetime="2024-04-09T09:40:51+08:00">2024-04-09</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>970</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="两两交换链表中的结点"><a href="#两两交换链表中的结点" class="headerlink" title="两两交换链表中的结点"></a>两两交换链表中的结点</h1><h2 id="1-题目内容"><a href="#1-题目内容" class="headerlink" title="1.题目内容"></a>1.题目内容</h2><p>给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。</p>
-<p><strong>示例 1：</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2020/10/03/swap_ex1.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [1,2,3,4]</span><br><span class="line">输出：[2,1,4,3]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = []</span><br><span class="line">输出：[]</span><br></pre></td></tr></table></figure>
-
-<p><strong>示例 3：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [1]</span><br><span class="line">输出：[1]</span><br></pre></td></tr></table></figure>
-
-<p><strong>提示：</strong></p>
-<ul>
-<li>链表中节点的数目在范围 <code>[0, 100]</code> 内</li>
-<li><code>0 &lt;= Node.val &lt;= 100</code></li>
-</ul>
-<h2 id="2-解法"><a href="#2-解法" class="headerlink" title="2.解法"></a>2.解法</h2><h3 id="（1）递归"><a href="#（1）递归" class="headerlink" title="（1）递归"></a>（1）递归</h3><p><strong>思路及算法</strong></p>
-<p>可以通过递归的方式实现两两交换链表中的节点。</p>
-<p>递归的终止条件是链表中没有节点，或者链表中只有一个节点，此时无法进行交换。</p>
-<p>如果链表中至少有两个节点，则在两两交换链表中的节点之后，原始链表的头节点变成新的链表的第二个节点，原始链表的第二个节点变成新的链表的头节点。链表中的其余节点的两两交换可以递归地实现。在对链表中的其余节点递归地两两交换之后，更新节点之间的指针关系，即可完成整个链表的两两交换。</p>
-<p>用 <code>head</code> 表示原始链表的头节点，新的链表的第二个节点，用 <code>newHead</code> 表示新的链表的头节点，原始链表的第二个节点，则原始链表中的其余节点的头节点是 <code>newHead.next</code>。令 <code>head.next = swapPairs(newHead.next)</code>，表示将其余节点进行两两交换，交换后的新的头节点为 <code>head</code> 的下一个节点。然后令 <code>newHead.next = head</code>，即完成了所有节点的交换。最后返回新的链表的头节点 <code>newHead</code>。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode swapPairs(ListNode head) &#123;</span><br><span class="line">        if (head == null || head.next == null) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode newHead = head.next;</span><br><span class="line">        head.next = swapPairs(newHead.next);</span><br><span class="line">        newHead.next = head;</span><br><span class="line">        return newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* swapPairs(ListNode* head) &#123;</span><br><span class="line">        if (head == nullptr || head-&gt;next == nullptr) &#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode* newHead = head-&gt;next;</span><br><span class="line">        head-&gt;next = swapPairs(newHead-&gt;next);</span><br><span class="line">        newHead-&gt;next = head;</span><br><span class="line">        return newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li><p>时间复杂度：O(n)，其中 n 是链表的节点数量。需要对每个节点进行更新指针的操作。</p>
-</li>
-<li><p>空间复杂度：O(n)，其中 n 是链表的节点数量。空间复杂度主要取决于递归调用的栈空间。</p>
-</li>
-</ul>
-<h3 id="（2）迭代"><a href="#（2）迭代" class="headerlink" title="（2）迭代"></a>（2）迭代</h3><p><strong>思路及算法</strong></p>
-<p>创建哑结点 <code>dummyHead</code>，令 <code>dummyHead.next = head</code>。令 <code>temp</code> 表示当前到达的节点，初始时 <code>temp = dummyHead</code>。每次需要交换 <code>temp</code> 后面的两个节点。</p>
-<p>如果 <code>temp</code> 的后面没有节点或者只有一个节点，则没有更多的节点需要交换，因此结束交换。否则，获得 <code>temp</code> 后面的两个节点 <code>node1</code> 和 <code>node2</code>，通过更新节点的指针关系实现两两交换节点。</p>
-<p>具体而言，交换之前的节点关系是 <code>temp -&gt; node1 -&gt; node2</code>，交换之后的节点关系要变成 <code>temp -&gt; node2 -&gt; node1</code>，因此需要进行如下操作。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">temp.next = node2</span><br><span class="line">node1.next = node2.next</span><br><span class="line">node2.next = node1</span><br></pre></td></tr></table></figure>
-
-<p>完成上述操作之后，节点关系即变成 <code>temp -&gt; node2 -&gt; node1</code>。再令 <code>temp = node1</code>，对链表中的其余节点进行两两交换，直到全部节点都被两两交换。</p>
-<p>两两交换链表中的节点之后，新的链表的头节点是 <code>dummyHead.next</code>，返回新的链表的头节点即可。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//Java</span><br><span class="line">class Solution &#123;</span><br><span class="line">    public ListNode swapPairs(ListNode head) &#123;</span><br><span class="line">        ListNode dummyHead = new ListNode(0);</span><br><span class="line">        dummyHead.next = head;</span><br><span class="line">        ListNode temp = dummyHead;</span><br><span class="line">        while (temp.next != null &amp;&amp; temp.next.next != null) &#123;</span><br><span class="line">            ListNode node1 = temp.next;</span><br><span class="line">            ListNode node2 = temp.next.next;</span><br><span class="line">            temp.next = node2;</span><br><span class="line">            node1.next = node2.next;</span><br><span class="line">            node2.next = node1;</span><br><span class="line">            temp = node1;</span><br><span class="line">        &#125;</span><br><span class="line">        return dummyHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//C++</span><br><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    ListNode* swapPairs(ListNode* head) &#123;</span><br><span class="line">        ListNode* dummyHead = new ListNode(0);</span><br><span class="line">        dummyHead-&gt;next = head;</span><br><span class="line">        ListNode* temp = dummyHead;</span><br><span class="line">        while (temp-&gt;next != nullptr &amp;&amp; temp-&gt;next-&gt;next != nullptr) &#123;</span><br><span class="line">            ListNode* node1 = temp-&gt;next;</span><br><span class="line">            ListNode* node2 = temp-&gt;next-&gt;next;</span><br><span class="line">            temp-&gt;next = node2;</span><br><span class="line">            node1-&gt;next = node2-&gt;next;</span><br><span class="line">            node2-&gt;next = node1;</span><br><span class="line">            temp = node1;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode* ans = dummyHead-&gt;next;</span><br><span class="line">        delete dummyHead;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><strong>复杂度分析</strong></p>
-<ul>
-<li>时间复杂度：O(n)，其中 n 是链表的节点数量。需要对每个节点进行更新指针的操作。</li>
-<li>空间复杂度：O(1)。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
@@ -1523,14 +1517,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">151k</span>
+    <span title="站点总字数">153k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">9:11</span>
+    <span title="站点阅读时长">9:17</span>
   </span>
 </div>
 <div class="busuanzi-count">
